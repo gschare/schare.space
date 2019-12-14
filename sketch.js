@@ -131,6 +131,18 @@ function mousePressed() {
 
 }
 
+function touchMoved() {
+    flagCell(mouseX, mouseY);
+    console.log("Touch flag!");
+    return false;
+}
+
+function touchEnded() {
+    revealCell(mouseX, mouseY);
+    console.log("Touch reveal!");
+    return false;
+}
+
 function keyPressed() {
     
     if (key == ' ') {
@@ -146,11 +158,6 @@ function keyPressed() {
 function draw() {
 
     background(255);
-
-    if (touches.length > 0) {
-        revealCell(mouseX, mouseY);
-        console.log("touch event!");
-    }
 
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
