@@ -76,11 +76,11 @@ function gameOver() {
 
 }
 
-function revealCell() {
+function revealCell(x, y) {
     
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            if (grid[i][j].contains(mouseX, mouseY)) {
+            if (grid[i][j].contains(x, y)) {
                 
                 grid[i][j].reveal();
 
@@ -94,11 +94,11 @@ function revealCell() {
 
 }
 
-function flagCell() {
+function flagCell(x, y) {
 
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            if (grid[i][j].contains(mouseX, mouseY)) {
+            if (grid[i][j].contains(x, y)) {
                 
                 if (!grid[i][j].revealed) {
                     grid[i][j].flagged = !grid[i][j].flagged;
@@ -122,19 +122,23 @@ function flagCell() {
 function mousePressed() {
 
     if (mouseButton == LEFT) {
-        revealCell();
+        revealCell(mouseX, mouseY);
     } else if (mouseButton == RIGHT) {
-        flagCell();
+        flagCell(mouseX, mouseY);
     }
+
+    return false;
 
 }
 
 function keyPressed() {
     
     if (key == ' ') {
-        revealCell();
+        revealCell(mouseX, mouseY);
+        return false;
     } else if (keyCode == SHIFT) {
-        flagCell();
+        flagCell(mouseX, mouseY);
+        return false;
     }
 
 }
@@ -142,6 +146,11 @@ function keyPressed() {
 function draw() {
 
     background(255);
+
+    if (touches.length > 0) {
+        revealCell(mouseX, mouseY);
+        console.log("touch event!");
+    }
 
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
