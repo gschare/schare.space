@@ -14,19 +14,23 @@ function make2DArray(cols, rows) {
 let grid;
 let cols;
 let rows;
+let w;
 
-let canvasPx = 801;
-let cells = 400;
-let w = Math.floor(canvasPx / Math.sqrt(cells));
+cells = 200;
 let percentMines = 0.2;
 let totalMines = Math.floor(cells * percentMines);
 console.log("Mines: " + totalMines);
 
 let options = [];
 
+
 function setup() {
 
-    createCanvas(canvasPx, canvasPx);
+    let size = min(windowWidth, windowHeight);
+    createCanvas(size, size);
+
+    w = Math.floor(size / Math.sqrt(cells));
+
     cols = floor(width / w);
     rows = floor(height / w);
 
