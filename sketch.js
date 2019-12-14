@@ -22,7 +22,7 @@ let totalMines = Math.floor(cells * percentMines);
 console.log("Mines: " + totalMines);
 
 let options = [];
-
+let firstMove = true;
 
 function setup() {
 
@@ -77,12 +77,23 @@ function gameOver() {
 }
 
 function revealCell(x, y) {
+
+    console.log("revealCell() has been invoked");
     
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
             if (grid[i][j].contains(x, y)) {
                 
+                console.log("First move: " + firstMove);
+
+                if (firstMove) {
+                    setMines(i, j);
+                    firstMove = false;
+                    console.log("First move: " + firstMove);
+                }
+
                 grid[i][j].reveal();
+                console.log("revealing " + i + ", " + j);
 
                 if (grid[i][j].mine) {
                     gameOver();
@@ -96,12 +107,15 @@ function revealCell(x, y) {
 
 function flagCell(x, y) {
 
+    console.log("flagCell() has been invoked");
+
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
             if (grid[i][j].contains(x, y)) {
                 
                 if (!grid[i][j].revealed) {
                     grid[i][j].flagged = !grid[i][j].flagged;
+                    console.log("flagging cell!");
                 }
 
             }
@@ -111,37 +125,39 @@ function flagCell(x, y) {
 }
 
 // function mouseClicked(event) {
-//     event.preventDefault()
 //     if (event.button == LEFT) {
-//         revealCell();
+//         revealCell(mouseX, mouseY);
 //     } else if (mouseButton == RIGHT) {
-//         flagCell();
+//         flagCell(mouseX, mouseY);
+//         return false;
 //     }
 // }
 
 function mousePressed() {
+    console.log("mouse press event!");
 
     if (mouseButton == LEFT) {
         revealCell(mouseX, mouseY);
     } else if (mouseButton == RIGHT) {
         flagCell(mouseX, mouseY);
-    }
-
-    return false;
+        return false;
+    }    
 
 }
 
-function touchMoved() {
-    flagCell(mouseX, mouseY);
-    console.log("Touch flag!");
-    return false;
-}
+// function touchMoved() {
+//     flagCell(mouseX, mouseY);
+//     console.log("Touch flag!");
+//     return false;
+// }
 
-function touchEnded() {
-    revealCell(mouseX, mouseY);
-    console.log("Touch reveal!");
-    return false;
-}
+// function touchStarted(event) {
+//     if (event.ended) {
+//         revealCell(mouseX, mouseY);
+//         console.log("Touch reveal!");
+//         return false;
+//     }
+// }
 
 function keyPressed() {
     
