@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,35 +27,143 @@
 	<li>Variables</li>
 	<li>"Printing" output</li>
 </ul>
+
 <h3>Code</h3>
 <ul>
 	<li><a href="https://scratch.mit.edu">Scratch</a></li>
 	<li><a href="https://repl.it/@gschare/hellopy">hello.py</a></li>
 </ul>
+
 <h3>Homework</h3>
-<ul>
+
 <h4>Part 1</h4>
-<p>
-	Modify hello.py to print a sentence of your choice.
-	<br />
-	Now try printing more than one sentence.
-	<br />
-	Now try printing more than one sentence, each on its own line, using only one print statement.
-	<em>(HINT: use "\n" to tell Python to make a new line)</em>
-</p>
+
+<p>Modify hello.py to print a sentence of your choice.</p>
+
+<p>Now try printing more than one sentence.</p>
+
+<p>Now try printing more than one sentence, each on its own line, using only one print statement. <em>(HINT: use "\n" to tell Python to make a new line)</em></p>
+
 <h4>Part 2</h4>
-<p>
-	Make Python prompt (ask) you for a sentence as input, and then read that sentence back to you as output.
-</p>
+
+<p>Make Python prompt (ask) you for a sentence as input, and then read that sentence back to you as output.</p>
+
 <h4>Part 3</h4>
-<p>
-	Explore what other possibilities there are with input() and print().
-	<br />
-	You can create a text-based game, a personality quiz, a <a href="https://en.wikipedia.org/wiki/Mad_Libs">madlibs</a> game...
-	<br />
-	Just try stuff out and see what you can create!
-</p>
+
+<p>Explore what other possibilities there are with input() and print().</p>
+<p>You can create a text-based game, a personality quiz, a <a href="https://en.wikipedia.org/wiki/Mad_Libs">madlibs</a> game...</p>
+<p>Just try stuff out and see what you can create!</p>
+
+
+<h2>Lesson 2 | Sep. 23</h2>
+
+<h3>Topics</h3>
+
+<ul>
+	<li>Types</li>
+        <ul>
+            <li>Integers: whole numbers (positive or negative)</li>
+            <li>Strings: text</li>
+            <li>Floats: decimal values</li>
+            <li>Booleans: True/False</li>        </ul>
+    <li>The <code>type()</code> function</li>
+	<li>Basic operations</li>
+        <ul>
+            <li><code>+</code>: addition/concatenation</li>
+            <li><code>-</code>: subtraction</li>
+            <li><code>*</code>: multiplication</li>
+            <li><code>/</code>: division</li>
+            <li><code>**</code>: exponentiation (i.e. "to the power of")</li>
+        </ul>
+	<li>Casting a string to an int using the <code>int()</code> function</li>
+	<li>Types of errors</li>
+        <ul>
+	        <li>Syntax errors: "grammar" mistakes</li>
+            <li>Runtime errors: things the computer cannot do</li>
+            <li>Logic errors: program runs but doesn't do what you want</li>
+        </ul>
 </ul>
+
+<h3>Code</h3>
+
+<ul>
+	<li><a href="https://repl.it/@gschare/week2#types.py">types.py</a></li>
+	<li><a href="https://repl.it/@gschare/week2#errors.py">errors.py</a></li>
+</ul>
+
+<h3>Homework</h3>
+
+<p>Remember: these are <em>optional</em>, but <em>highly encouraged</em>. To that end, I made this week's assignments much more difficult than last week. I encourage you to try them all and it's totally okay if you struggle! If you are really stuck and you don't know what to do, it's also totally okay to ask for help by looking it up on the internet or asking someone you know to help you. Programming is a collaborative process; you aren't expected to do everything perfectly and you <em>don't need to memorize anything</em>!</p>
+
+<h4>I. Casting</h4>
+
+<p>Store various data types in different variables and try converting between them.</p>
+<p>Record what happens. Do any conversions cause errors? Look for strange edge cases.</p>
+<p>What happens when you convert a float to an int?</p>
+
+<h4>II. Cashier</h4>
+
+<p>Write a program called <b>cashier.py</b> that does the following:</p>
+
+<ol>
+    <li>Ask user for an amount of money (the change owed) as input. This should be in the form "3.92" to represent 3 dollars and 92 cents. Hint: what data type is this? Every data type has a casting function like <code>int()</code>. For example, to cast to a string, you use <code>str()</code>.</li>
+    <li>Convert this amount to pennies by multiplying by 100.</li>
+    <li>Starting with dollars, then quarters, and so on to pennies, compute the fewest number of coins necessary to fill the given amount. For example, 3.92 cents is most efficiently broken up into 3 dollars, 3 quarters, 1 dime, 1 nickel, and 2 pennies.</li>
+    <li>Print out how many of each coin is required to give the user their change.</li>
+</ol>
+
+<p>You will have to use a variable for each of the coins to store how many of them are needed.</p>
+
+<p>To make this work, you will need one more operator we didn't learn about in class: the modulus operator, written in Python as <code>%</code>. This is actually simpler than it seems; it just returns the remainder of the division of two numbers. For example, <code>9 % 2 = 1</code> and <code>10 % 5 = 0</code> and <code>92 % 25 = 17</code>.</p>
+
+<p>Good luck!</p>
+
+<h4>III. Pseudcode</h4>
+
+<p>Pseudocode is a way of writing or designing programs without actually having to bother with the nitty-gritty of Python programming. Pseudocode will not work in Python, but it is helpful as a first step to plan out your program.</p>
+
+<p>It's also useful for intuitively understanding more advanced code structures, which we will learn about next week!</p>
+
+<p>Here's an example expanding on one of the programs we did in class, in Python and then in pseudocode:</p>
+
+<h6>Python:</h6>
+
+<pre><code>num1 = int(input("Enter a number: "))
+num2 = int(input("Enter another number: "))
+print(num1, "^", num2, "=", num1**num2)</code></pre>
+
+<h6>Pseudocode:</h6>
+
+<pre><code>1. Get an integer from the user and store it in the variable 'num1'.
+2. Get an integer from the user and store it in the variable 'num2'.
+3. Raise num1 to the power of num2 and print the result.</code></pre>
+
+<p>As you can see, the pseudocode was a lot more readable. Unfortunately, it's also not valid code, so you'd need to translate it to Python to make it work. Still, it's great as a way to write out the important bits of your program and think about what it's doing without having to worry about types and conversions and all those low-level details during the planning phase.</p>
+
+<p>There's no official way to write pseudocode. Some people prefer like above, others prefer something more code-looking:</p>
+
+<pre><code>num1 = get_int()
+num2 = get_int()
+result = pow(num1, num2)
+print(result)</code></pre>
+
+<p>This looks a bit more like valid Python, but it's still not. <code>get_int()</code> is not a defined function in Python (though you could write it yourself). Here, it is used as an abstraction -- who cares how <code>get_int()</code> actually works? I just want to get an integer! It covers up the details and focuses on the important part, which is that we need to get an int from the user.</p>
+
+The following exercises should be written <em>entirely in pseudocode</em>. That is, you don't even need REPL for this! You can write them on paper or in a text document like Word.
+
+<h5>Exercise 1</h5>
+
+<p>Write, in pseudocode, instructions for how to make a peanut butter and jelly sandwich. Be as specific as possible -- remember, you're giving instructions to a robot or a computer! Computers take you literally and they'll get stuck if you aren't specific enough.</p>
+<p>For example, it doesn't suffice to say "scoop out some jelly." Where are you scooping out from? What are you scooping out with? How much is "some"?</p>
+<p>When you're finished, watch <a href="https://www.youtube.com/watch?v=okkIyWhN0iQ">this video.</a>
+
+<h5>Exercise 2</h5>
+
+<p>Write a program in pseudocode explaining how to count from 1 to 100. Just like in Exercise 1, it's important to be specific!</p>
+
+<h5>Exercise 3</h5>
+
+<p>Write a program in which the computer picks a random number from 1-10 and allows the user 4 guesses to figure out what it is. If the user guesses correctly, say "Congratulations" and stop the program. If they run out of guesses, say "You lost!", tell the user what the secret number was, and stop the program.</p>
 
 </body>
 </html>
