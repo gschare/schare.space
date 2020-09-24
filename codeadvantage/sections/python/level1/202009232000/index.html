@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,27 +6,107 @@
 	<meta name="author" content="Gregory Schare"/>
 	<link type="text/css" rel="stylesheet" href="/style.css"/>
 </head>
+
 <body>
 
-<h1>Python Level 1 -- Wednesdays @ 8:00pm</h1>
+<h1>Python Level 1 -- Wednesdays @ 8:00pm EST / 5:00pm PST</h1>
 
 <hr />
 
-<h2>Useful links</h2>
+<div id="toc_container">
+<h2 class="toc_title">Contents</h2>
+<ul class="toc_list">
+    <li><a href="#usefullinks">Useful Links<a></li>
+    <li><a href="#lesson1">Lesson 1 | Sep. 23</a></li>
+    <!--<li><a href="#lesson2">Lesson 2 | Sep. 23</a></li>-->
+</ul>
+</div>
+
+<h2 id="usefullinks">Useful links</h2>
 <ul>
 	<li><a href="https://repl.it">REPL</a></li>
 	<li><a href="https://docs.python.org/3/">Python documentation</a></li>
 </ul>
-
-<h2>Lesson 1 | Sep. 23</h2>
-<h3>Code</h3>
+<h3>Further reading</h3>
 <ul>
-	<li><a href="https://scratch.mit.edu">Scratch</a></li>
-	<li><a href="https://repl.it">Hello, World</a></li>
+    <li><a href="https://www.djangoproject.com/">Django</a>, a Python framework for making web apps</li>
+    <li><a href="https://unity.com/">Unity</a>, a free game development software</li>
 </ul>
-<h3>Homework</h3>
-<p>
-</p>
+
+<h2 id="lesson1">Lesson 1 | Sep. 23</h2>
+<h3 id="lesson1_topics">Topics</h3>
+<ul>
+	<li>Computer science themes</li>
+	<li>Functions</li>
+	<li>Using REPL to write and run Python files</li>
+	<li>Variables</li>
+	<li><code>print()</code> and <code>input()</code> functions</li>
+    <li>Doing math in the interpreter</li>
+    <li>Types and literals</li>
+</ul>
+
+<h3 id="lesson1_code">Code</h3>
+<ul>
+	<li><a href="https://repl.it/@gschare/8pweek1#main.py">REPL with code from class</a></li>
+</ul>
+
+<h3 id="lesson1_hw">Homework</h3>
+
+<p>Do whichever of these exercises seem interesting to you! I encourage you to follow your curiosity on whatever gets you excited.</p>
+
+<p>Don't feel pressure to do all of them! These are really just ideas to get your programming muscles going, and to give you stuff to practice with in between classes.</p>
+
+<h4>I. Input and Output basics</h4>
+
+<ol>
+<li>Print a sentence of your choice with <code>print()</code>.</li>
+<li>Ask the user to input a sentence and then repeat it back to the user with an exclamation point at the end.</li>
+<li>Use the special <code>"\n"</code> string to print a new line in the middle of a sentence. I won't tell you exactly how to do this -- it's up to you to experiment with it!</li>
+<li>Once you understand <code>"\n"</code>, try <code>"\t"</code>.</li>
+</ol>
+
+<h4>II. Personality Quiz</h4>
+
+<p>Expand on the small personality quiz we did in class. Collect answers to a bunch of questions and then list them out in whatever way you like. Then force your captive family members to take the quiz.</p>
+
+<h4>III. Mad Libs</h4>
+
+<p><a href="https://en.wikipedia.org/wiki/Mad_Libs">Mad Libs</a> is a game where one player asks the other for a series of parts of speech (e.g. "noun", "verb in past tense", "person's name") and uses those answers to fill in the blanks to a story that the other player doesn't see. Then, the story is read aloud and it should be completely absurd because the player providing the answers had no clue how the words would fit into the story.</p>
+
+<p>Perhaps you can see how what we learned in class is perfectly suited to this kind of game.</p>
+
+<p><li>Write your own story, or find one online, in the REPL editor as a string, leaving plenty of blanks for variables. Ask the user for input, prompting them like the player asking for parts of speech would. Store these answers and use them to fill in the blanks of the story.</li></p>
+
+<p>It's important that the string comes <em>after</em> the answers are collected, or else the variables representing the answers won't be defined and the program will break!</p>
+
+<h4>IV. Casting</h4>
+
+<p><em>Note</em>: decimal values are called <code>float</code>s in Python. Floats, just like ints, have a function for converting a value. For ints, this is <code>int()</code>, and appropriately for floats, this is <code>float()</code>.</p>
+
+<p>There is also one for strings: <code>str()</code>.</p>
+
+<ol>
+<li>Store various data types in different variables and try converting between them.</li>
+<li>Record what happens. Do any conversions cause errors? Look for strange edge cases.</li>
+<li>What happens when you convert a float to an int?</li>
+</ol>
+
+<h4>V. Cashier</h4>
+
+<p>Write a program called <b>cashier.py</b> that does the following:</p>
+
+<ol>
+    <li>Ask user for an amount of money (the change owed) as input. This should be in the form "3.92" to represent 3 dollars and 92 cents. Hint: what data type is this? You will need to cast it to that data type, because <code>input()</code> always gives you a string.</li>
+    <li>Convert this amount to pennies by multiplying by 100.</li>
+    <li>Starting with dollars, then quarters, and so on to pennies, compute the fewest number of coins necessary to fill the given amount. For example, 3.92 cents is most efficiently broken up into 3 dollars, 3 quarters, 1 dime, 1 nickel, and 2 pennies.</li>
+    <li>Print out how many of each coin is required to give the user their change.</li>
+</ol>
+
+<p>You will have to use a variable for each of the coins to store how many of them are needed.</p>
+
+<p>To make this work, you will need one more operator we didn't learn about in class: the modulus operator, written in Python as <code>%</code>. This is actually simpler than it seems; it just returns the remainder of the division of two numbers. For example, <code>9 % 2 = 1</code> and <code>10 % 5 = 0</code> and <code>92 % 25 = 17</code>.</p>
+
+<p>Good luck!</p>
 
 </body>
 </html>
