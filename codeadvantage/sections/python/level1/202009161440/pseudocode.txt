@@ -1,0 +1,29 @@
+Write a program in pseudocode explaining how to count from 1 to 100. Just like in Exercise 1, it's important to be specific!
+
+option 1:
+1. Count to 100
+
+option 2:
+1. Start at a number, 1 (set variable number=1)
+2. If number isn't 100, then say the number, otherwise, stop
+3. Set number equal to previous number + 1
+4. Repeat from step 2
+
+option 2.5:
+1. Set number = 1
+2. Do the following forever:
+  3. If number isn't 100, then say the number, otherwise, stop
+  4. Set number equal to previous number + 1
+
+New ideas from this pseudocode:
+If/otherwise: conditional
+Repeat: loop
+
+option 3:
+1. say 1
+2. say 2
+3. say 3
+4. say 4
+5. say 5
+6. say 6
+TERRIBLE. Why? If you decide you want to count to 1000 instead, it takes 900 more lines.
