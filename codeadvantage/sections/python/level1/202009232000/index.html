@@ -144,8 +144,82 @@
 
 <h3 id="lesson2_hw">Homework</h3>
 
-<p>Come back later...</p>
+<h4>Fibonacci sequence</h4>
+<p>In mathematics, there is something called the <b>Fibonacci sequence</b>, which is a special sequence of numbers defined as follows:</p>
+<br>
+<pre><code>F<sub>0</sub> = 0
+F<sub>1</sub> = 1
+F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub></code></pre>
+<br>
+<p>Okay... but what the heck does that mean?!</p>
+<br>
 
+<p>It's actually pretty simple. The Fibonacci sequence is just where you count by adding the two previous numbers in the list together to get the next one. For this to make sense, we need to start with two numbers already, so we say the first two numbers are 0 and 1.</p>
+
+<br>
+
+<p>Let's see an example.</p>
+<br>
+
+<pre><code>First two numbers: 0, 1.
+Next: 0 + 1 = 1.
+Next: 1 + 1 = 2.
+Next: 1 + 2 = 3.
+Next: 2 + 3 = 5.
+Next: 3 + 5 = 8.
+Next: 5 + 8 = 13.
+Next: 8 + 13 = 21.
+</code></pre>
+<br>
+<p>...and so on. As you see, it actually makes a lot of sense! So the sequence so far can be written as:</p>
+<br>
+<pre><code>0,1,1,2,3,5,8,13,21,...</code></pre>
+<br>
+<p>Like many sequences, it goes on forever. It turns out that a lot of things in nature adhere to the Fibonacci sequence. For example, there's a famous thing called the <em>Fibonacci spiral</em> (pictured below) which you can find all throughout biology and art as it is very satisfying to look at.</p>
+
+<br>
+
+<div style="text-align: center;">
+    <img src="FibonacciSpiral.svg" alt="Fibonacci spiral">
+</div>
+
+<br>
+
+<p>There's another kind of Fibonacci spiral, which instead of making squares out of the numbers of the sequence like above, counts the number of outward spirals of a sunflower plant, which happens to perfectly match the Fibonacci sequence.</p>
+
+<br>
+
+<div style="text-align: center;">
+    <img src="SunflowerModel.svg" alt="Sunflower spiral"> 
+</div>
+
+<br>
+
+<p>A similar idea appears in other plants. Here is an overlay of the Fibonacci sequence over a chamomile flower, demonstrating another one of these appearances in nature.</p>
+
+<br>
+
+<div style="text-align: center;">
+    <img src="FibonacciChamomile.png" alt="Fibonacci chamomile">
+</div>
+
+<br>
+
+<p>For this exercise, the user will enter a number and you will then calculate and print that many numbers of the Fibonacci sequence.</p>
+
+<h5>The Exercise</h5>
+
+<p>Do the following in Python:</p>
+<ol>
+    <li>Get an integer from the user and store it. Let's call this <code>n</code></li>
+    <li>Set two variables to represent the last two numbers in the Fibonacci sequence. They should start as 0 and 1.</li>
+    <li>Use a while loop to repeatedly print the next number in the Fibonacci sequence until you've computed <code>n</code> Fibonacci numbers.</li>
+        <ul><li>Consider: instead of adding 1 to a <code>counter</code> variable like we did in class, can you <em>subtract</em> 1 from <code>n</code> until you reach 0?</li></ul>
+</ol>
+
+<br>
+
+<p>Remember: this exercise is meant to be very challenging. That being said, I don't want you stress over it! Looking stuff up on the internet is not only allowed&mdash;it's encouraged! Googling stuff to help you with a problem is a really useful skill, in programming and for life in general. If you get stuck, seeking help online is a perfectly valid strategy.</p>
 
 </body>
 </html>
