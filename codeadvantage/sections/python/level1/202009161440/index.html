@@ -217,8 +217,57 @@ The following exercises should be written <em>entirely in pseudocode</em>. That 
 
 <h3 id="lesson3_hw">Homework</h3>
 
-<p>Come back later...</p>
+<h4>I. Number guessing game: user guessing</h4>
+<p>Use if and while loops to create a game that:</p>
 
+<ol>
+    <li>Generates a random number from 1 to 10</li>
+    <li>Lets the user attempt to guess the number (4 guesses allowed)</li>
+        <ul>
+            <li>If the guess was too low, tell the user to guess higher.</li>
+            <li>If the guess was too high, tell the user to guess lower.</li>
+            <li>If the guess was correct, say "You guessed correctly!" and end the program.</li>
+        </ul>
+     <li>If the user runs out of guesses before they guess correctly, tell them what the secret number was and end the program.</li>
+</ol>
+
+<p>It helps to write out the entire program in pseudocode first and then translate that to actual Python. Try to be as specific as possible!</p>
+
+<p>This program requires a few things we didn't learn in class. Here they are:</p>
+
+<p>To generate a random number from 1 to 10, put the following code at the top of your program:</p>
+
+<pre><code>import random
+secret = random.randint(1,10)</code></pre>
+
+<p>In class we only briefly saw using if/else blocks as "if this, then that, else that". But now we have three options. To write more complicated conditional blocks, we can either nest them or use a third keyword: <code>elif</code> (which just means "else" followed by another "if"). It looks like this:</p>
+
+<pre><code>if temperature &gt; 90:
+    print("It's super hot outside!")
+elif temperature &gt; 68:
+    print("It's warm outside.")
+elif temperature &gt; 32:
+    print("It's cold outside.")
+else:
+    print("It's freezing outside!")</code></pre>
+
+<p>As you can see, you can put together long series of if/elif/else blocks this way. This will help break down the three possibilities: you guessed too high, too low, or just right.</p>
+
+<h5>Hints</h5>
+<p>I will put up hints as the week progresses. This is to encourage you to try it yourself first. But remember&mdash;looking stuff up is <em>NOT</em> against the rules! I encourage you to use Google to solve problems if you get stuck.</p>
+
+
+<h4>II. Number guessing game: computer guessing</h4>
+<p>Write the same program as above, but swap the roles. The user will <em>think</em> of a number and the computer has 4 attempts to guess the number. The user will type "h" if the guess was too high, "l" if the guess was too low, and "c" if the guess was correct.</p>
+
+<p>You can compare strings just like you compare numbers: e.g., <code>feedback == "h"</code> can evaluate to <code>True</code> or <code>False</code> depending on the value of the variable <code>feedback</code>. This is case-sensitive, meaning <code>"H"</code> is not equal to <code>"h"</code>.</p>
+
+<p>For this to work, you will need to think carefully about how to give the computer some "intelligence" about what to guess next. You could, admittedly, reuse the code from Part I that just guesses a random number and then hope one of the four guesses is correct, but it would be more effective to take advantage of the user's feedback. If the user says the computer guessed too high, then maybe the computer should start guessing lower.</p>
+
+<p>How do you guess lower? Consider keeping two variables that track the range of possibilities of the number. Start from 1 to 10, and maybe guess halfway between: 5. If this was too high, you know you can ignore numbers 5-10, so the new "high" becomes 4. So the computer guesses halfway between 1 and 4: 2. And so on until correct or you ran out of guesses.</p>
+
+<h5>Hints</h5>
+<p>As in Part I, hints will show up here as the week progresses.</p>
 
 </body>
 </html>
