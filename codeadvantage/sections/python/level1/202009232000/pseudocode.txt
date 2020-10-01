@@ -1,0 +1,50 @@
+Pseudocode
+Pseudo- means not quite, or pretending
+Pseudointellectual = someone who poses or pretends to be smart
+
+Pseudocode = pretending to be code. looks like code but isn't
+
+Python code:
+num1 = int(input("Enter a number: "))
+num2 = int(input("Enter a number: "))
+print(num1 + num2)
+
+Pseudocode:
+1. Get an integer from the user and store it as "num1".
+2. Get another integer from the user and store it as "num2".
+3. Add num1 and num2 and print the result.
+
+algorithm = the set of instructions for the computer to follow. AKA "the program".
+
+Write a program in pseudocode for counting from 1 to 100.
+
+Option 1
+1. Set a variable number = 1
+2. Set a variable number2 = 2
+...
+100. Set a variable num100 = 100
+101. print(number1)
+...
+200. print(number100)
+
+Option 2
+1. Set a variable which is a list of numbers 1-100
+2. Print(each number with \n between them)
+
+Option 3
+1. Set count = 1
+2. print(count)
+3. count = count + 1
+4. Repeat from step 2 until count is 100
+
+Option 3.5
+1. Set count = 1
+2. Do the following while count is less than or equal to 100:
+	3. print(count)
+	4. count = count + 1
+
+Example of a repeating algorithm on a shampoo bottle:
+1. wet hair
+2. lather
+3. rinse
+4. repeat
