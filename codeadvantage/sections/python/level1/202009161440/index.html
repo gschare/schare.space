@@ -20,6 +20,7 @@
     <li><a href="#lesson1">Lesson 1 | Sep. 16</a></li>
     <li><a href="#lesson2">Lesson 2 | Sep. 23</a></li>
     <li><a href="#lesson3">Lesson 3 | Sep. 30</a></li>
+    <li><a href="#lesson4">Lesson 4 | Oct. 7</a></li>
 </ul>
 </div>
 
@@ -218,6 +219,7 @@ The following exercises should be written <em>entirely in pseudocode</em>. That 
 <h3 id="lesson3_hw">Homework</h3>
 
 <h4>I. Number guessing game: user guessing</h4>
+<h6><a href="https://repl.it/@gschare/userguess#main.py">Solution. I encourage you to try it yourself first!</a></h6>
 <p>Use if and while loops to create a game that:</p>
 
 <ol>
@@ -256,6 +258,9 @@ else:
 <p>Remember&mdash;looking stuff up is <em>NOT</em> against the rules! I encourage you to use Google to solve problems if you get stuck.</p>
 
 <h4>II. Number guessing game: computer guessing</h4>
+
+<h6><a href="https://repl.it/@gschare/computerguess#main.py">Solution. I encourage you to try it yourself first!</a></h6>
+
 <p>Write the same program as above, but swap the roles. The user will <em>think</em> of a number and the computer has 4 attempts to guess the number. The user will type "h" if the guess was too high, "l" if the guess was too low, and "c" if the guess was correct.</p>
 
 <p>You can compare strings just like you compare numbers: e.g., <code>feedback == "h"</code> can evaluate to <code>True</code> or <code>False</code> depending on the value of the variable <code>feedback</code>. This is case-sensitive, meaning <code>"H"</code> is not equal to <code>"h"</code>.</p>
@@ -263,6 +268,44 @@ else:
 <p>For this to work, you will need to think carefully about how to give the computer some "intelligence" about what to guess next. You could, admittedly, reuse the code from Part I that just guesses a random number and then hope one of the four guesses is correct, but it would be more effective to take advantage of the user's feedback. If the user says the computer guessed too high, then maybe the computer should start guessing lower.</p>
 
 <p>How do you guess lower? Consider keeping two variables that track the range of possibilities of the number. Start from 1 to 10, and maybe guess halfway between: 5. If this was too high, you know you can ignore numbers 5-10, so the new "high" becomes 4. So the computer guesses halfway between 1 and 4: 2. And so on until correct or you ran out of guesses.</p>
+
+<h2 id="lesson4">Lesson 4 | Oct. 7</h2>
+
+<p>Apologies for a rather hectic class! I have written up some detailed notes to help get you acquainted with lists, as they are a super important topic! Access them below:</p>
+
+<h3 id="lesson4_topics">Topics</h3>
+
+<h6><a href="https://repl.it/@gschare/listnotes">Detailed notes on lists</a></h6>
+
+<ul>
+    <li>Practicing while loops</li>
+    <li>Lists</li>
+    <li>Indexing (starting from 0)</li>
+        <ul>
+            <li><code>myList[0]</code> gets the first element</li>
+            <li><code>myList[1]</code> gets the second element</li>
+            <li>and so on...</li>
+        </ul>
+    <li>Looping over a list with a <code>while</code> loop</li>
+	<li>List operations</li>
+        <ul>
+            <li><code>myList.append()</code>: add something at the end of a list</li>
+            <li><code>myList.remove()</code>: remove an element of the list</li>
+            <li><code>myList.extend()</code>: append all the elements of another list to the end of your list ("concatenation")</li>
+            <li><code>myList = myList + anotherList</code>: same as <code>extend()</code></li>
+        </ul>
+    <li><code>len()</code>: get the length of list (useful for looping)</li>
+</ul>
+
+<h3 id="lesson4_code">Code</h3>
+
+<ul>
+    <li><a href="https://repl.it/@gschare/week4">Introduction to lists</a></li>
+	<li><a href="https://repl.it/@gschare/listapplication#main.py">List applications</a></li>
+</ul>
+
+<h3 id="lesson4_hw">Homework</h3>
+<p>TBD</p>
 
 </body>
 </html>
