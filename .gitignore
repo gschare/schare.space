@@ -2,7 +2,7 @@
 afternoon.html
 evening.html
 animalexpedition.html
-animalexpedition
+./animalexpedition
 
 # do not ignore what the symlink points to
-!codeadvantage/
+!./codeadvantage
