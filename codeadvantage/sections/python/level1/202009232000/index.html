@@ -21,6 +21,7 @@
     <li><a href="#lesson2">Lesson 2 | Sep. 30</a></li>
     <li><a href="#lesson3">Lesson 3 | Oct. 7</a></li>
     <li><a href="#lesson4">Lesson 4 | Oct. 14</a></li>
+    <li><a href="#lesson5">Lesson 5 | Oct. 21</a></li>
 </ul>
 </div>
 
@@ -52,7 +53,7 @@
 	<li><a href="https://repl.it/@gschare/8pweek1#main.py">REPL with code from class</a></li>
 </ul>
 
-<h3 id="lesson1_hw">Homework</h3>
+<h3 id="lesson1_hw">Exercises</h3>
 
 <p>Do whichever of these exercises seem interesting to you! I encourage you to follow your curiosity on whatever gets you excited.</p>
 
@@ -144,7 +145,7 @@
 	<li><a href="https://repl.it/@gschare/8pweek2#main.py">using a while loop to count to 100</a></li>
 </ul>
 
-<h3 id="lesson2_hw">Homework</h3>
+<h3 id="lesson2_hw">Exercises</h3>
 
 <h4>Fibonacci sequence</h4>
 <p>In mathematics, there is something called the <b>Fibonacci sequence</b>, which is a special sequence of numbers defined as follows:</p>
@@ -256,7 +257,7 @@ Next: 8 + 13 = 21.
         </ul>
 </ul>
 
-<h3 id="lesson3_hw">Homework</h3>
+<h3 id="lesson3_hw">Exercises</h3>
 
 <p>No homework this week! Just practice using lists.</p>
 
@@ -286,10 +287,53 @@ Next: 8 + 13 = 21.
     <li><a href="https://repl.it/@gschare/8pweek4#algorithms.py">Linear search algorithms</a></li>
 </ul>
 
-<h3 id="lesson4_hw">Homework</h3>
+<h3 id="lesson4_hw">Exercises</h3>
 <p>Again, no homework this week. Review lists and keep practicing with them. Better yet--try using Python list searching to solve a problem in your everyday life, or to help with school homework.</p>
 
 <p>Next week we'll be learning about dictionaries and string manipulations by making ciphers. If you aren't familiar with <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar ciphers</a> and <a href="https://en.wikipedia.org/wiki/Substitution_cipher">substitution ciphers</a>, it might be a good idea to look those up before class next week.</p>
+
+<h2 id="lesson5">Lesson 5 | Oct. 21</h2>
+<h3 id="lesson5_topics">Topics</h3>
+<ul>
+    <li>Functions</li>
+        <ul><li><code>print()</code> vs <code>return</code></li></ul>
+    <li>Dictionaries</li>
+        <ul>
+            <li><code>{ key : value }</code> syntax</li>
+            <li>Accessing values with <code>myDict[key]</code> and <code>myDict.get(key)</code></li>
+            <li>Programmatically generating dictionaries inside loops by setting <code>myDict = {}</code> and assigning values via <code>myDict[key] = value</code></li>
+        </ul>
+    <li>Strings are lists of characters</li>
+        <ul>
+            <li>Iterating over a string with enhanced for loop</li>
+            <li>Appending to a string via <code>+=</code></li>
+            <li>
+        </ul>
+    <li>Character manipulation</li>
+        <ul>
+            <li><code>ord()</code> gets decimal value associated with a character</li>
+            <li><code>chr()</code> converts decimal value back to a character</li>
+        </ul>
+</ul>
+<p>Some of you expressed interest in the so-called "walrus operator". Here are some proper descriptions of it, since I don't know that much about it.</p>
+<ul>
+    <li><a href="https://medium.com/better-programming/what-is-the-walrus-operator-in-python-5846eaeb9d95#:~:text=Nov%2010%2C%202019%20%C2%B7%202%20min,would%20utilize%20a%20similar%20statement.">What Is the Walrus Operator in Python?</a></li>
+    <li><a href="https://www.geeksforgeeks.org/walrus-operator-in-python-3-8/">Walrus Operator tutorial</a></li>
+</ul>
+
+<h3 id="lesson5_code">Code</h3>
+<ul>
+    <li><a href="https://repl.it/@gschare/ciphers#main.py">Functions and Caesar cipher</a></li>
+</ul>
+
+<h3 id="lesson5_hw">Exercises</h3>
+<p>Optional exercise if you enjoyed the Caesar cipher: make an encryption algorithm with three functions:</p>
+<ol>
+    <li><code>gen()</code>, which generates a completely random dictionary by which to associate letters with their encrypted versions</li>
+    <li><code>encrypt(message, key)</code>, which encrypts it and takes as arguments a message and an encryption dictionary</li>
+    <li><code>decrypt(message, key)</code>, which decrypts it.</li>
+</ol>
+<p>Keep in mind that you can't just pick the letters randomly, since you need to make sure that no two letters map to the same encrypted letter, or else you wouldn't be able to reliably reverse it! (Hint: <code>shuffle</code> the list of letters first and then associate them in order.)</p>
 
 </body>
 </html>
