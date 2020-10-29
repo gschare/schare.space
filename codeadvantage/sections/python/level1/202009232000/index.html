@@ -22,6 +22,7 @@
     <li><a href="#lesson3">Lesson 3 | Oct. 7</a></li>
     <li><a href="#lesson4">Lesson 4 | Oct. 14</a></li>
     <li><a href="#lesson5">Lesson 5 | Oct. 21</a></li>
+    <li><a href="#lesson6">Lesson 6 | Oct. 28</a></li>
 </ul>
 </div>
 
@@ -334,6 +335,30 @@ Next: 8 + 13 = 21.
     <li><code>decrypt(message, key)</code>, which decrypts it.</li>
 </ol>
 <p>Keep in mind that you can't just pick the letters randomly, since you need to make sure that no two letters map to the same encrypted letter, or else you wouldn't be able to reliably reverse it! (Hint: <code>shuffle</code> the list of letters first and then associate them in order.)</p>
+
+<h2 id="lesson6">Lesson 6 | Oct. 28</h2>
+<h3 id="lesson6_topics">Topics</h3>
+<ul>
+    <li>File I/O (input/output)</li>
+    <li>The <code>open()</code> function</li>
+    <li>Modes:</li>
+        <ul>
+            <li><code>"w"</code>: write mode (overwrites file)</li>
+            <li><code>"a"</code>: append mode (adds to file)</li>
+            <li><code>"r"</code>: read mode</li>
+        </ul>
+    <li><code>f.write()</code> method for writing a string to a file</li>
+    <li><code>f.read()</code> method for getting content of a file</li>
+    <li><code>f.readlines()</code> method for getting content of a file line by line. Note there is also a <code>f.writelines()</code> method but we didn't use it</li>
+    <li><code>string.replace(a,b)</code> method for replacing all occurrences of <code>a</code> with <code>b</code> in <code>string</code></li>
+    <li><code>string.split(sep)</code> method for splitting a string up into a list of strings by separating on <code>sep</code> (default: space)</li>
+</ul>
+<h3 id="lesson6_code">Code</h3>
+<ul>
+    <li><a href="https://repl.it/@gschare/8pweek6#io.py">io.py -- introduction to file I/O</a></li>
+    <li><a href="https://repl.it/@gschare/8pweek6#analyze.py">analyze.py -- using Python to search in a text file</a></li>
+    <li><a href="http://shakespeare.mit.edu/hamlet/full.html">Full text of Hamlet</a></li>
+</ul>
 
 </body>
 </html>
