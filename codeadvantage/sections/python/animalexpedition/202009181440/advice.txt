@@ -1,0 +1,51 @@
+Python is a wonderful language, but it's not super great for making games.
+Instead, people typically use one of the following:
+- C# and Java
+  - two very similar Object-Oriented languages
+  - C# used by Unity
+  - Java used for Android mobile app development
+- C++
+  - more difficult Object-Oriented and imperative language
+  - often used to program renderers and game engines
+- JavaScript
+  - very similar to Python (not related to Java!)
+  - the main language for web coding that all browsers use
+  - how to make a JavaScript game that runs in the browser:
+    - make a folder on your computer
+    - put a file called index.html and put in the bare mininum document tags and a script tag
+    - put a file called app.js/sketch.js/script.js and load that into the html
+    - code your game in that .js file
+    - open the html file in your browser
+  - for more advanced JavaScript + HTML game coding, see: The Advanced Game
+    Developer's Toolkit, by Rex van der Spuy
+- Lua
+  - very intuitive language specifically made for making games
+
+Software and Frameworks for making games:
+- Unity: game design software w/ some coding in C#
+- Godot: another software like Unity, maybe a bit easier learning curve
+- GameMaker: more user-friendly software
+- OpenGL (Open Graphics Library): API (Application Programming Interface)
+  for rendering graphics
+  - essentially you can load this API into almost any language and gain
+    access to lots of game-making utilities. Good if you don't want to use a
+    software interface and just focus on coding.
+- Processing: (Java, Python, or JS) for animation, graphics, art
+
+Mobile App Development
+ - Apple apps are coded in XCode
+ - Android apps are coded in Java
+
+How do you find resources for learning?
+- formal online courses, e.g. MOOCs (Massively Open Online Courses)
+  - EdX
+  - Coursera
+- search YouTube or Google
+  - e.g. "how to make a game using JavaScript canvas"
+  - look for in-depth tutorial series
+- get a book (physical or PDF)
+  - from the library, from the internet, from an online bookstore
+
+Book recommendations (but do look for your own!):
+- The Advanced Game Developer's Toolkit (Javascript and HTML web-based game handbook) by Rex van der Spuy
+- Game Programming Patterns by Robert Nystrom
