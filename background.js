@@ -1,71 +1,79 @@
-var p;
-var arc;
+const dt = 0.0005;
+const SCALE_FACTOR = 20;
+const POINTS_PER_FRAME = 100;
+const TRAIL_LENGTH = 1000;
+const a = 10.0;
+const b = 8.0 / 3.0;
+const c = 28.0;
+
+var t = 0;
+const n = 5;
+var attractors = new Array();
 
 function init() {
-    p = 0.0;
+    const x = 5.1;
+    const y = 7.1;
+    const z = 9.1;
 
     var canvas = document.getElementById('background');
-    var ctx = canvas.getContext('2d');
-    ctx.fillStyle = "#1d1d1d";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    arc = { prevRadius: 100,
-            prevCenter: { x: Math.random() * canvas.width, y: Math.random() * canvas.height },
-            prevTheta:  Math.random() * 2 * Math.PI,
-            prevDir:    Math.ceil(Math.random()) };
+    for (let i=0; i<n; i++) {
+        attractors.push({ x: pertubate(x),
+                          y: pertubate(y),
+                          z: pertubate(z),
+                          a: a,
+                          b: b,
+                          c: c,
+                          scale: 20,
+                          points: new Array(),
+                          canvasX: (Math.random() - 0.1) * canvas.width * 0.8,
+                          canvasY: (Math.random() - 0.1) * canvas.height * 0.8 });
+    }
 
     window.requestAnimationFrame(draw);
+}
+
+function equation(x, y, z, a, b, c) {
+  x += (a * (y - x)) * dt;
+  y += (x * (c - z) - y) * dt;
+  z += (x * y - b * z) * dt;
+  return [x, y, z];
+}
+
+function pertubate(v) {
+    return Math.random() * 2 * v;
 }
 
 function draw() {
     var canvas = document.getElementById('background');
     var ctx = canvas.getContext('2d');
 
-    //ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.lineWidth = 2;
-    /*
-    ctx.strokeStyle = "#ffffff";
+    ctx.fillStyle = "#1d1d1d";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.beginPath();
-    ctx.arc(canvas.width/2, canvas.height/2, 50, 8 * p, (Math.PI / 2) + (8 * p), false);
-    ctx.stroke();
+    for (let i=0; i<attractors.length; i++) {
+        for (let _=0; _<POINTS_PER_FRAME; _++) {
+            [x,y,z] = equation(attractors[i].x, attractors[i].y, attractors[i].z, attractors[i].a, attractors[i].b, attractors[i].c);
+            attractors[i].x = x;
+            attractors[i].y = y;
+            attractors[i].z = z;
+            attractors[i].points.push([x,y,z]);
+            if (attractors[i].points.length > TRAIL_LENGTH) {
+                attractors[i].points.splice(0, attractors[i].points.length - TRAIL_LENGTH);
+            }
+        }
+        for (let p=0; p<attractors[i].points.length; p++) {
+            ctx.fillStyle = 'hsl(' + (Math.floor(p * 0.2) % 360) + ',50%,50%)';
+            [x,y,z] = attractors[i].points[p];
+            ctx.fillRect((z * attractors[i].scale) + attractors[i].canvasX, (x * attractors[i].scale) + attractors[i].canvasY, 2, 2);
+        }
+    }
 
-    ctx.lineWidth = 6;
+    //console.log(x,y,z);
 
-    ctx.beginPath();
-    ctx.arc(canvas.width/2, canvas.height/2, 100, (Math.PI * 1.5) - p, Math.PI - p, true);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.arc(canvas.width/2, canvas.height/2, 100, 0 - p, (Math.PI/2) - p, false); // Outer circle
-    ctx.stroke();
-
-    console.log(p);
-    p = p + 0.01;
-    */
-    console.log(arc);
-    arc = continueArc(ctx, arc.prevRadius, arc.prevCenter, arc.prevTheta, arc.prevDir);
     window.requestAnimationFrame(draw);
-}
-
-function continueArc(ctx, prevRadius, prevCenter, prevTheta, prevDir) {
-    newDir = prevDir;//!prevDir;
-    newCenter = { x: prevCenter.x + 5,//prevCenter.x + Math.floor((Math.random() - 0.5) * 2 * prevRadius),
-                  y: prevCenter.y + 5 }//prevCenter.y + Math.floor((Math.random() - 0.5) * 2 * prevRadius) }
-    cosPrevTheta = Math.cos(prevTheta);
-    newRadius = Math.abs((((prevRadius * cosPrevTheta) + prevCenter.x - newCenter.x) / cosPrevTheta))
-    newTheta = (Math.random() * Math.PI) + prevTheta;
-
-    ctx.strokeStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.arc(newCenter.x, newCenter.y, newRadius, prevTheta, newTheta, newDir);
-    ctx.stroke();
-
-    return { prevRadius: newRadius,
-             prevCenter: newCenter,
-             prevTheta:  newTheta,
-             prevDir:    newDir };
 }
 
 init();
