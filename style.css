@@ -2,9 +2,9 @@ html {
     font-size: 110%;
     font-family: 'Garamond';
     background-color: #fff;
+    color: #e3e0d7;
     /*
     line-height: 130%;
-    color: #e3e0d7;
     background-color: #fce6fc;
      */
 }
@@ -19,7 +19,7 @@ a:hover {
 }
 
 div#container {
-    background-color: #fdfcee;
+    background-color: #3d3d3d;/*#fdfcee;*/
     max-width: 800px;
     border-top: 3px solid #fcfcff;
     border-left: 3px solid #eef1f1;
