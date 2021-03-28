@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
-	<title>Gregory Schare</title>
-	<meta name="author" content="Gregory Schare"/>
-	<link type="text/css" rel="stylesheet" href="style.css"/>
+    <title>A WIP Website</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
+    <canvas id="background" width="1920" height="1080"></canvas>
 
-<h1>Teaching</h1>
+    <div id="container">
+        <div id="header"></div>
 
-<h3><a href="codeadvantage/sections/python/level1/202009161440/">Python Level 1 | Wednesday @ 2:40pm</a></h3>
-<h3><a href="codeadvantage/sections/python/level1/202009232000/">Python Level 1 | Wednesdays @ 8:00pm ET, 5:00pm PT</a></h3>
-<h3><a href="codeadvantage/sections/python/animalexpedition/202009181440/">Animal Expedition | Fridays @ 2:40pm</a></h3>
+        <div id="main">
+            <h3>Don't look at me--I'm naked!</h3>
+            <p>There's no content on this website (yet). Not for most people, anyway.</p>
+            <p>If you happen to be one of my students, however, feel free to head on over to the <a href="teaching.html">Teaching</a> page, where you'll find course pages for my summer and fall 2020 CodeAdvantage classes. If you do, please feel free to send me an email at <a href="mailto:g.schare@columbia.edu">g.schare@columbia.edu</a> and let me know what cool stuff you've been up to!</p>
+            <p>The About page doesn't exist yet. Don't click it. It will lead you nowhere. Don't say I didn't warn you.</p>
+            <p>My GitHub link, on the other hand, <em>does</em> exist. Check that out if you're interested in my work on the <a href="https://makingandknowing.org">Making and Knowing Project</a>, <a href="https://columbiaspace.org">Columbia Space Initiative</a>, or <a href="https://gallformers.org">Gallformers</a>.</p>
+            <p/>
+            <p>Oh, and what are these fun creatures meandering around the page? Why, they're <a href="https://en.wikipedia.org/wiki/Boids">boids</a>!</p>
+        </div>
 
+        <div id="footer"></div>
+    </div>
+
+    <script src="vector.js"></script>
+    <script src="boid.js"></script>
+    <script src="flocking.js"></script>
+    <script src="template.js"></script>
 </body>
 
 </html>
