@@ -80,7 +80,11 @@ nav .active {
 hr {
     width: 40%;
     border: 1px solid;
-    color: #bae0dd;
+    color: #646464;
+}
+
+.dark-mode hr {
+    color: #e3e0d7;
 }
 
 canvas {
