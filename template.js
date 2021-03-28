@@ -11,7 +11,7 @@ var header = `
 var footer = `
     <footer>
         <hr>
-        <p>We're off you know...</p>
+        <p><a href="https://www.youtube.com/watch?v=f_oWpe2MqdY">We're off you know...</a></p>
         <button onclick="toggleDarkMode()" type="button" id="dark-mode-button"></button>
     </footer>`
 
