@@ -21,6 +21,10 @@ function draw() {
     var canvas = document.getElementById('background');
     var ctx = canvas.getContext('2d');
 
+    // Size responsively.
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+
     // Update mouse coordinates.
     canvas.addEventListener('mousemove', function(e) {
         mousePos.set(e.clientX, e.clientY);
