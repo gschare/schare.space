@@ -21,7 +21,8 @@ a:hover {
 
 div#container {
     color: #646464;
-    background-color: #fdfcee;
+    background-color: rgb(253, 252, 238);
+    background-color: rgba(253, 252, 238, 0.85);
     max-width: 800px;
     border-top: 4px solid #fcfcff;
     border-left: 4px solid #eef1f1;
@@ -34,7 +35,8 @@ div#container {
 
 div#container.dark-mode {
     color: #e3e0d7;
-    background-color: #3d3d3d;
+    background-color: rgb(61, 61, 61);
+    background-color: rgba(61, 61, 61, 0.85);
     border-top: 4px solid #fffcff;
     border-left: 4px solid #f1eef1;
     border-right: 4px solid #eaddea;
