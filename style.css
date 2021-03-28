@@ -1,12 +1,13 @@
 html {
     font-size: 110%;
     font-family: 'Garamond';
-    background-color: #fff;
+    background-color: #fdfcee;
+    color: #646464;
+}
+
+html.dark-mode {
     color: #e3e0d7;
-    /*
-    line-height: 130%;
-    background-color: #fce6fc;
-     */
+    background-color: #3d3d3d;
 }
 
 a {
@@ -19,7 +20,8 @@ a:hover {
 }
 
 div#container {
-    background-color: #3d3d3d;/*#fdfcee;*/
+    color: #646464;
+    background-color: #fdfcee;
     max-width: 800px;
     border-top: 3px solid #fcfcff;
     border-left: 3px solid #eef1f1;
@@ -28,6 +30,11 @@ div#container {
     border-radius: 5px;
     margin: 1em auto;
     padding: 2em 5em 2em;
+}
+
+div#container.dark-mode {
+    color: #e3e0d7;
+    background-color: #3d3d3d;
 }
 
 footer {
