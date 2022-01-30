@@ -1,5 +1,5 @@
 html {
-    font-size: 150%;
+    font-size: 125%;
     font-family: 'Garamond';
     background-color: #fdfcee;
     color: #646464;
@@ -24,6 +24,7 @@ div#container {
     background-color: rgb(253, 252, 238);
     background-color: rgba(253, 252, 238, 0.85);
     max-width: 800px;
+    max-height: 800px;
     border-top: 4px solid #fcfcff;
     border-left: 4px solid #eef1f1;
     border-right: 4px solid #ddeaea;
@@ -43,6 +44,21 @@ div#container.dark-mode {
     border-bottom: 4px solid #cbc;
 }
 
+button#hide-button {
+    float: right;
+    clear: both;
+}
+
+div#show {
+    display: none;
+    text-align: center;
+}
+
+button#show-button {
+    float: right;
+    clear: both;
+}
+
 button {
     background-color: inherit;
     font-size: 90%;
@@ -52,6 +68,7 @@ button {
     color: inherit;
     padding: 5px 10px;
     display: inline-block;
+    text-align: center;
 }
 
 .dark-mode button {
@@ -63,7 +80,7 @@ button:hover {
 }
 
 footer {
-    font-size: 70%;
+    /*font-size: 70%;*/
     margin: 0em auto 0em;
     text-align: center;
 }

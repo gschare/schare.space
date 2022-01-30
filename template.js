@@ -1,22 +1,41 @@
+// The dot that goes in between header elements is &#x2022;
 var header = `
     <header>
         <nav style="text-align: center">
-            <a href="/index.html">Home</a> &#x2022;
-            <a href="/about.html">About</a> &#x2022;
-            <a href="/teaching.html">Teaching</a> &#x2022;
-            <a href="https://github.com/gschare">GitHub</a>
         </nav>
     </header>`
 
 var footer = `
     <footer>
-        <hr>
-        <p><a href="https://www.youtube.com/watch?v=f_oWpe2MqdY">We're off you know...</a></p>
         <button onclick="toggleDarkMode()" type="button" id="dark-mode-button"></button>
+        <button onclick="toggleMainDiv()" type="button" id="hide-button">&#x25B2;</button>
     </footer>`
 
-document.getElementById('header').innerHTML = header;
-document.getElementById('footer').innerHTML = footer;
+if (document.getElementById('header')) {
+    document.getElementById('header').innerHTML = header;
+}
+
+if (document.getElementById('footer')) {
+    document.getElementById('footer').innerHTML = footer;
+}
+
+function toggleMainDiv() {
+    var main = document.getElementById('main');
+    var hide_button = document.getElementById('hide-button');
+    if (main.style.display === "none") {
+        if (document.getElementById('header')) {
+            document.getElementById('header').style.display = "block";
+        }
+        main.style.display = "block";
+        hide_button.innerHTML = "&#x25B2;"
+    } else {
+        if (document.getElementById('header')) {
+            document.getElementById('header').style.display = "none";
+        }
+        main.style.display = "none";
+        hide_button.innerHTML = "&#x25BC;"
+    }
+}
 
 function toggleDarkMode() {
     var containerClasses = document.getElementById('container').classList;
