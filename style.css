@@ -8,7 +8,7 @@ a:hover {
 }
 
 body {
-    font-size : clamp(1.5rem, 1vw, 4rem);
+    font-size: clamp(1.5rem, 1vw, 4rem);
     font-family: 'Garamond';
     background-color: #fdfcee;
     color: #646464;
@@ -21,9 +21,14 @@ body.dark-mode {
     background-color: #3d3d3d;
 }
 
-
-div#body {
+/*
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 2rem;
+        background-color: red;
+    }
 }
+*/
 
 div#container {
     border-top: 4px solid #fcfcff;
@@ -76,12 +81,14 @@ button:hover {
     /*Do something here*/
 }
 
+/*
 @media screen and (max-width:600px) {
     button {
-        font-size: 2em;
+        font-size: 2rem;
         background-color: red;
     }
 }
+*/
 
 footer {
     margin: 0em auto 0em;
