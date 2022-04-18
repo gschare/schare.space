@@ -5,9 +5,13 @@ var header = `
         </nav>
     </header>`
 
-var footer = `
-    <footer>
+var toggleDarkButton = `
         <button onclick="toggleDarkMode()" type="button" id="dark-mode-button"></button>
+        `
+
+
+var footer = `
+    <footer>` + toggleDarkButton + `
         <button onclick="toggleMainDiv()" type="button" id="hide-button">&#x25B2;</button>
     </footer>`
 
@@ -17,6 +21,10 @@ if (document.getElementById('header')) {
 
 if (document.getElementById('footer')) {
     document.getElementById('footer').innerHTML = footer;
+}
+
+if (document.getElementById('toggleDarkButton')) {
+    document.getElementById('toggleDarkButton').innerHTML = toggleDarkButton;
 }
 
 function toggleMainDiv() {
@@ -38,7 +46,7 @@ function toggleMainDiv() {
 }
 
 function toggleDarkMode() {
-    var containerClasses = document.getElementById('container').classList;
+    var containerClasses = document.body.classList;
     if (containerClasses.contains('dark-mode')) {
         containerClasses.remove('dark-mode');
         document.getElementById('dark-mode-button').innerHTML = "Dark mode";
