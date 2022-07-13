@@ -12,7 +12,10 @@ body {
     font-family: 'Garamond';
     background-color: #fdfcee;
     color: #646464;
-    margin: 5em auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
     max-width: 35em;
 }
 
