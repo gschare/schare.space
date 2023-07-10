@@ -4,13 +4,13 @@ const header = `
         <nav>
             <a href="./index.html">Home</a>
             &centerdot;
-            <a href="./blog.html">Blog</a>
+            <a href="./blog/index.html">Blog</a>
         </nav>
-    </header>`
+    </header>`;
 
 const toggleDarkButton = `
         <button onclick="toggleDarkMode()" type="button" id="dark-mode-button"></button>
-        `
+        `;
 
 
 //var footer = `
