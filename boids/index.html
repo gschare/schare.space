@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>it's a bird it's a plane no it's a boid</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+    <div style="position:relative">
+    <div id='content' style="width:40%;position:absolute">
+        <h3><a href="https://en.wikipedia.org/wiki/Boids">Boids!</a></h3>
+        <p>Boids are a model of bird flocking behavior. Like other artificial life simulations,
+        they follow a few simple rules that result in complex emergent behavior. Plus, they're just fun to watch!</p>
+        <p>The rules are:
+            <ul>
+                <li><b>separation</b>: steer to avoid other boids</li>
+                <li><b>alignment</b>: steer to match the average heading of nearby boids</li>
+                <li><b>cohesion</b>: steer towards the average position of nearby boids</li>
+            </ul>
+        </p>
+        <p>If you're on a computer, the boids will avoid your cursor. If you're on mobile, you can tap to disrupt them!</p>
+        <button onclick="toggleDarkMode()" type="button" id="dark-mode-button"></button>
+    </div>
+    <canvas id="background" style="width:640px;height:640px;left:60%;position:absolute"></canvas>
+    </div>
+
+    <script src="vector.js"></script>
+    <script src="boid.js"></script>
+    <script src="flocking.js"></script>
+    <script src="template.js"></script>
+</body>
+
+</html>

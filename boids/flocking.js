@@ -1,4 +1,4 @@
-const N_BOIDS = 200;
+const N_BOIDS = 100;
 var flock = [];
 var t = 0;
 
@@ -13,9 +13,15 @@ function setup() {
 }
 
 function draw() {
-    var container = document.getElementById('container'); // Boids should avoid the container.
-    var containerRect = container.getBoundingClientRect();
-    var darkMode = container.classList.contains('dark-mode');
+    if (document.getElementById('container')) {
+        var container = document.getElementById('container'); // Boids should avoid the container.
+        var containerRect = container.getBoundingClientRect();
+        var darkMode = container.classList.contains('dark-mode');
+    } else {
+        var container = document.getElementById('content'); // Boids should avoid the container.
+        var containerRect = container.getBoundingClientRect();
+        var darkMode = document.body.classList.contains('dark-mode');
+    }
 
     // Get context.
     var canvas = document.getElementById('background');
