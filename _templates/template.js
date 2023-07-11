@@ -2,9 +2,9 @@
 const header = `
     <header>
         <nav>
-            <a href="./index.html">Home</a>
+            <a href="/index.html">Home</a>
             &centerdot;
-            <a href="./blog/index.html">Blog</a>
+            <a href="/blog/index.html">Blog</a>
         </nav>
     </header>`;
 
