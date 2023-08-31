@@ -1,0 +1,141 @@
+a {
+    color: #40a2b8;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffabf9;
+}
+
+body {
+    font-size: clamp(1.2rem, 1vw, 4rem);
+    font-family: 'Garamond';
+    background-color: #fdfcee;
+    color: #646464;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    max-width: 35em;
+    /*
+    text-align: justify;
+    text-justify: inter-word;
+    */
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        font-size: clamp(1.5rem, 1vw, 4rem);
+        max-width: 100%;
+    }
+}
+
+body.dark-mode {
+    color: #e3e0d7;
+    background-color: #262626;
+}
+
+div#container {
+    border-top: 4px solid #fcfcff;
+    border-left: 4px solid #eef1f1;
+    border-right: 4px solid #ddeaea;
+    border-bottom: 4px solid #bcc;
+    border-radius: 5px;
+    padding: 2em 5em 2em;
+}
+
+div#container.dark-mode {
+    border-top: 4px solid #fffcff;
+    border-left: 4px solid #f1eef1;
+    border-right: 4px solid #eaddea;
+    border-bottom: 4px solid #cbc;
+}
+
+button#hide-button {
+    float: right;
+    clear: both;
+}
+
+div#show {
+    display: none;
+    text-align: center;
+}
+
+button#show-button {
+    float: right;
+    clear: both;
+}
+
+button {
+    background-color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    border: 2px solid #646464;
+    border-radius: 4px;
+    color: inherit;
+    padding: 5px 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+button.dark-mode {
+    border: 2px solid #e3e0d7;
+}
+
+button:hover {
+    font-weight: bold;
+}
+
+/*
+@media screen and (max-width:600px) {
+    button {
+        font-size: 2rem;
+        background-color: red;
+    }
+}
+*/
+
+footer {
+    margin: 0em auto 0em;
+    text-align: center;
+}
+
+nav {
+    font-weight: bold;
+    font-size: 100%;
+    /*padding-bottom: 10px;*/
+}
+
+nav .active {
+    text-decoration: underline;
+}
+
+hr {
+    width: 40%;
+    border: 1px solid;
+    color: #646464;
+}
+
+.dark-mode hr {
+    color: #e3e0d7;
+}
+
+canvas .absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+div {
+    z-index: 0;
+}
+
+canvas .background {
+    width: 100%;
+    height: 100%;
+}
+
+ul.nobullet {
+    list-style-type: none;
+}
