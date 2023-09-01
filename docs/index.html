@@ -3,15 +3,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="utf-8"/>
-    <title>Gregory Schare</title>
     <link type="text/css" rel="stylesheet" href="/assets/style.css"/>
 </head>
 
 <body>
-    <div id="body">
-        <div id="header">
-        </div>
+<header>
+    <div>
+        <div style="display: inline-block;">
+            <button onclick="toggleDarkMode()" type="button"
+                id="dark-mode-button" style="border: none;">🌑</button>
+            <script>
+// Start light
+function goDark() {
+    document.body.classList.add('dark-mode');
+    document.getElementById('dark-mode-button').innerHTML = "☀️";
+    localStorage.setItem('dark-mode', 'enabled');
+}
 
+function goLight() {
+    document.body.classList.remove('dark-mode');
+    document.getElementById('dark-mode-button').innerHTML = "🌑";
+    localStorage.setItem('dark-mode', null);
+}
+
+function toggleDarkMode() {
+    var containerClasses = document.body.classList;
+    if (containerClasses.contains('dark-mode')) {
+        goLight();
+    } else {
+        goDark();
+    }
+}
+
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    goDark();
+}
+            </script>
+        </div>
+        <div style="display: inline-block;">
+            <nav>
+                <a href="/index.html">Home</a>
+                &centerdot;
+                <a href="/blog/index.html">Blog</a>
+            </nav>
+        </div>
+    </div>
+</header>
+    <title>Gregory Schare</title>
         <div id="main">
             <h3>Hey, I'm Gregory!</h3>
             <p>
@@ -55,11 +93,6 @@
             <p>More info is available on my <a href="/assets/cv.pdf">resume</a>.</p>
         </div>
 
-        <div id="toggleDarkButton"></div>
-    </div>
-
-    <script src="/index.js"></script>
-    <script>toggleDarkMode();</script>
 </body>
 
 </html>
