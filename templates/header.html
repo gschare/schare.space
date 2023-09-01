@@ -2,7 +2,7 @@
     <div>
         <div style="display: inline-block;">
             <button onclick="toggleDarkMode()" type="button"
-                                               id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) grayscale(90%);">🌕</div></button>
+                                               id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
             <script>
 // Start light
 function goDark() {
@@ -13,7 +13,7 @@ function goDark() {
 
 function goLight() {
     document.body.classList.remove('dark-mode');
-    document.getElementById('dark-mode-button').innerHTML = '<div style="filter: brightness(400%) grayscale(90%);">🌑</div>';
+    document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
     localStorage.setItem('dark-mode', null);
 }
 
