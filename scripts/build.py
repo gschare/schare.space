@@ -9,6 +9,7 @@
 
 from os.path import join, isdir, isfile
 from os import makedirs, walk
+from shutil import copy
 
 from blog_index import BLOG_INDEX
 
@@ -66,8 +67,7 @@ def copy_assets():
     makedirs(join(OUT_DIR, ASSETS_DIR), exist_ok=True)
     with open(STYLESHEET, 'r') as s, open(join(OUT_DIR, STYLESHEET), 'w') as d:
         d.write(s.read())
-    with open('assets/cv.pdf', 'r') as s, open(join(OUT_DIR, 'assets', 'cv.pdf'), 'w') as d:
-        d.write(s.read())
+    copy('assets/cv.pdf', join(OUT_DIR, 'assets', 'cv.pdf'))
 
 def write_index():
     index = build_page_from_source(INDEX)
