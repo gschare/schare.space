@@ -17,9 +17,12 @@ def main():
             with open(join(root, post), 'r') as f:
                 soup = BeautifulSoup(f, 'html.parser')
             title = str(soup.title.string)
-            content = soup.find(id='content')
+            content = soup.main
             if not content:
                 content = BeautifulSoup('', 'html.parser')
+            for header in content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+                if header:
+                    header.decompose()
             plain_text = ' '.join(content.stripped_strings)
             preview = plain_text[:PREVIEW_LENGTH] + '...'
             index[post] = {'title': title, 'preview': preview}
