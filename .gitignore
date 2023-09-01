@@ -6,3 +6,6 @@ animalexpedition.html
 
 # do not ignore what the symlink points to
 !./codeadvantage
+
+scripts/__pycache__/
+scripts/blog_index.py
