@@ -1,3 +1,8 @@
+h3, h4, h5, h6 {
+    display: inline;
+    margin: 0;
+}
+
 a {
     color: #40a2b8;
     text-decoration: none;
@@ -5,6 +10,12 @@ a {
 
 a:hover {
     color: #ffabf9;
+}
+
+.indent {
+    margin-left: 2em;
+    display: block;
+    margin-top: 4px;
 }
 
 body {
@@ -32,7 +43,7 @@ body {
 
 body.dark-mode {
     color: #e3e0d7;
-    background-color: #262626;
+    background-color: #1c2f28;/*#262626;*/
 }
 
 div#container {
@@ -73,7 +84,7 @@ button {
     border: 2px solid #646464;
     border-radius: 4px;
     color: inherit;
-    padding: 5px 10px;
+    padding: 1px 2px;
     display: inline-block;
     text-align: center;
     transition: 0.2s;

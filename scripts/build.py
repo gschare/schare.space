@@ -69,14 +69,10 @@ def copy_assets():
         d.write(s.read())
     copy('assets/cv.pdf', join(OUT_DIR, 'assets', 'cv.pdf'))
 
-def write_index():
-    index = build_page_from_source(INDEX)
-    write_page(index, join(OUT_DIR, 'index.html'))
-
 def write_blog():
     makedirs(join(OUT_DIR, BLOG_DIR), exist_ok=True)
 
-    index = '<title>Blog</title><div><h3>Posts</h3><ul class="nobullet">'
+    index = '<title>Blog</title><div><h2>Posts</h2><ul class="nobullet">'
 
     for root, _, posts in walk(BLOG_DIR):
         for post in posts:
@@ -106,8 +102,9 @@ def main():
     # write `docs/assets/`
     copy_assets()
 
-    # write `docs/index.html`
-    write_index()
+    # write misc pages
+    for p in ['index.html', 'cv.html']:
+        write_page(build_page_from_source(p), join(OUT_DIR, p))
 
     # write `docs/blog/`
     write_blog()

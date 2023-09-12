@@ -1,41 +1,44 @@
 <header>
     <div>
         <div style="display: inline-block;">
-            <button onclick="toggleDarkMode()" type="button"
-                                               id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
-            <script>
-// Start light
-function goDark() {
-    document.body.classList.add('dark-mode');
-    document.getElementById('dark-mode-button').innerHTML = "☀️";
-    localStorage.setItem('dark-mode', 'enabled');
-}
-
-function goLight() {
-    document.body.classList.remove('dark-mode');
-    document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
-    localStorage.setItem('dark-mode', null);
-}
-
-function toggleDarkMode() {
-    var containerClasses = document.body.classList;
-    if (containerClasses.contains('dark-mode')) {
-        goLight();
-    } else {
-        goDark();
-    }
-}
-
-if (localStorage.getItem('dark-mode') === 'enabled') {
-    goDark();
-}
-            </script>
-        </div>
-        <div style="display: inline-block;">
             <nav>
                 <a href="/">Home</a>
                 &centerdot;
                 <a href="/blog/">Blog</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button title="Dark mode" onclick="toggleDarkMode()" type="button"
+                                                       id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
             </nav>
         </div>
     </div>
