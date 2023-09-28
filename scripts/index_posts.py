@@ -3,16 +3,17 @@
 from bs4 import BeautifulSoup
 from os.path import join, isdir
 from os import walk
+import json
 
 PREVIEW_LENGTH = 140
 
 def main():
-    if not isdir('blog'):
-        raise Exception('no `blog/` folder found in current directory')
+    if not isdir('src/blog'):
+        raise Exception('no `src/blog/` folder found in current directory')
 
     index = {}
 
-    for root, _, posts in walk('blog'):
+    for root, _, posts in walk('src/blog'):
         for post in posts:
             with open(join(root, post), 'r') as f:
                 soup = BeautifulSoup(f, 'html.parser')
@@ -27,8 +28,8 @@ def main():
             preview = plain_text[:PREVIEW_LENGTH] + '...'
             index[post] = {'title': title, 'preview': preview}
     
-    with open('scripts/blog_index.py', 'w') as f:
-        f.write('BLOG_INDEX = ' + repr(index))
+    with open('blog.json', 'w') as f:
+        json.dump(index, f)
 
 if __name__ == '__main__':
     main()

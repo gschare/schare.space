@@ -27,11 +27,32 @@ body {
     margin-bottom: 5%;
     margin-left: 5%;
     margin-right: 5%;
-    max-width: 35em;
     /*
     text-align: justify;
     text-justify: inter-word;
     */
+}
+
+p {
+    max-width: 35em;
+}
+
+blockquote {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+figcaption {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+.flex {
+    display: flex;
 }
 
 @media screen and (max-width: 800px) {
@@ -39,12 +60,17 @@ body {
         font-size: clamp(1.5rem, 1vw, 4rem);
         max-width: 100%;
     }
+
+    .flex {
+        display: block;
+    }
 }
 
 body.dark-mode {
     color: #e3e0d7;
     background-color: #1c2f28;/*#262626;*/
 }
+
 
 div#container {
     border-top: 4px solid #fcfcff;

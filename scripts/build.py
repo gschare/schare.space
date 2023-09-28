@@ -10,18 +10,28 @@
 from os.path import join, isdir, isfile
 from os import makedirs, walk
 from shutil import copy
+import json
 
-from blog_index import BLOG_INDEX
-
+BLOG_INDEX = 'blog.json'
+SRC_DIR = 'src/'
 TEMPLATES_DIR = 'templates/'
 ASSETS_DIR = 'assets/'
 BLOG_DIR = 'blog/'
+GARDEN_DIR = 'garden/'
 INDEX = 'index.html'
 STYLESHEET = join(ASSETS_DIR, 'style.css')
 HEADER = join(TEMPLATES_DIR, 'header.html')
 META = join(TEMPLATES_DIR, 'meta.html')
 
 OUT_DIR = 'docs/'
+
+# Pages that just sit in the root directory.
+LOOSE_LEAVES = [
+        'index.html',
+        'cv.html',
+        'not-found.html',
+        'now.html'
+        ]
 
 def build_page(content):
     with open(META, 'r') as f:
@@ -47,14 +57,19 @@ def write_page(content, dest):
 
 def check_for_sources():
     sources = {
-            BLOG_DIR: isdir(BLOG_DIR),
-            ASSETS_DIR: isdir(ASSETS_DIR),
+            BLOG_DIR: isdir(join(SRC_DIR, BLOG_DIR)),
+            GARDEN_DIR: isdir(join(SRC_DIR, GARDEN_DIR)),
+            ASSETS_DIR: isdir(join(SRC_DIR, ASSETS_DIR)),
+            STYLESHEET: isfile(join(SRC_DIR, STYLESHEET)),
             TEMPLATES_DIR: isdir(TEMPLATES_DIR),
-            INDEX: isfile(INDEX),
-            STYLESHEET: isfile(STYLESHEET),
             HEADER: isfile(HEADER),
-            META: isfile(META)
+            META: isfile(META),
+            '.htaccess': isfile(join(SRC_DIR, '.htaccess'))
         }
+
+    for leaf in LOOSE_LEAVES:
+        sources[leaf] = isfile(join(SRC_DIR, leaf))
+
     missing = list(filter(lambda x: not sources[x], sources.keys()))
     if len(missing) > 0:
         raise Exception('Missing source files/directories:\n\t' + '\n\t'.join(missing))
@@ -65,22 +80,27 @@ def write_nojekyll():
 
 def copy_assets():
     makedirs(join(OUT_DIR, ASSETS_DIR), exist_ok=True)
-    with open(STYLESHEET, 'r') as s, open(join(OUT_DIR, STYLESHEET), 'w') as d:
+    with open(join(SRC_DIR, STYLESHEET), 'r') as s, open(join(OUT_DIR, STYLESHEET), 'w') as d:
         d.write(s.read())
-    copy('assets/cv.pdf', join(OUT_DIR, 'assets', 'cv.pdf'))
+    copy(join(SRC_DIR, ASSETS_DIR, 'cv.pdf'), join(OUT_DIR, ASSETS_DIR, 'cv.pdf'))
 
 def write_blog():
     makedirs(join(OUT_DIR, BLOG_DIR), exist_ok=True)
 
+    with open(BLOG_INDEX, 'r') as f:
+        blog_data = json.load(f)
+
     index = '<title>Blog</title><div><h2>Posts</h2><ul class="nobullet">'
 
-    for root, _, posts in walk(BLOG_DIR):
+    for root, _, posts in walk(join(SRC_DIR, BLOG_DIR)):
         for post in posts:
+            if post[0] == '.':
+                continue
             page = build_page_from_source(join(root, post))
             write_page(page, join(OUT_DIR, BLOG_DIR, post))
 
-            title = BLOG_INDEX[post]['title']
-            preview = BLOG_INDEX[post]['preview']
+            title = blog_data[post]['title']
+            preview = blog_data[post]['preview']
 
             index_item = ('<li><a href="' + post + '"><p><b>' +
                           title + '</b><br><i>' + preview + '</i></p></a></li>')
@@ -89,6 +109,16 @@ def write_blog():
 
     index += '</ul></div>'
     write_page(build_page(index), join(OUT_DIR, BLOG_DIR, 'index.html'))
+
+def write_garden():
+    makedirs(join(OUT_DIR, GARDEN_DIR), exist_ok=True)
+
+    for root, _, files in walk(join(SRC_DIR, GARDEN_DIR)):
+        for file in files:
+            if file[0] == '.':
+                continue
+            page = build_page_from_source(join(root, file))
+            write_page(page, join(OUT_DIR, GARDEN_DIR, file))
 
 def main():
     check_for_sources()
@@ -99,15 +129,22 @@ def main():
     # write `docs/.nojekyll`
     write_nojekyll()
 
+    # write `docs/.htaccess`
+    with open(join(SRC_DIR, '.htaccess'), 'r') as src, open(join(OUT_DIR, '.htaccess'), 'w') as dst:
+        dst.write(src.read())
+
     # write `docs/assets/`
     copy_assets()
 
     # write misc pages
-    for p in ['index.html', 'cv.html']:
-        write_page(build_page_from_source(p), join(OUT_DIR, p))
+    for p in LOOSE_LEAVES:
+        write_page(build_page_from_source(join(SRC_DIR, p)), join(OUT_DIR, p))
 
     # write `docs/blog/`
     write_blog()
+
+    # write `docs/garden/`
+    write_garden()
 
 if __name__ == '__main__':
     main()
