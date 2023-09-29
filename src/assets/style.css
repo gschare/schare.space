@@ -3,6 +3,9 @@ h3, h4, h5, h6 {
     margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+}
+
 a {
     color: #40a2b8;
     text-decoration: none;
@@ -19,8 +22,8 @@ a:hover {
 }
 
 body {
-    font-size: clamp(1.2rem, 1vw, 4rem);
-    font-family: 'Garamond';
+    font-size: clamp(1.1rem, 1vw, 4rem);
+    font-family: 'Lora', 'Garamond', serif;
     background-color: #fdfcee;
     color: #646464;
     margin-top: 5%;
@@ -33,7 +36,7 @@ body {
     */
 }
 
-p {
+p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre {
     max-width: 35em;
 }
 
