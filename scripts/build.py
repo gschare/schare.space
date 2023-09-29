@@ -89,7 +89,7 @@ def write_blog():
     with open(BLOG_JSON, 'r') as f:
         blog_data = json.load(f)
 
-    index = '<title>Blog</title><div><h2>Posts</h2><ul class="nobullet">'
+    index = '<title>Blog</title><main><div><h2>Posts</h2><ul class="nobullet">'
 
     for root, _, posts in walk(join(SRC, BLOG)):
         for post in posts:
@@ -106,7 +106,8 @@ def write_blog():
 
             index += index_item
 
-    index += '</ul></div>'
+    index += '</ul></div></main>'
+    index += '<script>document.getElementById("nav-blog").style.textDecoration = "underline";</script>'
     write_page(build_page(index), join(DOCS, BLOG, 'index.html'))
 
 def write_garden():
