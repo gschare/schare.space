@@ -12,13 +12,13 @@
     <div>
         <div style="display: inline-block;">
             <nav>
-                <a href="/">Home</a>
+                <a id="nav-home" href="/">Home</a>
                 &centerdot;
-                <a href="/blog/">Blog</a>
+                <a id="nav-blog" href="/blog/">Blog</a>
                 &centerdot;
-                <a href="/garden/">Garden</a>
+                <a id="nav-garden" href="/garden/">Garden</a>
                 &centerdot;
-                <a href="/now.html">Now</a>
+                <a id="nav-now" href="/now.html">Now</a>
                 &centerdot;
                 <div style="display: inline-block;">
                     <button title="Dark mode" onclick="toggleDarkMode()" type="button"
@@ -57,7 +57,7 @@
         </div>
     </div>
 </header>
-<title>Blog</title><div><h2>Posts</h2><ul class="nobullet"><li><a href="test.html"><p><b>Test Post</b><br><i>This is a test... Go back...</i></p></a></li></ul></div>
+<title>Blog</title><main><div><h2>Posts</h2><ul class="nobullet"><li><a href="test.html"><p><b>Test Post</b><br><i>This is a test... Go back...</i></p></a></li></ul></div></main><script>document.getElementById("nav-blog").style.textDecoration = "underline";</script>
 </body>
 
 </html>
