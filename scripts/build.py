@@ -28,7 +28,7 @@ DOCS = 'docs/'
 LOOSE_LEAVES = [
         'index.html',
         'cv.html',
-        'not-found.html',
+        '404.html',
         'now.html'
         ]
 
