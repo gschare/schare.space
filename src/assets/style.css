@@ -15,6 +15,32 @@ a:hover {
     color: #ffabf9;
 }
 
+.tooltip {
+  position: relative;
+  text-decoration: underline dotted; /* Add a dashed underline */
+  cursor: help; /* Change the cursor to a help cursor on hover */
+}
+
+.tooltip::before {
+  content: attr(data-title);
+  position: absolute;
+  background: #464646;
+  color: #e3e0d7;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8em;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip:hover::before {
+  opacity: 1;
+}
+
 .indent {
     margin-left: 2em;
     display: block;
