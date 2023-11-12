@@ -236,12 +236,17 @@
                 interested in the superior flexibility, speed, and editing power of
                 plain text, then perhaps it is worth revisiting structured editors as
                 interfaces for authorship. Again, see <a href="https://hazel.org/">Hazel</a>.
+                How to perform move or copy operations in structured editors remains an open
+                question. The problem becomes harder if we use CRDTs as a mechanism for
+                collaborative software: implementing a syntax-tree-with-move as a CRDT is
+                difficult to do correctly (concurrent &amp; no cycles),
+                efficiently, and with reasonable UI behavior.
             </p>
             <p>I'll think of more in the coming weeks.</p>
     </article>
 
     <footer>
-        <ol class="footnotes">
+        <ol class="">
             <li id="fn-excel">
                 <a href="https://szymonkaliski.com/notes/spreadsheet-for-end-user-programming-might-be-a-wrong-model"> Szymon Kaliski cites Chris Granger and Joel Spolsky</a>
                 to argue that Excel does not excel as a programming interface:
