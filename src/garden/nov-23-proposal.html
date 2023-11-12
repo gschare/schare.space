@@ -1,0 +1,199 @@
+<title>A little research proposal | Nov 11, 2023</title>
+<main>
+    <article>
+
+        <h1>A little research proposal</h1>
+        <p> <i> Nov 11, 2023 </i> </p>
+
+        <p>The point of <a href="moodboard.html">my research "moodboard"</a>
+        is to convey my interests without directly articulating them by
+        collecting work that inspires me. This, on the other hand, is an
+        attempt to suggest a line of more-or-less novel research that applies
+        recent advancements in PL and distributed systems to end-user
+        programming.</p>
+
+        <h2>The idea: a computational notebook</h2>
+        <p>
+            If you look at my <a href="moodboard.html">moodboard</a>, there is
+            a clear theme. If the "problem" is how to enable vernacular
+            programmers to create personal software with ease, one
+            solution might be to hack on the idea of a "computational
+            notebook". For me, that looks like any interface in which users can
+            create documents and perform simple programming tasks easily. In
+            theory, users can also architect more complex software or use the
+            notebook as a place for exploratory programming in the software
+            design stage, but the emphasis is on simpler tasks such as
+            scripting. Excel and Jupyter Notebook are the classic examples of
+            such an environment.
+        </p>
+
+        <p>
+            Since tools of this description exist, the first research question
+            is: <b>are they sufficient?</b> I believe the answer is "no". Let
+            us suppose I am right; I will develop my critique of Excel and
+            Jupyter as we go.
+        </p>
+
+        <p>
+            What would an ideal computational notebook look like in detail?
+            I am interested in ensuring the following properties:
+            collaborative, local-first, open-source, live, and usable. Excel is
+            live and local-first; its usability (as a programming environment,
+            not just an interface for tabular layout) is an <a
+                class="fn" id="r-excel" href="#fn-excel">open question</a>.
+            Jupyter Notebook is open-source. Beyond these properties, it would
+            be wonderful if, instead of being just another siloed app,
+            computational notebooks were a
+            programming system paradigm, as widespread and flexible as the
+            classic compile-a-text-file-in-a-terminal workflow. Geoffrey Litt's
+            Potluck is a computational environment that takes the form of an
+            app, but he also built Wildcard, which is a browser extension.
+            Browser extensions are limited, but they represent the sort of
+            computational interstitiality we are looking for when positioning
+            a tool for end-users to bring scripting into their digital lives.
+            <b>Where in the software stack should
+            end-user programming tools exist, and how should they integrate
+            with the rest of the system?</b>
+        </p>
+
+        <p>
+            One typical target demographic among vernacular programmers is data
+            scientists, who already use Jupyter Notebook for their work.
+            Physicists, engineers, and mathematicians also frequently use such
+            tools. This motivates the work.  Naturally, we must endeavor to
+            improve the efficacy of the tools people already use for tasks they
+            already perform. But what problems do people face which appear
+            impossible but can in fact be solved with a "small matter of
+            programming"? How do we design programming systems that widen the
+            space of what feels possible? You might say, <b>how do we empower
+            vernacular programmers with accessible computation?</b>
+        </p>
+        <p>
+            Finally, there is a balance to be struck between providing new
+            systems that extend the horizons of possibility via novel
+            interfaces, and "meeting people where they're
+            at". Per the old adage, when should we give people cars, and when
+            should we look for faster horses? Relatedly, when can the design
+            of novel interfaces take inspiration from "folk practices"?  For
+            example, it is a common antipattern to hard-code literals. But that
+            is advice for software engineers, not vernacular programmers.
+            Anecdotally, we often find Jupyter Notebook users hard-coding
+            values as they develop in an example-driven paradigm.  When
+            software reuse is less of a concern, does this advice cease to
+            carry weight? Can we lean the other way, and encourage
+            experimenting with literals instead, as a data-driven approach for
+            domain-oriented programming? In general, <b>how can we design
+            interfaces that elaborate on user desiderata rather than
+            demanding adherence to standard programming paradigms?</b>
+        </p>
+
+        <p>
+        There is much more to say. That is all I will say now on the matter.
+        </p>
+
+        <h2>
+            How does this connect to specific areas of PL research?
+        </h2>
+            <p>
+                <b>Program synthesis.</b>
+                Programming-by-demonstration (or by example) has strong potential
+                as a specification method for program synthesis in this context.
+                There is a good amount of excitement over the combination of synthesis
+                with generative AI. In this space, I am less interested in
+                AI-powered synthesis than in synthesis-powered AI. That is to say:
+                the best parts of generative AI are its ability to handle vague input
+                and increment on it, and its "knowledge" of how common/popular
+                a particular approach is in the dataset. The worst part is the
+                inaccuracy. Perhaps the best of both worlds can be achieved by
+                leveraging LLMs as an interface to which the user gives vague
+                specifications, which are then elaborated by the AI into
+                detailed specifications and then handed to a synthesizer. This,
+                however, would require the LLM to understand temporal logic,
+                which feels unlikely. This is where interfaces for
+                understanding and debugging logical specifications can come in
+                handy.
+            </p>
+            <p>
+                <b>Distributed computing.</b>
+                If we are going for collaboration and/or cloud-based computing,
+                the ability to distribute computation over a network is of
+                paramount importance. We need concurrent execution behavior in
+                order to achieve efficient and pleasant interactions. But
+                writing code with concurrency in mind is famously difficult to
+                do correctly. Hence, we must design languages and systems in
+                which concurrency guarantees come for free, so that it ceases
+                to be a concern at the user level. CRDTs are one approach to
+                this. They can also serve as the basis for version control!  If
+                the programming paradigm is functional, automatic
+                concurrency becomes a lot more feasible via features like
+                continuations.
+            </p>
+            <p>
+                <b>Type systems.</b>
+                Types can carry a lot of useful semantic information that can
+                allow the computer to provide more useful feedback to
+                users, such as errors. <a href="https://hazel.org/">Hazel</a>,
+                for example, uses a novel
+                calculus of typed holes to facilitate the partial evaluation of
+                incomplete programs. This is a clear usability improvement,
+                especially for users who are more comfortable thinking in terms
+                of data and examples than in terms of algorithms. Rust, on the
+                other hand, has famously pleasant and readable error messages.
+                A good type system can also improve the effectiveness of program
+                synthesis and prevent common bugs. In general, the more
+                specific a language is to its domain, the more rich its types
+                can be, and then the more powerful its static analysis can be.
+                The more powerful the static analysis, then the more efficient,
+                feasible, and effective become programming assistants, formal
+                verification, program synthesis, automated program repair, and
+                compiler feedback.
+            </p>
+            <p>
+                <b>Direct manipulation.</b>
+                This is not meant to be a general purpose tool. It should make
+                certain domain computations easy. Domain experts are more
+                comfortable working with data and results rather than code. With
+                direct manipulation, users can program by manipulating results.
+                Combined with synthesis, this is a very powerful technique that
+                can sidestep the need to program awkward or complicated functions.
+                Or, in a live, highly interactive programming environment,
+                the user can script an interactive program with moments where
+                runtime user intervention is required. When the basic
+                assumption is human-in-the-loop processes, many tasks that were
+                previously impossible now appear to benefit from "a little bit"
+                of computation in the workflow. This gives way to a view of
+                computation as human augmentation instead of as batch
+                computation. Similar to synthesis by example, this form of
+                programming can look similar to the implementation of macros in
+                some applications, like Photoshop and Vim. If successful,
+                interactive programming encourages users to imagine themselves
+                as collaborating with a responsive computer, as opposed to
+                sending requests off into the aether to either fail or succeed
+                with limited information.
+            </p>
+            <p>
+                <b>Structured editing.</b>
+                If syntax errors are an obstacle to writing programs, and we are not
+                interested in the superior flexibility, speed, and editing power of
+                plain text, then perhaps it is worth revisiting structured editors as
+                interfaces for authorship. Again, see <a href="https://hazel.org/">Hazel</a>.
+            </p>
+            <p>I'll think of more in the coming weeks.</p>
+    </article>
+
+    <footer>
+        <ol class="footnotes">
+            <li id="fn-excel">
+                <a href="https://szymonkaliski.com/notes/spreadsheet-for-end-user-programming-might-be-a-wrong-model"> Szymon Kaliski cites Chris Granger and Joel Spolsky</a>
+                to argue that Excel does not excel as a programming interface:
+                user data shows that most users never write a formula, so
+                the popularity of Excel in general may not indicate a high
+                volume of end-user programming activity in the application,
+                nor does it support the claim that spreadsheets are a good
+                model for end-user programming. Nevertheless, spreadsheets
+                definitely have some potential.
+                <a href="#r-excel" class="back"></a>
+            </li>
+        </ol>
+    </footer>
+</main>
