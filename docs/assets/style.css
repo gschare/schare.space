@@ -1,3 +1,8 @@
+:root {
+    --link-color-light: #40a2b8;
+    --link-color-hover: #ffabf9;
+}
+
 h3, h4, h5, h6 {
     display: inline;
     margin: 0;
@@ -7,13 +12,76 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #40a2b8;
+    color: var(--link-color-light);
     text-decoration: none;
 }
 
 a:hover {
-    color: #ffabf9;
+    color: var(--link-color-hover);
 }
+
+/* Footnotes */
+/* Note that you still have to keep the ordering consistent.
+ * so the order of the references should match the order of the footnotes.
+ */
+
+article {
+    counter-reset: footnotes;
+}
+
+a.fn {
+    /* a reference to a footnote */
+    counter-increment: footnotes;
+    text-decoration: none;
+    color: inherit;
+    cursor: inherit;
+    outline: none;
+}
+
+a.fn:hover {
+    color: inherit;
+}
+
+a.fn:after {
+    content: "[" counter(footnotes) "]";
+    vertical-align: super;
+    font-size: 0.8em;
+    line-height: 80%;
+    margin-left: 2px;
+    color: var(--link-color-light);
+    cursor: pointer;
+}
+
+a.fn:hover:after {
+    color: var(--link-color-hover);
+}
+
+a.back::after {
+    content: '↩';
+    font-size: smaller;
+}
+
+ol.footnotes {
+    /* list of footnotes */
+    counter-reset: footnotes;
+}
+
+ol.footnotes > li {
+    list-style-type: none;
+    padding-left: 0.5em;
+    counter-increment: footnotes;
+}
+
+ol.footnotes > li::marker {
+    content: "[" counter(footnotes) "]";
+}
+
+ol.footnotes > li:target {
+    /* could put something here */
+}
+
+
+/* end footnotes */
 
 .tooltip {
   position: relative;
@@ -62,7 +130,7 @@ body {
     */
 }
 
-p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre {
+p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
     max-width: 35em;
 }
 
@@ -197,9 +265,16 @@ button#dark-mode-button:hover {
 }
 */
 
+/*
 footer {
     margin: 0em auto 0em;
     text-align: center;
+}
+*/
+
+footer {
+    margin-top: 2em;
+    border-top: 1px solid #646464;
 }
 
 nav {
@@ -216,6 +291,7 @@ hr {
     width: 40%;
     border: 1px solid;
     color: #646464;
+    align: left;
 }
 
 .dark-mode hr {
