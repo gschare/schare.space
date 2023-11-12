@@ -26,13 +26,15 @@ DOCS = 'docs/'
 
 # Pages that just sit in the root directory.
 LOOSE_LEAVES = [
-        'index.html',
-        'cv.html',
-        '404.html',
-        'now.html'
+        ('index.html', 'home'),
+        ('cv.html', None),
+        ('404.html', None),
+        ('now.html', 'now'),
         ]
 
-def build_page(content):
+def build_page(content, tab=None):
+    # tab: which thing in the nav bar to highlight, if any.
+
     with open(META, 'r') as f:
         meta = f.read()
         split = meta.find('\n</body>')
@@ -43,12 +45,16 @@ def build_page(content):
 
     page = before_body + header + content + after_body
 
+    # todo: replace this with a beautifulsoup query of the id
+    if tab is not None:
+        page += f'<script>document.getElementById("nav-{tab}").style.textDecoration = "underline";</script>'
+
     return page
 
-def build_page_from_source(src):
+def build_page_from_source(src, **kwargs):
     with open(src, 'r') as f:
         content = f.read()
-        return build_page(content)
+        return build_page(content, **kwargs)
 
 def write_page(content, dest):
     with open(dest, 'w') as f:
@@ -66,7 +72,7 @@ def check_for_sources():
             '.htaccess': isfile(join(SRC, '.htaccess'))
         }
 
-    for leaf in LOOSE_LEAVES:
+    for leaf, _ in LOOSE_LEAVES:
         sources[leaf] = isfile(join(SRC, leaf))
 
     missing = list(filter(lambda x: not sources[x], sources.keys()))
@@ -95,7 +101,7 @@ def write_blog():
         for post in posts:
             if post[0] == '.':
                 continue
-            page = build_page_from_source(join(root, post))
+            page = build_page_from_source(join(root, post), tab="blog")
             write_page(page, join(DOCS, BLOG, post))
 
             title = blog_data[post]['title']
@@ -107,8 +113,7 @@ def write_blog():
             index += index_item
 
     index += '</ul></div></main>'
-    index += '<script>document.getElementById("nav-blog").style.textDecoration = "underline";</script>'
-    write_page(build_page(index), join(DOCS, BLOG, 'index.html'))
+    write_page(build_page(index, tab="blog"), join(DOCS, BLOG, 'index.html'))
 
 def write_garden():
     makedirs(join(DOCS, GARDEN), exist_ok=True)
@@ -117,7 +122,7 @@ def write_garden():
         for file in files:
             if file[0] == '.':
                 continue
-            page = build_page_from_source(join(garden, file))
+            page = build_page_from_source(join(garden, file), tab="garden")
             write_page(page, join(DOCS, GARDEN, file))
 
 def main():
@@ -137,8 +142,8 @@ def main():
     copy_assets()
 
     # write misc pages
-    for p in LOOSE_LEAVES:
-        write_page(build_page_from_source(join(SRC, p)), join(DOCS, p))
+    for p, tab in LOOSE_LEAVES:
+        write_page(build_page_from_source(join(SRC, p), tab=tab), join(DOCS, p))
 
     # write `docs/blog/`
     write_blog()
