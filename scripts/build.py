@@ -87,7 +87,10 @@ def copy_assets():
     makedirs(join(DOCS, ASSETS), exist_ok=True)
     with open(join(SRC, STYLESHEET), 'r') as s, open(join(DOCS, STYLESHEET), 'w') as d:
         d.write(s.read())
-    copy(join(SRC, ASSETS, 'cv.pdf'), join(DOCS, ASSETS, 'cv.pdf'))
+
+    artifacts = ['cv.pdf', 'semgus-review.pdf', 'hoogleplus-review.pdf']
+    for a in artifacts:
+        copy(join(SRC, ASSETS, a), join(DOCS, ASSETS, a))
 
 def write_blog():
     makedirs(join(DOCS, BLOG), exist_ok=True)
