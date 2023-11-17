@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href="/assets/style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-blog" href="/blog/">Blog</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button title="Dark mode" onclick="toggleDarkMode()" type="button"
+                                                       id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<title>
+Questions for People
+</title>
+<main>
+<article>
+<h1 id="questions-for-people">Questions for People</h1>
+<h2 id="questions-for-love">36 Questions for Love</h2>
+<h3 id="set-i">Set I</h3>
+<ol type="1">
+<li>Given the choice of anyone in the world, whom would you want as a
+dinner guest?</li>
+<li>Would you like to be famous? In what way?</li>
+<li>Before making a telephone call, do you ever rehearse what you are
+going to say? Why?</li>
+<li>What would constitute a “perfect” day for you?</li>
+<li>When did you last sing to yourself? To someone else?</li>
+<li>If you were able to live to the age of 90 and retain either the mind
+or body of a 30-year-old for the last 60 years of your life, which would
+you want?</li>
+<li>Do you have a secret hunch about how you will die?</li>
+<li>Name three things you and your partner appear to have in
+common.</li>
+<li>For what in your life do you feel most grateful?</li>
+<li>If you could change anything about the way you were raised, what
+would it be?</li>
+<li>Take four minutes and tell your partner your life story in as much
+detail as possible.</li>
+<li>If you could wake up tomorrow having gained any one quality or
+ability, what would it be?</li>
+</ol>
+<h3 id="set-ii">Set II</h3>
+<ol start="13" type="1">
+<li>If a crystal ball could tell you the truth about yourself, your
+life, the future or anything else, what would you want to know?</li>
+<li>Is there something that you’ve dreamed of doing for a long time? Why
+haven’t you done it?</li>
+<li>What is the greatest accomplishment of your life?</li>
+<li>What do you value most in a friendship?</li>
+<li>What is your most treasured memory?</li>
+<li>What is your most terrible memory?</li>
+<li>If you knew that in one year you would die suddenly, would you
+change anything about the way you are now living? Why?</li>
+<li>What does friendship mean to you?</li>
+<li>What roles do love and affection play in your life?</li>
+<li>Alternate sharing something you consider a positive characteristic
+of your partner. Share a total of five items.</li>
+<li>How close and warm is your family? Do you feel your childhood was
+happier than most other people’s?</li>
+<li>How do you feel about your relationship with your mother?</li>
+</ol>
+<h3 id="set-iii">Set III</h3>
+<ol start="25" type="1">
+<li>Make three true “we” statements each. For instance, “We are both in
+this room feeling…”</li>
+<li>Complete this sentence: “I wish I had someone with whom I could
+share…”</li>
+<li>If you were going to become a close friend with your partner, please
+share what would be important for him or her to know.</li>
+<li>Tell your partner what you like about them; be very honest this
+time, saying things that you might not say to someone you’ve just
+met.</li>
+<li>Share with your partner an embarrassing moment in your life.</li>
+<li>When did you last cry in front of another person? By yourself?</li>
+<li>Tell your partner something that you like about them already.</li>
+<li>What, if anything, is too serious to be joked about?</li>
+<li>If you were to die this evening with no opportunity to communicate
+with anyone, what would you most regret not having told someone? Why
+haven’t you told them yet?</li>
+<li>Your house, containing everything you own, catches fire. After
+saving your loved ones and pets, you have time to safely make a final
+dash to save any one item. What would it be? Why?</li>
+<li>Of all the people in your family, whose death would you find most
+disturbing? Why?</li>
+<li>Share a personal problem and ask your partner’s advice on how he or
+she might handle it. Also, ask your partner to reflect back to you how
+you seem to be feeling about the problem you have chosen.</li>
+</ol>
+<h2 id="prousts-questions">Proust’s Questions</h2>
+<ol type="1">
+<li>What is your idea of perfect happiness?</li>
+<li>What is your greatest fear?</li>
+<li>What is the trait you most deplore in yourself?</li>
+<li>What is the trait you most deplore in others?</li>
+<li>Which living person do you most admire?</li>
+<li>What is your greatest extravagance?</li>
+<li>What is your current state of mind?</li>
+<li>What do you consider the most overrated virtue?</li>
+<li>On what occasion do you lie?</li>
+<li>What do you most dislike about your appearance?</li>
+<li>Which living person do you most despise?</li>
+<li>What is the quality you most like in a man?</li>
+<li>What is the quality you most like in a woman?</li>
+<li>Which words or phrases do you most overuse?</li>
+<li>What or who is the greatest love of your life?</li>
+<li>When and where were you happiest?</li>
+<li>Which talent would you most like to have?</li>
+<li>If you could change one thing about yourself, what would it be?</li>
+<li>What do you consider your greatest achievement?</li>
+<li>If you were to die and come back as a person or a thing, what would
+it be?</li>
+<li>Where would you most like to live?</li>
+<li>What is your most treasured possession?</li>
+<li>What do you regard as the lowest depth of misery?</li>
+<li>What is your favorite occupation?</li>
+<li>What is your most marked characteristic?</li>
+<li>What do you most value in your friends?</li>
+<li>Who are your favorite writers?</li>
+<li>Who is your hero of fiction?</li>
+<li>Which historical figure do you most identify with?</li>
+<li>Who are your heroes in real life?</li>
+<li>What are your favorite names?</li>
+<li>What is it that you most dislike?</li>
+<li>What is your greatest regret?</li>
+<li>How would you like to die?</li>
+<li>What is your motto?</li>
+</ol>
+<h2 id="my-questions">My questions</h2>
+<ul>
+<li>Are you prideful about your taste in music?</li>
+<li>Why do you have to do what you do?</li>
+</ul>
+</article>
+</main>
+
+</body>
+
+</html>
+<script>document.getElementById("nav-garden").style.textDecoration = "underline";</script>
