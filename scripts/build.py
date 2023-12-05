@@ -7,7 +7,7 @@
 
 # generate blog post file
 
-from os.path import join, isdir, isfile
+from os.path import join, isdir, isfile, relpath
 from os import makedirs, walk
 from shutil import copy
 import json
@@ -92,6 +92,16 @@ def copy_assets():
     for a in artifacts:
         copy(join(SRC, ASSETS, a), join(DOCS, ASSETS, a))
 
+def copy_folder(src, dst):
+    makedirs(join(DOCS, dst), exist_ok=True)
+    for path, dirs, files in walk(join(SRC, src)):
+        for d in dirs:
+            makedirs(join(DOCS, dst, relpath(path, start=join(SRC, src)), d), exist_ok=True)
+            print(d, SRC, src, path, relpath(path, start=join(SRC, src)))
+        for file in files:
+            copy(join(path, file), join(DOCS, dst, relpath(path, start=join(SRC, src)), file))
+            print(file, SRC, src, path, relpath(path, start=join(SRC, src)))
+
 def write_blog():
     makedirs(join(DOCS, BLOG), exist_ok=True)
 
@@ -118,15 +128,20 @@ def write_blog():
     index += '</ul></div></main>'
     write_page(build_page(index, tab="blog"), join(DOCS, BLOG, 'index.html'))
 
-def write_garden():
-    makedirs(join(DOCS, GARDEN), exist_ok=True)
+def write_folder(folder, tab=None):
+    makedirs(join(DOCS, folder), exist_ok=True)
 
-    for garden, _, files in walk(join(SRC, GARDEN)):
+    for path, dirs, files in walk(join(SRC, folder)):
+        for d in dirs:
+            makedirs(join(DOCS, folder, relpath(path, start=join(SRC, folder)), d), exist_ok=True)
         for file in files:
             if file[0] == '.':
                 continue
-            page = build_page_from_source(join(garden, file), tab="garden")
-            write_page(page, join(DOCS, GARDEN, file))
+            page = build_page_from_source(join(path, file), tab=tab)
+            write_page(page, join(DOCS, folder, relpath(path, start=join(SRC, folder)), file))
+
+def write_garden():
+    write_folder(GARDEN, tab='garden')
 
 def main():
     check_for_sources()
@@ -153,6 +168,9 @@ def main():
 
     # write `docs/garden/`
     write_garden()
+
+    # write `docs/writ/`
+    copy_folder('writ', 'writ')
 
 if __name__ == '__main__':
     main()
