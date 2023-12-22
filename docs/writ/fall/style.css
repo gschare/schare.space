@@ -1,0 +1,82 @@
+:root {
+    --link-color-light: #40a2b8;
+    --link-color-hover: #ffabf9;
+    --link-color-visited: #9253b0;
+}
+
+body {
+    font-size: 1.2rem;
+    font-family: 'Lora', 'Garamond', serif;
+    background-color: #fdfcee;
+    color: #646464;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+a {
+    color: var(--link-color-light);
+    text-decoration: none;
+}
+
+a:hover, a:visited:hover {
+    color: var(--link-color-hover);
+}
+
+a:visited {
+    color: var(--link-color-visited);
+}
+
+summary:hover {
+    cursor: pointer;
+}
+
+article {
+    margin: auto;
+    max-width: 50%;
+    padding: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    article {
+        margin: auto;
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+
+p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
+    max-width: 35em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+blockquote {
+    font-style: italic;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.flex {
+    display: flex;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        font-size: clamp(1.2rem, 1vw, 1.5rem);
+        max-width: 100%;
+    }
+
+    .flex {
+        display: block;
+    }
+}
+
+ul.nobullet {
+    list-style-type: none;
+}
