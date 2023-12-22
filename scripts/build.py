@@ -97,10 +97,10 @@ def copy_folder(src, dst):
     for path, dirs, files in walk(join(SRC, src)):
         for d in dirs:
             makedirs(join(DOCS, dst, relpath(path, start=join(SRC, src)), d), exist_ok=True)
-            print(d, SRC, src, path, relpath(path, start=join(SRC, src)))
         for file in files:
+            if file[0] == '.':
+                continue
             copy(join(path, file), join(DOCS, dst, relpath(path, start=join(SRC, src)), file))
-            print(file, SRC, src, path, relpath(path, start=join(SRC, src)))
 
 def write_blog():
     makedirs(join(DOCS, BLOG), exist_ok=True)
