@@ -25,11 +25,13 @@ META = join(TEMPLATES, 'meta.html')
 DOCS = 'docs/'
 
 # Pages that just sit in the root directory.
+# schema: (filename, tab)
 LOOSE_LEAVES = [
         ('index.html', 'home'),
         ('cv.html', None),
         ('404.html', None),
         ('now.html', 'now'),
+        ('new.html', None)
         ]
 
 def build_page(content, tab=None):
