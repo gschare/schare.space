@@ -131,7 +131,8 @@ h2 {
         source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
     -->
     <div class="flex">
-        <textarea id="editor" contenteditable="true" placeholder="Type..." />
+        <textarea id="editor" contenteditable="true" placeholder="Type...">
+        </textarea>
         <script>
         (function() {
             var editorKey = 'html5-notepad';
@@ -139,11 +140,11 @@ h2 {
             var cache = localStorage.getItem(editorKey);
 
             if (cache) {
-                editor.innerHTML = cache;
+                editor.value = cache;
             }
 
             function autosave() {
-                var newValue = editor.innerHTML;
+                var newValue = editor.value;
                 if (cache != newValue) {
                     cache = newValue;
                     localStorage.setItem(editorKey, cache);
