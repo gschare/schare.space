@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href="/assets/style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-blog" href="/blog/">Blog</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button title="Dark mode" onclick="toggleDarkMode()" type="button"
+                                                       id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<title>New Tab</title>
+<style>
+h2 {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.col {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+</style>
+<main>
+
+<h2> <span id="Van_Nuys_z14e" style="display: block; min-height: 1.5em"></span> </h2>
+
+    <div class="flex">
+        <div class="col">
+
+<h2 id="organization">organization</h2>
+<ul>
+<li>Personal
+<ul>
+<li><a href="https://mail.google.com/mail/u/1/">Gmail</a></li>
+<li><a href="https://drive.google.com/drive/u/1/">Google Drive</a></li>
+<li><a href="https://calendar.google.com/calendar/u/1/r">Calendar</a></li>
+</ul></li>
+<li>Work
+<ul>
+<li><a href="https://mail.google.com/mail/u/0/">Gmail</a></li>
+<li><a href="https://drive.google.com/drive/u/0/">Google Drive</a></li>
+<li><a href="https://calendar.google.com/calendar/u/0/r">Calendar</a></li>
+</ul></li>
+        </div>
+
+        <div class="col">
+</ul>
+<h2 id="socials">socials</h2>
+<ul>
+<li><a href="https://web.whatsapp.com/">WhatsApp</a></li>
+<li><a href="https://letterboxd.com/">Letterboxd</a></li>
+<li><a href="https://www.facebook.com/">Facebook</a></li>
+<li><a href="https://twitter.com/">Twitter</a></li>
+</ul>
+        </div>
+
+<div class="col">
+<h2 id="content">content</h2>
+<ul>
+<li>
+    <a href="https://www.youtube.com/">YouTube</a>
+    | <a href="https://www.youtube.com/feed/subscriptions">Subscriptions</a>
+    | <a href="https://www.youtube.com/playlist?list=WL">Watch Later</a>
+</li>
+<li><a href="https://www.netflix.com/">Netflix</a></li>
+<li><a href="https://www.hulu.com/">Hulu</a></li>
+<li><a href="https://play.max.com/">Max</a></li>
+<li><a href="https://www.kanopy.com/">Kanopy</a></li>
+<li><a href="https://www.justwatch.com/">JustWatch</a></li>
+
+</ul>
+</div>
+    </div>
+
+    <div class="flex">
+
+        <div class="col">
+<h2 id="useful">useful</h2>
+<ul>
+<li><a href="https://translate.google.com/">Translate</a></li>
+<li><a href="https://www.wordreference.com/">WordReference</a></li>
+<li><a href="https://www.tldraw.com/">tldraw</a></li>
+
+</ul>
+        </div>
+
+
+<div class="col">
+<h2>time</h2>
+<code>
+LAX 🌴: <span id="Los_Angeles_z14e"></span><br>
+UTC 🕗: <span id="UTC_za00"></span><br>
+NYC 🗽: <span id="New_York_z161"></span> <br>
+IST 🇹🇷: <span id="Istanbul_z710"></span> <br>
+</code>
+<a href="https://time.is/" id="time_is_link" rel="nofollow">Get the time at Time.is!</a>
+<script src="//widget.time.is/en.js"></script>
+<script>
+time_is_widget.init({
+    UTC_za00 : {},
+    Los_Angeles_z14e:{},
+    New_York_z161:{},
+    Istanbul_z710:{},
+    Van_Nuys_z14e:{template:"DATE", date_format:"dayname, monthname dnum, year"}
+});
+</script>
+        </div>
+
+    </div>
+</main>
+
+</body>
+
+</html>
