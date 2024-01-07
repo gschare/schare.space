@@ -10,92 +10,135 @@ h2 {
     padding-right: 30px;
 }
 
+#editor {
+    width: 20rem;
+    height: 100%;
+    border: 1px solid #646464;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#editor.dark-mode {
+    border: 1px solid #e3e0d7;
+}
+
 </style>
 <main>
 
 <h2> <span id="Van_Nuys_z14e" style="display: block; min-height: 1.5em"></span> </h2>
 
+<div class="flex" style="flex-direction: row">
+    <div class="flex" style="flex-direction: column">
+        <div class="flex" style="flex-direction: row">
+            <div class="col">
+            <h2 id="organization">organization</h2>
+            <ul>
+            <li>Personal
+            <ul>
+            <li><a href="https://mail.google.com/mail/u/1/">Gmail</a></li>
+            <li><a href="https://drive.google.com/drive/u/1/">Google Drive</a></li>
+            <li><a href="https://calendar.google.com/calendar/u/1/r">Calendar</a></li>
+            </ul></li>
+            <li>Work
+            <ul>
+            <li><a href="https://mail.google.com/mail/u/0/">Gmail</a></li>
+            <li><a href="https://drive.google.com/drive/u/0/">Google Drive</a></li>
+            <li><a href="https://calendar.google.com/calendar/u/0/r">Calendar</a></li>
+            </ul></li>
+            </ul>
+            </div>
+
+            <div class="col">
+            <h2 id="socials">socials</h2>
+            <ul>
+            <li><a href="https://web.whatsapp.com/">WhatsApp</a></li>
+            <li><a href="https://letterboxd.com/">Letterboxd</a></li>
+            <li><a href="https://www.facebook.com/">Facebook</a></li>
+            <li><a href="https://twitter.com/">Twitter</a></li>
+            </ul>
+            </div>
+
+            <div class="col">
+            <h2 id="content">content</h2>
+            <ul>
+            <li>
+                <a href="https://www.youtube.com/">YouTube</a>
+                | <a href="https://www.youtube.com/feed/subscriptions">Subscriptions</a>
+                | <a href="https://www.youtube.com/playlist?list=WL">Watch Later</a>
+            </li>
+            <li><a href="https://www.netflix.com/">Netflix</a></li>
+            <li><a href="https://www.hulu.com/">Hulu</a></li>
+            <li><a href="https://play.max.com/">Max</a></li>
+            <li><a href="https://www.kanopy.com/">Kanopy</a></li>
+            <li><a href="https://www.justwatch.com/">JustWatch</a></li>
+
+            </ul>
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="col">
+            <h2 id="useful">useful</h2>
+            <ul>
+            <li><a href="https://translate.google.com/">Translate</a></li>
+            <li><a href="https://www.wordreference.com/">WordReference</a></li>
+            <li><a href="https://www.tldraw.com/">tldraw</a></li>
+            </ul>
+            </div>
+
+            <div class="col">
+            <h2>time</h2>
+            <code>
+            LAX 🌴: <span id="Los_Angeles_z14e"></span><br>
+            UTC 🕗: <span id="UTC_za00"></span><br>
+            NYC 🗽: <span id="New_York_z161"></span> <br>
+            IST 🇹🇷: <span id="Istanbul_z710"></span> <br>
+            </code>
+            <a href="https://time.is/" id="time_is_link" rel="nofollow">Get the time at Time.is!</a>
+            <script src="//widget.time.is/en.js"></script>
+            <script>
+            time_is_widget.init({
+                UTC_za00 : {},
+                Los_Angeles_z14e:{},
+                New_York_z161:{},
+                Istanbul_z710:{},
+                Van_Nuys_z14e:{template:"DATE", date_format:"dayname, monthname dnum, year"}
+            });
+            </script>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- notepad 
+        source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
+    -->
     <div class="flex">
-        <div class="col">
-
-<h2 id="organization">organization</h2>
-<ul>
-<li>Personal
-<ul>
-<li><a href="https://mail.google.com/mail/u/1/">Gmail</a></li>
-<li><a href="https://drive.google.com/drive/u/1/">Google Drive</a></li>
-<li><a href="https://calendar.google.com/calendar/u/1/r">Calendar</a></li>
-</ul></li>
-<li>Work
-<ul>
-<li><a href="https://mail.google.com/mail/u/0/">Gmail</a></li>
-<li><a href="https://drive.google.com/drive/u/0/">Google Drive</a></li>
-<li><a href="https://calendar.google.com/calendar/u/0/r">Calendar</a></li>
-</ul></li>
+        <div id="editor" contenteditable="true">
         </div>
+        <script>
+        (function() {
+            var editorKey = 'html5-notepad';
+            var editor = document.getElementById('editor');
+            var cache = localStorage.getItem(editorKey);
 
-        <div class="col">
-</ul>
-<h2 id="socials">socials</h2>
-<ul>
-<li><a href="https://web.whatsapp.com/">WhatsApp</a></li>
-<li><a href="https://letterboxd.com/">Letterboxd</a></li>
-<li><a href="https://www.facebook.com/">Facebook</a></li>
-<li><a href="https://twitter.com/">Twitter</a></li>
-</ul>
+            if (cache) {
+                editor.innerHTML = cache;
+            }
+
+            function autosave() {
+                var newValue = editor.innerHTML;
+                if (cache != newValue) {
+                    cache = newValue;
+                    localStorage.setItem(editorKey, cache);
+                }
+            }
+
+            editor.addEventListener('input', autosave);
+        })();
+        </script>
         </div>
+    </div>
 
-<div class="col">
-<h2 id="content">content</h2>
-<ul>
-<li>
-    <a href="https://www.youtube.com/">YouTube</a>
-    | <a href="https://www.youtube.com/feed/subscriptions">Subscriptions</a>
-    | <a href="https://www.youtube.com/playlist?list=WL">Watch Later</a>
-</li>
-<li><a href="https://www.netflix.com/">Netflix</a></li>
-<li><a href="https://www.hulu.com/">Hulu</a></li>
-<li><a href="https://play.max.com/">Max</a></li>
-<li><a href="https://www.kanopy.com/">Kanopy</a></li>
-<li><a href="https://www.justwatch.com/">JustWatch</a></li>
-
-</ul>
 </div>
-    </div>
-
-    <div class="flex">
-
-        <div class="col">
-<h2 id="useful">useful</h2>
-<ul>
-<li><a href="https://translate.google.com/">Translate</a></li>
-<li><a href="https://www.wordreference.com/">WordReference</a></li>
-<li><a href="https://www.tldraw.com/">tldraw</a></li>
-
-</ul>
-        </div>
-
-
-<div class="col">
-<h2>time</h2>
-<code>
-LAX 🌴: <span id="Los_Angeles_z14e"></span><br>
-UTC 🕗: <span id="UTC_za00"></span><br>
-NYC 🗽: <span id="New_York_z161"></span> <br>
-IST 🇹🇷: <span id="Istanbul_z710"></span> <br>
-</code>
-<a href="https://time.is/" id="time_is_link" rel="nofollow">Get the time at Time.is!</a>
-<script src="//widget.time.is/en.js"></script>
-<script>
-time_is_widget.init({
-    UTC_za00 : {},
-    Los_Angeles_z14e:{},
-    New_York_z161:{},
-    Istanbul_z710:{},
-    Van_Nuys_z14e:{template:"DATE", date_format:"dayname, monthname dnum, year"}
-});
-</script>
-        </div>
-
-    </div>
 </main>
