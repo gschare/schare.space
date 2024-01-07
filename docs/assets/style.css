@@ -228,7 +228,7 @@ button#show-button {
     clear: both;
 }
 
-button {
+button.fancybutton {
     background-color: inherit;
     font-size: inherit;
     font-family: inherit;
@@ -241,11 +241,11 @@ button {
     transition: 0.2s;
 }
 
-button.dark-mode {
+button.fancybutton.dark-mode {
     border: 2px solid #e3e0d7;
 }
 
-button:hover {
+button.fancybutton:hover {
     font-weight: bold;
 }
 

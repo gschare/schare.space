@@ -13,12 +13,25 @@ h2 {
 #editor {
     width: 20rem;
     height: 100%;
+    min-height: 4rem;
     border: 1px solid #646464;
     margin-left: 30px;
     margin-right: 30px;
+    background: none;
+    color: inherit;
 }
 
 #editor.dark-mode {
+    border: 1px solid #e3e0d7;
+}
+
+#search {
+    border: 1px solid #646464;
+    background: none;
+    color: inherit;
+}
+
+#search.dark-mode {
     border: 1px solid #e3e0d7;
 }
 
@@ -26,6 +39,10 @@ h2 {
 <main>
 
 <h2> <span id="Van_Nuys_z14e" style="display: block; min-height: 1.5em"></span> </h2>
+
+<form action="https://duckduckgo.com/">
+  <input id="search" type="search" placeholder="Search..." name="q" autofocus>
+</form>
 
 <div class="flex" style="flex-direction: row">
     <div class="flex" style="flex-direction: column">
@@ -114,8 +131,7 @@ h2 {
         source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
     -->
     <div class="flex">
-        <div id="editor" contenteditable="true">
-        </div>
+        <textarea id="editor" contenteditable="true" placeholder="Type..." />
         <script>
         (function() {
             var editorKey = 'html5-notepad';
