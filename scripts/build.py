@@ -110,7 +110,7 @@ def write_blog():
     with open(BLOG_JSON, 'r') as f:
         blog_data = json.load(f)
 
-    index = '<title>Blog</title><main><div><h2>Posts</h2><ul class="nobullet">'
+    index = '<title>Blog</title><main><div><h2>Posts</h2><ul style="list-style: none; padding-left: 0">'
 
     for root, _, posts in walk(join(SRC, BLOG)):
         for post in posts:
@@ -120,10 +120,11 @@ def write_blog():
             write_page(page, join(DOCS, BLOG, post))
 
             title = blog_data[post]['title']
+            date = blog_data[post]['date']
             preview = blog_data[post]['preview']
 
             index_item = ('<li><a href="' + post + '"><p><b>' +
-                          title + '</b><br><i>' + preview + '</i></p></a></li>')
+                          title + '</b></a><br>' + date + '<br><i>' + preview + '</i></p></li>')
 
             index += index_item
 
