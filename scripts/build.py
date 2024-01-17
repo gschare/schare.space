@@ -5,18 +5,18 @@
 #   template header into body
 #   template content into body after header
 
-# generate blog post file
+# generate tidings post file
 
 from os.path import join, isdir, isfile, relpath
 from os import makedirs, walk
 from shutil import copy
 import json
 
-BLOG_JSON = 'blog.json'
+TIDINGS_JSON = 'tidings.json'
 SRC = 'src/'
 TEMPLATES = 'templates/'
 ASSETS = 'assets/'
-BLOG = 'blog/'
+TIDINGS = 'tidings/'
 GARDEN = 'garden/'
 STYLESHEET = join(ASSETS, 'style.css')
 HEADER = join(TEMPLATES, 'header.html')
@@ -64,7 +64,7 @@ def write_page(content, dest):
 
 def check_for_sources():
     sources = {
-            BLOG: isdir(join(SRC, BLOG)),
+            TIDINGS: isdir(join(SRC, TIDINGS)),
             GARDEN: isdir(join(SRC, GARDEN)),
             ASSETS: isdir(join(SRC, ASSETS)),
             STYLESHEET: isfile(join(SRC, STYLESHEET)),
@@ -104,24 +104,24 @@ def copy_folder(src, dst):
                 continue
             copy(join(path, file), join(DOCS, dst, relpath(path, start=join(SRC, src)), file))
 
-def write_blog():
-    makedirs(join(DOCS, BLOG), exist_ok=True)
+def write_tidings():
+    makedirs(join(DOCS, TIDINGS), exist_ok=True)
 
-    with open(BLOG_JSON, 'r') as f:
-        blog_data = json.load(f)
+    with open(TIDINGS_JSON, 'r') as f:
+        tidings_data = json.load(f)
 
-    index = '<title>Blog</title><main><div><h2>Posts</h2><ul style="list-style: none; padding-left: 0">'
+    index = '<title>Tidings</title><main><div><h2>Posts</h2><ul style="list-style: none; padding-left: 0">'
 
-    for root, _, posts in walk(join(SRC, BLOG)):
+    for root, _, posts in walk(join(SRC, TIDINGS)):
         for post in posts:
             if post[0] == '.':
                 continue
-            page = build_page_from_source(join(root, post), tab="blog")
-            write_page(page, join(DOCS, BLOG, post))
+            page = build_page_from_source(join(root, post), tab="tidings")
+            write_page(page, join(DOCS, TIDINGS, post))
 
-            title = blog_data[post]['title']
-            date = blog_data[post]['date']
-            preview = blog_data[post]['preview']
+            title = tidings_data[post]['title']
+            date = tidings_data[post]['date']
+            preview = tidings_data[post]['preview']
 
             index_item = ('<li><a href="' + post + '"><p><b>' +
                           title + '</b></a><br>' + date + '<br><i>' + preview + '</i></p></li>')
@@ -129,7 +129,7 @@ def write_blog():
             index += index_item
 
     index += '</ul></div></main>'
-    write_page(build_page(index, tab="blog"), join(DOCS, BLOG, 'index.html'))
+    write_page(build_page(index, tab="tidings"), join(DOCS, TIDINGS, 'index.html'))
 
 def write_folder(folder, tab=None):
     makedirs(join(DOCS, folder), exist_ok=True)
@@ -166,8 +166,8 @@ def main():
     for p, tab in LOOSE_LEAVES:
         write_page(build_page_from_source(join(SRC, p), tab=tab), join(DOCS, p))
 
-    # write `docs/blog/`
-    write_blog()
+    # write `docs/tidings/`
+    write_tidings()
 
     # write `docs/garden/`
     write_garden()
