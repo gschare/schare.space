@@ -1,6 +1,10 @@
 :root {
     --link-color-light: #40a2b8;
     --link-color-hover: #ffabf9;
+    --bg-light: #fdfcee;
+    --bg-dark: #1c2f28; /*#262626;*/
+    --fg-light: #646464;
+    --fg-dark: #e3e0d7;
 }
 
 h3, h4, h5, h6 {
@@ -31,6 +35,25 @@ a:hover {
 
 article {
     counter-reset: footnotes;
+    max-width: 60rem; /* to fit asides */
+}
+
+aside, div.sidebar {
+    float: right;
+    width: 15rem;
+    padding-left: 15px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+    border-left: 1px solid var(--fg-light);
+}
+
+aside.dark-mode, div.sidebar.dark-mode {
+    float: right;
+    width: 15rem;
+    padding-left: 15px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+    border-left: 1px solid var(--fg-dark);
 }
 
 a.fn {
@@ -122,8 +145,8 @@ ol.footnotes > li:target {
 body {
     font-size: clamp(1.1rem, 1vw, 4rem);
     font-family: 'Lora', 'Garamond', serif;
-    background-color: #fdfcee;
-    color: #646464;
+    background-color: var(--bg-light);
+    color: var(--fg-light);
     margin-top: 5%;
     margin-bottom: 5%;
     margin-left: 5%;
@@ -196,8 +219,8 @@ figcaption {
 }
 
 body.dark-mode {
-    color: #e3e0d7;
-    background-color: #1c2f28;/*#262626;*/
+    color: var(--fg-dark);
+    background-color: var(--bg-dark);
 }
 
 
@@ -236,7 +259,7 @@ button.fancybutton {
     background-color: inherit;
     font-size: inherit;
     font-family: inherit;
-    border: 2px solid #646464;
+    border: 2px solid var(--fg-light);
     border-radius: 4px;
     color: inherit;
     padding: 1px 2px;
@@ -246,7 +269,7 @@ button.fancybutton {
 }
 
 button.fancybutton.dark-mode {
-    border: 2px solid #e3e0d7;
+    border: 2px solid var(--fg-dark);
 }
 
 button.fancybutton:hover {
