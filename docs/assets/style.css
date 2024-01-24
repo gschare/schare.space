@@ -315,14 +315,15 @@ nav .active {
 }
 
 hr {
-    width: 40%;
+    max-width: 35em;
     border: 1px solid;
-    color: #646464;
-    align: left;
+    margin-left: 0;
+    margin-right: 0;
+    color: var(--fg-light);
 }
 
 .dark-mode hr {
-    color: #e3e0d7;
+    color: var(--fg-dark);
 }
 
 canvas .absolute {
