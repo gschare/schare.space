@@ -162,18 +162,24 @@ p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
 }
 
 blockquote {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
     font-style: italic;
     font-size: 90%;
-    position: relative;
     text-align: justify;
     text-justify: inter-word;
 }
 
-blockquote.fancyquote:before {
+figure > blockquote {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.fancyquote blockquote {
+    position: relative;
+}
+
+.fancyquote blockquote:before {
     color: #949494;
     font-family: Georgia, serif;
     font-size: 6em;
@@ -184,7 +190,7 @@ blockquote.fancyquote:before {
     position: absolute;
 }
 
-blockquote.fancyquote:after {
+.fancyquote blockquote:after {
     color: #949494;
     font-family: Georgia, serif;
     float: right;
