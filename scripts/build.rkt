@@ -1,16 +1,16 @@
 #lang racket
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;                                                                         ;
-;     __                   ___       __              __      __           ;
-;    /\ \              __ /\_ \     /\ \            /\ \    /\ \__        ;
-;    \ \ \____  __  __/\_\\//\ \    \_\ \       _ __\ \ \/'\\ \ ,_\       ;
-;     \ \ '__`\/\ \/\ \/\ \ \ \ \   /'_` \     /\`'__\ \ , < \ \ \/       ;
-;      \ \ \L\ \ \ \_\ \ \ \ \_\ \_/\ \L\ \  __\ \ \/ \ \ \\`\\ \ \_      ;
-;       \ \_,__/\ \____/\ \_\/\____\ \___,_\/\_\\ \_\  \ \_\ \_\ \__\     ;
-;        \/___/  \/___/  \/_/\/____/\/__,_ /\/_/ \/_/   \/_/\/_/\/__/     ;
-;                                                                         ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                                                              ;
+;       __                   ___       __              __      __              ;
+;      /\ \              __ /\_ \     /\ \            /\ \    /\ \__           ;
+;      \ \ \____  __  __/\_\\//\ \    \_\ \       _ __\ \ \/'\\ \ ,_\          ;
+;       \ \ '__`\/\ \/\ \/\ \ \ \ \   /'_` \     /\`'__\ \ , < \ \ \/          ;
+;        \ \ \L\ \ \ \_\ \ \ \ \_\ \_/\ \L\ \  __\ \ \/ \ \ \\`\\ \ \_         ;
+;         \ \_,__/\ \____/\ \_\/\____\ \___,_\/\_\\ \_\  \ \_\ \_\ \__\        ;
+;          \/___/  \/___/  \/_/\/____/\/__,_ /\/_/ \/_/   \/_/\/_/\/__/        ;
+;                                                                              ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
 ; Welcome to build.rkt.
 ; Author: Gregory Schare, March 2024.
@@ -42,22 +42,30 @@
 ;
 ;     '(:defaults
 ;        (:template <PATH>                ; relative to templates/
-;         :stylesheets (<PATH> ...))      ; relative to styles/
+;         :styles (<PATH> ...))           ; relative to css/
 ;       :files
 ;        ((:path <PATH>                   ; relative to src/
 ;          :template <TEMPLATE>
-;          :stylesheets (<STYLE> ...))
+;          :styles (<STYLE> ...))
 ;         ...)
 ;       :folders
 ;        ((:path <PATH>                   ; relative to src/
 ;          :template <TEMPLATE>
-;          :stylesheets (<STYLE> ...))
+;          :styles (<STYLE> ...))
 ;         ...)
 ;       :phony
-;        ((:name <NAME>
+;        ((:path <PATH>                   ; this can be anything
 ;          :template <TEMPLATE>
-;          :stylesheets (<STYLE> ...))
+;          :styles (<STYLE> ...))
 ;         ...)
+;       :raw
+;        (:files (<PATH> ...)
+;         :folders (<PATH> ...)
+;         )
+;       :disabled
+;        (:files (<PATH> ...)
+;         :folders (<PATH> ...)
+;         )
 ;       )
 ;
 ; The PATH of a folder or file rule is considered its name and unique identifier
@@ -69,18 +77,38 @@
 ; of another rule. If given as the name of another rule `S`, `R` inherits all
 ; the styles from `S`.
 ;
-; This allows for an arbitrary directed graph where the arrows mean
-; "---- inherits from -->", which may be cyclic. Technically this is fine,
-; because nodes in the same strongly connected component share the same set of
-; styles (we detect such connected components to remove cycles and form a DAG),
-; but there is no need to write them cyclically. But go ahead and do that if you
-; want to I guess?
+; This allows for an arbitrary directed graph where an edge (u,v) means
+; "u inherits from v". Cycles are possible, but invalid; we reject graphs with
+; cycles in them.
+;
+; Technically it would be fine to have cycles, because nodes in the same
+; strongly connected component share the same set of styles. We could use
+; Kosaraju's algorithm to detect SCCs and convert the graph to a DAG, but then
+; it would be difficult to ensure stylesheets cascade properly. Instead,
+; we require the user to provide a DAG and then we assign a deterministic
+; stylesheet order on a per-rule basis by traversing the DAG.
+;
+; Note that unexpected cascading can still happen when styles are listed in
+; certain orders. Consider rules u,v,w and stylesheets x,y, with edges
+; (u,v), (u,w), (v,w), (v,x), (w,x), (w,y). If v has [x,w] as its style list and
+; w has [y,x] as its list, then it will resolve to v=[x,y], w=[y,x], and
+; u=[x,y]. But if v has [w,x], then it will resolve to v=[y,x], w=[y,x] and
+; u=[y,x]. Be careful of this, and try to avoid redundancy. In most cases it
+; would be preferable to simply have v inherit w, unless we really want to swap
+; the order of x and y for v and u but not for w.
 ;
 ; <TEMPLATE> can similarly point to either an actual template file (ending in
 ; `.html`) or another rule. It is possible to form cycles here, too, but it is
 ; invalid to do so (we check for cycles and reject graphs that contain them).
 ;
-; For files, folders, and phonies, `:template` and `:stylesheets` are optional.
+; Templates must end in .xml. Stylesheets must end in .css. HTML
+; fragments/source files have no requirements for extensions, but it helps to
+; end them with .html (to avoid conflicts or confusion). Folders should not end
+; in '/', and similarly must not conflict. This is subject to change.
+;
+; For files, folders, and phonies, the following keywords are optional:
+;   :template
+;   :styles
 ;
 ; If optional keywords are left off, or left blank, the corresponding
 ; default is used.
@@ -90,9 +118,16 @@
 ; has its own rule, it does not inherit (but you can explicitly ask it to
 ; inherit by adding the name of its parent rule).
 ;
+; The :raw keyword specifies which files and folders should be copied to the
+; output directory without any processing. As usual, subfolders and files may
+; overwrite the recursive default, but duplicates of any PATHs are invalid
+;
+; The :disabled keyword is similar, but instructs the build system to skip the
+; given files and folders. Unlike the other rules, :disabled is allowed
+; to overwrite other rules with the same name.
+;
 ; TODO: add a markdown flag
 ; TODO: add nice syntax for arbitrary arguments passed to template
-;
 ;
 ;; Template format
 ;;;;;;;;;;;;;;;;;;
@@ -121,45 +156,187 @@
 ; A template takes some number of keyword arguments (which are all symbols) that
 ; fill in its assembly-time variables.
 ;
-; Two arguments are passed by default: `:content` and `:stylesheets`. The
-; `:content` is the HTML fragment being processed, and the `:stylesheets` is a
+; Two arguments are passed by default: `:content` and `:styles`. The
+; `:content` is the HTML fragment being processed, and the `:styles` is a
 ; list of `<link>` tags to the stylesheets specified in the rules for that file.
 ; 
-
-(define (hello world)
-  "hello")
-
-(hello "world")
-
-; ; emacs lisp:
-;(with-temp-buffer
-; (insert-file-contents "~/dev/github/gschare.github.io/src/index.html")
-; (libxml-parse-html-region (point-min) (point-max)))
-
-; ; ^^ define the above as x...
-; (dom-by-id (dom-append-child (dom-by-tag x 'main) (dom-node 'test '((id . "new")))) "new")
-
-
-(define x
-'(#:defaults (:template default.html
-             :stylesheets default.css)
-  #:files ((:path new.html
-           :template new.html)
-          (:path index.html)))
-)
-
-(define (f #:defaults defaults #:files files)
-  (list defaults files))
-
-(apply f x)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require hash-lambda)
+; TODO: avoid using a library
 
-(apply/hash f (hash '#:defaults '() '#:files '()))
+(define (walk f tree)
+  (cond
+   [(empty? tree) tree]
+   [(list? (first tree)) (cons (walk f (first tree)) (walk f (rest tree)))]
+   [else (cons (f (first tree)) (walk f (rest tree)))]))
 
-(keyword-apply f '(#:defaults () #:files ()))
+(define (lisp-keyword->racket-keyword sym)
+  (let ((sym-string (symbol->string sym)))
+    (cond
+     [(char=? (string-ref sym-string 0) #\:)
+      (string->keyword (substring sym-string 1))]
+     [else sym])))
 
-(define (g x #:y y)
-  (* x y))
- l
-(g 5)
+(define (config->hash-table config)
+  ; Parses and combines all the different rules into one big hash table with all
+  ; the info, and checks for duplicates.
+  ;
+  ; You may regard this function as more or less a definition of the
+  ; config schema and the default behaviors.
+
+  (apply/hash
+   (λ (#:defaults defaults
+       #:files [files '()]
+       #:folders [folders '()]
+       #:phony [phony '()]
+       #:raw [raw '(#:files () #:folders ())]
+       #:disabled [disabled '(#:files () #:folders ())])
+
+     (define-values (default-template default-styles)
+                    (apply/hash (λ (#:template t #:styles s) (values t s))
+                                (apply hash defaults)))
+
+     (define names (mutable-set))
+
+     (define (add-to-table row)
+       (let
+           ([make-row
+             ; do we really gain anything by embedding the schema in function
+             ; arguments like this?
+             ; how busted do we think it is to use this
+             ; `(apply/hash f (apply hash x))` pattern for passing the config
+             ; as arguments to a function to parse it automatically?
+             (λ (#:path path
+                 #:template [template default-template]
+                 #:styles [styles default-styles]
+                 #:folder [folder #f]
+                 #:phony [phony #f]
+                 #:raw [raw #f]
+                 #:disabled [disabled #f])
+               (if (and (set-member? names path) (not disabled))
+                   (error "duplicate identifier ~a" path)
+                   (set-add! names path))
+               (hash '#:path path
+                     '#:template template
+                     '#:styles styles
+                     '#:folder folder
+                     '#:phony phony
+                     '#:raw raw
+                     '#:disabled disabled))])
+        (apply/hash make-row (apply hash row))))
+
+     (letrec
+         ([ht-raw (apply hash raw)]
+          [ht-disabled (apply hash disabled)]
+          [list-of-items
+           (append 
+            ; TODO: clean this up
+            (map add-to-table files)
+            (map (λ (x) (add-to-table (append '(#:folder #t) x)))
+                 folders)
+            (map (λ (x) (add-to-table (append '(#:phony #t) x)))
+                phony)
+            (map (λ (x) (add-to-table (list '#:path x '#:raw #t)))
+                 (hash-ref ht-raw '#:files))
+            (map (λ (x) (add-to-table (list '#:path x '#:disabled #t)))
+                 (hash-ref ht-disabled '#:files))
+            (map (λ (x) (add-to-table (list '#:path x
+                                            '#:raw #t
+                                            '#:folder #t)))
+                 (hash-ref ht-raw '#:folders))
+            (map (λ (x) (add-to-table (list '#:path x
+                                            '#:disabled #t
+                                            '#:folder #t)))
+                 (hash-ref ht-disabled '#:folders))
+            )])
+
+       (foldl (λ (x acc)
+                ; TODO: improve this logic
+                (let ([name (hash-ref x '#:path)])
+                  (if (hash-has-key? acc name)
+                      (if (hash-ref x '#:disabled)
+                          (hash-set acc name
+                                    (hash-set (hash-ref acc name)
+                                              '#:disabled #t))
+                          (if (hash-ref (hash-ref acc name) '#:disabled)
+                              (hash-set acc name
+                                        (hash-set x '#:disabled #t))
+                              (error "unreachable")))
+                      (hash-set acc name x))))
+              (hash)
+              list-of-items)
+       )
+
+   ) (apply hash config)))
+
+(define (make-adjacency-list table field extension)
+  (define (get-edges v)
+    (let ([edges (hash-ref v field)])
+      (cond
+       [(list? edges)
+        (filter
+         (λ (s) (not (string-suffix? (symbol->string s) extension)))
+         edges)]
+       [(symbol? edges)
+        (if (not (string-suffix? (symbol->string edges) extension))
+            (list edges)
+            (list))]
+       [else (error "invalid field type in ~a" field)])))
+
+  (make-immutable-hash
+   (hash-map
+    table
+    (λ (k v) (cons k (get-edges v))))))
+
+(define (check-for-cycles adj-list)
+  (define finished (mutable-set))
+  (define visited (mutable-set))
+
+  (define (dfs vertex)
+    (cond
+     [(set-member? finished vertex) (void)]
+     [(set-member? visited vertex) (error "cycle found at ~a" vertex)]
+     [else (begin (set-add! visited vertex)
+                  (for-each dfs (hash-ref adj-list vertex))
+                  (set-add! finished vertex))]))
+
+  (for-each dfs (hash-keys adj-list)))
+
+;; Testing
+
+(define x
+  '(:defaults (:template default.xml
+               :styles (default.css))
+    :files ((:path new.html :template new.xml :styles (new.css))
+            (:path index.html)
+            (:path now.html)
+            (:path cv.html) ;:styles (new.html))
+            (:path 404.html) ;:styles (cv.html))
+            (:path tidings/index.html)
+            )
+    :folders ((:path garden)
+              (:path writ)
+              (:path tidings
+               :template tidings.xml
+               :styles (default.css))
+              )
+    :phony ()
+    :raw (:files ()
+          :folders (assets)
+          )
+    :disabled (:files ()
+               :folders ()
+               )
+    )
+  )
+
+(define y (config->hash-table (walk lisp-keyword->racket-keyword x)))
+
+(define (main)
+  (let* ([config (read-config)]
+         [preprocessed (walk lisp-keyword->racket-keyword config)]
+         [ht (config->hash-table preprocessed)])
+         [_ (check-for-cycles (make-adjacency-list ht '#:styles ".css"))]
+         [_ (check-for-cycles (make-adjacency-list ht '#:template ".xml"))]
+         [])
