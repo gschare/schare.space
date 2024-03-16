@@ -1,5 +1,11 @@
 #lang racket
 
+; TODO: rewrite this in rust lol they have cool macros
+; TODO: no, rewrite this in Haskell for the familiarity and type safety!
+; TODO: no, do it in Ocaml! jane street uses sexprs!
+; TODO: turn to the dark side; use Emacs Lisp as God intended
+; TODO: no lol just refactor this still in racket using macros and DSLs
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;                                                                              ;
 ;       __                   ___       __              __      __              ;
@@ -163,7 +169,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require hash-lambda)
-; TODO: avoid using a library
+                                        ; TODO: avoid using a library
+(require racket/hash)
+
+(define ROOT-DIR (current-directory))
+(define SRC-DIR (string->path "src"))
+(define DEST-DIR (string->path "docs"))
+(define TEMPLATES-DIR (string->path "templates"))
+(define CSS-DIR (string->path "css"))
+(define CONFIG-DIR (string->path "config"))
 
 (define (walk f tree)
   (cond
@@ -177,6 +191,32 @@
      [(char=? (string-ref sym-string 0) #\:)
       (string->keyword (substring sym-string 1))]
      [else sym])))
+
+(define (symbol->path sym)
+  (string->path (symbol->string sym)))
+
+(define (path->symbol path)
+  (string->symbol (path->string path)))
+
+(define (hash-filter ht pred)
+  (foldl (λ (x acc)
+           (let ([k (car x)]
+                 [v (cdr x)])
+            (if (pred v)
+                (hash-set acc k v)
+                acc)))
+         (hash)
+         (hash->list ht)))
+
+(define (hash-filter-not ht pred)
+  (hash-filter ht (λ (x) (not (pred x)))))
+
+(define (by-flag flag)
+  (lambda (ht-rule)
+    (hash-ref ht-rule flag)))
+
+(define (hash-map-update ht updater)
+  (hash-map/copy ht (λ (k v) (values k (updater v)))))
 
 (define (config->hash-table config)
   ; Parses and combines all the different rules into one big hash table with all
@@ -226,7 +266,7 @@
                      '#:disabled disabled))])
         (apply/hash make-row (apply hash row))))
 
-     (letrec
+     (let*
          ([ht-raw (apply hash raw)]
           [ht-disabled (apply hash disabled)]
           [list-of-items
@@ -270,20 +310,78 @@
 
    ) (apply hash config)))
 
+(define (check-exists table)
+  (define (check #:path path
+                 #:folder folder?
+                 #:template template
+                 #:styles styles
+                 #:raw _
+                 #:disabled disabled?)
+    (let ([path (build-path SRC-DIR (string->path (symbol->string path)))]
+          [template (build-path TEMPLATES-DIR
+                                (string->path (symbol->string template)))]
+          [styles (map (λ (s) (build-path
+                               CSS-DIR
+                               (string->path (symbol->string s)))) styles)])
+      (if disabled?
+          (void)
+          (begin
+            (if folder?
+                (directory-exists? path)
+                (file-exists? path))
+            (file-exists? template)
+            (for-each file-exists? styles)
+            ))))
+  (for-each (λ (r) (apply/hash check r)) (hash-values table)))
+
+(define (check-for-disabled-references table)
+  ; It is invalid to point to a disabled rule.
+  ; This is because you may want to use disabling a rule as a kind of "comment".
+  ; When a rule is disabled, some of its static checks are skipped, but
+  ; this means we have to reject references to disabled rules lest the checks
+  ; on enabled rules become unsound via propagation.
+  (define (check key)
+    (if (hash-ref (hash-ref table key) '#:disabled)
+        (error "cannot reference disabled rule ~a" key
+              ". Try a phony rule instead.")
+        (void)))
+
+  (define (has-extension? s)
+    (let ([str (symbol->string s)])
+      (or (string-suffix? s ".css")
+          (string-suffix? s ".xml"))))
+
+  (define (check-edges e)
+    (cond
+     [(list? e)
+      (map check (filter-not has-extension? e))]
+     [(symbol? e) (if (has-extension? e)
+                      (void)
+                      (check e))]))
+
+  (hash-for-each
+   table
+   (λ (k v)
+     (check-edges (hash-ref v '#:template))
+     (check-edges (hash-ref v '#:styles)))))
+
+
 (define (make-adjacency-list table field extension)
+  (define (has-extension? s)
+    (string-suffix? (symbol->string s) extension))
+
   (define (get-edges v)
     (let ([edges (hash-ref v field)])
       (cond
-       [(list? edges)
-        (filter
-         (λ (s) (not (string-suffix? (symbol->string s) extension)))
-         edges)]
+       [(list? edges) (filter-not has-extension? edges)]
        [(symbol? edges)
-        (if (not (string-suffix? (symbol->string edges) extension))
-            (list edges)
-            (list))]
+        (if (has-extension? edges)
+            (list)
+            (list edges))]
        [else (error "invalid field type in ~a" field)])))
 
+  ; This could use hash-map-update if we allow it to decide mutability or just
+  ; hard-code it to produce immutable hash tables
   (make-immutable-hash
    (hash-map
     table
@@ -303,9 +401,28 @@
 
   (for-each dfs (hash-keys adj-list)))
 
-;; Testing
+(define (resolve-graph adj-list extension)
+  ; "Make a mess, then clean it up." ~Stephen A. Edwards
+  ; Run a DFS on every node to get all the styles.
+  ; Append together each sub-result.
+  ; Remove duplicates following the first instance of every stylesheet.
+  ;
+  ; TODO: find a more robust solution than just checking the extension.
+  ; I.e. have a proper notion of leaf nodes
+  (define (dfs vertex)
+    (cond
+     [(string-suffix? (symbol->string vertex) extension)
+      (list vertex)]
+     [else (append-map dfs (hash-ref adj-list vertex))]))
 
-(define x
+  ; TODO: tweak this so it doesn't repeat a ton of work
+  (hash-map-update
+   adj-list
+   (λ (edges) (remove-duplicates (append-map dfs edges))))
+  )
+
+;; I/O
+(define (read-config)
   '(:defaults (:template default.xml
                :styles (default.css))
     :files ((:path new.html :template new.xml :styles (new.css))
@@ -315,28 +432,189 @@
             (:path 404.html) ;:styles (cv.html))
             (:path tidings/index.html)
             )
-    :folders ((:path garden)
-              (:path writ)
-              (:path tidings
-               :template tidings.xml
-               :styles (default.css))
-              )
-    :phony ()
-    :raw (:files ()
-          :folders (assets)
-          )
-    :disabled (:files ()
-               :folders ()
+     :folders ((:path garden)
+               (:path writ)
+               (:path tidings
+                :template tidings.xml
+                :styles (default.css))
                )
-    )
+     :phony ()
+     :raw (:files ()
+           :folders (assets)
+           )
+     :disabled (:files ()
+                :folders (writ garden)
+                )
+     )
   )
 
-(define y (config->hash-table (walk lisp-keyword->racket-keyword x)))
+(define (rules-closure rules-table)
+  ; We have to do this quite carefully.
+  ;
+  ; We create a set containing every enabled directory in the ruleset.
+  ; While the set is not empty, pop the first item, generate a list of its
+  ; children, remove the ones that already have a rule in place, apply the
+  ; parent's settings to the remaining ones, add the files to a hash table, and
+  ; add the directories to the set.
+  ;
+  ; Once the set is empty, union the child hash table with the ruleset hash
+  ; table.
+
+  (define (rule-exists? path)
+    (hash-has-key? rules-table (path->symbol path)))
+
+  (define (folder? path)
+    (match (file-or-directory-type path)
+      ['file #f]
+      ['directory #t]
+      [_ (error "invalid type ~a" path)]))
+
+  (define (pathlist->hash pathlist parent-hash #:folder folder)
+    ; It actually doesn't matter whether or not we assign '#:folder
+    ; correctly at this point since the last time it is queried
+    ; is at the start of rules-closure to create the folders set.
+    ; But, for good hygiene, we require it.
+    (make-immutable-hash
+     (map (λ (path)
+            (let ([sym (path->symbol path)])
+              (cons sym
+                    (hash-set* parent-hash '#:path sym '#:folder folder))))
+          pathlist)))
+
+  (let ([folders
+         (hash-filter
+          rules-table
+          (λ (v) (and (hash-ref v '#:folder)
+                      (not (hash-ref v '#:disabled)))))]
+        [new-files (hash)])
+    (define (loop folders new-files)
+      (cond
+       [(hash-empty? folders) new-files]
+       [else
+        (let* ([key (first (hash-keys folders))]
+               [value (hash-ref folders key)]
+               [path (symbol->path key)]
+               [children
+                (filter-not
+                 rule-exists?
+                 (map
+                  (λ (p) (build-path path p))
+                  (directory-list path)))]
+               [children-files (pathlist->hash
+                                (filter-not folder? children)
+                                value #:folder #f)]
+               [children-folders (pathlist->hash
+                                (filter folder? children)
+                                value #:folder #t)])
+          (loop (hash-union children-folders (hash-remove folders key))
+                (hash-union new-files children-files)))]))
+
+    (current-directory SRC-DIR)
+    (define result (hash-union rules-table (loop folders new-files)))
+    (current-directory ROOT-DIR)
+    result))
+
+(define (write-directory directory)
+  ;(make-directory*)
+  ;TODO
+  (void)
+  )
+
+(define (write-parent directory)
+    ;(make-parent-directory* )
+    ;TODO
+  (void)
+  )
 
 (define (main)
-  (let* ([config (read-config)]
+  (let* (; Load the config.
+         [config (read-config)]
+
+         ; Preprocess: convert ':kw to '#:kw
          [preprocessed (walk lisp-keyword->racket-keyword config)]
-         [ht (config->hash-table preprocessed)])
+
+         ; Convert config to a hash table and check for duplicates
+         [ht (config->hash-table preprocessed)]
+
+         ; Check for cycles
          [_ (check-for-cycles (make-adjacency-list ht '#:styles ".css"))]
          [_ (check-for-cycles (make-adjacency-list ht '#:template ".xml"))]
-         [])
+
+         ; Follow the DAG to assign each rule a template and list of styles.
+         [styles (resolve-graph (make-adjacency-list ht '#:styles ".") ".css")]
+         [templates
+          (hash-map-update
+           (resolve-graph (make-adjacency-list ht '#:template ".") ".xml")
+           (λ (v) (first v)))]
+         [ht (hash-map-update
+              ht
+              (λ (v) (hash-set v '#:styles
+                               (hash-ref styles (hash-ref v '#:path)))))]
+
+         ; Remove phonies
+         [ht (hash-map-update
+              (hash-filter-not
+               ht
+               (by-flag '#:phony))
+              (λ (v) (hash-remove v '#:phony)))]
+         
+         ; Check that every file, folder, stylesheet, and template exists in the
+         ; filesystem - except for disabled ones.
+         [_ (check-exists ht)]
+
+         ; Generate the full build plan by recursively getting the children
+         ; of folders and applying their parent settings, unless already
+         ; specified.
+         ; Note: reads from disk!
+         [ht (rules-closure ht)]
+
+         ; Remove directories and all disabled rules from the ruleset, as we
+         ; don't need them anymore.
+         ; This give us our final build plan!
+         [ht (hash-map-update
+               (hash-filter-not
+                ht
+                (λ (v) (or ((by-flag '#:folder) v)
+                           ((by-flag '#:disabled) v))))
+               (λ (v) (hash-remove (hash-remove v '#:folder) '#:disabled)))]
+
+         )
+    (pp-table ht)))
+
+(define (pp-table ht)
+  (printf "(\n")
+  (hash-for-each
+   ht
+   (λ (k v)
+     (apply/hash
+      (λ (#:path path
+          #:template template
+          #:styles styles
+          #:raw raw)
+        (printf " (\e[1;33m:path\e[0m ") (write path)
+       (if raw
+           (begin (printf "\n  \x1b[1;33m:raw\x1b[0m ") (write raw))
+           (begin (printf "\n  \x1b[1;33m:template\x1b[0m ") (write template)
+                  (printf " \x1b[1;33m:styles\x1b[0m ") (write styles)))
+       (printf "\n  )\n")
+       ) v)))
+     (printf "\n )"))
+
+;; testing
+(define test-config
+  '(:defaults (:template a.xml
+               :styles (a.css))
+    :files ((:path u :template w :styles (w v))
+            (:path v :template w :styles (x.css fake w))
+            (:path w :template w.xml :styles (y.css x.css))
+            )
+    :phony ((:path fake :styles z.css))
+    ))
+
+(define x (config->hash-table (walk lisp-keyword->racket-keyword (read-config))))
+
+(define y (config->hash-table (walk lisp-keyword->racket-keyword test-config)))
+
+y
+
+(main)
