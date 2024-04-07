@@ -133,6 +133,7 @@
 ; to overwrite other rules with the same name.
 ;
 ; TODO: add a markdown flag
+; TODO: add a setting for custom build commands (like a makefile)
 ; TODO: add nice syntax for arbitrary arguments passed to template
 ;
 ;; Template format
@@ -150,7 +151,8 @@
 ;
 ;   <insert src="VAR">
 ;   At assembly time, this is replaced by the DOM nodes given by the argument
-;   with name VAR. These nodes may be siblings; they are given as a list.
+;   with name VAR. These nodes may be siblings; they are given as a list. No
+;   checking is performed; this may produce invalid HTML
 ;   
 ;   <template src="PATH">
 ;   At assembly time, this is replaced by the template at PATH. Then, assembly
@@ -168,9 +170,9 @@
 ; 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require hash-lambda)
-                                        ; TODO: avoid using a library
+(require hash-lambda) ; TODO: avoid using this library
 (require racket/hash)
+(require racket/file)
 
 (define ROOT-DIR (current-directory))
 (define SRC-DIR (string->path "src"))
@@ -264,6 +266,10 @@
                      '#:phony phony
                      '#:raw raw
                      '#:disabled disabled))])
+           ; TODO: refactor this function to just map over hash-update with a
+           ; default.
+           ; in fact that should work in general throughout this file to replace
+           ; the library that provides apply/hash
         (apply/hash make-row (apply hash row))))
 
      (let*
@@ -444,6 +450,7 @@
            )
      :disabled (:files ()
                 :folders (writ garden)
+                :folders (assets)
                 )
      )
   )
@@ -514,15 +521,81 @@
     (current-directory ROOT-DIR)
     result))
 
-(define (write-directory directory)
-  ;(make-directory*)
-  ;TODO
-  (void)
-  )
+(define (load-template filename)
+  ; Reads from disk.
+  (let* ([prefix (build-path ROOT-DIR TEMPLATES-DIR)]
+         [to-path (λ (s) (build-path prefix (symbol->path s)))]
+         [template (file->string (to-path filename))]
+         [children
+          (list->set
+           (map string->symbol
+            (regexp-match*
+              #px"<template\\s+src=\"(.*?)\"\\s*?>"
+              template
+              #:match-select cadr)))])
+    (cons template children)))
+
+(define (load-templates template-names)
+  ; Given a list of template names, load them recursively and produce a hash
+  ; table associating template names to the unprocessed HTML content.
+  ;
+  ; This reads from disk.
+
+  (let loop ([result (hash)]
+              [todo (list->set template-names)])
+    (if (set-empty? todo)
+        result
+        (let ([name (set-first todo)])
+          (if (hash-has-key? result name)
+              (loop result (set-remove todo name))
+              (match (load-template name)
+                [(cons template children)
+                 (loop (hash-set result name template)
+                       (set-union todo children))]))))))
+
+
+(define (apply-template template binds ht)
+  ; Given a template, a table of bindings, and a table of templates, fill in
+  ; the variables to apply the template.
+  ; (make-adjacency-list 'template ".")
+
+  (define (get-template full-match src)
+    (hash-ref ht (string->symbol src)))
+
+  (define (insert-var full-match src)
+    ; unimplemented... no support for arbitrary vars.
+    (void))
+
+  (let* ([content (cadr (assoc 'content binds))] ; : HTML
+         [styles (cadr (assoc 'styles binds))] ; : [symbols]
+         [styles
+          (map
+           (λ (s) (string-append "<link rel=\"stylesheet\" type=\"text/css\" href=\"/" (path->string CSS-DIR) "/" (symbol->string s) "\">"))
+           styles)]
+         [template
+          (let loop ([template template])
+            (let ([new-template (regexp-replace*
+                            #px"<template\\s+src=\"(.*?)\"\\s*?>"
+                            template
+                            get-template)])
+              (if (equal? new-template template)
+                  template
+                  (loop new-template))))]
+         [template (regexp-replace* #px"<insert\\s+src=\"content\"\\s*?>"
+                                   template
+                                   (λ (_) content))]
+         [template (regexp-replace* #px"<insert\\s+src=\"styles\"\\s*?>"
+                                   template
+                                   (λ (_) styles))])
+    template))
 
 (define (write-parent directory)
     ;(make-parent-directory* )
     ;TODO
+  (void)
+  )
+
+(define (write-file html dest)
   (void)
   )
 
@@ -541,15 +614,15 @@
          [_ (check-for-cycles (make-adjacency-list ht '#:template ".xml"))]
 
          ; Follow the DAG to assign each rule a template and list of styles.
-         [styles (resolve-graph (make-adjacency-list ht '#:styles ".") ".css")]
-         [templates
+         [style-assignments (resolve-graph (make-adjacency-list ht '#:styles ".") ".css")]
+         [template-assignments
           (hash-map-update
            (resolve-graph (make-adjacency-list ht '#:template ".") ".xml")
            (λ (v) (first v)))]
          [ht (hash-map-update
               ht
               (λ (v) (hash-set v '#:styles
-                               (hash-ref styles (hash-ref v '#:path)))))]
+                               (hash-ref style-assignments (hash-ref v '#:path)))))]
 
          ; Remove phonies
          [ht (hash-map-update
@@ -571,15 +644,50 @@
          ; Remove directories and all disabled rules from the ruleset, as we
          ; don't need them anymore.
          ; This give us our final build plan!
-         [ht (hash-map-update
+         [plan (hash-map-update
                (hash-filter-not
                 ht
                 (λ (v) (or ((by-flag '#:folder) v)
                            ((by-flag '#:disabled) v))))
                (λ (v) (hash-remove (hash-remove v '#:folder) '#:disabled)))]
 
+         ; Load the templates recursively.
+         ; Note: reads from disk!
+         [templates (load-templates
+                     (set->list (list->set
+                                 (hash-values template-assignments))))]
+
+         ; Build each file according to the plan.
+         [files-html
+          (hash-map
+           plan
+           (λ (k v)
+             (let ([template (hash-ref v '#:template)]
+                   [binds
+                    (list (list 'content
+                        (file->string
+                          (build-path ROOT-DIR SRC-DIR
+                          (symbol->path (hash-ref v '#:path)))))
+                      (list 'styles (hash-ref v '#:styles)))])
+             (apply-template
+              (hash-ref templates template)
+              binds
+              templates))))]
+
+         ;[_ (write-file )]
+         ;(write-parent filepath)
          )
-    (pp-table ht)))
+    (begin
+      (pp-table plan)
+      (printf "\n")
+      (display template-assignments)
+      (printf "\n")
+      (display templates)
+      (printf "\n")
+      (display files)
+      (printf "\n")
+      )
+    ))
 
 (define (pp-table ht)
   (printf "(\n")
@@ -591,11 +699,11 @@
           #:template template
           #:styles styles
           #:raw raw)
-        (printf " (\e[1;33m:path\e[0m ") (write path)
+        (printf " (\e[1;34m:path\e[0m ") (write path)
        (if raw
-           (begin (printf "\n  \x1b[1;33m:raw\x1b[0m ") (write raw))
-           (begin (printf "\n  \x1b[1;33m:template\x1b[0m ") (write template)
-                  (printf " \x1b[1;33m:styles\x1b[0m ") (write styles)))
+           (begin (printf "\n  \x1b[1;32m:raw\x1b[0m ") (write raw))
+           (begin (printf "\n  \x1b[1;36m:template\x1b[0m ") (write template)
+                  (printf " \x1b[1;36m:styles\x1b[0m ") (write styles)))
        (printf "\n  )\n")
        ) v)))
      (printf "\n )"))
