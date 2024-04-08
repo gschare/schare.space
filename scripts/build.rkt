@@ -180,6 +180,7 @@
 (define TEMPLATES-DIR (string->path "templates"))
 (define CSS-DIR (string->path "css"))
 (define CONFIG-DIR (string->path "config"))
+; TODO: pass all of these in the config as well
 
 (define (walk f tree)
   (cond
@@ -431,26 +432,32 @@
 (define (read-config)
   '(:defaults (:template default.xml
                :styles (default.css))
-    :files ((:path new.html :template new.xml :styles (new.css))
+    :files ((:path new.html
+             :template new.xml
+             :styles (default.css new.css))
             (:path index.html)
             (:path now.html)
             (:path cv.html) ;:styles (new.html))
             (:path 404.html) ;:styles (cv.html))
             (:path tidings/index.html)
             )
-     :folders ((:path garden)
+     :folders ((:path garden
+                :template garden.xml
+                :styles (default.css garden.css))
                (:path writ)
                (:path tidings
                 :template tidings.xml
-                :styles (default.css))
+                :styles (default.css tidings.css))
                )
      :phony ()
-     :raw (:files ()
-           :folders (assets)
+     :raw (:files (assets/cv.pdf
+                   assets/hoogleplus-review.pdf
+                   assets/semgus-review.pdf)
+           :folders (writ)
            )
      :disabled (:files ()
-                :folders (writ garden)
-                :folders (assets)
+                :folders ()
+                :folders ()
                 )
      )
   )
@@ -680,11 +687,7 @@
     (begin
       (pp-table plan)
       (printf "\n")
-      (display template-assignments)
-      (printf "\n")
-      (display templates)
-      (printf "\n")
-      (display files)
+      ;(display files-html)
       (printf "\n")
       )
     ))
