@@ -12,22 +12,6 @@
 #                                                   \ \_\     /\___/
 #                                                    \/_/     \/__/ 
 
-# build.py
-#
-# Steps:
-#   1. Read the config/config.json file.
-#   2. Parse the config and check for files, possibly throwing errors.
-#   3. Check for conflicts and determine the proper file build order.
-#   4. Load each file one by one in the proper order, compile them, and write
-#      them to the output folder.
-#
-# This means the file basically has 5 parts:
-#   1. Parse the rules from s-exprs into a graph
-#   2. Convert this graph into a stylesheet inheritance DAG by condensing strongly
-#      connected components
-#   3. Use the DAG to resolve the inheritance and get a list of all files to parse
-#   4. Process each file in the list by parsing the HTML of the layout file,
-#      assembling it, and writing it to disk
 
 ### Imports.
 
@@ -43,52 +27,6 @@ CONFIG_FILE = 'config/config.yml'
 SRC_DIR = 'src/'
 DEST_DIR = 'docs/'
 
-### Config Format.
-##
-#
-# We use a rule-based format for specifying the conf
-#
-# It is given as an s-expression, here denoted partly by example, partly by grammar.
-
-'((defaults
-   ((template default.html)
-    (stylesheets default.css)))
-  (files
-   ((path <FILEPATH>)    ; relative to src/
-    (template <TEMPLATE>?)
-    (stylesheets <STYLE>*)))
-  (folders
-   ((path <FILEPATH>)    ; relative to src/
-    (template <TEMPLATE>?)
-    (stylesheets <STYLE>*)))
-  )
-
-# Currently, the path must end in a `/` if it is a folder. I may change this
-# later, since it's kinda stupid. TODO: change this
-#
-# 
-#
-# <STYLE> may be provided as a path to a CSS stylesheet (determined by whether
-# the token ends with `.css`), or as the name path of an existing file or folder in
-# the repo which is registered elsewhere in the config. If so, this rule inherits all the paths from that rule. This
-# allows for an arbitrary directed graph where the arrows mean "---- inherits
-# from -->", which may be cyclic. Technically this is fine, because connected
-# components in the graph share a (we detect such connected components to
-# remove cycles), but there is no need to write them cyclically.
-#
-# For options which are not required, left off, or left blank, the corresponding
-# default is used.
-#
-# For folders within folders, if `inherit` is `true`, then it will inherit the stylesheet settings of its parents
-#
-# The `recursive` option determines, for folders only, 
-# If this is set, 
-#
-# if template or stylesheets is left off, or left blank, the default is used
-#
-# TODO: allow "markdown: true | false"
-#
-# TODO:
 
 ### Loading the config.
 ## Side effects: reading from disk.

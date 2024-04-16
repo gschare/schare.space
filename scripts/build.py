@@ -39,17 +39,18 @@ def build_page(content, tab=None):
 
     with open(META, 'r') as f:
         meta = f.read()
-        split = meta.find('\n</body>')
+        split = meta.index('\n</body>')
         before_body, after_body = meta[:split+1], meta[split:]
 
     with open(HEADER, 'r') as f:
         header = f.read()
+        if tab is not None:
+            # todo: replace this with a beautifulsoup query of the id
+            search_string = f'id="nav-{tab}"'
+            before, after = header.split(search_string, 1)
+            header = before + ' class="active" ' + after
 
     page = before_body + header + content + after_body
-
-    # todo: replace this with a beautifulsoup query of the id
-    if tab is not None:
-        page += f'<script>document.getElementById("nav-{tab}").style.textDecoration = "underline";</script>'
 
     return page
 
@@ -103,33 +104,6 @@ def copy_folder(src, dst):
             if file[0] == '.':
                 continue
             copy(join(path, file), join(DOCS, dst, relpath(path, start=join(SRC, src)), file))
-
-def write_tidings():
-    makedirs(join(DOCS, TIDINGS), exist_ok=True)
-
-    with open(TIDINGS_JSON, 'r') as f:
-        tidings_data = json.load(f)
-
-    index = '<title>Tidings</title><main><div><h2>Posts</h2><ul style="list-style: none; padding-left: 0">'
-
-    for root, _, posts in walk(join(SRC, TIDINGS)):
-        for post in posts:
-            if post[0] == '.':
-                continue
-            page = build_page_from_source(join(root, post), tab="tidings")
-            write_page(page, join(DOCS, TIDINGS, post))
-
-            title = tidings_data[post]['title']
-            date = tidings_data[post]['date']
-            preview = tidings_data[post]['preview']
-
-            index_item = ('<li><a href="' + post + '"><p><b>' +
-                          title + '</b></a><br>' + date + '<br><i>' + preview + '</i></p></li>')
-
-            index += index_item
-
-    index += '</ul></div></main>'
-    write_page(build_page(index, tab="tidings"), join(DOCS, TIDINGS, 'index.html'))
 
 def write_folder(folder, tab=None):
     makedirs(join(DOCS, folder), exist_ok=True)
