@@ -10,7 +10,10 @@
 <template src="header.xml">
 
 <body>
-    <insert src="content">
+    <main>
+        <insert src="content">
+    </main>
 </body>
 
 </html>
+

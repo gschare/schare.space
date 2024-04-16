@@ -1,0 +1,5 @@
+'(*TOP*
+  (template (@ (target "default.sxml")
+   (article (insert (@ (expr "content")))))))
+
+

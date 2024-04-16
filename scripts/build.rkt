@@ -107,7 +107,7 @@
 ; `.html`) or another rule. It is possible to form cycles here, too, but it is
 ; invalid to do so (we check for cycles and reject graphs that contain them).
 ;
-; Templates must end in .xml. Stylesheets must end in .css. HTML
+; Templates must end in .sxml. Stylesheets must end in .css. HTML
 ; fragments/source files have no requirements for extensions, but it helps to
 ; end them with .html (to avoid conflicts or confusion). Folders should not end
 ; in '/', and similarly must not conflict. This is subject to change.
@@ -149,23 +149,21 @@
 ;
 ; The special tags are as follows:
 ;
-;   <insert src="VAR">
-;   At assembly time, this is replaced by the DOM nodes given by the argument
-;   with name VAR. These nodes may be siblings; they are given as a list. No
-;   checking is performed; this may produce invalid HTML
+;   <insert expr="EXPR">
+;   At assembly time, this is replaced by the DOM nodes that result from
+;   evaluating EXPR in the context of the available variable bindings.
+;   These nodes may be siblings; they are given as a list. No
+;   checking is performed; this may produce invalid HTML.
 ;   
-;   <template src="PATH">
-;   At assembly time, this is replaced by the template at PATH. Then, assembly
+;   <template target="NAME">
+;   At assembly time, this is replaced by the template called NAME. Then, assembly
 ;   instruction tags in that template are resolved until no more instruction
 ;   tags can be found. Hence this is recursive. Cycles will result in infinite
 ;   loops, so don't do that. Arguments are forwarded, not shadowed, so the user
 ;   must provided all of the arguments for the entire tree of templates upfront.
 ;
-; A template takes some number of keyword arguments (which are all symbols) that
-; fill in its assembly-time variables.
-;
-; Two arguments are passed by default: `:content` and `:styles`. The
-; `:content` is the HTML fragment being processed, and the `:styles` is a
+; Two arguments are passed by default: `content` and `styles`. The
+; `content` is the HTML fragment being processed, and the `styles` is a
 ; list of `<link>` tags to the stylesheets specified in the rules for that file.
 ; 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -173,14 +171,21 @@
 (require hash-lambda) ; TODO: avoid using this library
 (require racket/hash)
 (require racket/file)
+;(require html-template)
+(require html-parsing)
+(require html-writing)
+(require sxml)
 
 (define ROOT-DIR (current-directory))
 (define SRC-DIR (string->path "src"))
-(define DEST-DIR (string->path "docs"))
+(define DEST-DIR (string->path "docs2"))
 (define TEMPLATES-DIR (string->path "templates"))
 (define CSS-DIR (string->path "css"))
 (define CONFIG-DIR (string->path "config"))
 ; TODO: pass all of these in the config as well
+
+(define-namespace-anchor nsa)
+(define ns (namespace-anchor->namespace nsa))
 
 (define (walk f tree)
   (cond
@@ -258,7 +263,7 @@
                  #:raw [raw #f]
                  #:disabled [disabled #f])
                (if (and (set-member? names path) (not disabled))
-                   (error "duplicate identifier ~a" path)
+                   (error (format "duplicate identifier ~a" path))
                    (set-add! names path))
                (hash '#:path path
                      '#:template template
@@ -428,12 +433,24 @@
    (λ (edges) (remove-duplicates (append-map dfs edges))))
   )
 
+(define (stylelist->xexp stylelist)
+  (map
+   (λ (s)
+     (let ([href (string-append "/"
+                                (path->string CSS-DIR)
+                                "/"
+                                (symbol->string s))])
+       `(link (@ (rel "stylesheet")
+                 (type "text/css")
+                 (href ,href)))))
+  stylelist))
+
 ;; I/O
 (define (read-config)
-  '(:defaults (:template default.xml
+  '(:defaults (:template default.sxml
                :styles (default.css))
     :files ((:path new.html
-             :template new.xml
+             :template new.sxml
              :styles (default.css new.css))
             (:path index.html)
             (:path now.html)
@@ -442,11 +459,10 @@
             (:path tidings/index.html)
             )
      :folders ((:path garden
-                :template garden.xml
+                :template garden.sxml
                 :styles (default.css garden.css))
-               (:path writ)
                (:path tidings
-                :template tidings.xml
+                :template blog.sxml
                 :styles (default.css tidings.css))
                )
      :phony ()
@@ -495,6 +511,7 @@
                     (hash-set* parent-hash '#:path sym '#:folder folder))))
           pathlist)))
 
+  ; TODO refactor as named let
   (let ([folders
          (hash-filter
           rules-table
@@ -510,7 +527,8 @@
                [path (symbol->path key)]
                [children
                 (filter-not
-                 rule-exists?
+                 rule-exists? ; Note that this includes disabled rules, so there
+                              ; is no need to additionally filter out disabled.
                  (map
                   (λ (p) (build-path path p))
                   (directory-list path)))]
@@ -532,19 +550,17 @@
   ; Reads from disk.
   (let* ([prefix (build-path ROOT-DIR TEMPLATES-DIR)]
          [to-path (λ (s) (build-path prefix (symbol->path s)))]
-         [template (file->string (to-path filename))]
+         [template (eval (read (open-input-string (file->string (to-path filename)))) ns)] ; xexp
          [children
           (list->set
-           (map string->symbol
-            (regexp-match*
-              #px"<template\\s+src=\"(.*?)\"\\s*?>"
-              template
-              #:match-select cadr)))])
+           (map (λ (n)
+                  (string->symbol (sxml:attr n 'target)))
+                ((sxpath "//template") template)))])
     (cons template children)))
 
 (define (load-templates template-names)
   ; Given a list of template names, load them recursively and produce a hash
-  ; table associating template names to the unprocessed HTML content.
+  ; table associating template names to the unprocessed SXML content.
   ;
   ; This reads from disk.
 
@@ -561,50 +577,84 @@
                        (set-union todo children))]))))))
 
 
-(define (apply-template template binds ht)
-  ; Given a template, a table of bindings, and a table of templates, fill in
-  ; the variables to apply the template.
-  ; (make-adjacency-list 'template ".")
+; SXMLString SXMLString (List SXMLString) (Hash Symbol SXMLString) -> SXMLString
+(define (apply-template template content styles templates)
+  ; Given a template, the content, the styles, and a table of templates,
+  ; recursively replace `<template>` and `<insert>` tags to apply the template.
 
-  (define (get-template full-match src)
-    (hash-ref ht (string->symbol src)))
+  (define (get-template target)
+    (hash-ref templates (string->symbol target)))
 
-  (define (insert-var full-match src)
-    ; unimplemented... no support for arbitrary vars.
-    (void))
+  (define (wrap-content elem content)
+    ((sxml:modify
+      (list
+       "//insert"
+       (λ (node _ctx _root)
+         (let ([expr (sxml:attr node 'expr)])
+           (sxml:change-attr
+            node
+            (list
+             'expr
+             (string-append
+              "(let ((content " content ")) "
+                  expr ")")))))))
+     elem))
 
-  (let* ([content (cadr (assoc 'content binds))] ; : HTML
-         [styles (cadr (assoc 'styles binds))] ; : [symbols]
-         [styles
-          (map
-           (λ (s) (string-append "<link rel=\"stylesheet\" type=\"text/css\" href=\"/" (path->string CSS-DIR) "/" (symbol->string s) "\">"))
-           styles)]
-         [template
-          (let loop ([template template])
-            (let ([new-template (regexp-replace*
-                            #px"<template\\s+src=\"(.*?)\"\\s*?>"
-                            template
-                            get-template)])
-              (if (equal? new-template template)
-                  template
-                  (loop new-template))))]
-         [template (regexp-replace* #px"<insert\\s+src=\"content\"\\s*?>"
-                                   template
-                                   (λ (_) content))]
-         [template (regexp-replace* #px"<insert\\s+src=\"styles\"\\s*?>"
-                                   template
-                                   (λ (_) styles))])
-    template))
+  (define (step-template xexp)
+    ((sxml:modify
+      (list
+      "//template"
+      (λ (node _ctx _root)
+        (let* ([target (sxml:attr node 'target)]
+               [content (sxml:content node)]
+               ; cdr removes *TOP*
+               [replacement (cdr (wrap-content
+                                  (get-template target)
+                                  (format "~v" content)))])
+          replacement))))
+     xexp))
 
-(define (write-parent directory)
-    ;(make-parent-directory* )
-    ;TODO
-  (void)
-  )
+  (define (step-insert xexp)
+    ((sxml:modify
+      (list
+       "//insert"
+       (λ (node _ctx _root)
+         (let* ([expr (sxml:attr node 'expr)]
+                [content-string (format "~v" content)]
+                [styles-string (format "~v" styles)]
+                [expr-wrapped
+                 (string-append
+                  "(let ((content " content-string ")"
+                        "(styles " styles-string "))"
+                        expr ")")]
+                [value (eval (read (open-input-string expr-wrapped)) ns)])
+           value))))
+     xexp))
 
-(define (write-file html dest)
-  (void)
-  )
+  (define (apply-once xexp)
+    ; Do one step of resolving 'template tags and 'insert tags, in that order.
+    ; Returns #f if no substitutions were made.
+    (let* ([after-template-step (step-template xexp)]
+           [after-insert-step (step-insert after-template-step)])
+          ; When a template substition is made, how do we know where to put the
+          ; children of the `<template>` tag in the new nodes? We wrap the
+          ; Racket expressions inside `<insert>` tags with a `let` expression
+          ; that binds `content` to the SXML of the content of the `<template>`
+          ; tag. This way, every template gets to specify exactly where its
+          ; content goes.
+      (if (eq? xexp after-insert-step)
+          #f
+          after-insert-step)))
+
+  (let loop ([template template])
+    (match (apply-once template)
+      [#f template]
+      [template (loop template)])))
+
+(define (write-file sxml dest)
+  (let ([port (open-output-file dest)])
+    (write-html sxml port)
+    (close-output-port port)))
 
 (define (main)
   (let* (; Load the config.
@@ -618,13 +668,13 @@
 
          ; Check for cycles
          [_ (check-for-cycles (make-adjacency-list ht '#:styles ".css"))]
-         [_ (check-for-cycles (make-adjacency-list ht '#:template ".xml"))]
+         [_ (check-for-cycles (make-adjacency-list ht '#:template ".sxml"))]
 
          ; Follow the DAG to assign each rule a template and list of styles.
          [style-assignments (resolve-graph (make-adjacency-list ht '#:styles ".") ".css")]
          [template-assignments
           (hash-map-update
-           (resolve-graph (make-adjacency-list ht '#:template ".") ".xml")
+           (resolve-graph (make-adjacency-list ht '#:template ".") ".sxml")
            (λ (v) (first v)))]
          [ht (hash-map-update
               ht
@@ -664,31 +714,51 @@
                      (set->list (list->set
                                  (hash-values template-assignments))))]
 
-         ; Build each file according to the plan.
-         [files-html
-          (hash-map
-           plan
+
+         ; Build each non-raw file according to the plan.
+         [files-sxml
+          (hash-map/copy
+           (hash-filter-not
+            plan
+            (λ (v) (hash-ref v '#:raw)))
            (λ (k v)
              (let ([template (hash-ref v '#:template)]
-                   [binds
-                    (list (list 'content
-                        (file->string
-                          (build-path ROOT-DIR SRC-DIR
-                          (symbol->path (hash-ref v '#:path)))))
-                      (list 'styles (hash-ref v '#:styles)))])
-             (apply-template
-              (hash-ref templates template)
-              binds
-              templates))))]
-
-         ;[_ (write-file )]
-         ;(write-parent filepath)
-         )
+                   [content
+                    (html->xexp (file->string
+                      (build-path ROOT-DIR SRC-DIR
+                      (symbol->path (hash-ref v '#:path)))))]
+                   [styles (stylelist->xexp (hash-ref v '#:styles))])
+             (values
+              k
+              (apply-template
+                (hash-ref templates template)
+                content
+                styles
+                templates)))))]
+         [raw-plan (hash-filter plan (λ (v) (hash-ref v '#:raw)))])
     (begin
-      (pp-table plan)
-      (printf "\n")
-      ;(display files-html)
-      (printf "\n")
+      (define dry-run #f)
+      (hash-for-each
+       files-sxml
+       (λ (k v)
+         (let* ([path (symbol->path k)]
+                [dest (build-path ROOT-DIR DEST-DIR path)])
+           (unless dry-run
+            (make-parent-directory* dest)
+            (write-file v dest))
+           (printf "~a\n" dest)
+           )))
+      (hash-for-each
+       raw-plan
+       (λ (k v)
+         (let* ([path (symbol->path k)]
+                [src (build-path ROOT-DIR SRC-DIR path)]
+                [dest (build-path ROOT-DIR DEST-DIR path)])
+           (unless dry-run
+            (make-parent-directory* dest)
+            (copy-file src dest))
+           (printf "~a\n" dest)
+           )))
       )
     ))
 
@@ -713,11 +783,11 @@
 
 ;; testing
 (define test-config
-  '(:defaults (:template a.xml
+  '(:defaults (:template a.sxml
                :styles (a.css))
     :files ((:path u :template w :styles (w v))
             (:path v :template w :styles (x.css fake w))
-            (:path w :template w.xml :styles (y.css x.css))
+            (:path w :template w.sxml :styles (y.css x.css))
             )
     :phony ((:path fake :styles z.css))
     ))
@@ -725,7 +795,5 @@
 (define x (config->hash-table (walk lisp-keyword->racket-keyword (read-config))))
 
 (define y (config->hash-table (walk lisp-keyword->racket-keyword test-config)))
-
-y
 
 (main)
