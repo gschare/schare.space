@@ -33,10 +33,10 @@ places
 
 [x] police report
 [x] coroner's report
-[ ] blog post (taken down by government)
+[ ] conspiracy theory blog post (taken down by government)
 [ ] scientific report
-[ ] journal entries
+[ ] journal entries of picnic
 [ ] transcript of conversation
-[ ] descriptions of photographs
+[ ] descriptions of photographs <3
 [x] transcript of interrogation
 [x] letters on the wall
