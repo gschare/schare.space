@@ -1,5 +1,5 @@
 '(*TOP*
-  (template (@ (target "default.sxml")
-   (article (insert (@ (expr "content")))))))
+  (template (@ (target "default.sxml"))
+   (article (insert (@ (expr "content"))))))
 
 
