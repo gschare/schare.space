@@ -1,6 +1,6 @@
 #lang racket
 
-(require "build.rkt")
+(require "src/build.rkt")
 
 (define rules
   '(:defaults (:template default.sxml
@@ -34,4 +34,4 @@
     )
   )
 
-(build rules #:dest "docs" #:dry-run #t)
+(build rules #:dest "docs" #:dry-run #f)

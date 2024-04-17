@@ -108,6 +108,14 @@
                 templates)))))]
          [raw-plan (hash-keys (hash-filter plan (λ (v) (hash-ref v '#:raw))))])
     (begin
+      (when dry-run
+        (display "This is a dry run. No files will be written.\n")
+        (display "Files to be assembled according to a template:\n")
+        (for-each (λ (x) (display "  ") (display x) (display "\n")) (hash-keys files-sxml))
+        (display "Files to be copied:\n")
+        (for-each (λ (x) (display "  ") (display x) (display "\n")) raw-plan)
+        )
+
       (hash-for-each
        files-sxml
        (λ (k v)
@@ -116,8 +124,8 @@
            (unless dry-run
             (make-parent-directory* dest)
             (write-file v dest))
-           (printf "~a\n" dest)
            )))
+
       (for-each
        (λ (x)
          (let* ([path (symbol->path x)]
@@ -126,8 +134,6 @@
            (unless dry-run
             (make-parent-directory* dest)
             (copy-file src dest))
-           (printf "~a\n" dest)
            ))
-      raw-plan
-      )
+       raw-plan)
     )))

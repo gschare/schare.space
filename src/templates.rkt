@@ -117,11 +117,6 @@
           ; that binds `content` to the SXML of the content of the `<template>`
           ; tag. This way, every template gets to specify exactly where its
           ; content goes.
-      (unless (not (equal? (sxml:text ((sxpath "//title") content)) "Gregory's Garden"))
-        (write-html after-insert-step (current-output-port))
-         (printf "\n\n")
-        (display after-insert-step)
-        (printf "\n\n"))
       after-insert-step))
 
   (let loop ([template template])
