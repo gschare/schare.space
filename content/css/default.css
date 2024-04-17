@@ -28,14 +28,20 @@ a:hover {
     color: var(--link-color-hover);
 }
 
+header {
+    margin: auto;
+    max-width: 60rem;
+}
+
 /* Footnotes */
 /* Note that you still have to keep the ordering consistent.
  * so the order of the references should match the order of the footnotes.
  */
 
-article {
+main > article {
     counter-reset: footnotes;
-    max-width: 60rem; /* to fit asides */
+    max-width: 60rem; /* to fit asides; subelements are 35rem */
+    margin: auto; /* to center within main */
 }
 
 aside, div.sidebar {
