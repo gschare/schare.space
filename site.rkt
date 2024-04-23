@@ -34,4 +34,17 @@
     )
   )
 
-(build rules #:dest "docs" #:dry-run #f)
+(require racket/cmdline)
+
+(define dry-run #f)
+(define dest "docs")
+
+(command-line
+ #:program "site"
+ #:once-each
+ [("-d" "--dry-run") "Do not write any files" (set! dry-run #t)]
+ [("-o" "--dest") dest "Destination folder" (void)]
+ )
+
+(build rules #:dest dest #:dry-run dry-run)
+

@@ -39,6 +39,8 @@
      [else sym])))
 
 (define (build rules #:dest [dest "docs"] #:dry-run [dry-run #f])
+  (displayln (format "Files to be written to folder: ~a" dest))
+  (displayln "")
   (let* (; Preprocess: convert ':kw to '#:kw
          [preprocessed (walk lisp-keyword->racket-keyword rules)]
 
