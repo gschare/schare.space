@@ -25,7 +25,7 @@
     :raw (:files (assets/cv.pdf
                   assets/hoogleplus-review.pdf
                   assets/semgus-review.pdf)
-          :folders (writ css)
+          :folders (writ css assets/img)
           )
     :disabled (:files ()
                :folders ()
