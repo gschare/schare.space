@@ -6,13 +6,13 @@
   '(:defaults (:template article.sxml
                :styles (css/default.css))
     :files ((:path new.html
-             :template new.sxml
-             :styles (css/default.css css/new.css))
-            (:path index.html)
-            (:path now.html)
+             :template new.sxml)
+            (:path index.html
+             :styles (css/default.css css/home.css))
+            (:path now.html
+             :styles (css/default.css css/now.css))
             (:path cv.html)
             (:path 404.html)
-            (:path tidings/index.html)
             )
     :folders ((:path garden
                :template garden.sxml
