@@ -3,7 +3,7 @@
 (require "src/build.rkt")
 
 (define rules
-  '(:defaults (:template default.sxml
+  '(:defaults (:template article.sxml
                :styles (css/default.css))
     :files ((:path new.html
              :template new.sxml

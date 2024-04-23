@@ -18,13 +18,13 @@ from os.path import join, isdir
 from os import walk
 
 PREVIEW_LENGTH = 140
-SRC_DIR = 'src/tidings/'
+SRC_DIR = 'content/tidings/'
 DEST_FILE = 'index.html'
 
 def check_tidings_exists():
     # Effects: read
     if not isdir(SRC_DIR):
-        raise Exception('no `src/tidings/` folder found in current directory')
+        raise Exception('no `' + SRC_DIR + '` folder found in current directory')
     else:
         return True
 
@@ -34,18 +34,19 @@ def gather_posts_data() -> dict:
 
     for root, _, posts in walk(SRC_DIR):
         for post in posts:
+            if post == DEST_FILE:
+                continue
             with open(join(root, post), 'r') as f:
-                soup = BeautifulSoup(f, 'html.parser')
+                page = f.read()
+                soup = BeautifulSoup(page.encode('UTF-8'), 'html.parser')
             title = str(soup.title.string)
             date = str(soup.find(id='date').string)
-            content = soup.main
-            if not content:
-                content = BeautifulSoup('', 'html.parser')
-            for header in content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+            for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
                 if header:
                     header.decompose()
-            content.find(id='date').decompose()
-            plain_text = ' '.join(content.stripped_strings)
+            soup.title.decompose()
+            soup.find(id='date').decompose()
+            plain_text = ' '.join(soup.stripped_strings)
             preview = plain_text[:PREVIEW_LENGTH] + '...'
             index[post] = {'title': title, 'date': date, 'preview': preview}
     
@@ -61,10 +62,10 @@ def construct_list(index: dict) -> str:
         date = index[post]['date']
         preview = index[post]['preview']
 
-        list_item = ('<li><a href="' + post + '"><p><b>' +
+        list_item = ('<li><a href="' + post + '"><b>' +
                       title + '</b></a><br>' +
                       date + '<br><i>' +
-                      preview + '</i></p></li>')
+                      preview + '</i></li>')
 
         the_list += list_item
 
@@ -72,9 +73,9 @@ def construct_list(index: dict) -> str:
 
 def write_index_file(index: dict):
     # Effects: write
-    page = '<title>Tidings</title><main><div><h1>Posts</h1><ul style="list-style: none; padding-left: 0">'
+    page = '<title>Tidings</title><div><h1>Posts</h1><ul style="list-style: none; padding-left: 0">'
     page += construct_list(index)
-    page += '</ul></div></main>'
+    page += '</ul></div>'
 
     with open(join(SRC_DIR, DEST_FILE), 'w') as f:
         f.write(page)
