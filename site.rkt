@@ -1,9 +1,10 @@
 #lang racket
 
 (require "src/build.rkt")
+(require "src/tidings.rkt") ; blog builder
 
 (define rules
-  '(:defaults (:template article.sxml
+  `(:defaults (:template article.sxml
                :styles (css/default.css))
     :files ((:path new.html
              :template new.sxml)
@@ -13,6 +14,9 @@
              :styles (css/default.css css/now.css))
             (:path cv.html)
             (:path 404.html)
+            ;(:path ,(index-tidings)
+            ; :template blog.sxml
+            ; :styles (css/default.css css/tidings.css))
             )
     :folders ((:path garden
                :template garden.sxml
@@ -24,7 +28,9 @@
     :phony ()
     :raw (:files (assets/cv.pdf
                   assets/hoogleplus-review.pdf
-                  assets/semgus-review.pdf)
+                  assets/semgus-review.pdf
+                  ;,(rss-tidings)
+                  )
           :folders (writ css assets/img)
           )
     :disabled (:files ()

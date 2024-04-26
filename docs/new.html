@@ -48,7 +48,11 @@
 </header>
 <main><title>New Tab</title>
 <script>
-    goDark(); // always default to dark mode.
+    // always default to dark mode, but do not modify the local storage variable.
+    // Reusing code from the script in the header template...
+    document.body.classList.add('dark-mode');
+    document.getElementById('dark-mode-button').innerHTML = "☀️";
+    document.getElementById('dark-mode-button').title = "Light mode";
 </script>
 <style>
 header {
