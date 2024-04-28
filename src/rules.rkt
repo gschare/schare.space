@@ -153,7 +153,7 @@
   (define (has-extension? s)
     (let ([str (symbol->string s)])
       (or (string-suffix? s ".css")
-          (string-suffix? s ".xml"))))
+          (string-suffix? s ".sxml"))))
 
   (define (check-edges e)
     (cond

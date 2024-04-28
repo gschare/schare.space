@@ -89,11 +89,16 @@
 
 
          ; Build each non-raw file according to the plan.
+         ; Only files ending in `.html` will be built.
          [files-sxml
           (hash-map/copy
-           (hash-filter-not
+           (hash-filter
             plan
-            (λ (v) (hash-ref v '#:raw)))
+            (λ (v) (and
+                    (string-suffix?
+                     (symbol->string (hash-ref v '#:path))
+                     ".html")
+                    (not (hash-ref v '#:raw)))))
            (λ (k v)
              (let ([template (hash-ref v '#:template)]
                    [content
