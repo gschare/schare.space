@@ -38,7 +38,7 @@ header {
  * so the order of the references should match the order of the footnotes.
  */
 
-main > article {
+main article {
     counter-reset: footnotes;
     max-width: 60rem; /* to fit asides; subelements are 35rem */
     margin: auto; /* to center within main */
@@ -99,17 +99,17 @@ ol.footnotes {
     counter-reset: footnotes;
 }
 
-ol.footnotes > li {
+ol.footnotes li {
     list-style-type: none;
     padding-left: 0.5em;
     counter-increment: footnotes;
 }
 
-ol.footnotes > li::marker {
+ol.footnotes li::marker {
     content: "[" counter(footnotes) "]";
 }
 
-ol.footnotes > li:target {
+ol.footnotes li:target {
     /* could put something here */
 }
 
@@ -169,12 +169,12 @@ p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
 
 blockquote {
     font-style: italic;
-    font-size: 90%;
+    font-size: 100%;
     text-align: justify;
     text-justify: inter-word;
 }
 
-figure > blockquote {
+figure blockquote {
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0;
@@ -208,7 +208,7 @@ figure > blockquote {
     position: absolute;
 }
 
-figcaption {
+.fancyquote figcaption {
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
     margin-inline-start: 40px;

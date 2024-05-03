@@ -10,7 +10,7 @@
 (require html-writing)
 (require hash-lambda)
 
-(define ROOT-DIR (current-directory))
+(define ROOT-DIR (current-directory)) ; TODO: make this more general so it can work when the script is run from a different directory
 (define SRC-DIR (build-path ROOT-DIR (string->path "content")))
 (define TEMPLATES-DIR (build-path ROOT-DIR (string->path "templates")))
 
@@ -21,7 +21,7 @@
   (string->symbol (path->string path)))
 
 (define (write-file sxml dest)
-  (let ([port (open-output-file dest)])
+  (let ([port (open-output-file dest #:exists 'replace)])
     (write-html sxml port)
     (close-output-port port)))
 

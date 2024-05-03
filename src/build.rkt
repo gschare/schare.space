@@ -140,7 +140,7 @@
                 [dest (build-path dest path)])
            (unless dry-run
             (make-parent-directory* dest)
-            (copy-file src dest))
+            (copy-file src dest #:exists-ok? #t))
            ))
        raw-plan)
     )))
