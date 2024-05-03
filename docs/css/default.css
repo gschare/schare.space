@@ -200,7 +200,7 @@ figure blockquote {
 .fancyquote blockquote:before {
     color: #949494;
     font-family: Georgia, serif;
-    font-size: 6em;
+    font-size: 4em;
     top: -0.15em;
     left: -0.5em;
     line-height: 1;
@@ -212,7 +212,7 @@ figure blockquote {
     color: #949494;
     font-family: Georgia, serif;
     float: right;
-    font-size: 6em;
+    font-size: 4em;
     bottom: -0.65em;
     right: -0.35em;
     line-height: 1;
