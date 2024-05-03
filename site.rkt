@@ -14,7 +14,6 @@
              :styles (css/default.css css/now.css))
             (:path cv.html)
             (:path 404.html)
-            (:path test.html)
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
