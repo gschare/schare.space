@@ -7,6 +7,11 @@
     --fg-dark: #e3e0d7;
 }
 
+figure img {
+    max-width: 600px;
+    max-height: 600px;
+}
+
 h3, h4, h5, h6 {
     display: inline;
     margin: 0;
@@ -149,7 +154,7 @@ ol.footnotes li:target {
 }
 
 body {
-    font-size: clamp(1.1rem, 1vw, 4rem);
+    font-size: clamp(1.1rem, 1vw, 16px);
     font-family: 'Lora', 'Garamond', serif;
     background-color: var(--bg-light);
     color: var(--fg-light);
@@ -221,7 +226,7 @@ figure blockquote {
 
 @media screen and (max-width: 800px) {
     body {
-        font-size: clamp(1.5rem, 1vw, 4rem);
+        font-size: clamp(1.1rem, 1vw, 16px);
         max-width: 100%;
     }
 
