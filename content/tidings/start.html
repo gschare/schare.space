@@ -1,0 +1,263 @@
+<!-- provenance: local -->
+<title>
+Trying A New Thing | Tidings
+</title>
+<h1 id="here-i-am-trying-a-new-thing">Here I am, trying a new thing</h1>
+<p><span id="date"><em>May 05, 2024</em></span></p>
+<p>Dear <a href="/assets/img/tidings/cartwheel.jpg">Cartwheel</a>,</p>
+<p>For a long while now I’ve been working up the courage to writing
+something approximating a blog. You being a cat and all, I wouldn’t
+expect you to understand my hesitation, let alone my motivation.</p>
+<p>But then I see you staring at the ceiling fan, wondering how it is I
+manipulate light with the pull of a chain, mystified, learning, and I
+know there is more to you than I give you credit for.</p>
+<p>Pretense is counterproductive to writing. But Cartwheel, I have
+nothing to prove to you.</p>
+<p>Here is what I’ve been thinking about lately.</p>
+<hr />
+<h2 id="the-expression-problem">The Expression Problem</h2>
+<p>Okay, Cartwheel, you know Haskell, right?</p>
+<p>No?</p>
+<p>I recently came across a <a
+href="https://cohost.org/prophet/post/4979906-i-don-t-think-people">short
+post</a> that helped me understand the raison d’être for
+<code>forall</code> types in Haskell.</p>
+<p>Imagine you are developing a library and you model your domain with
+some abstract data types. Perhaps you define some simple shapes:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Circle</span> <span class="ot">=</span> <span class="dt">Circle</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Read</span>, <span class="dt">Eq</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Rectangle</span> <span class="ot">=</span> <span class="dt">Rectangle</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Read</span>, <span class="dt">Eq</span>)</span></code></pre></div>
+<p>You want to give your users something to do with these shapes. All
+2-dimensional shapes have an area, so you write a function to produce
+the area by pattern-matching on the ADTs and–</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>area (<span class="dt">Circle</span> _ _ r) <span class="ot">=</span> <span class="fu">pi</span> <span class="op">*</span> r <span class="op">^</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>area (<span class="dt">Rectangle</span> x y x&#39; y&#39;) <span class="ot">=</span> (<span class="fu">abs</span> <span class="op">$</span> x <span class="op">-</span> x&#39;) <span class="op">*</span> (<span class="fu">abs</span> <span class="op">$</span> y <span class="op">-</span> y&#39;)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---- end of file.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">----- REPL output:</span></span></code></pre></div>
+<pre><code>&lt;interactive&gt;:16:7: error:
+    • Couldn&#39;t match expected type ‘Circle’
+                  with actual type ‘Rectangle’
+    • In the pattern: Rectangle x y x&#39; y&#39;
+      In an equation for ‘area’:
+          area (Rectangle x y x&#39; y&#39;) = (abs $ x - x&#39;) * (abs $ y - y&#39;)</code></pre>
+<p>Prophet’s post suggested the natural instinct is to define the shapes
+as components of a sum type, which would make the above code valid at
+the expense of extensibility. In the interest of allowing us to add more
+shapes later—or even extend the library in userspace—we should use a
+typeclass.</p>
+<p>This issue of extensibility is part of the so-called “Expression
+Problem” to which type classes are one solution. I think it is a pretty
+good solution; writing typeclasses is not too much extra code (it often
+reduces code!) and they are not too much trouble to understand. They are
+a nice implementation of a critical idea in programming languages—that
+data can be associated with behavior in quite complex and overlapping
+ways.</p>
+<p>So you express the idea that all shapes have an area using a
+typeclass, since this is the idiomatic solution.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Surface</span> shape <span class="kw">where</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    surfaceArea ::</span> shape <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">Circle</span> <span class="kw">where</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">Circle</span> _ _ r) <span class="ot">=</span> <span class="fu">pi</span> <span class="op">*</span> r <span class="op">^</span> <span class="dv">2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">Rectangle</span> <span class="kw">where</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">Rectangle</span> x y x&#39; y&#39;) <span class="ot">=</span> (<span class="fu">abs</span> <span class="op">$</span> x <span class="op">-</span> x&#39;) <span class="op">*</span> (<span class="fu">abs</span> <span class="op">$</span> y <span class="op">-</span> y&#39;)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">--- Now entering user-land</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- We can extend the library with our own shapes, and still use the same old</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- `surfaceArea` function from the `Surface` typeclass!</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Square</span> <span class="ot">=</span> <span class="dt">Square</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Read</span>, <span class="dt">Eq</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">Square</span> <span class="kw">where</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">Square</span> x y w) <span class="ot">=</span> w <span class="op">^</span> <span class="dv">2</span></span></code></pre></div>
+<p>But it is still impossible to perform operations over heterogeneous
+collections of shapes:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- This looks like it should work, right?</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">f ::</span> (<span class="dt">Surface</span> s) <span class="ot">=&gt;</span> [s] <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f ss <span class="ot">=</span> <span class="fu">sum</span> <span class="op">$</span> <span class="fu">map</span> surfaceArea ss</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">--- REPL:</span></span></code></pre></div>
+<pre><code>λ&gt; f [Circle 0 0 5, Rectangle 1 1 2 2]
+
+&lt;interactive&gt;:32:18: error:
+    • Couldn&#39;t match expected type ‘Circle’
+                  with actual type ‘Rectangle’
+    • In the expression: Rectangle 1 1 2 2
+      In the first argument of ‘f’, namely
+        ‘[Circle 0 0 5, Rectangle 1 1 2 2]’
+      In the expression: f [Circle 0 0 5, Rectangle 1 1 2 2]</code></pre>
+<p>The solution is Existential Types. These types form an opaque,
+uniform interface to the typeclass methods such that the typechecker is
+happy with a homogenous collection, but the relevant operations can
+still be performed.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">WithArea</span> <span class="ot">=</span> <span class="kw">forall</span> shape<span class="op">.</span> <span class="dt">Surface</span> shape <span class="ot">=&gt;</span> <span class="dt">WithArea</span> shape</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">WithArea</span> <span class="kw">where</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">WithArea</span> s) <span class="ot">=</span> surfaceArea s</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">--- REPL:</span></span></code></pre></div>
+<pre><code>λ&gt; c = Circle 0 0 1
+λ&gt; r = Rectangle 0 0 1 1
+λ&gt; sum $ map surfaceArea [WithArea c, WithArea r]
+79.53982</code></pre>
+<p>There is something going on here. Abstract data types, classes,
+objects, type classes—they all answer the same questions about how to
+structure our data in modular and extensible ways. <a
+href="http://wiki.c2.com/?ClosuresAndObjectsAreEquivalent">Objects are a
+poor man’s closure, closures are a poor man’s object</a>; and the same
+holds true for type classes and mixins.</p>
+<p>Now I wonder: what programming problem do dependent types solve? And
+what object-oriented solution was already invented in the 70s that the
+finest type theorists refuse to acknowledge?</p>
+<p>To be honest with you, Cartwheel, I have no quarrel with the type
+theorists. They are my friends are colleagues, my heroes and mentors. I
+spend all day writing complex types in Ur/Web. I find the connections
+between OOP and FP quite fascinating and exciting—beautiful, even.</p>
+<h2 id="language-feel">Language Feel</h2>
+<p>I recently wrote a small but complex program in Racket using Geiser
+in Emacs as my IDE. I usually program in Python or Haskell, but I have a
+bit of experience in Racket. Cartwheel, these languages feel <em>so
+different</em>.</p>
+<p>Every language has a gimmick or two. Java’s gimmick is
+garbage-collected objects on a virtual machine. Haskell’s gimmick is
+laziness and types. Python’s gimmick is dynamism and simplicity. What is
+Racket’s gimmick? As far as I know, it is <em>macros and languages</em>.
+Insofar as there is a “right” way to write Racket, the right way is to
+create small DSLs that help you express solutions to your problem and
+properly encode the semantics of your domain. I did not do this.</p>
+<p>Even with the REPL giving me wonderful affordances, writing Racket
+felt like floating on air. By contrast, Haskell feels solid,
+rectilinear, geometric. When I write Haskell, I plan out entire programs
+by first modeling the types and function signatures and iterating on
+those before I write a single line of implementation. Haskell makes me
+feel like an architect, sketching out a blueprint.</p>
+<p>Why is this? Working in a richly typed language is like having a
+conversation with the compiler. The machine assists you, keeps you on
+track and consistent—but punishes exploration and digression and
+disorganization. This is a tradeoff I happen to appreciate.</p>
+<p>In Racket, I tend to be more hare-brained. I jump around writing
+little fragments of code, leaving unfinished expressions and throwing
+out ideas haphazardly. Racket’s homoiconicity and the liveness of the
+Geiser notebookish interface certainly encouraged this behavior.</p>
+<p>Here is another point for the validity of the Sapir-Whorf hypothesis
+in programming. If we take the phenomenon seriously, can we design
+languages with intention surrounding the style of programming they
+encourage?</p>
+<p>Programming languages and cognitive science, as fields of study,
+began at the same time out of the same groups of people thinking about
+intelligence and human augmentation. Now they feel separated by a wide
+gap, and we pretend they are not related. I am glad <a
+href="https://willcrichton.net/">Will Crichton</a> is interested in
+bringing the insights of cognitive science to programming languages.</p>
+<p>Given the stunted state of programming—we appear to be stuck with the
+assumptions and affordances of the 80s—I fear we are not ready for the
+revolution in programming heralded by LLMs. I fear the immaturity of our
+tools for expressing ourselves computationally leaves us unprepared to
+make full use of the technology of generative AI. This makes it all the
+more exciting to be working on programming languages right now: the
+stakes are high for the future of programming.</p>
+<h2 id="office-spaces">Office Spaces</h2>
+<p>The gruesome banality of suburban office parks holds me with a morbid
+rapture. Caught in the emptiness between a freakishly large parking lot,
+a measly green patch with a twiggy tree, and the dull brown brick of a
+4-story anonymous office building, I’m searching everywhere for beauty.
+In its stead, might nostalgia suffice?</p>
+<p>In the TV show <cite>Adventure Time</cite>, villains like Ice King
+are redeemable, but (spoilers) the final boss is a being of pure chaos.
+Evil lies on a spectrum with good, implying the ability to become evil
+from good and good from evil. We all possess some notion of evil. We are
+capable of understanding evil. Evil is often human. But not chaos. Chaos
+is unhuman, incomprehensible, the awful marriage of power and ignorance.
+Evil is drama, but chaos is the tragedy of absurdity. We prefer the wise
+tyrant to the dangerous fool. For examples of the former acting as
+defender of the realm against the latter, see <cite>Adventure
+Time</cite>’s Ice King, <cite>Dark Messiah</cite>’s Arantir,
+<cite>Succession</cite>’s Logan, and <a
+href="https://tvtropes.org/pmwiki/pmwiki.php/Main/EvilVersusOblivion?from=Main.EvilVsOblivion">this
+TV Tropes page</a>.</p>
+<p>The modern design trends of offices—the international Airbnb style,
+the coffee shop consensus, the WeWork—are not evil. They augur nought
+but chaos, idiocy, dispassion, all that is antithetical to life. Not
+autocratic narcissistic excess, but a worse fate for society: <a
+href="https://chriscutrone.platypus1917.org/wp-content/uploads/2010/04/horkheimer_littlemanphilosophyfreedomdaemmerung1926-31.pdf">attrition
+to the inefficiencies of capitalism without a rational agent which can
+yoke alien law to human will</a>. A death heralded by <a
+href="https://www.alexmurrell.co.uk/articles/the-age-of-average">the age
+of average</a>. It is always boring before the end.</p>
+<p>How I yearn for the days of olde! When the designers and architects
+of the mid-century promised technological solutions to social ills. When
+every office worker was a patient, and Eames and Herman Miller were the
+doctors dealing in cures.</p>
+<p>I’ve been invited to apply to live in MIT’s brand new graduate
+student dorm, “Graduate Junction” by American Campus Communities.
+Please, Cartwheel, please tell me who in the world thought I would want
+to live in a building where the lobby looks like <a
+href="/assets/img/tidings/grad-junction1.jpg">this</a> and <a
+href="/assets/img/tidings/grad-junction2.jpg">this</a>?</p>
+<p><a href="/garden/office.html">Before I go, tell my offices I love
+them.</a></p>
+<h2 id="cozy-sci-fi">Cozy Sci-Fi</h2>
+<p>The stark light of a yellow star pierces through the windows of a
+lonely spaceship, illuminating crumpled bedsheets in the crew quarters,
+splaying a sunbeam on the pristine cream-colored floor. A bustling
+market on a remote lunar outpost is host to merchants, criminals,
+troublemakers and all the rabble dropped there by circumstance and
+misfortune. Scrappy scavengers laugh over a hearty meal in the mess hall
+on their old, beaten-up planethopper. Brave explorers on a five-year
+mission have a moment of respite during shore leave in a Federation
+solar system. Love blossoms in the vacuum of space. I want to call this
+<em>cozy sci-fi</em>.</p>
+<h3 id="examples-of-cozy-sci-fi">Examples of cozy sci-fi</h3>
+<ul>
+<li><a href="https://www.onasunbeam.com/"><em>On A Sunbeam</em></a> by
+Tillie Walden</li>
+<li><a href="https://en.wikipedia.org/wiki/The_Host_(novel)"><em>The
+Host</em></a> by Stephenie Meyer</li>
+<li><a href="https://www.imdb.com/title/tt0092455/"><em>Star Trek: The
+Next Generation</em></a> by Gene Roddenberry</li>
+<li><a
+href="https://store.steampowered.com/app/343860/Tacoma/"><em>Tacoma</em></a>
+by Fullbright</li>
+<li><a href="https://www.imdb.com/title/tt0303461/"><em>Firefly</em></a>
+by Joss Whedon</li>
+<li><a
+href="https://www.imdb.com/title/tt4159076/?ref_=fn_al_tt_2"><em>Dark
+Matter</em></a></li>
+</ul>
+<p>Please <a href="mailto:gs3072@columbia.edu">tell me</a> if you know
+of others.</p>
+<h3 id="the-essence-of-cozy-sci-fi">The essence of cozy sci-fi</h3>
+<p>TODO</p>
+<p>TODO: lo-fi beats cozy aesthetic but in space, in sci-fi</p>
+<h3 id="gallery">Gallery</h3>
+<figure>
+<div>
+<p><img src=""></p>
+</div>
+<div>
+<figcaption>
+</figcaption>
+</div>
+</figure>
+<h2 id="rotary-telephones">Rotary Telephones</h2>
+<p>TODO</p>
+<h2 id="dithering">Dithering</h2>
+<p>TODO</p>
+<h2 id="further-reading">Further Reading</h2>
+<p>TODO</p>
+<hr />
+<p>Good tidings,<br />
+Carmel</p>

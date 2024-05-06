@@ -53,7 +53,7 @@ def gather_posts_data() -> dict:
     return index
 
 def construct_list(index: dict) -> str:
-    order = sorted(index, key=lambda i: index[i]['date'])
+    order = sorted(index, key=lambda i: index[i]['date'], reverse=True)
 
     the_list = ""
 

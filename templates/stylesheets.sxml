@@ -3,5 +3,8 @@
 (link (@ (href "https://fonts.googleapis.com/css?family=Lora:400,700")
          (rel "stylesheet")
          (type "text/css")))
+(link (@ (href "/css/pandoc-highlighting.css")
+         (rel "stylesheet")
+         (type "text/css")))
 )
 
