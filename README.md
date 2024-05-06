@@ -1,7 +1,7 @@
-# gschare.github.io
+# schare.space
 Website
 
-[gschare.github.io](https://gschare.github.io/)
+[schare.space](https://schare.space)
 
 ## How to build
 0. Go to repo toplevel
