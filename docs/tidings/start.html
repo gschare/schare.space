@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/tidings.css"><link href="https://fonts.googleapis.com/css?family=Lora:400,700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article><!--  provenance: local  -->
+<title>
+Trying A New Thing | Tidings
+</title>
+<h1 id="here-i-am-trying-a-new-thing">Here I am, trying a new thing</h1>
+<p><span id="date"><em>May 05, 2024</em></span></p>
+<p>Dear <a href="/assets/img/tidings/cartwheel.jpg">Cartwheel</a>,</p>
+<p>For a long while now I’ve been working up the courage to writing
+something approximating a blog. You being a cat and all, I wouldn’t
+expect you to understand my hesitation, let alone my motivation.</p>
+<p>But then I see you staring at the ceiling fan, wondering how it is I
+manipulate light with the pull of a chain, mystified, learning, and I
+know there is more to you than I give you credit for.</p>
+<p>Pretense is counterproductive to writing. But Cartwheel, I have
+nothing to prove to you.</p>
+<p>Here is what I’ve been thinking about lately.</p>
+<h3 id="contents">Contents</h3>
+<ul>
+<li><a href="#the-expression-problem">The Expression Problem</a></li>
+<li><a href="#language-feel">Language Feel</a></li>
+<li><a href="#office-spaces">Office Spaces</a></li>
+<li><a href="#cozy-sci-fi">Cozy Sci-Fi</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+<hr>
+<h2 id="the-expression-problem">The Expression Problem</h2>
+<p>Okay, Cartwheel, you know Haskell, right?</p>
+<p>No?</p>
+<p>I recently came across a <a href="https://cohost.org/prophet/post/4979906-i-don-t-think-people">short
+post</a> that helped me understand the raison d’être for
+<code>forall</code> types in Haskell.</p>
+<p>Imagine you are developing a library and you model your domain with
+some abstract data types. Perhaps you define some simple shapes:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Circle</span> <span class="ot">=</span> <span class="dt">Circle</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Read</span>, <span class="dt">Eq</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Rectangle</span> <span class="ot">=</span> <span class="dt">Rectangle</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Read</span>, <span class="dt">Eq</span>)</span></code></pre></div>
+<p>You want to give your users something to do with these shapes. All
+2-dimensional shapes have an area, so you write a function to produce
+the area by pattern-matching on the ADTs and–</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>area (<span class="dt">Circle</span> _ _ r) <span class="ot">=</span> <span class="fu">pi</span> <span class="op">*</span> r <span class="op">^</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>area (<span class="dt">Rectangle</span> x y x' y') <span class="ot">=</span> (<span class="fu">abs</span> <span class="op">$</span> x <span class="op">-</span> x') <span class="op">*</span> (<span class="fu">abs</span> <span class="op">$</span> y <span class="op">-</span> y')</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---- end of file.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">----- REPL output:</span></span></code></pre></div>
+<pre><code>&lt;interactive&gt;:16:7: error:
+    • Couldn't match expected type ‘Circle’
+                  with actual type ‘Rectangle’
+    • In the pattern: Rectangle x y x' y'
+      In an equation for ‘area’:
+          area (Rectangle x y x' y') = (abs $ x - x') * (abs $ y - y')</code></pre>
+<p>Prophet’s post suggested the natural instinct is to define the shapes
+as components of a sum type, which would make the above code valid at
+the expense of extensibility. In the interest of allowing us to add more
+shapes later—or even extend the library in userspace—we should use a
+typeclass.</p>
+<p>This issue of extensibility is part of the so-called “Expression
+Problem” to which type classes are one solution. I think it is a pretty
+good solution; writing typeclasses is not too much extra code (it often
+reduces code!) and they are not too much trouble to understand. They are
+a nice implementation of a critical idea in programming languages—that
+data can be associated with behavior in quite complex and overlapping
+ways.</p>
+<p>So you express the idea that all shapes have an area using a
+typeclass, since this is the idiomatic solution.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Surface</span> shape <span class="kw">where</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    surfaceArea ::</span> shape <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">Circle</span> <span class="kw">where</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">Circle</span> _ _ r) <span class="ot">=</span> <span class="fu">pi</span> <span class="op">*</span> r <span class="op">^</span> <span class="dv">2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">Rectangle</span> <span class="kw">where</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">Rectangle</span> x y x' y') <span class="ot">=</span> (<span class="fu">abs</span> <span class="op">$</span> x <span class="op">-</span> x') <span class="op">*</span> (<span class="fu">abs</span> <span class="op">$</span> y <span class="op">-</span> y')</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">--- Now entering user-land</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- We can extend the library with our own shapes, and still use the same old</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- `surfaceArea` function from the `Surface` typeclass!</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Square</span> <span class="ot">=</span> <span class="dt">Square</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Read</span>, <span class="dt">Eq</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">Square</span> <span class="kw">where</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">Square</span> x y w) <span class="ot">=</span> w <span class="op">^</span> <span class="dv">2</span></span></code></pre></div>
+<p>But it is still impossible to perform operations over heterogeneous
+collections of shapes:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- This looks like it should work, right?</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">f ::</span> (<span class="dt">Surface</span> s) <span class="ot">=&gt;</span> [s] <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f ss <span class="ot">=</span> <span class="fu">sum</span> <span class="op">$</span> <span class="fu">map</span> surfaceArea ss</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">--- REPL:</span></span></code></pre></div>
+<pre><code>λ&gt; f [Circle 0 0 5, Rectangle 1 1 2 2]
+
+&lt;interactive&gt;:32:18: error:
+    • Couldn't match expected type ‘Circle’
+                  with actual type ‘Rectangle’
+    • In the expression: Rectangle 1 1 2 2
+      In the first argument of ‘f’, namely
+        ‘[Circle 0 0 5, Rectangle 1 1 2 2]’
+      In the expression: f [Circle 0 0 5, Rectangle 1 1 2 2]</code></pre>
+<p>The solution is Existential Types. These types form an opaque,
+uniform interface to the typeclass methods such that the typechecker is
+happy with a homogenous collection, but the relevant operations can
+still be performed.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">WithArea</span> <span class="ot">=</span> <span class="kw">forall</span> shape<span class="op">.</span> <span class="dt">Surface</span> shape <span class="ot">=&gt;</span> <span class="dt">WithArea</span> shape</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Surface</span> <span class="dt">WithArea</span> <span class="kw">where</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    surfaceArea (<span class="dt">WithArea</span> s) <span class="ot">=</span> surfaceArea s</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">--- REPL:</span></span></code></pre></div>
+<pre><code>λ&gt; c = Circle 0 0 1
+λ&gt; r = Rectangle 0 0 1 1
+λ&gt; sum $ map surfaceArea [WithArea c, WithArea r]
+79.53982</code></pre>
+<p>There is something going on here. Abstract data types, classes,
+objects, type classes—they all answer the same questions about how to
+structure our data in modular and extensible ways. <a href="http://wiki.c2.com/?ClosuresAndObjectsAreEquivalent">Objects are a
+poor man’s closure, closures are a poor man’s object</a>; and the same
+holds true for type classes and mixins.</p>
+<p>Now I wonder: what programming problem do dependent types solve? And
+what object-oriented solution was already invented in the 70s that the
+finest type theorists refuse to acknowledge?</p>
+<p>To be honest with you, Cartwheel, I have no quarrel with the type
+theorists. They are my friends are colleagues, my heroes and mentors. I
+spend all day writing complex types in Ur/Web. I find the connections
+between OOP and FP quite fascinating and exciting—beautiful, even.</p>
+<hr>
+<h2 id="language-feel">Language Feel</h2>
+<p>I recently wrote a small but complex program in Racket using Geiser
+in Emacs as my IDE. I usually program in Python or Haskell, but I have a
+bit of experience in Racket. Cartwheel, these languages feel <em>so
+different</em>.</p>
+<p>Every language has a gimmick or two. Java’s gimmick is
+garbage-collected objects on a virtual machine. Haskell’s gimmick is
+laziness and types. Python’s gimmick is dynamism and simplicity. What is
+Racket’s gimmick? As far as I know, it is <em>macros and languages</em>.
+Insofar as there is a “right” way to write Racket, the right way is to
+create small DSLs that help you express solutions to your problem and
+properly encode the semantics of your domain. I did not do this.</p>
+<p>Even with the REPL giving me wonderful affordances, writing Racket
+felt like floating on air. By contrast, Haskell feels solid,
+rectilinear, geometric. When I write Haskell, I plan out entire programs
+by first modeling the types and function signatures and iterating on
+those before I write a single line of implementation. Haskell makes me
+feel like an architect, sketching out a blueprint.</p>
+<p>Why is this? Working in a richly typed language is like having a
+conversation with the compiler. The machine assists you, keeps you on
+track and consistent—but punishes exploration and digression and
+disorganization. This is a tradeoff I happen to appreciate.</p>
+<p>In Racket, I tend to be more hare-brained. I jump around writing
+little fragments of code, leaving unfinished expressions and throwing
+out ideas haphazardly. Racket’s homoiconicity and the liveness of the
+Geiser notebookish interface certainly encouraged this behavior.</p>
+<p>Here is another point for the validity of the Sapir-Whorf hypothesis
+in programming. If we take the phenomenon seriously, can we design
+languages with intention surrounding the style of programming they
+encourage?</p>
+<p>Programming languages and cognitive science, as fields of study,
+began at the same time out of the same groups of people thinking about
+intelligence and human augmentation. Now they feel separated by a wide
+gap, and we pretend they are not related. I am glad <a href="https://willcrichton.net/">Will Crichton</a> is interested in
+bringing the insights of cognitive science to programming languages.</p>
+<p>Given the stunted state of programming—we appear to be stuck with the
+assumptions and affordances of the 80s—I fear we are not ready for the
+revolution in programming heralded by LLMs. I fear the immaturity of our
+tools for expressing ourselves computationally leaves us unprepared to
+make full use of the technology of generative AI. This makes it all the
+more exciting to be working on programming languages right now: the
+stakes are high for the future of programming.</p>
+<hr>
+<h2 id="office-spaces">Office Spaces</h2>
+<p>The gruesome banality of suburban office parks holds me with a morbid
+rapture. Caught in the emptiness between a freakishly large parking lot,
+a measly green patch with a twiggy tree, and the dull brown brick of a
+4-story anonymous office building, I’m searching everywhere for beauty.
+In its stead, might nostalgia suffice?</p>
+<p>In the TV show <cite>Adventure Time</cite>, villains like Ice King
+are redeemable, but (spoilers) the final boss is a being of pure chaos.
+Evil lies on a spectrum with good, implying the ability to become evil
+from good and good from evil. We all possess some notion of evil. We are
+capable of understanding evil. Evil is often human. But not chaos. Chaos
+is unhuman, incomprehensible, the awful marriage of power and ignorance.
+Evil is drama, but chaos is the tragedy of absurdity. We prefer the wise
+tyrant to the dangerous fool. For examples of the former acting as
+defender of the realm against the latter, see <cite>Adventure
+Time</cite>’s Ice King, <cite>Dark Messiah</cite>’s Arantir,
+<cite>Succession</cite>’s Logan, and <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/EvilVersusOblivion?from=Main.EvilVsOblivion">this
+TV Tropes page</a>.</p>
+<p>The modern design trends of offices—the international Airbnb style,
+the coffee shop consensus, the WeWork—are not evil. They augur nought
+but chaos, idiocy, dispassion, all that is antithetical to life. Not
+autocratic narcissistic excess, but a worse fate for society: <a href="https://chriscutrone.platypus1917.org/wp-content/uploads/2010/04/horkheimer_littlemanphilosophyfreedomdaemmerung1926-31.pdf">attrition
+to the inefficiencies of capitalism without a rational agent which can
+yoke alien law to human will</a>. A death heralded by <a href="https://www.alexmurrell.co.uk/articles/the-age-of-average">the age
+of average</a>. It is always boring before the end.</p>
+<p>How I yearn for the days of olde! When the designers and architects
+of the mid-century promised technological solutions to social ills. When
+every office worker was a patient, and Eames and Herman Miller were the
+doctors dealing in cures.</p>
+<p>I’ve been invited to apply to live in MIT’s brand new graduate
+student dorm, “Graduate Junction” by American Campus Communities.
+Please, Cartwheel, please tell me who in the world thought I would want
+to live in a building where the lobby looks like <a href="/assets/img/tidings/grad-junction1.jpg">this</a> and <a href="/assets/img/tidings/grad-junction2.jpg">this</a>?</p>
+<p><a href="/garden/office.html">Before I go, tell my offices I love
+them.</a></p>
+<hr>
+<h2 id="cozy-sci-fi">Cozy Sci-Fi</h2>
+<p>The stark light of a yellow star pierces through the windows of a
+lonely spaceship, illuminating crumpled bedsheets in the crew quarters,
+splaying a sunbeam on the pristine cream-colored floor. A bustling
+market on a remote lunar outpost is host to merchants, criminals,
+troublemakers and all the rabble dropped there by circumstance and
+misfortune. Scrappy scavengers laugh over a hearty meal in the mess hall
+on their old, beaten-up planethopper. Brave explorers on a five-year
+mission have a moment of respite during shore leave in a Federation
+solar system. Love blossoms in the vacuum of space. I want to call this
+<em>cozy sci-fi</em>.</p>
+<h3 id="examples-of-cozy-sci-fi">Examples of cozy sci-fi</h3>
+<ul>
+<li><a href="https://www.onasunbeam.com/"><em>On A Sunbeam</em></a> by
+Tillie Walden</li>
+<li><a href="https://en.wikipedia.org/wiki/The_Host_(novel)"><em>The
+Host</em></a> by Stephenie Meyer</li>
+<li><a href="https://www.imdb.com/title/tt0092455/"><em>Star Trek: The
+Next Generation</em></a> by Gene Roddenberry</li>
+<li><a href="https://store.steampowered.com/app/343860/Tacoma/"><em>Tacoma</em></a>
+by Fullbright</li>
+<li><a href="https://www.imdb.com/title/tt0303461/"><em>Firefly</em></a>
+by Joss Whedon</li>
+<li><a href="https://www.imdb.com/title/tt4159076/?ref_=fn_al_tt_2"><em>Dark
+Matter</em></a> by Joseph Mallozzi and Paul Mullie</li>
+<li><a href="https://store.steampowered.com/app/753640/Outer_Wilds/"><em>Outer
+Wilds</em></a> by Mobius Digital (so I’m told; I haven’t played it
+yet)</li>
+</ul>
+<p>Please <a href="mailto:gs3072@columbia.edu">tell me</a> if you know
+of others.</p>
+<h3 id="the-essence-of-cozy-sci-fi">The essence of cozy sci-fi</h3>
+<p>I’m sorry, Cartwheel, but you’re just not the right audience for
+this. I’d really like to think deeply about what qualities define cozy
+sci-fi, but that kind of research takes time and effort and I’d prefer
+to publish something sooner.</p>
+<p>I can say one thing right now: it is not a difficult leap between the
+loneliness of space travel and the warmth humans instinctively create
+out of circumstances of isolation.</p>
+<p>Stay tuned for more?</p>
+<h3 id="gallery">Gallery</h3>
+<figure class="gallery">
+<div>
+<img src="/assets/img/tidings/tacoma.jpg" onclick="openModal(this)">
+</div>
+<div>
+<figcaption>
+In <em>Tacoma</em>, the para-protagonists live on a company space
+station under conditions of extreme corporate negligence. But cozy
+spaces like this one are in no short supply. They indicate the
+indominable human will to adapt, to find comfort and home no matter the
+situation. Every personal item conveys quiet rebellion and
+uncompromising humanism in the face of perilous risk and injustice.
+Image source: <a href="http://www.heterotopiaszine.com/2017/11/07/corporate-space-tacoma/">Heterotopias</a>.
+</figcaption>
+</div>
+</figure>
+<figure class="gallery">
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/firefly-safe.jpg">
+</div>
+<div>
+<figcaption>
+In <em>Firefly</em>, the heroes (if you can call them that; they are
+more like honorable thieves) live on a rusty but reliable spaceship
+called <em>Serenity</em>. The 14 episodes of the show introduce the
+audience to many aspects of daily life on the craft, including
+warmly-lit communal crew dinners in the kitchen. Such moments feature
+briefly on the show, but they imply that the crew develops strong bonds
+of intimacy during long, isolating voyages. Furthermore, these human
+rituals are crucial to the well-being of the protagonists, and they
+prove that even the more grizzled crew members have deep compassion for
+their shipmates. When they fall into danger, the audience may recall
+these moments of familial comfort to understand why the crew of
+<em>Serenity</em> will do anything to protect one another. Image source:
+<a href="https://www.imdb.com/title/tt0579534/">IMDB</a> (Episode 7:
+“Safe”).
+</figcaption>
+</div>
+</figure>
+<figure class="gallery">
+<div>
+<p><img onclick="openModal(this)" src="/assets/img/tidings/firefly-objects-in-space.jpg"></p>
+</div>
+<div>
+<figcaption>
+The final episode of <em>Firefly</em> begins with a tour of the crew
+engaged in quiet moments of leisure during a long and lonely voyage
+through empty space. Here, Simon and Kaylee flirt in the passenger
+quarters. <em>Serenity</em>’s pilot and second officer are married and
+their dedicated companionship features prominently throughout the show.
+<em>Firefly</em>’s image of sci-fi is full of romance, both in the
+interpersonal sense and in the contentious romance of remaining outside
+the law and living on the run. In the former case, Whedon frequently
+chooses to portray romantic situations as cozy respite from the
+difficult life of smugglers. Image source: <a href="https://www.imdb.com/title/tt0579531/">IMDB</a> (Episode 14:
+“Objects in Space”).
+</figcaption>
+</div>
+</figure>
+<figure class="gallery">
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/tng-poker.jpg">
+</div>
+<div>
+<figcaption>
+In season 2, episode 9 of <em>Star Trek: The Next Generation</em>,
+several senior members of the crew play a game of poker together under
+cozy lighting in their downtime. Similar to <em>Firefly</em>, the
+protagonists are shown to have bonds of friendship that extend beyond
+work and circumstance. These bonds are formed in moments of quiet
+leisure just as much as they are formed in the crucible of challenging
+situations. <em>TNG</em> takes the time to show us both sides to the
+life aboard the <em>Enterprise</em>.
+</figcaption>
+</div>
+</figure>
+<figure class="gallery">
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/tng-picard.jpg">
+</div>
+<div>
+<figcaption>
+The crew quarters in <em>TNG</em> are beautiful imaginings of spaceship
+interior decor, emblematic of the optimistic futurism that permeates the
+show. They are luxurious and hospitable, inviting a sense of comfort and
+personal space uncommon to life as crew on ships in the world today.
+Windows out to space are the central feature of the captain’s
+quarters—shown here—which is fitting given Captain Picard’s
+contemplative demeanor. Image source: <a href="https://www.imdb.com/title/tt0708759/">IMDB</a>.
+</figcaption>
+</div>
+</figure>
+<figure class="gallery">
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/sunbeam-start.jpg">
+</div>
+<div>
+<figcaption>
+Tillie Walden’s <em>On A Sunbeam</em> is the crystallization of cozy
+sci-fi. The webcomic’s protagonists are not smugglers or explorers, but
+restorationists. Walden portrays life in space as often quiet, sometimes
+dangerous, occasionally breathtaking, and always queer. I will let the
+images speak for themselves. Image sources: <a href="https://www.onasunbeam.com/">On A Sunbeam</a>.
+</figcaption>
+</div>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/sunbeam-train.jpg">
+</div>
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/sunbeam-train2.jpg">
+</div>
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/sunbeam-elliot.jpg">
+</div>
+<div>
+<img onclick="openModal(this)" src="/assets/img/tidings/sunbeam-view.jpg">
+</div>
+</div>
+</figure>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<p>Cartwheel, I think you should learn to read. You are clearly highly
+intelligent, and given how you like to attack me when you have the
+zoomies, you are the apex predator. Why do cats not rule the earth and
+run society? I suppose they do, in some ways, but let’s be honest:
+humans did all the work. I wonder if it’s because you cats grow up so
+quickly. A species with a long time to reach adulthood requires society
+(or at least a village) to provide supportive structure for both the
+parents and children to survive. I imagine these phenomena would
+interact in a positive feedback loop: safety in society permits even
+longer development, leading to smarter brains and then more society. It
+seems cats reached a premature local maximum in species evolution.</p>
+<p>Well, I have hope for you yet. Here’s some things I’ve been reading
+so you can learn to be smart like me.</p>
+<ul>
+<li>Cristóbal Scuitto’s <a href="https://cristobal.space/writing/folk">Folk (Browser)
+Interfaces</a>.</li>
+<li>Bret Victor’s <a href="https://worrydream.com/ABriefRantOnTheFutureOfInteractionDesign/">A
+Brief Rant on the Future of Interaction Design</a>.</li>
+<li>Daniel Jackson’s <a href="https://essenceofsoftware.com/">The
+Essence of Software</a>.</li>
+</ul>
+<p>That’s all I have for you.</p>
+<hr>
+<p>Good tidings,<br>
+Carmel</p>
+<p><a href="#" id="return">Top</a></p>
+</article></main></body></html>
