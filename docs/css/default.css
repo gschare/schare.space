@@ -392,6 +392,16 @@ ul.nobullet {
     z-index: 99;
 }
 
+@media screen and (max-width: 800px) {
+    #return {
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 2px;
+        left: 20px;
+        bottom: 15px;
+    }
+}
+
 .gallery img {
     cursor: pointer;
     border-radius: 5px;
@@ -400,6 +410,12 @@ ul.nobullet {
 
 .gallery img:hover {
     opacity: 0.7;
+}
+
+@media screen and (max-width: 800px) {
+    .gallery img:hover {
+        opacity: 1;
+    }
 }
 
 .modal {
@@ -426,6 +442,8 @@ ul.nobullet {
     display: flex;
     text-align: center;
     justify-content: center;
+    max-width: calc(100vw - 50px);
+    overflow: hidden;
 }
 
 .modal-image {

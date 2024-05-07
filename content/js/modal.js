@@ -9,7 +9,11 @@ window.onclick = (e) => {
 }
 
 function openModal(e) {
-  let src = e.src;
-  modal.style.display = "block";
-  modalImage.src = src;
+    let src = e.src;
+    if (window.matchMedia("screen").matches && screen.width <= 800) {
+        window.open(src);
+        return;
+    }
+    modal.style.display = "block";
+    modalImage.src = src;
 }
