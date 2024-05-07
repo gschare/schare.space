@@ -1,5 +1,13 @@
 '(*TOP*
   (template (@ (target "default.sxml"))
+   (div (@ (id "modal")
+           (class "modal"))
+        (div (@ (id "modal-content")
+                (class "modal-content"))
+             (img (@ (id "modal-image")
+                     (class "modal-image")
+                     (src "")))))
+   (script (@ (src "/js/modal.js")))
    (article (insert (@ (expr "content"))))))
 
 

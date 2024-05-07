@@ -29,9 +29,10 @@
     :raw (:files (assets/cv.pdf
                   assets/hoogleplus-review.pdf
                   assets/semgus-review.pdf
+                  CNAME
                   ;,(rss-tidings)
                   )
-          :folders (writ css assets/img)
+          :folders (writ js css assets/img)
           )
     :disabled (:files ()
                :folders ()
