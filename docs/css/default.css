@@ -377,6 +377,10 @@ ul.nobullet {
     list-style-type: none;
 }
 
+.nobullet li + li {
+    margin-top: 20px;
+}
+
 #return {
     bottom: 20px;
     position: fixed;
