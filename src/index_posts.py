@@ -62,10 +62,10 @@ def construct_list(index: dict) -> str:
         date = index[post]['date']
         preview = index[post]['preview']
 
-        list_item = ('<li><a href="' + post + '"><b>' +
+        list_item = ('<p><a href="' + post + '"><b>' +
                       title + '</b></a><br>' +
                       date + '<br><i>' +
-                      preview + '</i></li>')
+                      preview + '</i></p>')
 
         the_list += list_item
 
@@ -73,9 +73,9 @@ def construct_list(index: dict) -> str:
 
 def write_index_file(index: dict):
     # Effects: write
-    page = '<title>Tidings</title><div><h1>Posts</h1><ul style="list-style: none; padding-left: 0">'
+    page = '<title>Tidings</title><div><h1>Posts</h1>'
     page += construct_list(index)
-    page += '</ul></div>'
+    page += '</div>'
 
     with open(join(SRC_DIR, DEST_FILE), 'w') as f:
         f.write(page)
