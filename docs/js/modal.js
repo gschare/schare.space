@@ -11,7 +11,7 @@ window.onclick = (e) => {
 function openModal(e) {
     let src = e.src;
     if (window.matchMedia("screen").matches && screen.width <= 800) {
-        window.open(src);
+        window.open(src, "_self");
         return;
     }
     modal.style.display = "block";
