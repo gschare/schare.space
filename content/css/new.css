@@ -1,0 +1,50 @@
+header {
+    margin: 0;
+}
+
+h2 {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.col {
+    padding-right: 30px;
+}
+
+.col > ul {
+    margin-left: -10px;
+}
+
+.col ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+#editor {
+    min-width: 20rem;
+    max-width: 35rem;
+    height: 100%;
+    min-height: 4rem;
+    border: 1px solid #646464;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+#editor.dark-mode {
+    border: 1px solid #e3e0d7;
+}
+
+#search {
+    border: 1px solid #646464;
+    background: none;
+    color: inherit;
+}
+
+#search.dark-mode {
+    border: 1px solid #e3e0d7;
+}
+
+.flex {
+    justify-content: center;
+}
