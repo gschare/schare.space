@@ -7,6 +7,10 @@
     --fg-dark: #e3e0d7;
 }
 
+.gallery figure {
+    margin-left: 0;
+}
+
 figure img {
     max-width: 600px;
     max-height: 600px;
@@ -72,6 +76,11 @@ aside.dark-mode, div.sidebar.dark-mode {
     margin-left: 15px;
     padding-bottom: 5px;
     border-left: 1px solid var(--fg-dark);
+}
+
+p {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 a.fn {
@@ -186,11 +195,28 @@ p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
     max-width: 35em;
 }
 
+/* Quoting */
+/* Make sure to make figcaptions are paragraph tags for correct styling. Inline
+   elements look weird and not have proper margins. */
+
 blockquote {
-    font-style: italic;
     font-size: 100%;
     text-align: justify;
     text-justify: inter-word;
+}
+
+/* .simplequote: a thin line to the left */
+.simplequote blockquote {
+    padding-left: 2rem;
+    border-left: 1px solid var(--fg-light);
+}
+
+.simplequote blockquote.dark-mode {
+    border-left: 1px solid var(--fg-dark);
+}
+
+.simplequote figcaption {
+    padding-left: 2rem;
 }
 
 figure blockquote {
