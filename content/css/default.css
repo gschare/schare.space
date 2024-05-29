@@ -191,8 +191,12 @@ pre {
     padding-left: 2rem;
 }
 
-p, ul, ol, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
+p, ul, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
     max-width: 35em;
+}
+
+ol {
+    max-width: 32.5em; /* leave space for indent */
 }
 
 /* Quoting */
