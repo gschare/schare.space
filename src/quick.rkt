@@ -19,7 +19,7 @@
    (values in out)))
 
 (define style "css/default.css")
-(define template 'article.sxml)
+(define template 'article-editable.sxml)
 (define templates-ht (load-templates (list template)))
 (define style-list
   (list

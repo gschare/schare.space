@@ -4,7 +4,30 @@
     --bg-light: #fdfcee;
     --bg-dark: #1c2f28; /*#262626;*/
     --fg-light: #646464;
+    --fg-light-secondary: #b2b1aa;
     --fg-dark: #e3e0d7;
+    --fg-dark-secondary: #b2b1aa;
+}
+
+@font-face {
+    font-family: 'Cascadia Code PL';
+    src: url('/assets/fonts/CascadiaCodePL.woff2') format('woff2');
+}
+
+pre, code {
+    font-family: 'Cascadia Code PL', 'Menlo', 'Courier New', monospace;
+}
+
+code {
+    font-size: 1rem;
+}
+
+.date {
+    color: var(--fg-light-secondary);
+}
+
+.date .dark-mode {
+    color: var(--fg-dark-secondary);
 }
 
 .gallery figure {
@@ -266,6 +289,17 @@ figure blockquote {
 
 .flex {
     display: flex;
+    justify-content: space-between;
+}
+
+.col {
+    /* elements arranged in a column */
+    flex-direction: column;
+}
+
+.row {
+    /* elements arranged in a row */
+    flex-direction: row;
 }
 
 @media screen and (max-width: 800px) {
