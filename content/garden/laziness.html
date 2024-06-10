@@ -409,6 +409,32 @@ Haskell has built-in features for granularly controlling evaluation
 behavior. You can force strict evaluation where you want it without
 heavy boilerplate or using special libraries. Haskell is a lazy
 language, but with convenient access to strictness when necessary.</p>
+<h2 id="who-cares">Who Cares?</h2>
+<p>While it is pedagogically interesting to find the “right” way to
+introduce the basics of laziness, nothing here is terribly deep or
+surprising. The existence of the feature might be unfamiliar at first,
+but when writing Haskell quickly becomes intuitive and therefore
+uninteresting.</p>
+<p>The “interesting” aspects of laziness are:</p>
+<ul>
+<li>The algebraic properties of lazy languages, as initially described
+in Hoare’s paper</li>
+<li><span class="tooltip"
+data-title="the Glasgow Haskell Compiler">GHC’s</span> implementation of
+laziness and how thunks work</li>
+<li>How strict languages like C++ or Python might design lazy features
+and implement laziness in the compiler</li>
+<li>How <a href="https://wiki.haskell.org/Seq"><code>seq</code></a>
+works, and the rest of strict Haskell</li>
+<li>How laziness interacts with concurrency</li>
+<li>Detailed analysis of laziness’s performance tradeoffs. When is it
+faster? When is it slower? What is the practical consequence of delaying
+computation? Can you write performant “low-level” code without being
+able to precisely dictate when something is evaluated?</li>
+<li>How to exploit laziness to great effect in certain problems</li>
+</ul>
+<p>At the time of writing I am not knowledgeable about any of these
+topics.</p>
 <section class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
