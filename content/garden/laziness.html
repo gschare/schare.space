@@ -1,0 +1,422 @@
+<!-- provenance: local 24.06.08-05.55.md -> garden/laziness.html -->
+<h1 id="laziness">Laziness</h1>
+<span id="date"><em>Jun 7, 2024</em></span>
+<title>
+Laziness
+</title>
+<p>When researchers talk about the differences between programming
+languages, we have a number of axes on which to formally compare them.
+<a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony Hoare</a> gave
+an early account of these formal differences in his paper, “The
+Varieties of Programming Language”<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<div class="fancyquote">
+<blockquote>
+<p>To lighten the task, this paper concentrates on the following
+varieties of programming language.</p>
+<ol type="1">
+<li>Deterministic, like LISP or PASCAL: the possible result of executing
+each program is fully controllable by its environment or user.</li>
+<li>Non-deterministic, like occam or Dijkstra’s language: the result of
+execution of a program may be affected by circumstances beyond the
+knowledge or control of its environment or user.</li>
+<li>Strict, like LISP or Dijkstra’s language: each stage of a
+calculation must be completed successfully before the start of the next
+stage which will use its results.</li>
+<li>Lazy, like KRC or Miranda: a calculation is started only when its
+result is found to be needed.</li>
+<li>Interactive, like CSP or occam: the program communicates with its
+environment during execution.</li>
+<li>Non-interactive, like the original FORTRAN: all the data required by
+the program may in principle be accumulated before the program starts;
+and all the results may be accumulated during the calculation for
+eventual output if and when the program terminates successfully.</li>
+</ol>
+</blockquote>
+</div>
+<p>I enjoy sharing this piece of history even though it appears quite
+obscure now. LISP and FORTRAN are the only languages that remain
+immediately recognizable even if they bring to mind ancient gray-haired
+programmers wearing pocket protectors in front of UNIX terminals.
+Perhaps there is a <a
+href="https://en.wikipedia.org/wiki/Lindy_effect">Lindy Effect</a> in
+play.</p>
+<p>The paper’s retro vibe—featuring as examples only passé
+languages—only reinforces that Hoare’s insights stand the test of time:
+languages come and go, but the algebraic varieties that formally
+underpin their semantic behavior can be generalized and remain
+applicable to modern languages.</p>
+<p>The three axes highlighted here are clear: determinism
+vs. non-determinism, interactivity vs. non-interactivity, and strictness
+vs. laziness. Let us focus on the third axis. By way of updated example,
+strict languages include C++, Python, Javascript, Go, and OCaml, along
+with pretty much everything else you’ve ever heard of or used. Lazy
+languages include Haskell.</p>
+<h2 id="semantics-of-strictness">Semantics of Strictness</h2>
+<p>We <span class="tooltip"
+data-title="associate a variable name with a value for future computations">bind</span>
+variables in Python like so:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span></span></code></pre></div>
+<p>The left side of the <code>=</code> is the name to which is bound the
+value of the right side. The right side may be a complex expression, in
+which case it is evaluated before the variable is assigned the resulting
+value:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span></span></code></pre></div>
+<p>We can also write functions in Python to associate a particular
+computation with a name.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> add(x, y)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> add(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> add(<span class="dv">1</span>, <span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> add(add(<span class="dv">2</span>, <span class="dv">3</span>), add(<span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span></span></code></pre></div>
+<p><code>def</code> stands for “define”. <code>add</code> is the name we
+give to the function. <code>x</code> and <code>y</code> are arguments to
+the function which can be used as variables in the scope of the function
+body. The function returns their sum. We call the function by providing
+concrete values in place of the variables. These concrete values can of
+course be complex subexpressions.</p>
+<p>A property of Python is that arguments to functions (like
+<code>1</code> and <code>2</code> in the expression
+<code>add(1,2)</code>) are evaluated before entering the function body.
+This property is known as <em>strictness</em>.</p>
+<p>Hoare’s paper explains the fundamental property of strictness in
+terms of what we called a <em>bottom</em>, which is typically written as
+<span class="math inline">\(\bot\)</span>. We can informally think of
+<span class="math inline">\(\bot\)</span> as “a program that always
+fails.” If <span class="math inline">\(\bot\)</span> is evaluted, the
+program crashes and comes to a halt, or goes into an infinite
+loop—either way, no useful result is produced. In strict languages,
+since arguments are always evaluated, programs with <span
+class="math inline">\(\bot\)</span> in them—even if never used—evaluate
+to <span class="math inline">\(\bot\)</span>.</p>
+<p>We can define <span class="math inline">\(\bot\)</span> in Python
+like this:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bottom():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">&quot;Bottom always fails&quot;</span>)</span></code></pre></div>
+<p>For example:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> bottom()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">Exception</span>: Bottom always fails</span></code></pre></div>
+<p>Consider this Python function:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> foo(x):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span></span></code></pre></div>
+<p>Notice that <code>x</code> is an argument to <code>foo</code>, but it
+is not used. What happens when we call <code>foo(bottom())</code>? Since
+the arguments are evaluated even if they are not used, this causes an
+error. The whole program fails (produces <span
+class="math inline">\(\bot\)</span>) because there was a <span
+class="math inline">\(\bot\)</span> in it.</p>
+<p>The exception to this rule is branching conditionals.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">if</span> <span class="va">True</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>... <span class="cf">else</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>...     bottom()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Hello, World<span class="op">!</span></span></code></pre></div>
+<p><code>if</code> statements only evaluate the branch that is taken
+after scrutizing the value of the condition.</p>
+<p>There is similar behavior in the logical <code>and</code> and
+<code>or</code> operators:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="va">True</span> <span class="kw">or</span> bottom()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> bottom() <span class="kw">or</span> <span class="va">True</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">Exception</span>: Bottom always fails</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="va">False</span> <span class="kw">and</span> bottom()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> bottom() <span class="kw">and</span> <span class="va">False</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="pp">Exception</span>: Bottom always fails</span></code></pre></div>
+<p>These operators “short-circuit” and return a value without evaluating
+the second argument if they can determine the result based on just the
+first argument. In this way, they behave like <code>if</code>
+statements. You can adequately define them like so:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="kw">and</span>(p, q):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> p:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> q</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   <span class="cf">else</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="kw">or</span>(p, q):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> p:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>   <span class="cf">else</span>:</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> q</span></code></pre></div>
+<p><code>q</code> only gets evaluated in half of the possible cases.</p>
+<h2 id="semantics-of-laziness">Semantics of Laziness</h2>
+<p>Lazy languages, by contrast, evaluate expressions and function
+arguments only when needed. As a result, they only produce <span
+class="math inline">\(\bot\)</span> in programs where <span
+class="math inline">\(\bot\)</span> is used.</p>
+<p>In Haskell, <span class="math inline">\(\bot\)</span> is written as
+<code>undefined</code>. You can write:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="ot">=</span> <span class="fu">undefined</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">***</span> <span class="dt">Exception</span><span class="op">:</span> <span class="fu">undefined</span></span></code></pre></div>
+<p>Notice that the exception only happens when we try to
+<em>evaluate</em> <code>x</code>. The definition of <code>x</code> in
+the previous line is accepted, despite having a bottom value. This
+differs from Python because Haskell has non-strict evaluation.</p>
+<p>Unused arguments are never evaluated in Haskell:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> foo x <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> foo <span class="fu">undefined</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span></code></pre></div>
+<h2 id="self-reference">Self-Reference</h2>
+<p>Python and Haskell differ in another way, related to laziness. Python
+does not permit self-referential variables, but Haskell does, as a side
+effect of lazy evaluation.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Python</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> x</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="pp">NameError</span>: name <span class="st">&#39;x&#39;</span> <span class="kw">is</span> <span class="kw">not</span> defined</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co">-- Haskell</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="ot">=</span> x</span></code></pre></div>
+<p>The Python program is rejected because the right side is evaluated
+before the name <code>x</code> is added to the environment. You can
+think of this as “defending” against an infinite loop: if <code>x</code>
+was added to the environment before evaluating the right side, it would
+endlessly look up its own definition, leading nowhere. You can also
+think of assignment as a function where the right side is the argument
+and the effect of the function is to add a new binding to the
+environment.</p>
+<p>The Haskell program is valid because the right side is not evaluated.
+The name is added to the environment bound not to a value, but to a
+<em>thunk</em>. A thunk is a delayed computation. If we request the
+value of <code>x</code>, it will enter an infinite loop:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="ot">=</span> x</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>[<span class="op">...</span>infinite loop<span class="op">...</span>]</span></code></pre></div>
+<p>The program hangs there without returning anything, and can only be
+stopped by sending an interrupt signal to the process. In the old days
+before fancy operating systems, you would have to restart the
+computer.</p>
+<h2 id="recursion">Recursion</h2>
+<p>While <code>x = x</code> is universally nonsense, there exist useful
+self-referential (also called <em>recursive</em>) programs. It is often
+sensible to define a function in terms of itself so long as there is a
+base case and inductive behavior. For example, a rather silly add
+function in Python could look like this:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> silly_add(x, y):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> y <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> x</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>   <span class="cf">else</span>:</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> silly_add(x <span class="op">+</span> <span class="dv">1</span>, y <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>This works because functions in Python, unlike values, can be
+self-referential, as their bodies are evaluated not when defined but
+when called. In this way functions in strict languages are sort of like
+expressions in lazy languages, except that functions are recomputed each
+time they are called and thunks are only evaluated once (after that, the
+computed value remains bound to the variable name in the
+environment).</p>
+<p>For completeness’s sake, here is the same thing in Haskell
+syntax:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sillyAdd x y <span class="ot">=</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> y <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">then</span> x</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> sillyAdd (x <span class="op">+</span> <span class="dv">1</span>) (y <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Haskell syntax differs a bit from Python’s; function arguments are
+juxtaposed with the function instead of listed inside of parentheses.
+Here the parentheses are necessary to disambiguate the order of
+operations.</p>
+<p>Recursion is useful for working with data structures of arbitrary
+size. It is often more natural to express programs recursively as
+opposed to iteratively, especially when dealing with trees.</p>
+<h2 id="circular-data-structures">Circular Data Structures</h2>
+<p>We have seen that:</p>
+<ul>
+<li>in Python, functions can be recursive but values cannot; and,</li>
+<li>in Haskell, both functions and values can be recursive.</li>
+</ul>
+<p>We have not seen why you would want values to be recursive. Typical
+finite data structures resembling <span class="tooltip"
+data-title="direct acyclic graphs">DAGs</span> are not good candidates
+for recursive definition. But sometimes data structures contain cycles,
+like a circular linked list:</p>
+<pre><code>Regular linked list:
+
+     +-+     +-+     +-+
+     |1| --&gt; |2| --&gt; |3| --&gt; []
+     +-+     +-+     +-+
+  
+  [] is a null value.
+  
+Circular linked list:
+
+       +-+     +-+     +-+
+  +--&gt; |1| --&gt; |2| --&gt; |3| ---+
+  |    +-+     +-+     +-+    |
+  |                           |
+  +---------------------------+</code></pre>
+<p>We can construct a linked list in Python quite easily:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">class</span> Node:</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>...    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data, <span class="bu">next</span>):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>...        <span class="va">self</span>.data <span class="op">=</span> data</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>...        <span class="va">self</span>.<span class="bu">next</span> <span class="op">=</span> <span class="bu">next</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>...    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>...        <span class="cf">return</span> <span class="bu">str</span>(<span class="va">self</span>.data) <span class="op">+</span> <span class="st">&quot; -&gt; &quot;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.<span class="bu">next</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c <span class="op">=</span> Node(<span class="dv">3</span>, <span class="va">None</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> b <span class="op">=</span> Node(<span class="dv">2</span>, c)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> a <span class="op">=</span> Node(<span class="dv">1</span>, b)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> a</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">-&gt;</span> <span class="va">None</span></span></code></pre></div>
+<p>To create a circular list, all we have to do is modify the links at
+the ends after they are created.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c.<span class="bu">next</span> <span class="op">=</span> a</span></code></pre></div>
+<p>Now we cannot print the data structure without doing some cycle
+detection, because it will loop infinitely as it follows the links in a
+circle. But it is fun to see the arrows work out, so let us write a
+rudimentary version that assumes each data value is unique:</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> cyclic_print(node):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>...     <span class="kw">def</span> loop(node, visited):</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">if</span> node.data <span class="kw">in</span> visited:</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>...            <span class="cf">return</span> <span class="bu">str</span>(node.data)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">else</span>:</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>...            <span class="cf">return</span> <span class="bu">str</span>(node.data) <span class="op">+</span> <span class="st">&#39; -&gt; &#39;</span> <span class="op">+</span> loop(node.<span class="bu">next</span>, visited <span class="op">|</span> {node.data})</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> loop(node, <span class="bu">set</span>())</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cyclic_print(a)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">-&gt;</span> <span class="dv">1</span></span></code></pre></div>
+<p>Haskell, besides being lazy, has the property of being <em>pure</em>,
+meaning it is not possible to modify existing bindings. Instead, we make
+use of laziness to establish the circular linked list through <em>mutual
+recursion</em>.</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">data</span> <span class="dt">Node</span> <span class="ot">=</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Node</span> <span class="op">|</span> <span class="dt">End</span> <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Eq</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cyclicPrint node <span class="ot">=</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>   loop node []</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>   <span class="kw">where</span> loop <span class="dt">End</span> _ <span class="ot">=</span> <span class="st">&quot;[]&quot;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>         loop node<span class="op">@</span>(<span class="dt">Node</span> d n) seen <span class="ot">=</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">if</span> d <span class="ot">`elem`</span> seen</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">then</span> <span class="fu">show</span> d</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">else</span> <span class="fu">show</span> d <span class="op">++</span> <span class="st">&quot; -&gt; &quot;</span> <span class="op">++</span> loop n (d <span class="op">:</span> seen)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">let</span> a <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">1</span> b</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>     b <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">2</span> c</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>     c <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">3</span> a</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="op">...</span> <span class="kw">in</span> <span class="fu">putStrLn</span> <span class="op">$</span> cyclicPrint a</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="ot">-&gt;</span> <span class="dv">2</span> <span class="ot">-&gt;</span> <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="dv">1</span></span></code></pre></div>
+<p>We are able to reference <code>b</code> in the definition of
+<code>a</code> before <code>b</code> is defined. This is okay because by
+the time we use <code>a</code>, a thunk for <code>b</code> has been
+created too, and these are cascadingly evaluated when called for.</p>
+<p>Laziness helped us create a circular data structure without mutation.
+In that sense, the whole motivation for laziness can be construed as a
+solution to the problem of creating circular data structures in pure
+languages.</p>
+<h2 id="infinite-data-structures">Infinite Data Structures</h2>
+<p>I have mentioned a few times now that thunks are only evaluated when
+called. The previous example revealed that thunks can contain thunks,
+and these nested thunks are evaluated outside-in, so you do not have to
+evaluate all the thunks in a data structure when the outermost thunk is
+used. This leads to a neat consequence of laziness:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="ot">=</span> <span class="dv">1</span> <span class="op">:</span> (<span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>) numbers)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fu">take</span> <span class="dv">10</span> numbers</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fu">take</span> <span class="dv">20</span> numbers</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">19</span>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co">-- and so on...</span></span></code></pre></div>
+<p>It is easy to define infinite data structures in the presence of
+laziness. <code>x = x</code> was a lazily infinite data structure, but
+not a very useful one. Here we see a list of all the natural numbers.
+The list is infinite, but so long as we only request to see a finite
+piece of it, Haskell will comply and lazily evaluate only what is
+needed.</p>
+<p>If you attempt to evaluate the whole infinite list, however, or take
+the last element, the computation will go on forever until
+interrupted:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fu">last</span> numbers</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">...</span>infinite loop<span class="op">...</span>]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>,<span class="dv">26</span>,<span class="dv">27</span>,<span class="dv">28</span>,<span class="dv">29</span>,<span class="dv">30</span>,<span class="dv">31</span>,<span class="dv">32</span>,<span class="dv">33</span>,<span class="dv">34</span>,<span class="dv">35</span>,<span class="dv">36</span>,<span class="dv">37</span>,<span class="dv">38</span>,<span class="dv">39</span>,<span class="dv">40</span>,<span class="dv">41</span>,<span class="dv">42</span>,<span class="dv">43</span>,<span class="dv">44</span>,<span class="dv">45</span>,<span class="dv">46</span>,<span class="dv">47</span>,<span class="dv">48</span>,<span class="dv">49</span>,<span class="dv">50</span>,<span class="dv">51</span>,<span class="dv">52</span>,<span class="dv">53</span>,<span class="dv">54</span>,<span class="dv">55</span>,<span class="dv">56</span>,<span class="dv">57</span>,<span class="dv">58</span>,<span class="dv">59</span>,<span class="dv">60</span>,<span class="dv">61</span>,<span class="dv">62</span>,<span class="dv">63</span>,<span class="dv">64</span>,<span class="dv">65</span>,<span class="dv">66</span>,<span class="dv">67</span>,<span class="dv">68</span>,<span class="dv">69</span>,<span class="dv">70</span>,<span class="dv">71</span>,<span class="dv">72</span>,<span class="dv">73</span>,<span class="dv">74</span>,<span class="dv">75</span>,<span class="dv">76</span>,<span class="dv">77</span>,<span class="dv">78</span>,<span class="dv">79</span>,<span class="dv">80</span>,<span class="dv">81</span>,<span class="dv">82</span>,<span class="dv">83</span>,<span class="dv">84</span>,<span class="dv">85</span>,<span class="dv">86</span>,<span class="dv">87</span>,<span class="dv">88</span>,<span class="dv">89</span>,<span class="dv">90</span>,<span class="dv">91</span>,<span class="dv">92</span>,<span class="dv">93</span>,<span class="dv">94</span>,<span class="dv">95</span>,<span class="dv">96</span>,<span class="dv">97</span>,<span class="dv">98</span>,<span class="dv">99</span>,<span class="dv">100</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>[<span class="op">...</span><span class="fu">and</span> so on <span class="fu">until</span> you stop it<span class="op">...</span>]</span></code></pre></div>
+<p>After evaluating a piece of the list, there remains a thunk at the
+end. For instance, after <code>take 5 numbers</code>, the data structure
+under the hood looks like
+<code>numbers = 1 : 2 : 3 : 4 : 5 : (map (+1) numbers)</code></p>
+<p>One of the cuter definitions in Haskell is the infinite Fibonacci
+sequence. In math, we define it like so:</p>
+<p><span class="math display">\[\begin{align}F_0 &amp;= 0 \\
+F_1 &amp;= 1 \\
+F_n &amp;= F_{n-1} + F_{n-2}\end{align}\]</span></p>
+<p>This could be a recursive function parameterized by the sequence
+index in Haskell or Python, but the naive implementation is infamously
+inefficient (exponentially so) since it repeats work by recomputing all
+previous elements of the sequence at every recursive callsite. As I
+mentioned previously, function bodies are recomputed when called. Thunks
+are only evaluated once. Instead of working out some clever ways to
+memoize the intermediate values in the function definition, Haskell’s
+laziness permits us to write a programmatic implementation that closely
+follows the mathematical definition:</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fib <span class="ot">=</span> <span class="dv">0</span> <span class="op">:</span> <span class="dv">1</span> <span class="op">:</span> <span class="fu">zipWith</span> (<span class="op">+</span>) fib (<span class="fu">tail</span> fib)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fu">take</span> <span class="dv">10</span> fib</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">13</span>,<span class="dv">21</span>,<span class="dv">34</span>,<span class="dv">55</span>,<span class="dv">89</span>] </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co">-- Indexing is efficient since all the previous elements remain evaluated!</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> fib <span class="op">!!</span> <span class="dv">11</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dv">89</span></span></code></pre></div>
+<p>The definition is a bit obscure, so here is an alternative definition
+that is perhaps more pedagogical:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fib <span class="ot">=</span> <span class="dv">0</span> <span class="op">:</span> <span class="dv">1</span> <span class="op">:</span> [a <span class="op">+</span> b <span class="op">|</span> (a, b) <span class="ot">&lt;-</span> <span class="fu">zip</span> fib (<span class="fu">drop</span> <span class="dv">1</span> fib)]</span></code></pre></div>
+<h2 id="expressivity">Expressivity</h2>
+<p>It may surprise you that the same thing is possible in Python using a
+feature called <em>generators</em>. They are not as ergonomic, but the
+feature exists.</p>
+<p>It is important to note at this point that lazy and strict languages
+are equally powerful. That is, there is no problem that can be solved in
+one that cannot be solved in the other. The differences are entirely in
+the realm of expressivity, and occasionally the evaluation order affects
+performance (how long it takes a program to run, and other related
+metrics).</p>
+<p>The advantage of laziness is that it is much simpler to write
+programs to take advantage of lazy evaluation in Haskell because it is
+built into the language at a fundamental level, so every feature
+interacts with laziness the way you would expect. Replicating laziness
+in Python would require rewriting lots of basic functionality, and it
+probably would not be very performant. There are <a
+href="https://docs.python.org/3/library/itertools.html">libraries</a>
+for Python which have already done some of this work, but still Python
+is not a naturally lazy language.</p>
+<p>While it would be cute to argue the same applies in reverse to
+Haskell—that Haskell is no good for strict evaluation—it is not true.
+Haskell has built-in features for granularly controlling evaluation
+behavior. You can force strict evaluation where you want it without
+heavy boilerplate or using special libraries. Haskell is a lazy
+language, but with convenient access to strictness when necessary.</p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Hoare, C.A.R. (1989). The varieties
+of programming language. TAPSOFT ’89. Lecture Notes in Computer Science,
+vol 351. Springer. <a href="https://doi.org/10.1007/3-540-50939-9_121"
+class="uri">https://doi.org/10.1007/3-540-50939-9_121</a>. <a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
