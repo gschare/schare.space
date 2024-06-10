@@ -22,11 +22,11 @@ code {
     font-size: 1rem;
 }
 
-.date {
+.date, #date {
     color: var(--fg-light-secondary);
 }
 
-.date .dark-mode {
+.date.dark-mode, #date.dark-mode {
     color: var(--fg-dark-secondary);
 }
 
