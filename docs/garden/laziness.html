@@ -147,6 +147,9 @@ like this:</p>
 <p>For example:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> bottom()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">Exception</span>: Bottom always fails</span></code></pre></div>
+<p>Note that the error occurs at assignment. We evaluate the right side,
+so the program fails before the assignment can be completed
+successfully.</p>
 <p>Consider this Python function:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> foo(x):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span></span></code></pre></div>
@@ -321,19 +324,21 @@ rudimentary version that assumes each data value is unique:</p>
 meaning it is not possible to modify existing bindings. Instead, we make
 use of laziness to establish the circular linked list through <em>mutual
 recursion</em>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">data</span> <span class="dt">Node</span> <span class="ot">=</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Node</span> <span class="op">|</span> <span class="dt">End</span> <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Eq</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cyclicPrint node <span class="ot">=</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>   loop node []</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>   <span class="kw">where</span> loop <span class="dt">End</span> _ <span class="ot">=</span> <span class="st">"[]"</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>         loop node<span class="op">@</span>(<span class="dt">Node</span> d n) seen <span class="ot">=</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">if</span> d <span class="ot">`elem`</span> seen</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">then</span> <span class="fu">show</span> d</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">else</span> <span class="fu">show</span> d <span class="op">++</span> <span class="st">" -&gt; "</span> <span class="op">++</span> loop n (d <span class="op">:</span> seen)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">let</span> a <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">1</span> b</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>     b <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">2</span> c</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>     c <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">3</span> a</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="op">...</span> <span class="kw">in</span> <span class="fu">putStrLn</span> <span class="op">$</span> cyclicPrint a</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="ot">-&gt;</span> <span class="dv">2</span> <span class="ot">-&gt;</span> <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co">-- Definition of a node:</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co">--   contains an integer and a pointer to another node.</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">data</span> <span class="dt">Node</span> <span class="ot">=</span> <span class="dt">Node</span> <span class="dt">Int</span> <span class="dt">Node</span> <span class="op">|</span> <span class="dt">End</span> <span class="kw">deriving</span> (<span class="dt">Show</span>, <span class="dt">Eq</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cyclicPrint node <span class="ot">=</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>   loop node []</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>   <span class="kw">where</span> loop <span class="dt">End</span> _ <span class="ot">=</span> <span class="st">"[]"</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>         loop node<span class="op">@</span>(<span class="dt">Node</span> d n) seen <span class="ot">=</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">if</span> d <span class="ot">`elem`</span> seen</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">then</span> <span class="fu">show</span> d</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>           <span class="kw">else</span> <span class="fu">show</span> d <span class="op">++</span> <span class="st">" -&gt; "</span> <span class="op">++</span> loop n (d <span class="op">:</span> seen)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">let</span> a <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">1</span> b</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>     b <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">2</span> c</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>     c <span class="ot">=</span> <span class="dt">Node</span> <span class="dv">3</span> a</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="op">...</span> <span class="kw">in</span> <span class="fu">putStrLn</span> <span class="op">$</span> cyclicPrint a</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="ot">-&gt;</span> <span class="dv">2</span> <span class="ot">-&gt;</span> <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="dv">1</span></span></code></pre></div>
 <p>We are able to reference <code>b</code> in the definition of
 <code>a</code> before <code>b</code> is defined. This is okay because by
 the time we use <code>a</code>, a thunk for <code>b</code> has been
@@ -348,7 +353,7 @@ called. The previous example revealed that thunks can contain thunks,
 and these nested thunks are evaluated outside-in, so you do not have to
 evaluate all the thunks in a data structure when the outermost thunk is
 used. This leads to a neat consequence of laziness:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="ot">=</span> <span class="dv">1</span> <span class="op">:</span> (<span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>) numbers)</span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> numbers <span class="ot">=</span> <span class="dv">0</span> <span class="op">:</span> (<span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>) numbers)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fu">take</span> <span class="dv">10</span> numbers</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fu">take</span> <span class="dv">20</span> numbers</span>
@@ -399,10 +404,10 @@ follows the mathematical definition:</p>
 <p>The definition is a bit obscure, so here is an alternative definition
 that is perhaps more pedagogical:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fib <span class="ot">=</span> <span class="dv">0</span> <span class="op">:</span> <span class="dv">1</span> <span class="op">:</span> [a <span class="op">+</span> b <span class="op">|</span> (a, b) <span class="ot">&lt;-</span> <span class="fu">zip</span> fib (<span class="fu">drop</span> <span class="dv">1</span> fib)]</span></code></pre></div>
-<h2 id="expressivity">Expressivity</h2>
 <p>It may surprise you that the same thing is possible in Python using a
 feature called <em>generators</em>. They are not as ergonomic, but the
 feature exists.</p>
+<h2 id="expressivity">Expressivity</h2>
 <p>It is important to note at this point that lazy and strict languages
 are equally powerful. That is, there is no problem that can be solved in
 one that cannot be solved in the other. The differences are entirely in
