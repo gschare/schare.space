@@ -15,6 +15,9 @@
              :styles (css/default.css css/now.css))
             (:path cv.html)
             (:path 404.html)
+            (:path tidings/index.html
+               :template blog.sxml
+               :styles (css/default.css css/tidings.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
@@ -24,7 +27,7 @@
                :styles (css/default.css css/garden.css))
               (:path tidings
                :template blog.sxml
-               :styles (css/default.css css/tidings.css))
+               :styles (css/default.css css/tidings.css css/background.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf

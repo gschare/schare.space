@@ -7,6 +7,7 @@
     --fg-light-secondary: #b2b1aa;
     --fg-dark: #e3e0d7;
     --fg-dark-secondary: #b2b1aa;
+    --article-width: 35rem;
 }
 
 @font-face {
@@ -69,7 +70,7 @@ a:hover {
 
 header {
     margin: auto;
-    max-width: 60rem;
+    max-width: var(--article-width);
 }
 
 /* Footnotes */
@@ -79,11 +80,12 @@ header {
 
 main article {
     counter-reset: footnotes;
-    max-width: 60rem; /* to fit asides; subelements are 35rem */
+    max-width: var(--article-width); /* 60rem; */ /* to fit asides; subelements are 35rem */
+    padding: 0px 50px 30px 50px;
     margin: auto; /* to center within main */
 }
 
-aside, div.sidebar {
+aside, div.sidebar, div.aside {
     float: right;
     width: 15rem;
     padding-left: 15px;
@@ -92,13 +94,20 @@ aside, div.sidebar {
     border-left: 1px solid var(--fg-light);
 }
 
-aside.dark-mode, div.sidebar.dark-mode {
-    float: right;
-    width: 15rem;
+aside.dark-mode, div.sidebar.dark-mode, div.aside.dark-mode {
+    border-left: 1px solid var(--fg-dark);
+}
+
+details {
     padding-left: 15px;
     margin-left: 15px;
     padding-bottom: 5px;
-    border-left: 1px solid var(--fg-dark);
+    border: 1px solid var(--fg-light);
+    border-radius: 10px;
+}
+
+details.dark-mode {
+    border: 1px solid var(--fg-dark);
 }
 
 p {
@@ -187,7 +196,7 @@ ol.footnotes li:target {
 }
 
 .indent {
-    margin-left: 2em;
+    margin-left: 2rem;
     display: block;
     margin-top: 4px;
 }
@@ -215,11 +224,11 @@ pre {
 }
 
 p, ul, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
-    max-width: 35em;
+    max-width: var(--article-width);
 }
 
 ol {
-    max-width: 32.5em; /* leave space for indent */
+    max-width: calc(var(--article-width) - 2.5rem); /* leave space for indent */
 }
 
 /* Quoting */
