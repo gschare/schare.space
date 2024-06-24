@@ -16,8 +16,12 @@
             (:path cv.html)
             (:path 404.html)
             (:path tidings/index.html
-               :template blog.sxml
-               :styles (css/default.css css/tidings.css))
+             :template blog.sxml
+             :styles (css/default.css css/tidings.css))
+            (:path garden/microblog.html
+             :template garden.sxml
+             :styles (css/default.css css/garden.css
+                      css/justify.css css/background.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
