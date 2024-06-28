@@ -1,0 +1,32 @@
+@media screen and (min-width: 800px) {
+    body {
+        background: url("/assets/img/background/pattern.png");
+        background-size: 100%;
+        background-repeat: repeat;
+    }
+
+    article {
+        background: var(--bg-light);
+        border: 2px solid var(--bg-light-secondary);
+        border-radius: 15px;
+    }
+
+    nav {
+        position: relative;
+        top: 2px;
+        z-index: 10;
+        background: var(--bg-light);
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 7.5px;
+        border-top: 2px solid var(--bg-light-secondary);
+        border-left: 2px solid var(--bg-light-secondary);
+        border-right: 2px solid var(--bg-light-secondary);
+        border-radius: 12.5px 12.5px 0px 0px;
+    }
+
+    header {
+        padding-left: 15px; /* protect against sliding too far to the left past the
+                            rounded corner on narrow-width screens. */
+    }
+}
