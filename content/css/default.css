@@ -248,6 +248,10 @@ blockquote {
     text-justify: inter-word;*/
     padding-left: 2rem;
     border-left: 1px solid var(--fg-light);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
 }
 
 blockquote.dark-mode {
