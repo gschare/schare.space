@@ -2,6 +2,7 @@
     --link-color-light: #40a2b8;
     --link-color-hover: #ffabf9;
     --bg-light: #fdfcee;
+    --bg-light-secondary: #a4a396;
     --bg-dark: #1c2f28; /*#262626;*/
     --fg-light: #646464;
     --fg-light-secondary: #b2b1aa;
@@ -36,7 +37,7 @@ code {
 }
 
 figure img {
-    max-width: 600px;
+    max-width: var(--article-width);
     max-height: 600px;
 }
 
@@ -83,6 +84,12 @@ main article {
     max-width: var(--article-width); /* 60rem; */ /* to fit asides; subelements are 35rem */
     padding: 0px 50px 30px 50px;
     margin: auto; /* to center within main */
+}
+
+@media screen and (max-width: 800px) {
+    main article {
+        padding: 0px 10px 30px 10px;
+    }
 }
 
 aside, div.sidebar, div.aside {
@@ -296,6 +303,15 @@ figure blockquote {
     margin-inline-end: 40px;
 }
 
+/* Nested quotes don't get the quotes */
+.fancyquote blockquote blockquote:before {
+    all: revert;
+}
+.fancyquote blockquote blockquote:after {
+    all: revert;
+}
+
+
 .flex {
     display: flex;
     justify-content: space-between;
@@ -479,16 +495,31 @@ ul.nobullet {
     }
 }
 
+article img {
+    border-radius: 5px;
+    max-width: var(--article-width);
+    max-height: 600px;
+    display: block;
+    margin: auto;
+}
+
 .gallery img {
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
-    max-width: 600px;
+    max-width: var(--article-width);
     max-height: 600px;
+    display: block;
+    margin: auto;
 }
 
 @media screen and (max-width: 800px) {
     .gallery img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    article img {
         max-width: 100%;
         max-height: 100%;
     }
@@ -507,7 +538,7 @@ ul.nobullet {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 99;
     padding: 0;
     left: 0;
     top: 0;

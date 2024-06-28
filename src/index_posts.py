@@ -16,6 +16,7 @@
 from bs4 import BeautifulSoup
 from os.path import join, isdir
 from os import walk
+from datetime import datetime
 
 PREVIEW_LENGTH = 140
 SRC_DIR = 'content/tidings/'
@@ -53,7 +54,7 @@ def gather_posts_data() -> dict:
     return index
 
 def construct_list(index: dict) -> str:
-    order = sorted(index, key=lambda i: index[i]['date'], reverse=True)
+    order = sorted(index, key=lambda i: datetime.strptime(index[i]['date'], '%b %d, %Y'), reverse=True)
 
     the_list = ""
 
