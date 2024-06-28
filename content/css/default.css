@@ -243,9 +243,15 @@ ol {
    elements look weird and not have proper margins. */
 
 blockquote {
-    font-size: 100%;
+    /*font-size: 100%;
     text-align: justify;
-    text-justify: inter-word;
+    text-justify: inter-word;*/
+    padding-left: 2rem;
+    border-left: 1px solid var(--fg-light);
+}
+
+blockquote.dark-mode {
+    border-left: 1px solid var(--fg-dark);
 }
 
 /* .simplequote: a thin line to the left */
@@ -262,15 +268,17 @@ blockquote {
     padding-left: 2rem;
 }
 
-figure blockquote {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
+.fancyquote blockquote {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
 }
 
 .fancyquote blockquote {
     position: relative;
+    border: none;
+    padding-left: revert;
 }
 
 .fancyquote blockquote:before {
@@ -296,9 +304,9 @@ figure blockquote {
     position: absolute;
 }
 
-.fancyquote figcaption {
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
+.fancyquote figcaption, .fancyquote > p {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
     margin-inline-start: 40px;
     margin-inline-end: 40px;
 }
