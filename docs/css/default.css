@@ -223,6 +223,12 @@ body {
     */
 }
 
+.tinytop {
+    font-size: 12px;
+    vertical-align: super;
+    font-weight: normal;
+}
+
 pre {
     font-size: 80%;
     border-left: 1px solid var(--fg-light);
