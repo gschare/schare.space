@@ -248,10 +248,10 @@ blockquote {
     text-justify: inter-word;*/
     padding-left: 2rem;
     border-left: 1px solid var(--fg-light);
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
 }
 
 blockquote.dark-mode {
@@ -302,7 +302,7 @@ blockquote.dark-mode {
     float: right;
     font-size: 4em;
     bottom: -0.65em;
-    right: -0.35em;
+    right: -0.5em;
     line-height: 1;
     content: "\201d";
     position: absolute;
