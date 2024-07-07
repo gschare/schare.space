@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link rel="stylesheet" type="text/css" href="/css/background.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article><h1 id="cartwheel-handbook.">Cartwheel Handbook.</h1>
+<!--  provenance: local 24.07.06-20.08.md -> assets/docs/cartwheel.html  -->
+<h2 id="food">Food</h2>
+<ul>
+<li>Buy canned wet food from any market. Brands e.g. Friskies, 9Lives,
+Tastefuls.
+<ul>
+<li>Give him ~2 5oz cans a day. Lately he has been eating less.</li>
+</ul></li>
+<li>Optionally buy kibble/dry food and treats.</li>
+<li>He won’t eat more than he needs, so don’t worry about overfeeding
+him.</li>
+</ul>
+<h2 id="water">Water</h2>
+<ul>
+<li>Keep a small bowl of water out. I find he doesn’t often drink water
+since the wet food contains enough water for him, but sometimes he
+does.</li>
+</ul>
+<h2 id="litter">Litter</h2>
+<ul>
+<li>Buy any typical bodega litter.</li>
+<li>Scoop poop daily.</li>
+<li>Change litter and clean box weekly.</li>
+</ul>
+<h2 id="behavior">Behavior</h2>
+<ul>
+<li>He likes to chew cables when he’s understimulated. Just pick him up
+and move him away when he does this, or play with him.</li>
+<li>He also chews cables, plants, paper and cardboard because it’s good
+for his teeth. I have a plant I’ve basically sacrificed to him, and I
+let him chew on newspapers and cardboard boxes.</li>
+<li>He likes boxes he can sit in.</li>
+<li>His carrier is a safe space for him. Leave it out and the door open
+so he can go there whenever he wants.</li>
+</ul>
+<h2 id="rules">Rules</h2>
+<ul>
+<li>Don’t take him outside, at all, ever.</li>
+<li>Don’t let him eat food except for his cat food unless you have
+checked that it’s safe for cats to eat.
+<ul>
+<li>Common misconception: cats can’t have dairy. They also can’t have
+chocolate, and many fruits are toxic to them, such as grapes and
+citrus.</li>
+<li>That being said it is a nice treat to occasionally give him some
+delicious and safe human food.</li>
+</ul></li>
+<li>Text me if you have any questions:
+<a href="sms:818-454-4044">818-454-4044</a>.</li>
+</ul>
+</article></main></body></html>

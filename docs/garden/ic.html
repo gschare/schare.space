@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article><h1 id="intentional-communities-housing-cooperatives">Intentional
+Communities / Housing Cooperatives</h1>
+<!--  provenance: local 24.07.07-03.35.md -> garden/ic.html  -->
+<h2 id="terminology">Terminology</h2>
+<ul>
+<li><strong>co-op/cooperative:</strong> autonomous or semi-autonomous
+community of people living together in a communal space with shared
+responsibilities</li>
+<li><strong>coliving:</strong> corporate-owned for-profit space with
+cleaning staff and communal amenities</li>
+<li><strong>commune:</strong> autonomous community that is mostly
+self-sufficient with high degree of communal responsibility</li>
+<li><strong>cohousing:</strong> sort of a catch-all that includes more
+casual attempts to form community in regular apartments</li>
+</ul>
+<h2 id="directories">Directories</h2>
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1h7HCimCQdi66LQPGWS9zBujOBtC1ekPmx778_fSgFL4/edit?usp=sharing">Photo
+survey of coliving houses</a></li>
+<li><a href="https://docs.google.com/document/u/0/d/1iMUiRVIuIZs2r9g6ygwWFryuDrkLz2VGJmKdyMWblhQ/mobilebasic#">Haight
+St Commons Housing Roundup (July 2024)</a></li>
+<li><a href="https://supernuclear.substack.com/p/directory-of-coliving-directories">Supernuclear:
+Directory of Coliving Directories</a></li>
+<li><a href="https://www.ic.org/directory/">Foundation for Intentional
+Community Directory</a></li>
+</ul>
+<h2 id="bostoncambridge">Boston/Cambridge</h2>
+<ul>
+<li><a href="https://cambridgecoop.wordpress.com/">Cambridge Cooperative
+Club</a></li>
+<li><a href="http://haleyhouse.org/what-we-do/live-in-community/">Haley
+House</a> [<a href="https://www.ic.org/directory/haley-house/">IC
+listing</a>]</li>
+<li><a href="www.bhfh.org">Beacon Hill Friends House</a> <a href="https://www.ic.org/directory/beacon-hill-friends-house/">IC
+listing</a>]
+<ul>
+<li>Affiliation: Quaker</li>
+</ul></li>
+<li><a href="https://hexapod.weebly.com/">Hexapod</a> [<a href="https://www.ic.org/directory/hexapod/">IC listing</a>]</li>
+<li><a href="https://cambridgezen.org/">Cambridge Zen Center</a> [<a href="https://www.ic.org/directory/cambridge-zen-center-a-member-of-the-kwan-um-school-of-zen/">IC
+listing</a>]
+<ul>
+<li>Affiliation: Kwan Um School of Zen</li>
+</ul></li>
+<li>Pika
+<ul>
+<li>Affiliation: MIT</li>
+<li>undergraduates only</li>
+</ul></li>
+<li>ET
+<ul>
+<li>Affiliation: MIT</li>
+<li>undergraduates only</li>
+</ul></li>
+</ul>
+<h2 id="new-york-city">New York City</h2>
+<ul>
+<li>Beit Ephraim Food Co-op (Bayit)
+<ul>
+<li>Affiliation: Columbia</li>
+<li>Jewish-identifying Columbia students only</li>
+</ul></li>
+<li>Moishe House Park Slope
+<ul>
+<li>Affiliation: Jewish</li>
+</ul></li>
+<li>Fractal</li>
+</ul>
+<h2 id="san-francisco-bay-area">San Francisco Bay Area</h2>
+<ul>
+<li><a href="https://haight-st-commons.org/#">Haight Street
+Commons</a></li>
+<li>Planetarium (Oakland)</li>
+<li>Gearkult (Oakland)</li>
+<li>The Embassy</li>
+<li>Paper Moon</li>
+<li>Template</li>
+<li>The Center</li>
+<li>Rabbithole</li>
+<li>Metavilla</li>
+<li>Ithaka</li>
+</ul>
+<h2 id="wisconsin">Wisconsin</h2>
+<ul>
+<li><a href="https://www.madisoncommunity.coop/">Madison Community
+Cooperative</a>
+<ul>
+<li><a href="https://www.madisoncommunity.coop/property/international">International
+Cooperative</a></li>
+</ul></li>
+</ul>
+<h2 id="michigan">Michigan</h2>
+<ul>
+<li><a href="https://icc.coop/">Inter-Cooperative Council at Ann
+Arbor</a></li>
+</ul>
+</article></main></body></html>
