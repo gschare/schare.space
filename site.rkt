@@ -18,6 +18,9 @@
             (:path tidings/index.html
              :template blog.sxml
              :styles (css/default.css css/tidings.css))
+            (:path assets/docs/cartwheel.html
+             :template garden.sxml
+             :styles (css/default.css css/garden.css css/background.css))
             (:path garden/microblog.html
              :template garden.sxml
              :styles (css/default.css css/garden.css
