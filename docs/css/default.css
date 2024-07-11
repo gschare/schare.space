@@ -82,12 +82,12 @@ header {
 .footnote-ref sup {
     /* no sup for you! */
     all: inherit;
-    &::before {
-        content: '[';
-    }
-    &::after {
-        content: ']';
-    }
+}
+.footnote-ref sup::before {
+    content: '[';
+}
+.footnote-ref sup::after {
+    content: ']';
 }
 
 main article {
