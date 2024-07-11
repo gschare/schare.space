@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2 {
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 a {
@@ -78,6 +78,17 @@ header {
 /* Note that you still have to keep the ordering consistent.
  * so the order of the references should match the order of the footnotes.
  */
+
+.footnote-ref sup {
+    /* no sup for you! */
+    all: inherit;
+    &::before {
+        content: '[';
+    }
+    &::after {
+        content: ']';
+    }
+}
 
 main article {
     counter-reset: footnotes;
@@ -492,7 +503,7 @@ canvas .background {
     height: 100%;
 }
 
-ul.nobullet {
+ul.nobullet, .nobullet > ul {
     list-style-type: none;
 }
 
