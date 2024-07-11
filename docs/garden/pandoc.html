@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article><!--  provenance: local 24.07.11-21.47.md -> garden/pandoc.html  -->
+<title>
+You Should Use Pandoc
+</title>
+<h1 id="you-should-use-pandoc">You Should Use Pandoc</h1>
+<span id="date"><em>Jul 11, 2024</em></span>
+<p>
+</p>
+<p><a href="https://pandoc.org/">Pandoc</a> bills itself as “a universal
+document converter.” That’s what it is. You can find installation
+instructions <a href="https://pandoc.org/installing.html">here</a>.</p>
+<p>To be more specific, Pandoc is a command-line program (i.e. you run
+it in the terminal) for converting documents between various file
+formats. Here’s some things I use Pandoc for:</p>
+<ul>
+<li>Generating PDF reports from Markdown</li>
+<li>Generating Google Docs from Markdown</li>
+<li>Converting Markdown articles to HTML for my website <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Website templating and HTML generation</li>
+<li>Performing transformations on HTML documents (e.g. link
+rewriting)</li>
+</ul>
+<p>As you can see, I prefer to use Markdown as a source format and
+convert to other formats, but Markdown can go both ways for most of the
+<a href="https://pandoc.org/index.html">supported formats</a>.</p>
+<h2 id="for-people-who-write-documents">For people who write
+documents</h2>
+<p>(i.e., everyone.)</p>
+<p>Without Pandoc, you have basically two options for writing serious
+documents that become PDFs or another typeset format:</p>
+<ol type="1">
+<li>Write it in LaTeX and use a LaTeX engine to generate a PDF</li>
+<li>Write it in a word processor like Microsoft Word, Apple Pages, or
+Google Docs, and print a PDF</li>
+</ol>
+<p>These are both fine most of the time. But if you happen to be a STEM
+student who needs to typeset mathematical or scientific writing, you
+pretty much have to use LaTeX. LaTeX is still a fine option but it’s
+pretty ugly, archaic, and limited. What if you want to generate an HTML
+file for a blog post as well as a PDF? It’s pretty awkward to do so in
+LaTeX alone. Pandoc enables this: use LaTeX as a source format and HTML
+as an output. It also allows you to write in Markdown and generate
+LaTeX… or even skip the middleman and use your LaTeX engine to generate
+a PDF in one step. I find that Markdown is a better source format most
+of the time you are dealing with technical content, but even when it
+isn’t, Pandoc is still a great tool. Pandoc lets you write in a number
+of nicer formats and still generate a beautiful typeset PDF.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>You can <a href="https://pandoc.org/try/">try it online here</a> or
+you can download it for your system and then run:</p>
+<pre><code>pandoc --from markdown --to html5 article.md</code></pre>
+<p>where <code>article.md</code> is the filename of your Markdown
+source. This will generate a <code>article.html</code> file.</p>
+<p>Or, to generate a PDF, assuming you have LaTeX already installed, try
+this:</p>
+<pre><code>pandoc --from markdown --to html5 article.md</code></pre>
+<p>Maybe you don’t like the look of the output. Indeed I think the
+defaults are not great. <a href="https://pandoc.org/MANUAL.html">Peruse
+the many options</a> for more precise control over the generated
+document. Yes, I’m telling you to <span class="tooltip" data-title="Read the ‘Fabulous’ Manual">RTFM</span>.</p>
+<p>…or you can try my command and see if you like it.</p>
+<h3 id="some-defaults">Some defaults</h3>
+<p>Here’s what I used to generate the PDF of my short stories for my
+writing workshop, using a Markdown source.</p>
+<p>Put this YAML header at the top of your Markdown file (or figure out
+how to put these directives in the command):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My Title</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> My Name</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 11 July 2024</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fontfamily</span><span class="kw">:</span><span class="at"> mathptmx</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">indent</span><span class="kw">:</span><span class="at"> 4m</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pointsize</span><span class="kw">:</span><span class="at"> 14p</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">geometry</span><span class="kw">:</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> margin=1in</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">header-includes</span><span class="kw">:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> \renewcommand{\rule}[2]{\begin{center} * * * \end{center}}</span></span></code></pre></div>
+<p>Then generate the PDF using this command (assumes you have
+<code>pdflatex</code>; you could also use <code>xelatex</code> or
+<code>lualatex</code> but I cannot vouch that my YAML will work with
+those):</p>
+<pre><code>pandoc article.md -f markdown-latex_macros -t pdf --pdf-engine=pdflatex -o article.pdf</code></pre>
+<p>That should get you started. Now play with it!</p>
+<h2 id="for-developers">For developers</h2>
+<p>Pandoc is also a <a href="https://hackage.haskell.org/package/pandoc">Haskell library</a>.
+You can do some fabulous things with it if you know Haskell.</p>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p>This page was written in Markdown and
+converted to HTML using Pandoc.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</article></main></body></html>
