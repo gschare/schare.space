@@ -2,6 +2,7 @@
 
 (require "src/build.rkt")
 (require "src/tidings.rkt") ; blog builder
+(require "src/md.rkt")
 
 (define rules
   `(:defaults (:template article.sxml
@@ -28,6 +29,9 @@
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
+            (:path ,(md 'garden/test.md) ; generate input.html from input.md
+             :template garden.sxml
+             :styles (css/default.css css/garden.css))
             )
     :folders ((:path garden
                :template garden.sxml
@@ -64,5 +68,6 @@
  [("-o" "--dest") dest "Destination folder" (void)]
  )
 
+;TODO: compile all markdown sources into html sources using pandoc before building?
 (build rules #:dest dest #:dry-run dry-run)
 
