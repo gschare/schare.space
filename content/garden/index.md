@@ -5,9 +5,21 @@
 >
 > --- Voltaire, _Candide_
 
-- [What's a Garden?](what.html)
-- [Research Moodboard](moodboard.html)
-- [Questions](questions.html)
-- [Office Space](office.html)
-- [NYC Activities](nyc.html)
-- [NYC Restaurants](nyc-restaurants.html)
+<div style="width: 15rem; margin: auto">
+<div style="color: blue">
+## [Meta](what.html) <--------------
+</div>
+
+<div style="text-align: right; color: red">
+## ------------> [Research](research.html)
+</div>
+
+
+<div style="color: purple">
+## [More](more.html) <---------
+</div>
+
+<div style="text-align: right; color: green">
+## ------------------> [IC](ic.html) 
+</div>
+</div>
