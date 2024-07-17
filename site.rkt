@@ -29,11 +29,8 @@
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
-            (:path ,(md 'garden/index.md) ; generate index.html from index.md
-             :template garden.sxml
-             :styles (css/default.css css/garden.css))
             )
-    :folders ((:path garden
+    :folders ((:path ,(md* 'garden #:recursive #t)
                :template garden.sxml
                :styles (css/default.css css/garden.css))
               (:path tidings
