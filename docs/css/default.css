@@ -475,6 +475,10 @@ nav .active {
     text-decoration: underline;
 }
 
+nav.secondary {
+    font-weight: normal;
+}
+
 hr {
     max-width: 35em;
     border: 1px solid;
