@@ -29,7 +29,7 @@
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
-            (:path ,(md 'garden/test.md) ; generate input.html from input.md
+            (:path ,(md 'garden/index.md) ; generate index.html from index.md
              :template garden.sxml
              :styles (css/default.css css/garden.css))
             )

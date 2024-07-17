@@ -86,6 +86,14 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="
 those):</p>
 <pre><code>pandoc article.md -f markdown-latex_macros -t pdf --pdf-engine=pdflatex -o article.pdf</code></pre>
 <p>That should get you started. Now play with it!</p>
+<h2 id="markdown-caveats">Markdown caveats</h2>
+<p>Markdown has many different “flavors,” which is a euphemism for
+saying nobody can agree on what syntactic forms are permitted in
+Markdown. Every Markdown to HTML converter obeys different rules.
+Fortunately, Pandoc supports pretty much everything through its
+extensions. Most of the time Pandoc will be tolerant, but you might have
+to manually enable features like special syntax for tables. Again,
+RTFM.</p>
 <h2 id="for-developers">For developers</h2>
 <p>Pandoc is also a <a
 href="https://hackage.haskell.org/package/pandoc">Haskell library</a>.
