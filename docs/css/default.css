@@ -1,7 +1,7 @@
 :root {
     --link-color-light: #40a2b8;
     --link-color-hover: #ffabf9;
-    --bg-light: #fdfcee;
+    --bg-light: #fdfcee; /* alternative: e8e1d0 */
     --bg-light-secondary: #a4a396;
     --bg-dark: #1c2f28; /*#262626;*/
     --fg-light: #646464;
