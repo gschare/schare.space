@@ -1,13 +1,14 @@
 :root {
     --link-color-light: #40a2b8;
     --link-color-hover: #ffabf9;
-    --bg-light: #fdfcee; /* alternative: e8e1d0 */
+    --bg-light: #fdfcee; /* alternatives: e8e1d0, cornsilk, ivory, floralwhite, mistyrose, oldlace, */
     --bg-light-secondary: #a4a396;
     --bg-dark: #1c2f28; /*#262626;*/
     --fg-light: #646464;
     --fg-light-secondary: #b2b1aa;
     --fg-dark: #e3e0d7;
     --fg-dark-secondary: #b2b1aa;
+    --fg-light-accent: palevioletred;
     --article-width: 35rem;
 }
 
@@ -36,7 +37,7 @@ code {
     margin-left: 0;
 }
 
-figure img {
+article figure img {
     max-width: var(--article-width);
     max-height: 600px;
 }
@@ -247,14 +248,6 @@ pre {
     padding-left: 2rem;
 }
 
-p, ul, figcaption, a, blockquote, h1, h2, h3, h4, h5, h6, nav, pre, footer {
-    max-width: var(--article-width);
-}
-
-ol {
-    max-width: calc(var(--article-width) - 2.5rem); /* leave space for indent */
-}
-
 /* Quoting */
 /* Make sure to make figcaptions are paragraph tags for correct styling. Inline
    elements look weird and not have proper margins. */
@@ -339,7 +332,6 @@ blockquote.dark-mode {
 .fancyquote blockquote blockquote:after {
     all: revert;
 }
-
 
 .flex {
     display: flex;
@@ -548,7 +540,7 @@ article img {
     margin: auto;
 }
 
-.gallery img {
+article .gallery img {
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;

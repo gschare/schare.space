@@ -6,3 +6,4 @@
 - [NYC Restaurants](nyc-restaurants.html)
 - [GF Gaming](gf-games.html)
 - [Microblog](microblog.html)
+- [Books](books.html)

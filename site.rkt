@@ -26,6 +26,9 @@
              :template garden.sxml
              :styles (css/default.css css/garden.css
                       css/justify.css css/background.css))
+            (:path garden/books.html
+             :template default.sxml
+             :styles (css/default.css css/garden.css css/wide.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
