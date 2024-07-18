@@ -117,7 +117,7 @@ aside.dark-mode, div.sidebar.dark-mode, div.aside.dark-mode {
     border-left: 1px solid var(--fg-dark);
 }
 
-details {
+details.details {
     padding-left: 15px;
     margin-left: 15px;
     padding-bottom: 5px;
@@ -125,7 +125,7 @@ details {
     border-radius: 10px;
 }
 
-details.dark-mode {
+details.details.dark-mode {
     border: 1px solid var(--fg-dark);
 }
 

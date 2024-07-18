@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article><title>
+Papers
+</title>
+<h1 id="papers">Papers</h1>
+<div class="nobullet">
+<ul>
+<li><a href="/assets/papers/.pdf"></a></li>
+<li><a href="/assets/papers/landin700.pdf">The Next 700 Programming
+Languages</a> by Peter Landin</li>
+<li><a href="/assets/papers/bush1945.pdf">As We May Think</a></li>
+<li><a href="/assets/papers/codd1970.pdf">A Relational Model of Larged
+Shared Data Banks</a> by Edgar Codd
+<ul>
+<li>invention of relational databases and precursor to SQL</li>
+</ul></li>
+<li><a href="/assets/papers/hoare-csp.pdf">Communicating Sequential
+Processes</a> by Tony Hoare
+<ul>
+<li>early concurrency</li>
+</ul></li>
+<li><a href="/assets/papers/hoare-varieties.pdf">The Varieties of
+Programming Language</a> by Tony Hoare</li>
+<li><a href="/assets/papers/hoogleplus.pdf">Digging for Fold:
+Synthesis-Aided API Discovery for Haskell</a> by James et al</li>
+<li><a href="/assets/papers/smalltalk-history.pdf">The Early History of
+Smalltalk</a> by Alan Kay</li>
+</ul>
+</div>
+</article></main></body></html>
