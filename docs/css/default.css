@@ -216,8 +216,6 @@ ol.footnotes li:target {
 
 .indent {
     margin-left: 2rem;
-    display: block;
-    margin-top: 4px;
 }
 
 body {

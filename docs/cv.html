@@ -51,24 +51,49 @@
 
 <p><i>Would you like me in a <a href="/assets/cv.pdf">PDF</a>?</i></p>
 
-<h3>Education</h3>
-    <p class="indent">
-    <b>Massachusetts Institute of Technology</b>
-    <br>
-    Computer Science and Artificial Intelligence Laboratory
-    <br>
-    Incoming Ph.D. student in Computer Science
-    <br>
-    September 2025 - ???
-    <br>
-    Advisor: <a href="https://people.csail.mit.edu/dnj/">Daniel Jackson</a>
-    </p>
+<style>
+div.nobreak p {
+    margin-top: 0;
+    margin-bottom: 4px;
+ }
 
-    <p class="indent"><b>Columbia University</b>
-    <br>
-    B.A. in Computer Science and Mathematics
-    <br>
-    September 2019 - December 2023
+ div.nobreak {
+     margin-top: 15px;
+     margin-bottom: 15px;
+ }
+
+ table td {
+     vertical-align: top;
+     text-align: left;
+ }
+ td + td {
+     padding-left: 15px;
+ }
+</style>
+
+<section>
+    <h3>Education</h3>
+    <div>
+        <p>
+            <b>Massachusetts Institute of Technology</b>
+            <br>
+            Computer Science and Artificial Intelligence Laboratory
+            <br>
+            Incoming Ph.D. student in Computer Science
+            <br>
+            September 2025 - ???
+            <br>
+            Advisor: <a href="https://people.csail.mit.edu/dnj/">Daniel Jackson</a>
+        </p>
+    </div>
+
+    <div>
+        <p><b>Columbia University</b>
+            <br>
+            B.A. in Computer Science and Mathematics
+            <br>
+            September 2019 - December 2023
+        </p>
     <details class="indent">
         <summary>Coursework</summary>
         <ul class="indent">
@@ -92,192 +117,214 @@
             <li>Honors Math</li>
         </ul>
     </details>
-    </p>
+    </div>
+</section>
 
+<hr>
+
+<section>
 <h3>Research</h3>
 
-    <p class="indent">
+    <div class="nobreak">
+    <p>
     Composable Systems Lab &centerdot;
     <a href="https://www.cmu.edu/scs/s3d/reuse/Research/index.html">REUSE</a>
     @ Carnegie Mellon University
     <br>
     May - August 2023
-    <br>
-    <span class="indent">
+    </p>
+    <p class="indent">
         Designed benchmarking experiments to evaluate the performance of
         <a href="https://collabs.readthedocs.io/en/latest/">Collabs</a>
         in real-time collaborative rich text editing. Work presented in the
         REUSE poster session. Advised by Heather Miller and Matthew Weidner.
-    </span>
     </p>
+    </div>
 
-    <p class="indent">
-    Edwards Lab &centerdot; Columbia University
-    <br>
-    September 2022 - May 2023
-    <br>
-    <span class="indent">
-        Studied optimization of reference counting in the
-        <a href="https://github.com/ssm-lang/sslang">SSLANG</a>
-        compiler. Advised by Stephen Edwards and Emily Sillars.
-    </span>
+        <div class="nobreak">
+            <p>
+                Edwards Lab &centerdot; Columbia University
+                <br>
+                September 2022 - May 2023
+            </p>
+            <p class="indent">
+                Studied optimization of reference counting in the
+                <a href="https://github.com/ssm-lang/sslang">SSLANG</a>
+                compiler. Advised by Stephen Edwards and Emily Sillars.
+            </p>
+        </div>
+
+        <div class="nobreak">
+            <p>
+                Making and Knowing Project &centerdot; Columbia University
+                <br>
+                June 2020 - June 2022
+            </p>
+            <p class="indent">
+                Developed specialized textual analysis tools in Python to
+                facilitate digital humanities research. Designed 2 websites to
+                exhibit ongoing projects and editorial discussions, using Pandoc,
+                Jekyll, Haskell, and JavaScript for static site generation.
+                Used Google Drive API to archive and organize 9 years of student
+                lab reports and scholarly essays. Advised by Naomi Rosenkranz and
+                Terry Catapano.
+        </p>
+    </div>
+
+    <div class="nobreak">
+        <p>
+            Laboratory for Physical Sciences &centerdot; University of Maryland, College Park
+            <br>
+            June - August 2019
     </p>
-
-    <p class="indent">
-    Making and Knowing Project &centerdot; Columbia University
-    <br>
-    June 2020 - June 2022
-    <br>
-    <span class="indent">
-        Developed specialized textual analysis tools in Python to
-        facilitate digital humanities research. Designed 2 websites to
-        exhibit ongoing projects and editorial discussions, using Pandoc,
-        Jekyll, Haskell, and JavaScript for static site generation.
-        Used Google Drive API to archive and organize 9 years of student
-        lab reports and scholarly essays. Advised by Naomi Rosenkranz and
-        Terry Catapano.
-    </span>
-    </p>
-
-    <p class="indent">
-    Laboratory for Physical Sciences &centerdot; University of Maryland, College Park
-    <br>
-    June - August 2019
-    <br>
-    <span class="indent">
+            <p class="indent">
         Analyzed electron scattering in solids using physics simulation
         software and Python. Built a device to streamline experimental
         process by measuring solution concentration using optical lasers.
         Advised by Bruce Kane.
-    </span>
+    </p>
+    </div>
+</section>
+
+<hr>
+
+<section>
+    <h3>Industry</h3>
+    <p>
+        Software Engineer &centerdot;
+        <a href="https://nectry.com/">Nectry</a>
+        <br>
+        February 2024 - present
     </p>
 
-<h3>Industry</h3>
-    <p class="indent">
-    Software Engineer &centerdot;
-    <a href="https://nectry.com/">Nectry</a>
-    <br>
-    February 2024 - present
+    <div class="nobreak">
+        <p>
+            Software Engineering Intern &centerdot;
+            CertiK
+            <br>
+            June - August 2022
     </p>
+            <p class="indent">
+                Developed a SMT-based formal verification tool for automatic
+                verification of Solidity smart contracts using Python and Z3.
+        </p>
+    </div>
+</section>
 
-    <p class="indent">
-    Software Engineering Intern &centerdot;
-    CertiK
-    <br>
-    June - August 2022
-    <br>
-    <span class="indent">
-        Developed a SMT-based formal verification tool for automatic
-        verification of Solidity smart contracts using Python and Z3.
-    </span>
-    </p>
+<hr>
 
+<section>
 <h3>Papers</h3>
-<p class="indent">
+<p>
 <b>Collabs: A Flexible and Performant CRDT Collaboration Framework.</b>
 <br>
 <em>M. Weidner, H. Qi, M. Kjaer, R. Pradeep, B. Geordie, Y. Zhang, <b>G. Schare</b>, X. Tang, S. Xing, and H. Miller.</em>
 <br>
 <em><a href="https://arxiv.org/abs/2212.02618">arXiv preprint</a>, 2023.</em>
 </p>
+</section>
 
 
+<hr>
+
+<section>
 <h3>Teaching</h3>
-    <p class="indent">
+    <p>
         Teaching Assistant
         <br>
-        <span style="display: flex">
-            <span>
-                <span class="indent">Fall 2023</span>
-            </span>
-            <span>
-                <span class="indent">
-                    CSEE 6863 Formal Verification
+        <table style="border: none" class="indent">
+            <tr>
+                <td>Fall 2023</td>
+                <td>CSEE 6863 Formal Verification
                     <br>
                     COMS 4995 Parallel Functional Programming
-                </span>
-            </span>
-        </span>
-
-        <span style="display: flex">
-            <span>
-                <span class="indent">Fall 2022</span>
-            </span>
-            <span>
-                <span class="indent">
-                    COMS 4115 Programming Languages and Translators
-                </span>
-            </span>
-        </span>
+                </td>
+            </tr>
+            <tr>
+                <td>Fall 2022</td>
+                <td> COMS 4115 Programming Languages and Translators</td>
+            </tr>
+        </table>
     </p>
 
 
-    <p class="indent">
+    <div class="nobreak">
+    <p>
     Private tutor &centerdot;
     COMS 1004 Introduction to Computer Science and Programming in Java
     <br>
     September 2019 - December 2023
-    <br>
-    <span class="indent">
+    </p>
+    <p class="indent">
         Provided one-on-one private tutoring for undergraduate students in
         introductory computer science courses.
-    </span>
     </p>
+    </div>
 
-    <p class="indent">
+    <div class="nobreak">
+    <p>
     Instructor &centerdot;
     CodeAdvantage
     <br>
     July - December 2020
-    <br>
-    <span class="indent">
+    </p>
+    <p class="indent">
         Taught 3 introductory programming courses for middle school
         students. Developed new curricula.
-    </span>
     </p>
+    </div>
+</section>
 
-<h3>Projects</h3>
-    <p class="indent">
-    <i>Slyce: a dependently-typed programming language type-checker</i>
-    <br>
-    Types, Languages, and Compilers
-    <br>
-    <span class="indent">
-        Project partner: Raven Rothkopf. Implemented a type-checker for a
-        dependently-typed programming language in Haskell.
-    </span>
-    </p>
+<hr>
 
+<section>
+    <h3>Projects</h3>
+    <div class="nobreak">
+        <p>
+            <i>Slyce: a dependently-typed programming language type-checker</i>
+            <br>
+            Types, Languages, and Compilers
+        </p>
+        <p class="indent">
+            Project partner: Raven Rothkopf. Implemented a type-checker for a
+            dependently-typed programming language in Haskell.
+        </p>
+    </div>
+
+    <div class="nobreak">
+        <p>
+            <i>SMT-powered model checker for LLVM</i>
+            <br>
+            CSEE 6863 Formal Verification of Hardware and Software Systems
+        </p>
     <p class="indent">
-    <i>SMT-powered model checker for LLVM</i>
-    <br>
-    CSEE 6863 Formal Verification of Hardware and Software Systems
-    <br>
-    <span class="indent">
         Project partner: Marcus Min. Designed implemented a model checker
         targeting a subset of LLVM with computation tree logic (CTL) as the
         specification language. Written in Python and C++ using cvc5 as the
         backend solver.
-    </span>
     </p>
+    </div>
 
-    <p class="indent">
+    <div class="nobreak">
+    <p>
     <i>Josh: an imperative programming language</i>
     <br>
     COMS 4115 Programming Languages and Translators
-    <br>
-    <span class="indent">
+    </p>
+    <p class="indent">
         As a team of 5 students, designed and implemented an imperative
         programming language in OCaml. Compiles to LLVM.
-    </span>
     </p>
+    </div>
+</section>
 
+<hr>
+
+<section>
+<h3>Talks</h3>
 <details>
-    <summary>
-        <h3>Talks</h3>
-    </summary>
 
-    <p class="indent">
+    <p>
     <i>A Taste of Homotopy Type Theory</i>
     <br>
     MATH 3951 Undergraduate Seminars: Algebraic Topology in Data Science
@@ -285,7 +332,7 @@
     November 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i><a href="https://docs.google.com/presentation/d/1dBS6ZB_8XjGA7QdBZRhk0xXE-xM0YklUnCmIy6Q25kI/edit?usp=sharing">Interdisciplinary Programming Language Design</a></i>
     <br>
     COMS 4995 Readings in Language Design
@@ -293,7 +340,7 @@
     November 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i><a href="https://docs.google.com/presentation/d/1tmbq9kKF-4iOBBQN-wS-txS_8ELfuv8j61tOHFcU0Ec/edit?usp=sharing">The Early History of Smalltalk</a></i>
     <br>
     COMS 4995 Readings in Language Design
@@ -301,7 +348,7 @@
     September 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i>Topological Notions, Homotopy, and nth Homotopy Groups</i>
     <br>
     MATH 3951 Undergraduate Seminars: Algebraic Topology in Data Science
@@ -309,7 +356,7 @@
     September 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i>Digging for Fold: Synthesis-Aided API Discovery for Haskell</i>
     <br>
     COMS 3997 Program Synthesis
@@ -317,7 +364,7 @@
     May 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i>Semantics-Guided Synthesis</i>
     <br>
     COMS 3997 Program Synthesis
@@ -325,7 +372,7 @@
     March 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i>Vannevar Bush: Memex and the Endless Frontier</i>
     <br>
     COMS 6998 Reading the CS Classics
@@ -333,7 +380,7 @@
     March 2023
     </p>
 
-    <p class="indent">
+    <p>
     <i>THRALL: SMT-based Reachability Analysis for LLVM</i>
     <br>
     CSEE 6863 Formal Verification of Hardware and Software Systems
@@ -341,7 +388,7 @@
     December 2022
     </p>
 
-    <p class="indent">
+    <p>
     <i>The Varieties of Programming Languages</i>
     <br>
     Formal Semantics of Programming Languages
@@ -349,7 +396,7 @@
     October 2022
     </p>
 
-    <p class="indent">
+    <p>
     <i>Automated SMT-Based Formal Verification of Solidity Smart Contracts</i>
     <br>
     CertiK
@@ -357,7 +404,7 @@
     August 2022
     </p>
 
-    <p class="indent">
+    <p>
     <i>Josh: A typed language for the shell</i>
     <br>
     COMS 4115 Programming Languages and Translators
@@ -365,7 +412,7 @@
     May 2022
     </p>
 
-    <p class="indent">
+    <p>
     <i>Social Choice: Noise Stability and Arrow's Theorem</i>
     <br>
     Analysis of Boolean Functions
@@ -374,44 +421,55 @@
     </p>
 </details>
 <br>
+</section>
 
-<h3>Skills</h3>
-    <p class="indent">
-    <b>Programming languages</b>
-    <br>
-    Python, C, Haskell, OCaml, JavaScript, Racket, Rust, Java, Promela,
-    MIPS, HTML, CSS.
+<hr>
+
+<section>
+    <h3>Skills</h3>
+    <p>
+        <b>Programming languages</b>
+        <br>
+        Python, C, Haskell, OCaml, JavaScript, Racket, Rust, Java, Promela,
+        MIPS, HTML, CSS.
     </p>
 
-    <p class="indent">
-    <b>Technologies</b>
-    <br>
-    Git, Unix, Node, Next.js, React, SQL, Processing, AWS, Digital Ocean,
-    Jekyll.
+    <p>
+        <b>Technologies</b>
+        <br>
+        Git, Unix, Node, Next.js, React, SQL, Processing, AWS, Digital Ocean,
+        Jekyll.
     </p>
+</section>
 
-<h3>Other stuff</h3>
-    <p class="indent">
+<hr>
+
+<section>
+    <h3>Other stuff</h3>
+    <div class="nobreak">
+    <p>
     <i>Philolexian Society</i>
     <br>
     September 2019 - May 2023
-    <br>
-    <span class="indent">
+    </p>
+    <p class="indent">
         Led satirical debate club as moderator. Also served as impresario.
         Responsibilities included moderating weekly debates, organizing
         public and private events, assisting with managing club finances,
         and being a liaison with the Philolexian Foundation Board.
-    </span>
     </p>
+    </div>
 
-    <p class="indent">
+    <div class="nobreak">
+    <p>
     <i>Columbia Space Initiative</i>
     <br>
     September 2020 - September 2022
-    <br>
-    <span class="indent">
-        Webmaster for <a href="https://columbiaspace.org/">club website</a>.
-    </span>
     </p>
+    <p class="indent">
+        Webmaster for <a href="https://columbiaspace.org/">club website</a>.
+    </p>
+    </div>
+</section>
 <!--  inspo: https://tinghe-c.github.io/  -->
 </article></main></body></html>
