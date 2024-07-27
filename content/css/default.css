@@ -54,6 +54,13 @@ h3, h4, h5, h6 {
     margin: 0;
 }
 
+p .warning {
+    color: red;
+}
+.dark-mode p .warning {
+    color: tomato;
+}
+
 h1, h2, h3, h4, h5, h6 {
 }
 
