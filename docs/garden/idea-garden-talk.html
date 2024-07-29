@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article><title>
+References for Idea Garden Talk
+</title>
+<h1 id="references-for-idea-garden-talk">References for Idea Garden
+Talk</h1>
+<ul>
+<li><a href="https://maggieappleton.com/garden-history">Maggie Appleton
+- “Garden History”</a></li>
+<li><a href="https://platypus1917.org/2008/10/01/capital-in-history-the-need-for-a-marxian-philosophy-of-history-of-the-left/">Chris
+Cutrone - “Capital in History”</a>
+<ul>
+<li><a href="https://platypus1917.org/wp-content/uploads/cutrone_capitalinhistorytimeline052019.pdf">timeline</a></li>
+</ul></li>
+<li><a href="https://chriscutrone.platypus1917.org/wp-content/uploads/2010/04/horkheimer_littlemanphilosophyfreedomdaemmerung1926-31.pdf">Max
+Horkheimer - <em>The Little Man and the Philosophy of
+Freedom</em></a></li>
+<li><a href="https://www.imdb.com/title/tt1305826/"><em>Adventure
+Time</em></a> (images)</li>
+<li>Digital gardening tools
+<ul>
+<li><a href="https://github.com/MaggieAppleton/digital-gardeners?tab=readme-ov-file">Index
+of digital gardeners</a></li>
+<li><a href="https://roamresearch.com/">Roam Research</a></li>
+<li><a href="https://obsidian.md/">Obsidian</a></li>
+<li><a href="https://www.notion.so/">Notion</a></li>
+<li><a href="https://orgmode.org/">org-mode</a></li>
+</ul></li>
+</ul>
+</article></main></body></html>
