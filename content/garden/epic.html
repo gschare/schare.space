@@ -315,3 +315,13 @@ of the world is sexy and forest fires are earthy</p>
 <p>Card, card, and then the winner, baked beans</p>
 <p>He majored in The Cold War at USC and now he builds taco bells</p>
 </blockquote>
+<script>
+let links = document.querySelectorAll('article a');
+for (let i = 0; i < links.length; i++) {
+  if (links[i].hostname != window.location.hostname) {
+    links[i].target = '_blank';
+  } else {
+    links[i].style.color = 'rgb(159, 91, 191)';
+  }
+}
+</script>

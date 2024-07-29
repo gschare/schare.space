@@ -74,7 +74,7 @@ a {
 }
 
 a:hover {
-    color: var(--link-color-hover);
+    color: var(--link-color-hover) !important;
 }
 
 header {
