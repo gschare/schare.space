@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="dither.js"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <h1>Ditherer</h2>
+
+        <div class="slidecontainer">
+          <label for="width">Width</label>
+          <input type="range" min="100" max="1200" value="600" class="slider" id="width-slider">
+          <input type="number" id="width-result" value="600" style="width: 4rem">
+        </div>
+
+        <div id="container">
+
+            <div class="row">
+
+                <div class="col">
+                    <p>Drag & drop a file below!</p>
+
+                    <div id="dropzone"
+                        ondrop="dropHandler(event);"
+                        ondragover="dragOverHandler(event);">
+                        <p>Drag & drop a photo here!</p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <p>The dithered image will appear here</p>
+                    <div id="dithered"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -50,7 +50,7 @@
                   CNAME
                   ;,(rss-tidings)
                   )
-          :folders (writ js css assets/img assets/fonts)
+          :folders (writ js css assets/img assets/fonts lab)
           )
     :disabled (:files ()
                :folders ()
