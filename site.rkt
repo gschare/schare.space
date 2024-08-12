@@ -42,6 +42,12 @@
               (:path tidings
                :template blog.sxml
                :styles (css/default.css css/tidings.css css/background.css))
+              (:path garden/sea
+               :template garden.sxml
+               :styles (css/default.css css/garden.css css/wide.css))
+              ;(:path garden/phlog
+              ; :template garden.sxml
+              ; :styles (css/default.css css/garden.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf

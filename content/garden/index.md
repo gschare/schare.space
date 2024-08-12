@@ -7,6 +7,8 @@
 [More](more.html)
 &centerdot;
 [IC](ic.html)
+&centerdot;
+[Logs](logs.html)
 </nav>
 # Garden
 

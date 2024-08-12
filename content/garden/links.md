@@ -1,4 +1,5 @@
 <title>Links</title>
+<!-- provenance: garden/links.md -->
 
 <style>
 header {
@@ -25,6 +26,7 @@ I'll tell you one thing:\
 </details>
 
 ::: nobullet
+* <https://www.todepond.com/wikiblogarden/better-computing/better-computing/>
 * <https://worrydream.com/ABriefRantOnTheFutureOfInteractionDesign/>
 * <https://programmingmadecomplicated.wordpress.com/2023/03/12/my-two-absolute-hands-down-least-favourite-things-in-programming/>
 * <https://www.visakanv.com/blog/late/>
@@ -51,4 +53,5 @@ I'll tell you one thing:\
 * <https://www.spencerchang.me/>
 * <http://www.gabrielgabrielgarble.com/>
 * <https://orteil.dashnet.org/nested>
+* <https://wiki.xxiivv.com/site/ehrivevnv.html>
 :::

@@ -17,11 +17,16 @@ img {
 
 ## In Progress
 <div class="flex">
-<img src="/assets/img/garden/books/dune.webp" /> </div> <!-- /div must be right after final element or it adds a <p> tag ??? -->
+<img src="/assets/img/garden/books/dune.webp" />
+<img src="/assets/img/garden/books/gita.jpg" />
+<img src="/assets/img/garden/books/piranesi.jpg" />
+<img src="/assets/img/garden/books/toolsforconviviality.jpg" />
+<img src="/assets/img/garden/books/prideandprejudice.jpg" /> </div> <!-- /div must be right after final element or it adds a <p> tag ??? -->
 
 ## 2024
 
 <div class="flex">
+<img src="/assets/img/garden/books/leguintombs.jpg" />
 <img src="/assets/img/garden/books/leguinlathe.jpg" />
 <img src="/assets/img/garden/books/hitzthought.jpg" />
 <img src="/assets/img/garden/books/jacksonessence.jpg" />
