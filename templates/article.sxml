@@ -8,6 +8,7 @@
                      (class "modal-image")
                      (src "")))))
    (script (@ (src "/js/modal.js")))
-   (article (insert (@ (expr "content"))))))
+   (article (@ (class "article"))
+     (insert (@ (expr "content"))))))
 
 

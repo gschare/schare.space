@@ -1,8 +1,8 @@
 <title>Logs</title>
 # Logs
-- [Blog](/tidings/)
-- [Flog](flog/)
-- [Phlog](phlog/)
-- [Microblog](microblog.html)
-- [Frog](https://todepond.com)
-- [Dog](/assets/img/garden/dog.jpg)
+- [blog](/tidings/)
+- [flog](flog/)
+- [phlog](phlog/)
+- [μblog](microblog.html)
+- [frog](https://todepond.com)
+- [dog](/assets/img/garden/dog.jpg)

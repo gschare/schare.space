@@ -6,45 +6,45 @@
 
 (define rules
   `(:defaults (:template article.sxml
-               :styles (css/default.css))
+               :styles (css/default.css css/article.css))
     :files ((:path new.html
              :template new.sxml
              :styles (css/default.css css/new.css))
             (:path index.html
-             :styles (css/default.css css/home.css))
+             :styles (css/default.css css/article.css css/home.css))
             (:path now.html
-             :styles (css/default.css css/now.css))
+             :styles (css/default.css css/article.css css/now.css))
             (:path cv.html)
             (:path 404.html)
             (:path tidings/index.html
              :template blog.sxml
-             :styles (css/default.css css/tidings.css))
+             :styles (css/default.css css/article.css css/tidings.css))
             (:path assets/docs/cartwheel.html
              :template garden.sxml
-             :styles (css/default.css css/garden.css css/background.css))
+             :styles (css/default.css css/article.css css/garden.css css/background.css))
             (:path garden/microblog.html
              :template garden.sxml
-             :styles (css/default.css css/garden.css
+             :styles (css/default.css css/article.css css/garden.css
                       css/justify.css css/background.css))
             (:path garden/books.html
              :template default.sxml
              :styles (css/default.css css/garden.css css/wide.css))
             (:path garden/worm.html
              :template article-headerless.sxml
-             :styles (css/default.css css/garden.css))
+             :styles (css/default.css css/article.css css/garden.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
             )
     :folders ((:path ,(md* 'garden #:recursive #t)
                :template garden.sxml
-               :styles (css/default.css css/garden.css))
+               :styles (css/default.css css/article.css css/garden.css))
               (:path tidings
                :template blog.sxml
-               :styles (css/default.css css/tidings.css css/background.css))
+               :styles (css/default.css css/tidings.css css/article.css css/background.css))
               (:path garden/sea
                :template garden.sxml
-               :styles (css/default.css css/garden.css css/wide.css))
+               :styles (css/default.css css/garden.css css/sea.css))
               ;(:path garden/phlog
               ; :template garden.sxml
               ; :styles (css/default.css css/garden.css))
@@ -56,7 +56,7 @@
                   CNAME
                   ;,(rss-tidings)
                   )
-          :folders (writ js css assets/img assets/fonts lab)
+          :folders (writ js css assets/img assets/fonts assets/papers lab)
           )
     :disabled (:files ()
                :folders ()

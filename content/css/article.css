@@ -1,0 +1,296 @@
+:root {
+    --article-width: 35rem;
+}
+
+article.article figure img {
+    max-width: var(--article-width);
+    max-height: 600px;
+}
+
+@media screen and (max-width: 800px) {
+    figure img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+h1, h2 {
+    margin-bottom: 5px;
+}
+
+h3, h4, h5, h6 {
+    display: block;
+    margin: 0;
+}
+
+header {
+    margin: auto;
+    max-width: var(--article-width);
+}
+
+/* Footnotes */
+/* Note that you still have to keep the ordering consistent.
+ * so the order of the references should match the order of the footnotes.
+ */
+
+.footnote-ref sup {
+    /* no sup for you! */
+    all: inherit;
+}
+.footnote-ref sup::before {
+    content: '[';
+}
+.footnote-ref sup::after {
+    content: ']';
+}
+
+a.fn {
+    /* a reference to a footnote */
+    counter-increment: footnotes;
+    text-decoration: none;
+    color: inherit;
+    cursor: inherit;
+    outline: none;
+}
+
+a.fn:hover {
+    color: inherit;
+}
+
+main article.article {
+    counter-reset: footnotes;
+    max-width: var(--article-width); /* 60rem; */ /* to fit asides; subelements are 35rem */
+    padding: 0px 50px 30px 50px;
+    margin: auto; /* to center within main */
+}
+
+@media screen and (max-width: 800px) {
+    main article.article {
+        padding: 0px 10px 30px 10px;
+    }
+}
+
+aside, div.sidebar, div.aside {
+    float: right;
+    width: 15rem;
+    padding-left: 15px;
+    margin-left: 15px;
+    padding-bottom: 5px;
+    border-left: 1px solid var(--fg-light);
+}
+
+aside.dark-mode, div.sidebar.dark-mode, div.aside.dark-mode {
+    border-left: 1px solid var(--fg-dark);
+}
+
+p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+a.fn:after {
+    content: "[" counter(footnotes) "]";
+    vertical-align: super;
+    font-size: 0.8em;
+    line-height: 80%;
+    margin-left: 2px;
+    color: var(--link-color-light);
+    cursor: pointer;
+}
+
+a.fn:hover:after {
+    color: var(--link-color-hover);
+}
+
+a.back::after {
+    content: '↩';
+    font-size: smaller;
+}
+
+ol.footnotes {
+    /* list of footnotes */
+    counter-reset: footnotes;
+}
+
+ol.footnotes li {
+    list-style-type: none;
+    padding-left: 0.5em;
+    counter-increment: footnotes;
+}
+
+ol.footnotes li::marker {
+    content: "[" counter(footnotes) "]";
+}
+
+ol.footnotes li:target {
+    /* could put something here */
+}
+
+
+/* end footnotes */
+
+/* Quoting */
+/* Make sure to make figcaptions are paragraph tags for correct styling. Inline
+   elements look weird and not have proper margins. */
+
+blockquote {
+    /*font-size: 100%;
+    text-align: justify;
+    text-justify: inter-word;*/
+    padding-left: 2rem;
+    border-left: 1px solid var(--fg-light);
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+}
+
+blockquote.dark-mode {
+    border-left: 1px solid var(--fg-dark);
+}
+
+/* .simplequote: a thin line to the left */
+.simplequote blockquote {
+    padding-left: 2rem;
+    border-left: 1px solid var(--fg-light);
+}
+
+.simplequote blockquote.dark-mode {
+    border-left: 1px solid var(--fg-dark);
+}
+
+.simplequote figcaption {
+    padding-left: 2rem;
+}
+
+.fancyquote blockquote {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+.fancyquote blockquote {
+    position: relative;
+    border: none;
+    padding-left: revert;
+}
+
+.fancyquote blockquote:before {
+    color: #949494;
+    font-family: Georgia, serif;
+    font-size: 4em;
+    top: -0.15em;
+    left: -0.5em;
+    line-height: 1;
+    content: "\201c";
+    position: absolute;
+}
+
+.fancyquote blockquote:after {
+    color: #949494;
+    font-family: Georgia, serif;
+    float: right;
+    font-size: 4em;
+    bottom: -0.65em;
+    right: -0.5em;
+    line-height: 1;
+    content: "\201d";
+    position: absolute;
+}
+
+.fancyquote figcaption, .fancyquote > p {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+/* Nested quotes don't get the quotes */
+.fancyquote blockquote blockquote:before {
+    all: revert;
+}
+.fancyquote blockquote blockquote:after {
+    all: revert;
+}
+
+hr {
+    max-width: 35em;
+    border: 1px solid;
+    margin-left: 0;
+    margin-right: 0;
+    color: var(--fg-light);
+}
+
+article.article img {
+    border-radius: 5px;
+    max-width: var(--article-width);
+    max-height: 600px;
+    display: block;
+    margin: auto;
+}
+
+article.article .gallery img {
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    max-width: var(--article-width);
+    max-height: 600px;
+    display: block;
+    margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .gallery img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    article.article img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+.gallery img:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 800px) {
+    .gallery img:hover {
+        opacity: 1;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    padding: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 50px;
+    padding-bottom: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    overflow-y: scroll;
+}
+
+.modal-content {
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    max-width: calc(100vw - 50px);
+    overflow: hidden;
+}
+
+.modal-image {
+    display: flex;
+    max-height: calc(100vh - 100px);
+}

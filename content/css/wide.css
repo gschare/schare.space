@@ -1,3 +1,11 @@
-header {
+:root {
+    --article-width: 100%;
+}
+
+article.article header {
     all: revert;
+}
+
+article.article {
+    margin: auto; /* to center within main */
 }
