@@ -13,6 +13,7 @@
             (:path index.html
              :styles (css/default.css css/article.css css/home.css))
             (:path now.html
+             :template article.sxml
              :styles (css/default.css css/article.css css/now.css))
             (:path cv.html)
             (:path 404.html)
