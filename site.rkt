@@ -30,6 +30,9 @@
             (:path garden/books.html
              :template default.sxml
              :styles (css/default.css css/garden.css css/wide.css))
+            (:path garden/aphorisms/index.html
+             :template default.sxml
+             :styles (css/default.css css/garden.css css/wide.css))
             (:path garden/worm.html
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/garden.css))
