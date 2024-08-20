@@ -55,8 +55,20 @@
     display: grid;
     /* fr = fractional unit */
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    @media
     grid-auto-rows: auto;
     grid-gap: 1rem;
+}
+@media screen and (min-width: 400px) and (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
 }
 
 .card {
