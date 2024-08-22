@@ -12,20 +12,23 @@ img {
 .flex {
   gap: 10px;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 </style>
 
 ## In Progress
 <div class="flex">
-<img src="/assets/img/garden/books/dune.webp" />
-<img src="/assets/img/garden/books/gita.jpg" />
-<img src="/assets/img/garden/books/piranesi.jpg" />
+<img src="/assets/img/garden/books/lhod.jpg" />
+<img src="/assets/img/garden/books/idiot.jpg" />
 <img src="/assets/img/garden/books/toolsforconviviality.jpg" />
+<img src="/assets/img/garden/books/piranesi.jpg" />
+<img src="/assets/img/garden/books/dune.webp" />
 <img src="/assets/img/garden/books/prideandprejudice.jpg" /> </div> <!-- /div must be right after final element or it adds a <p> tag ??? -->
 
 ## 2024
 
 <div class="flex">
+<img src="/assets/img/garden/books/gita.jpg" />
 <img src="/assets/img/garden/books/leguintombs.jpg" />
 <img src="/assets/img/garden/books/leguinlathe.jpg" />
 <img src="/assets/img/garden/books/hitzthought.jpg" />
