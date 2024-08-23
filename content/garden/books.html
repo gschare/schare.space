@@ -2,14 +2,17 @@
 Books
 </title>
 <nav class="secondary">
-<a href="links.html">links</a>
+<a href="links.html">links</a> · <a href="flog/">flog</a>
 </nav>
 <h1 id="books">Books</h1>
 <style>
-img {
+#cards img {
+  all: revert;
   min-width: 10vw;
   max-width: 15vw;
   max-height: 600px;
+  object-fit: cover;
+  border-radius: 2px;
 }
 
 .flex {
@@ -18,6 +21,11 @@ img {
   flex-wrap: wrap;
 }
 </style>
+<div id="cards">
+<p><!-- for CSS specificity >.< --></p>
+<p><span class="warning"><strong>Note:</strong> this is just a
+placeholder. I later on plan to write my thoughts on certain books I
+read…</span></p>
 <h2 id="in-progress">In Progress</h2>
 <div class="flex">
 <img src="/assets/img/garden/books/lhod.jpg" />
@@ -26,8 +34,10 @@ img {
 <img src="/assets/img/garden/books/piranesi.jpg" />
 <img src="/assets/img/garden/books/dune.webp" />
 <img src="/assets/img/garden/books/prideandprejudice.jpg" />
+<div>
+
 </div>
-<p><!-- /div must be right after final element or it adds a <p> tag ??? --></p>
+</div>
 <h2 id="section">2024</h2>
 <div class="flex">
 <img src="/assets/img/garden/books/gita.jpg" />
@@ -36,8 +46,10 @@ img {
 <img src="/assets/img/garden/books/hitzthought.jpg" />
 <img src="/assets/img/garden/books/jacksonessence.jpg" />
 <img src="/assets/img/garden/books/snowcrash.jpg" />
+<div>
+
 </div>
-<p><!-- /div must be right after final element or it adds a <p> tag ??? --></p>
+</div>
 <h2 id="section-1">2023</h2>
 <div class="flex">
 <img src="/assets/img/garden/books/magicians.jpg" />
@@ -45,8 +57,11 @@ img {
 <img src="/assets/img/garden/books/zevintomorrow.jpg" />
 <img src="/assets/img/garden/books/androids.jpg" />
 <img src="/assets/img/garden/books/leguinwizard.jpg" />
+<div>
+
 </div>
-<p><!-- /div must be right after final element or it adds a <p> tag ??? --></p>
+</div>
+</div>
 <!--
 ## More
 * Roadside Picnic

@@ -1,12 +1,15 @@
 <title>Books</title>
-<nav class="secondary">[links](links.html)</nav>
+<nav class="secondary">[links](links.html) &centerdot; [flog](flog/)</nav>
 # Books
 
 <style>
-img {
+#cards img {
+  all: revert;
   min-width: 10vw;
   max-width: 15vw;
   max-height: 600px;
+  object-fit: cover;
+  border-radius: 2px;
 }
 
 .flex {
@@ -16,6 +19,11 @@ img {
 }
 </style>
 
+::: {#cards}
+ <!-- for CSS specificity >.< -->
+
+[**Note:** this is just a placeholder. I later on plan to write my thoughts on certain books I read...]{.warning}
+
 ## In Progress
 <div class="flex">
 <img src="/assets/img/garden/books/lhod.jpg" />
@@ -23,7 +31,9 @@ img {
 <img src="/assets/img/garden/books/toolsforconviviality.jpg" />
 <img src="/assets/img/garden/books/piranesi.jpg" />
 <img src="/assets/img/garden/books/dune.webp" />
-<img src="/assets/img/garden/books/prideandprejudice.jpg" /> </div> <!-- /div must be right after final element or it adds a <p> tag ??? -->
+<img src="/assets/img/garden/books/prideandprejudice.jpg" />
+<div></div>
+</div>
 
 ## 2024
 
@@ -33,7 +43,9 @@ img {
 <img src="/assets/img/garden/books/leguinlathe.jpg" />
 <img src="/assets/img/garden/books/hitzthought.jpg" />
 <img src="/assets/img/garden/books/jacksonessence.jpg" />
-<img src="/assets/img/garden/books/snowcrash.jpg" /> </div> <!-- /div must be right after final element or it adds a <p> tag ??? -->
+<img src="/assets/img/garden/books/snowcrash.jpg" />
+<div></div>
+</div>
 
 ## 2023
 
@@ -42,7 +54,11 @@ img {
 <img src="/assets/img/garden/books/stoner.jpg" />
 <img src="/assets/img/garden/books/zevintomorrow.jpg" />
 <img src="/assets/img/garden/books/androids.jpg" />
-<img src="/assets/img/garden/books/leguinwizard.jpg" /> </div> <!-- /div must be right after final element or it adds a <p> tag ??? -->
+<img src="/assets/img/garden/books/leguinwizard.jpg" />
+<div></div>
+</div>
+
+:::
 
 <!--
 ## More

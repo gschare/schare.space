@@ -28,11 +28,14 @@
              :styles (css/default.css css/article.css css/garden.css
                       css/justify.css css/background.css))
             (:path garden/books.html
-             :template default.sxml
-             :styles (css/default.css css/garden.css css/wide.css))
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path garden/aphorisms/index.html
-             :template default.sxml
-             :styles (css/default.css css/garden.css css/wide.css))
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
+            (:path garden/links.html
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path garden/worm.html
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/garden.css))
@@ -48,7 +51,10 @@
                :styles (css/default.css css/tidings.css css/article.css css/background.css))
               (:path garden/sea
                :template garden.sxml
-               :styles (css/default.css css/garden.css css/sea.css))
+               :styles (css/default.css css/article.css css/garden.css css/sea.css))
+              (:path garden/flog
+               :template garden.sxml
+               :styles (css/default.css css/article.css css/garden.css css/wide.css))
               ;(:path garden/phlog
               ; :template garden.sxml
               ; :styles (css/default.css css/garden.css))

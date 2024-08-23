@@ -1,17 +1,7 @@
 <title>Links</title>
 <!-- provenance: garden/links.md -->
 
-<style>
-header {
-    all: revert;
-}
-main article {
-    max-width: revert;
-    padding: revert;
-}
-</style>
-
-[]{style="padding-top: 1rem"}
+<h1></h1>
 
 <details>
 <summary>here are some links--</summary>
