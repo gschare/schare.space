@@ -15,7 +15,10 @@ function dither(file) {
       context.drawImage(img, 0, 0, width, height);
       const imgData = context.getImageData(0, 0, width, height);
 
-      const newData = monochrome(imgData, 'floydsteinberg', 0.5);
+      const blackHex = document.getElementById('black-color').value;
+      const whiteHex = document.getElementById('white-color').value;
+
+      const newData = monochrome(imgData, 'floydsteinberg', 0.5, blackHex, whiteHex);
       context.putImageData(newData, 0, 0);
 
       const ditheredUrl = canvas.toDataURL('image/png');
@@ -57,6 +60,17 @@ function dragOverHandler(ev) {
   ev.preventDefault();
 }
 
+function swapColors() {
+  const black = document.getElementById('black-color');
+  const white = document.getElementById('white-color');
+
+  const b = black.value;
+  const w = white.value;
+
+  black.value = w;
+  white.value = b;
+}
+
 window.onload = (e) => {
     const slider = document.getElementById('width-slider');
     const result = document.getElementById('width-result');
@@ -72,5 +86,12 @@ window.onload = (e) => {
            return;
        }
        slider.value = e.target.value;
+    });
+
+    const upload = document.getElementById('upload');
+    upload.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+            dither(e.target.files[0]);
+        }
     });
 }

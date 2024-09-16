@@ -1,5 +1,5 @@
 '(*TOP*
-    (template (@ (target "article.sxml"))
+    (template (@ (target "article-no-dark.sxml"))
               (*COMMENT*(a (@ (href "/tidings/"))
                  "All Posts"))
               (insert (@ (expr "content")))))

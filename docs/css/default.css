@@ -11,6 +11,10 @@
     --fg-light-accent: palevioletred;
 }
 
+html {
+    min-height: 100%;
+}
+
 @font-face {
     font-family: 'Cascadia Code PL';
     src: url('/assets/fonts/CascadiaCodePL.woff2') format('woff2');
@@ -42,6 +46,27 @@ p .warning {
 .dark-mode p .warning {
     color: tomato;
 }
+
+/* prose */
+div.prose p {
+    margin: 0;
+    text-align: justify;
+    text-indent: 2rem;
+}
+
+div.prose hr {
+    text-align: center;
+    border: none;
+    line-height: 2rlh;
+    &:before {
+        content: "*";
+    }
+}
+
+div.prose br {
+    line-height: 2rlh;
+}
+/* end prose */
 
 /* poem */
 div.poem {

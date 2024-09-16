@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/article.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><h1 id="name">Name</h1>
+<title>
+Name
+</title>
+<!--  provenance: local 24.09.15-10.33.md -> garden/name.html  -->
+<h2 id="tldr">Tl;dr</h2>
+<p>Gregory -&gt; Carmel</p>
+<h2 id="short-version">Short Version</h2>
+<p>I’m going by Carmel in non-legal settings. That means I’m Carmel in
+social and professional life, MIT’s HR system, and my online presence,
+but not on my driver’s license, passport, or taxes.</p>
+<p>I won’t be offended if you still call me Gregory (that is also my
+name) but I prefer Carmel.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="wait-i-dont-get-it.-what-do-i-call-you">Wait, I don’t get it.
+What do I call you?</h3>
+<p>You can call me whatever you’re used to calling me, and you can
+additionally call me Carmel. I have a preference for the latter in the
+same way I have a preference for “Gregory” over “Greg.”</p>
+<p>My full name is Carmel Schare or Gregory Schare.</p>
+<p>I also accept Gigi, though things may start to get confusing with
+that many names so if you want to use that, maybe refrain from using it
+outside of casual social settings.</p>
+<h3 id="why-carmel">Why Carmel?</h3>
+<p>Carmel has been one of my given names my entire life, since my bris.
+I like how it sounds and I like its associations as explained to me by
+my parents.</p>
+<h3 id="what-prompted-the-change">What prompted the change?</h3>
+<p>I feel a deeper connection with the name Carmel.</p>
+<h3 id="is-this-political">Is this political?</h3>
+<p>No. (I’ve been experimenting with the name change for several years,
+long before 2023. In general, I do not identify with Zionism.)</p>
+<h3 id="are-you-transgender">Are you transgender?</h3>
+<p>I don’t know. Are you?</p>
+<h3 id="you-cant-do-that.">You can’t do that.</h3>
+<p>That’s not a question. Also, yes I can.</p>
+</article></main></body></html>

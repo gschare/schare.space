@@ -1,0 +1,4 @@
+'(*TOP*
+    (template (@ (target "boilerplate.sxml"))
+              (template (@ (target "header-no-dark.sxml")))
+              (main (insert (@ (expr "content"))))))

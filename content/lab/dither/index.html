@@ -18,12 +18,24 @@
           <input type="number" id="width-result" value="600" style="width: 4rem">
         </div>
 
+        <div class="colorscontainer">
+          <label for="color">Colors</label>
+          <input type="color" id="white-color" value="#ffffff">
+          <input type="color" id="black-color" value="#000000">
+          <button id="swap-colors" onclick="swapColors()">Swap</button>
+        </div>
+
         <div id="container">
 
             <div class="row">
 
                 <div class="col">
-                    <p>Drag & drop a file below!</p>
+                    <div>
+                        <p>Drag & drop a file below!
+                        <label for="upload">Or upload!</label>
+                        <input type="file" id="upload"/>
+                        </p>
+                    </div>
 
                     <div id="dropzone"
                         ondrop="dropHandler(event);"

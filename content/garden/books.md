@@ -27,7 +27,6 @@
 ## In Progress
 <div class="flex">
 <img src="/assets/img/garden/books/lhod.jpg" />
-<img src="/assets/img/garden/books/idiot.jpg" />
 <img src="/assets/img/garden/books/toolsforconviviality.jpg" />
 <img src="/assets/img/garden/books/piranesi.jpg" />
 <img src="/assets/img/garden/books/dune.webp" />
@@ -38,6 +37,8 @@
 ## 2024
 
 <div class="flex">
+<img src="/assets/img/garden/books/kamalaharris.jpg" />
+<img src="/assets/img/garden/books/idiot.jpg" />
 <img src="/assets/img/garden/books/gita.jpg" />
 <img src="/assets/img/garden/books/leguintombs.jpg" />
 <img src="/assets/img/garden/books/leguinlathe.jpg" />

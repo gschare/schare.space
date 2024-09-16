@@ -27,7 +27,28 @@ for (var i=0; i<256; i++) {
   lumB[i] = i*0.114;
 }
 
-function monochrome(imageData, threshold, type){
+function hexToRgb(hex) {
+      // Remove the '#' character if it exists
+      hex = hex.replace(/^#/, '');
+
+      // Convert 3-digit hex to 6-digit hex if necessary
+      if (hex.length === 3) {
+        hex = hex.split('').map(char => char + char).join('');
+      }
+
+      // Parse the hex string into RGB values
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      return [r, g, b];
+}
+
+function monochrome(imageData, threshold, type, blackHex, whiteHex){
+
+  const blackColor = hexToRgb(blackHex);
+  const whiteColor = hexToRgb(whiteHex);
 
   var imageDataLength = imageData.data.length;
 
@@ -76,6 +97,20 @@ function monochrome(imageData, threshold, type){
 
     // Set g and b pixels equal to r
     imageData.data[currentPixel + 1] = imageData.data[currentPixel + 2] = imageData.data[currentPixel];
+  }
+  
+  // change every pixel to the right colors
+  for (var currentPixel = 0; currentPixel <= imageDataLength; currentPixel+=4) {
+      const r = imageData.data[currentPixel];
+      if (r === 0) {
+          imageData.data[currentPixel] = blackColor[0];
+          imageData.data[currentPixel+1] = blackColor[1];
+          imageData.data[currentPixel+2] = blackColor[2];
+      } else if (r === 255) {
+          imageData.data[currentPixel] = whiteColor[0];
+          imageData.data[currentPixel+1] = whiteColor[1];
+          imageData.data[currentPixel+2] = whiteColor[2];
+      }
   }
 
   return imageData;
