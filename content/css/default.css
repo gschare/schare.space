@@ -70,7 +70,7 @@ div.prose br {
 
 /* poem */
 div.poem {
-    padding-left: 1rem;
+    /*padding-left: 1rem;*/
     text-indent: -1rem;
 }
 
