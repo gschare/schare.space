@@ -39,9 +39,6 @@
             (:path garden/worm.html
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/garden.css))
-            (:path tidings/cambridge.html
-             :template blog.sxml
-             :styles (css/default.css css/tidings.css css/article.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
