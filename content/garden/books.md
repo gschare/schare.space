@@ -29,7 +29,6 @@
 <img loading="lazy" src="/assets/img/garden/books/lhod.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/toolsforconviviality.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/piranesi.jpg" />
-<img loading="lazy" src="/assets/img/garden/books/dune.webp" />
 <img loading="lazy" src="/assets/img/garden/books/prideandprejudice.jpg" />
 <div></div>
 </div>
@@ -37,6 +36,7 @@
 ## 2024
 
 <div class="flex">
+<img loading="lazy" src="/assets/img/garden/books/dune.webp" />
 <img loading="lazy" src="/assets/img/garden/books/kamalaharris.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/idiot.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/gita.jpg" />
