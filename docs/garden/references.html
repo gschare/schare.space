@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/article.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><!--  provenance: local 24.09.28-03.28.md -> garden/references.html  -->
+<h1 id="references">References</h1>
+<span id="date">Sep 27, 2024</span>
+<title>
+References
+</title>
+<p>I’ve enjoyed seeing the <a href="https://www.geoffreylitt.com/inspirations">bookshelves</a> of
+people I admire. Here I share some of the strongest influences on my
+thought.</p>
+<style>
+h3 + p {
+   margin-top: 0;
+}
+</style>
+<hr>
+<h2 id="ideas">Ideas</h2>
+<h3 id="marxism">Marxism</h3>
+<p>Marxist concept of history is a huge part of how I understand the
+world—or at least one of the lenses I reach for when looking at a
+phenomenon from various angles.</p>
+<p>The major sources here are Karl Marx, some writers from the Third
+International (Lenin and Luxemburg, mainly), and the critical theorists
+of the Frankfurt School: Walter Benjamin, Theodor Adorno, and, my
+favorite, Max Horkheimer. If I had to recommend just one short piece: <a href="https://www.marxists.org/reference/archive/horkheimer/1931/Little-man.pdf">The
+Little Man and the Philosophy of Freedom</a> by Horkheimer.</p>
+<p>I learned most of what I know about Marxism from <a href="https://platypus1917.org/">the Platypus Affiliated Society</a>, by
+participating in their year-long Primary Marxist Reading Group in the
+2020-21 session. I was lucky enough to be taught by Erin Hagood.</p>
+<h3 id="computer-science">Computer science</h3>
+<p>The technical jargon of computer science turns out to be very handy
+in expediently articulating complex concepts to those with the right
+shared context. I’ll give you an example of what I mean. While I was
+visiting MIT to decide if I wanted to do my PhD studies there, Adam
+Chlipala asked me, “what state transition are you hoping to achieve by
+executing the PhD function?” Granted, this example can be expressed
+pretty well in normal-people-language, but that’s why it is good for
+illustration here: the non-computer scientists reading this may be able
+to infer what he was asking, which was simply, “what are you hoping to
+achieve by doing a PhD?” or more specifically, “how do you expect to be
+different at the end of your PhD compared to now, and why is doing a PhD
+the best way to accomplish this change?”</p>
+<p>I tend to draw my metaphors from basic data structures and
+algorithms, and from the field of programming languages and compilers. I
+also take some from pure mathematics.</p>
+<p>My favorite is <strong>hill climbing</strong>. Coming from
+mathematical optimization, hill climbing studies the problem of finding
+an appropriate path to the highest point on a curved surface which may
+contain hills and valleys. There is one globally highest point, but if
+you only look greedily for ascending slopes, you may reach a lower
+<em>local maximum</em>. In the metaphor, this local maximum feels like
+the best you can hope for, because all other immediate paths seem to
+point downwards to lower levels of [happiness, wealth, comfort].
+Metaphorically speaking, most complex problems we face in real life are
+not convex (there is not one obvious path to the best solution).
+Reaching the global maximum requires taking some risks and even
+accepting a temporarily worse situation before it gets better. One
+common example: therapy for mental health.</p>
+<p>I have the kindling of an argument for why this pidgin can be so
+effective. Computer science is rich in techniques for talking about
+abstract things: defining them, comparing them, transforming them.
+Programmers tend to keep a question in the back of their minds at all
+times: “how can I make this more general?” Some people argue computer
+science is the study of abstraction. Others argue it is the study of
+complexity (and how to manage it effectively). So the century of work
+that has gone into developing the vocabulary, logics, and systems used
+by computer science for managing complexity can be pretty well applied
+to everyday scenarios that touch on this universal concept of
+complexity. Sometimes I think if you strip away the engineering aspects
+of computer science, what remains looks pretty much like applied
+philosophy.</p>
+<p>Also, computer science, like any field, creates jargon like this in
+order to enable people to recognize common patterns so they can reuse
+old solutions to solved problems. There can be a “when all you have is a
+hammer, everything looks like a nail” effect here, but when done well it
+is a great thing to be able to look at an obstacle and immediately
+reframe it in your mind into something you already know how to deal
+with. Indeed, in math and computer science, this technique has a formal
+term: reduction. Computer science theory (specifically complexity theory
+and computability theory) are more or less about learning one or two
+known solutions and then a whole host of techniques for reshaping new
+problems into a form that is compatible with those known solutions.
+Likewise, parsimony is highly valued in programming languages; the fewer
+basic abstractions you need and the more you can express one idea in
+terms of another, the more efficient your algorithm can be. That
+training, I think, generalizes to some extent so that the mind of a
+computer scientist is uniquely adept at memorizing general, abstract
+patterns and recalling them when equivalent configurations arise in the
+wild.</p>
+<h3 id="tools-for-conviviality-by-ivan-illich"><em>Tools for
+Conviviality</em> by Ivan Illich</h3>
+<p>The (extremely brief) pitch of this book is: in order to achieve true
+progress and positive social outcomes from advances in technology, tools
+typically reserved to experts must become accessible to
+non-professionals. Examples include literacy, basic medical knowledge,
+and, for those computer scientists who read this book today, the art of
+programming.</p>
+<h3 id="queer-theory">Queer theory</h3>
+<p>I.e., queerness as a critical term in the philosophy of power. See:
+Judith Butler, Michel Foucault, <a href="https://platypus1917.org/wp-content/uploads/demiliojohn_capitalismgayidentity.pdf">John
+D’Emilio</a>, and Adrienne Rich.</p>
+<p>For the basics you can see the “breadtube” YouTube channels
+<em>Contrapoints</em> and <em>Philosophy Tube</em>. I also like
+<em>Shonalika</em>.</p>
+<p>One of the most frequent reasons I reference queer studies is to make
+the point that identity is not inherently revolutionary. Capitalism has
+a tendency to integrate all critique of itself within itself; “rainbow
+capitalism,” where LGBT identity is accepted into the mainstream and
+commodified, is the latest instance of this.</p>
+<h3 id="scientific-empiricism">Scientific empiricism</h3>
+<p>Oh man, I feel almost unqualified to write this here because I have
+not deeply studied Hume and Quine. Yes, I studied science in high school
+like everyone else, and yes, I considered myself an atheist or agnostic
+for a long time, and yes, I felt a kinship with those liberal democrat
+lawn signs that say “SCIENCE IS REAL!” But since learning some
+introductory philosophy of science, reading <em>Tools for
+Conviviality</em>, and getting exposed to other epistemological systems,
+I am a bit less obsessed with this. Still, a confidence in the practical
+predictive power of scientific empricism is central to my personal
+epistemology. I do not go around under the assumption that a demon from
+a thought experiment is deluding my senses, confirming my inductive
+hypotheses, or moving high-energy particles to low-energy areas and not
+the other way around. I tend, rather, to operate on the assumption that
+science is a pretty good approximation of what we might colloquially
+call “objective base reality.” Whether or not there actually exists an
+objective base reality is, unfortunately, a subject for a different area
+of philosophy.</p>
+<p>For a related example, I did some work during undergrad for a lab
+called the Making and Knowing Project, which studies a very fascinating
+period of history in which European artisans began to do their work in
+ways that look like the beginnings of the scientific method. They were
+doing alchemy, essentially, but they were experimenting and writing down
+results and sharing knowledge amongst themselves. Not much later, Isaac
+Newton was forming mathematical theories of optics and gravity in the
+academy. The interplay of aristocratic and bourgeois proto-science shows
+us that the history of ideas has a lot to tell us about how we currently
+think about the world and the process by which we collectively develop a
+better understanding of it.</p>
+<h3 id="abrahamic-religion">Abrahamic religion</h3>
+<p>I mean, it’s sort of hard to avoid this in the Global North. Most of
+us grew up either practicing one of Islam, Christianity, or Judaism, or
+we grew up in a society hegemonically organized around these religions.
+As a result I cannot help but have them readily available as references
+and influences.</p>
+<h3 id="the-bhagavad-gita">The Bhagavad Gita</h3>
+<p>I recently read the <em>Bhagavad Gita</em> and I found it compelling.
+Now it sits in an esteemed place in my intellectual vocabulary.</p>
+<h3 id="psychoanalysis-related-periphery-of-woo">Psychoanalysis, related
+periphery of “woo”</h3>
+<p>For the former, my references are mainly Wilhelm Reich, Slavoj Zizek,
+Alenka Zupancic, Camille Paglia, and my old psychoanalyst. For the
+latter, unfortunately, it’s so far just Twitter and talking to people
+with worldviews that differ from mine in dramatic ways… and
+reinterpreting everything I’ve read in the past with a broader
+epistemology and more openness to spirituality.</p>
+<p>While psychoanalysis and pseudoscience do not hold up to a rigorous
+empirical standard, they can still be extremely useful vocabularies for
+talking about things which defy description and which often lack
+scientific consensus.</p>
+<p>As I mentioned above, early European science began with alchemy. I
+have hope that a similar pattern will unfold as we develop a science of
+mysticism.</p>
+<h3 id="some-key-undergraduate-classes">Some key undergraduate
+classes</h3>
+<p>At Columbia:</p>
+<ul>
+<li>Art Humanities (basically art history) with Nicholas Morgan.</li>
+<li>Beginning Fiction Workshop with Rebecca Winterich-Knox.</li>
+<li>Reading the CS Classics with Christos Papadimitriou.</li>
+<li>Readings in Language Design with Bjarne Stroustrup.</li>
+<li>Literature Humanities with Zachary Roberts.</li>
+<li>Contemporary Civilization with Matthew Engelke.</li>
+<li>Topics in Israeli Cinema with Stuart Weinstock.</li>
+<li>Intro Judaism with Beth Berkowitz. I cannot mention this one without
+also mentioning the informal Jewish education I received from my friends
+and from living in the Bayit (Beit Ephraim Food Co-op).</li>
+</ul>
+<p>Notice the absence of elective literature and philosophy classes. Oh
+how I wish I took more classes in those areas! Instead I guess I’m
+really good at functional programming, or something.</p>
+<hr>
+<h2 id="narrative-fiction">Narrative Fiction</h2>
+<h3 id="game-of-thrones"><em>Game of Thrones</em></h3>
+<p>Though I remember the summer of 2023 as a time of joyful friendship,
+I spent a good deal of time alone with <em>Game of Thrones</em> and it
+is through this work that I came to appreciate the notion of an “open
+story”—that is, a story set in a fictional world which feels expansive
+because the creator put immense effort into the details that convey
+verisimilitude. When done well, the result is a work that takes on a
+life of its own, permitting endless speculation and fanfiction. <em>Game
+of Thrones</em> is a work that achieves this. Every political maneuver
+is entirely consistent with the rest of the events occurring in the vast
+story, and consistent with the psychology of each character. It is
+mystifying how GRRM achieved this, and D&amp;D are worthy of further
+praise for faithfully adapting it to the screen… aside from the
+well-known grave error towards the end. I recall one afternoon I walked
+around running errands while staying on the phone with Rana the entire
+time, the two of us verbally creating an outline of how we would rewrite
+Season 8 to better conclude the story. In a sense, the total flop of the
+final season makes it all the more tantalizing to consider how it could
+have ended. Imperfection begets engagement, because we strive for
+perfection. Perhaps it was intentional.</p>
+<h3 id="dune-by-frank-herbert"><em>Dune</em> by Frank Herbert</h3>
+<p>A veritable classic that endures due to its sophisticated story
+weaving together ecology, religion, politics, psychedelics, and what I
+consider to be a textual trans allegory. Like <em>Game of Thrones</em>,
+it has excellent worldbuilding, making it a great subject for <a href="/garden/books/dune.html">StackOverflow nerdsniping sessions</a>. I
+find myself frequently referencing it for its memorable quotes:</p>
+<ul>
+<li>“Fear is the mind-killer.”</li>
+<li>“The mystery of life isn’t a problem to solve, but a reality to
+experience.”</li>
+</ul>
+<p>and I adopt as metaphors/allusions the character of Muad’dib, the
+Fremen terraforming dream, and the false prophet narrative configuration
+in everyday conversation.</p>
+<h3 id="neon-genesis-evangelion"><em>Neon Genesis Evangelion</em></h3>
+<p>The third in this sequence of great sci-fi and fantasy epics with
+rich worlds, I loved <em>Evangelion</em> on my first watch for its
+artistic portrayal of the pain of loneliness, and on my second watch I
+learned to appreciate the depth of its lore. It is incredibly fun to
+speculate about the sci-fi concepts in <em>Evangelion</em>, which appear
+at first glance to be mostly sci-fi mumbo-jumbo for flavor, but in fact
+turn out to have a sort of biblical omnisignificance apt for the subject
+matter.</p>
+<h3 id="video-games">Video games</h3>
+<p>I’ve played a lot of video games and many of them were rich,
+evocative experiences that echo in my memory ever since. Here are some
+key ones that I think of often:</p>
+<ul>
+<li>NaissanceE</li>
+<li>Disco Elysium</li>
+<li>Rodina</li>
+<li>Hollow Knight</li>
+<li>Dishonored</li>
+<li>Minecraft</li>
+<li>Skyrim</li>
+</ul>
+<h3 id="more">More…</h3>
+<ul>
+<li><em>The Magicians</em> (both the book and the TV series)
+<ul>
+<li>“just a little minor mending…”</li>
+<li>“Repair of small objects.”<br>
+“How does it feel?”<br>
+“Like I helped it wake up and remember what it was before.”</li>
+<li>the whole “magic comes from unhappiness” shtick</li>
+<li>“isn’t the <em>idea</em> of Fillory enough?”</li>
+</ul></li>
+<li><em>Avatar: The Last Airbender</em> (animated TV series)</li>
+<li><em>Adventure Time</em></li>
+</ul>
+<p>Look at my <a href="/garden/books.html">book log</a> and <a href="/garden/flog/">film log</a> and see what I write about.</p>
+<hr>
+<h2 id="people">People</h2>
+<ul>
+<li>Vannevar Bush</li>
+<li>Alan Kay</li>
+<li>Bret Victor</li>
+<li>Doug Engelbart</li>
+<li>Ted Nelson</li>
+<li>J.C.R. Licklider</li>
+<li>Geoffrey Litt</li>
+<li>Cyrus Omar</li>
+<li>Maggie Appleton</li>
+<li>Devine Lu Linvega</li>
+</ul>
+<p>Todo: add links here</p>
+<hr>
+<h2 id="more-to-come">🛠️ More to come… 👷</h2>
+</article></main></body></html>
