@@ -58,6 +58,9 @@
               ;(:path garden/phlog
               ; :template garden.sxml
               ; :styles (css/default.css css/garden.css))
+              (:path garden/jot
+               :template default.sxml
+               :styles (css/default.css css/garden.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf
@@ -65,8 +68,10 @@
                   assets/semgus-review.pdf
                   CNAME
                   ;,(rss-tidings)
+                  garden/process-tree/script.js
+                  garden/process-tree/style.css
                   )
-          :folders (writ js css assets/img assets/fonts assets/papers lab)
+          :folders (writ js css assets/img assets/fonts assets/papers lab garden/jot/src)
           )
     :disabled (:files (garden/phlog/2024-08-11.html)
                :folders ()

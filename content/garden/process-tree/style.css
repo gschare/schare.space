@@ -1,0 +1,39 @@
+li {
+   cursor: pointer;
+   font-weight: initial;
+   &::marker {content: '► '; font-size: 75%; }
+   transition: all 0.2s ease;
+}
+ul {
+   transition: all 0.5s ease;
+}
+li:hover {
+   cursor: pointer;
+   /*font-weight: bold;*/
+   color: darkorange;
+}
+li.leaf.chosen {
+    cursor: initial;
+    /*font-weight: initial;
+    font-style: italic; /* maybe this should be bold since stanza enders... */*/
+    &::marker {content: none;}
+}
+li.hidden {
+   display: none;
+}
+ul:has(li.chosen) {
+   padding-left: 0;
+   /*transform: translateX(-40px);*/
+}
+li.chosen, li:has(> span#alert) {
+   cursor: initial;
+   /*font-weight: bold;*/
+   color: inherit;
+   &::marker {content: none;}
+}
+li:has(span.blocker) + li {
+   display: none;
+}
+li:has(span.stanza) {
+   margin-top: 1lh;
+}
