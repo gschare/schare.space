@@ -79,6 +79,8 @@ const fratricide = li => {
           container.append(ul);
         }
     }
+
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 };
 
 const bullets = document.querySelectorAll('li');
