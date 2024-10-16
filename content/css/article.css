@@ -59,7 +59,7 @@ a.fn:hover {
 
 main article.article {
     counter-reset: footnotes;
-    max-width: var(--article-width); /* 60rem; */ /* to fit asides; subelements are 35rem */
+    max-width: var(--article-width);
     padding: 0px 50px 30px 50px;
     margin: auto; /* to center within main */
 }
@@ -70,17 +70,26 @@ main article.article {
     }
 }
 
-aside, div.sidebar, div.aside {
-    float: right;
-    width: 15rem;
-    padding-left: 15px;
-    margin-left: 15px;
-    padding-bottom: 5px;
-    border-left: 1px solid var(--fg-light);
+div.emph {
+    text-align: center;
+    max-width: 66%;
+    margin: auto;
+    font-weight: bold;
 }
 
-aside.dark-mode, div.sidebar.dark-mode, div.aside.dark-mode {
-    border-left: 1px solid var(--fg-dark);
+@media screen and (min-width: 800px) {
+    aside, div.sidebar, div.aside {
+        text-align: right;
+        max-width: 65%;
+        margin-left: 35%;
+        font-style: italic;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    aside, div.sidebar, div.aside {
+        /* hmm */
+    }
 }
 
 p {

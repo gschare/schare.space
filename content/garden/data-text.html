@@ -1,0 +1,49 @@
+<!-- provenance: local 24.10.16-19.50.md -> garden/data-text.html -->
+<h1 id="finally-portable-html">Finally,,, portable html</h1>
+<span id="date">Oct 16, 2024</span>
+<p>
+</p>
+<p>Did you know you can send entire HTML documents as URLs?</p>
+<p>As everyone knows, website URLs use an <code>http</code> or
+<code>https</code> scheme—the scheme is the bit that goes before the
+colon. Almost everyone knows that is just one of many protocols most
+browsers are capable of using. Some other popular schemes include:</p>
+<ul>
+<li><code>tel</code></li>
+<li><code>ftp</code></li>
+<li><code>mailto</code></li>
+<li><a
+href="https://en.wikipedia.org/wiki/File_URI_scheme"><code>file</code></a></li>
+<li><code>view-source</code></li>
+<li><code>about</code></li>
+</ul>
+<p>But only <em>most</em> people know you can also use the <a
+href="https://en.wikipedia.org/wiki/Data_URI_scheme"><code>data</code></a>
+URI scheme! Here’s an example:</p>
+<pre><code>data:text/plain,hello%20world!</code></pre>
+<p>Copy that into your browser address bar and go, and you will see the
+text!</p>
+<p>So you can encode most MIME types like this, including images, PDFs,
+etc. But since we’re in a browser, obviously the most fun thing to do is
+give it HTML because it will attempt to render the data.</p>
+<pre><code>data:text/html,&lt;h1&gt;Hello, World!&lt;/h1&gt;&lt;p&gt;Welcome to my website!&lt;/p&gt;</code></pre>
+<p>You can also base64 encode the data, e.g., the same content as
+above:</p>
+<pre><code>data:text/html;base64,PGgxPkhlbGxvLCBXb3JsZCE8L2gxPjxwPldlbGNvbWUgdG8gbXkgd2Vic2l0ZSE8L3A+Cg==</code></pre>
+<p>Here’s a weird effect I got when I was playing around with this:</p>
+<pre><code>data:text/html;base64,PGJvZHkgc3R5bGU9ImJhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KHJnYig4NSwxMzgsMTE5LDAuNSkscmdiKDI1NSwyNTUsMjU1LDAuNSkscmdiKDE2NiwxMDgsMTU1LDAuNSkpLGxpbmVhci1ncmFkaWVudCgwLjI1dHVybixyZ2IoMCwwLDAsMC41KSxyZ2IoMTY2LDEwOCwxNTUsMC41KSxyZ2IoMjU1LDI1NSwyNTUsMC41KSxyZ2IoODUsMTM4LDExOSwwLjUpLHJnYigwLDAsMCwwLjUpKSI+PC9ib2R5Pg==</code></pre>
+<p>The obvious utility of this is sending your friends little HTML files
+without them having to download and open something—just click the link
+and the browser renders it!</p>
+<p>I haven’t tested yet what the limits are with regards to sending a
+large amount of base64-encoded text content via chat apps or email
+links.</p>
+<style>
+pre {
+    overflow-x: auto;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+</style>

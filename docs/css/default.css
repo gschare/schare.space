@@ -96,12 +96,12 @@ details.details {
     padding-left: 15px;
     margin-left: 15px;
     padding-bottom: 5px;
-    border: 1px solid var(--fg-light);
-    border-radius: 10px;
+    /*border: 1px solid var(--fg-light);
+    border-radius: 10px;*/
 }
 
 details.details.dark-mode {
-    border: 1px solid var(--fg-dark);
+    /*border: 1px solid var(--fg-dark);*/
 }
 
 .tooltip {
@@ -326,6 +326,14 @@ ul.nobullet, .nobullet > ul {
 
 .nobullet li + li {
     margin-top: 20px;
+}
+
+ul.nosep li + li, .nosep > ul li + li {
+    margin-top: 0;
+}
+
+ul.deindent, .deindent > ul {
+    text-indent: -1rem;
 }
 
 #return {
