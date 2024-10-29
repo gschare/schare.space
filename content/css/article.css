@@ -33,6 +33,10 @@ header {
  * so the order of the references should match the order of the footnotes.
  */
 
+a.footnote-back::before {
+    content: " ";
+}
+
 .footnote-ref sup {
     /* no sup for you! */
     all: inherit;
@@ -70,7 +74,15 @@ main article.article {
     }
 }
 
-div.emph {
+/* really specific thing... */
+h2 a[href='#'] {
+    float: right;
+}
+h2 a[href='#']:after {
+    content: '↑';
+}
+
+div.emph, span.emph {
     text-align: center;
     max-width: 66%;
     margin: auto;
