@@ -50,7 +50,6 @@ p .warning {
 /* prose */
 div.prose p {
     margin: 0;
-    text-align: justify;
     text-indent: 2rem;
 }
 
