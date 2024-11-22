@@ -3,19 +3,16 @@
 Microblog
 </title>
 <h1 id="microblog">Microblog</h1>
-<hr />
 <div id="2024-10-20">
 <p><a href="#2024-10-20">#</a> <span class="date"><em>Oct 20, 2024 22:13
 PDT</em></span><br />
 Tech as in technician, not technology.</p>
 </div>
-<hr />
 <div id="2024-09-30">
 <p><a href="#2024-09-30">#</a> <span class="date"><em>Sep 30, 2024 23:05
 EDT</em></span><br />
 End-user programming is dead. Long live end-user programming!</p>
 </div>
-<hr />
 <div id="2024-09-22">
 <p><a href="#2024-09-22">#</a> <span class="date"><em>Sep 22, 2024 03:05
 EDT</em></span><br />
@@ -37,7 +34,6 @@ point is to change them.”</p>
 <p>Perhaps the embarrassment of the field of anthropology is that its
 adherents never learned JavaScript.</p>
 </div>
-<hr />
 <div id="2024-08-25">
 <p><a href="#2024-08-25">#</a> <span class="date"><em>Aug 25, 2024 16:18
 PDT</em></span><br />
@@ -50,7 +46,6 @@ through search and engagement with that thing, and just go right to the
 area. There is so much good that can be done with algorithmic feeds, and
 we’re not doing any of it.</p>
 </div>
-<hr />
 <div id="2024-08-22">
 <p><a href="#2024-08-22">#</a> <span class="date"><em>Aug 22, 2024 18:27
 PDT</em></span><br />
@@ -90,13 +85,11 @@ do it from a screenshot with modern OCR capabilities.</p>
 <p>Either way, there is so much more that can be done with
 copy-paste.</p>
 </div>
-<hr />
 <div id="2024-08-06">
 <p><a href="#2024-08-06">#</a> <span class="date"><em>Aug 06, 2024 16:22
 PDT</em></span><br />
 “house all in order” includes house of macbook pro, no?</p>
 </div>
-<hr />
 <div id="2024-06-23">
 <p><a href="#2024-06-23">#</a> <span class="date"><em>Jun 23, 2024 23:20
 EDT</em></span><br />
@@ -118,7 +111,6 @@ the impact: what would it mean for the way we use computers if
 practically everything we can conceptualize digitally is able to
 referenced?</p>
 </div>
-<hr />
 <div id="2024-06-16">
 <p><a href="#2024-06-16">#</a> <span class="date"><em>Jun 16, 2024 00:54
 EDT</em></span><br />
@@ -141,7 +133,6 @@ problem. Knowing you are Right in these cases is more a matter of taste
 and experience than it is about logically knowing you cannot be
 wrong.</p>
 </div>
-<hr />
 <div id="2024-06-06">
 <p><a href="#2024-06-06">#</a> <span class="date"><em>Jun 6, 2024 22:03
 EDT</em></span><br />
@@ -149,4 +140,77 @@ EDT</em></span><br />
 Tower</a> is a <a
 href="https://store.steampowered.com/app/265690/NaissanceE/">NaissanceE</a>.</p>
 </div>
-<hr />
+<style>
+h1 {
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--fg-light-secondary);
+}
+
+article div {
+    border-bottom: 2px solid var(--fg-light-secondary);
+}
+
+article div.hide {
+    display: none;
+}
+</style>
+<script>
+function addListeners() {
+    const divs = document.querySelectorAll('main article > div');
+    for (const d of divs) {
+        const a = d.querySelector(`a[href="#${d.id}"]`);
+        console.log(d, a);
+        a.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await hidePosts(d.id);
+            window.location.href = a.href;
+        });
+    }
+}
+
+async function hidePosts(exceptId) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const divs = document.querySelectorAll('main article > div');
+            for (const d of divs) {
+                if (d.id === exceptId) {
+                    const back = document.createElement('a');
+                    back.href = '#';
+                    back.id = 'see-all';
+                    back.textContent = '← See all';
+                    back.addEventListener('click', async (e) => {
+                        e.preventDefault();
+                        await restorePosts();
+                        window.location.href = back.href;
+                    });
+                    d.prepend(back);
+                } else {
+                    d.classList.add('hide');
+                }
+            }
+            resolve();
+        }, 0);
+    });
+}
+
+async function restorePosts() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const back = document.querySelector('a#see-all');
+            if (back) {
+                back.remove();
+            }
+            const divs = document.querySelectorAll('main article > div');
+            for (const d of divs) {
+                d.classList.remove('hide');
+            }
+            resolve();
+        }, 0);
+    });
+}
+
+if (window.location.hash) {
+    hidePosts();
+}
+addListeners();
+</script>
