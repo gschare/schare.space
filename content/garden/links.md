@@ -16,6 +16,7 @@ I'll tell you one thing:\
 </details>
 
 ::: nobullet
+* <https://omar.website/posts/against-recognition/>
 * <https://www.todepond.com/wikiblogarden/better-computing/better-computing/>
 * <https://worrydream.com/ABriefRantOnTheFutureOfInteractionDesign/>
 * <https://programmingmadecomplicated.wordpress.com/2023/03/12/my-two-absolute-hands-down-least-favourite-things-in-programming/>
