@@ -1,9 +1,57 @@
-<!-- provenance: local 24.05.10-20.05.md -> garden/nyc.html -->
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@ggschare"><meta name="twitter:title" content="schare.space: a website"><meta name="twitter:description" content="Lasciate ogne speranza, voi ch'intrate."><meta name="twitter:image:src" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:title" content="schare.space: a website"><meta property="og:type" content="website"><meta property="og:description" content="Lasciate ogne speranza, voi ch'intrate."><meta property="og:image" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:site_name" content="schare.space"><link rel="icon" href="/favicon.ico" type="image/x-icon"><title>Things to do in NYC</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/article.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><!--  provenance: local 24.05.10-20.05.md -> garden/nyc/activities.html  -->
 <title>
 Things to do in NYC
 </title>
 <h1 id="things-to-do-in-nyc">Things to do in NYC</h1>
-<hr />
+<hr>
 <style>
 table, th, td {
     border: 1px solid;
@@ -24,12 +72,11 @@ p {
 Getting Around</h2>
 <p>New York City is organized into five “boroughs”: Manhattan, Queens,
 Brooklyn, Bronx, and Staten Island.</p>
-<p><img src="/assets/img/garden/boroughs.jpg" /></p>
+<p><img src="/assets/img/garden/boroughs.jpg"></p>
 <p>The former four boroughs are quite well-connected by a 24/7 system of
 affordable subways, trains, and buses; Staten Island is accessible via
 ferry. Additionally, NYC is thoroughly walkable and bikeable.</p>
-<p>I recommend using the <a
-href="https://citymapper.com/?lang=en">CityMapper</a> app to get around;
+<p>I recommend using the <a href="https://citymapper.com/?lang=en">CityMapper</a> app to get around;
 it has <em>never</em> failed me or given me inaccurate information about
 transit delays and service changes. Google Maps and Apple Maps work
 pretty well, but will occasionally lead you astray.</p>
@@ -47,9 +94,9 @@ Observing typical urban safety practices, you will be fine.</p>
 <h2 id="attractions-sightseeing">Attractions &amp; Sightseeing</h2>
 <table>
 <colgroup>
-<col style="width: 41%" />
-<col style="width: 41%" />
-<col style="width: 17%" />
+<col style="width: 41%"></col>
+<col style="width: 41%"></col>
+<col style="width: 17%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -60,23 +107,20 @@ Observing typical urban safety practices, you will be fine.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.statueofliberty.org/ellis-island/">Ellis
+<td style="text-align: left;"><a href="https://www.statueofliberty.org/ellis-island/">Ellis
 Island</a></td>
 <td style="text-align: left;">Harbor</td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.nps.gov/stli/index.htm">Statue of Liberty</a></td>
+<td style="text-align: left;"><a href="https://www.nps.gov/stli/index.htm">Statue of Liberty</a></td>
 <td style="text-align: left;">Harbor</td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.coneyisland.com/">Coney Island</a></td>
+<td style="text-align: left;"><a href="https://www.coneyisland.com/">Coney Island</a></td>
 <td style="text-align: left;">Coney Island</td>
-<td style="text-align: center;">𐄂</td>
+<td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://www.nybg.org/">New York
@@ -97,47 +141,40 @@ Zoo</a></td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.nps.gov/ston/index.htm">Stonewall</a></td>
+<td style="text-align: left;"><a href="https://www.nps.gov/ston/index.htm">Stonewall</a></td>
 <td style="text-align: left;">Greenwich Village</td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://brooklynbridgepark.org/">Brooklyn Bridge</a></td>
+<td style="text-align: left;"><a href="https://brooklynbridgepark.org/">Brooklyn Bridge</a></td>
 <td style="text-align: left;">Brooklyn Heights</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://en.wikipedia.org/wiki/Brooklyn_Heights_Promenade">Brooklyn
+<td style="text-align: left;"><a href="https://en.wikipedia.org/wiki/Brooklyn_Heights_Promenade">Brooklyn
 Heights Promenade</a></td>
 <td style="text-align: left;">Brooklyn Heights</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.timessquarenyc.org/">Times Square</a></td>
+<td style="text-align: left;"><a href="https://www.timessquarenyc.org/">Times Square</a></td>
 <td style="text-align: left;">Midtown</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.nycgovparks.org/parks/union-square-park">Union
+<td style="text-align: left;"><a href="https://www.nycgovparks.org/parks/union-square-park">Union
 Square</a></td>
 <td style="text-align: left;">Union Square</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.nycgovparks.org/parks/coney-island-beach-and-boardwalk/facilities/beaches">Brighton
+<td style="text-align: left;"><a href="https://www.nycgovparks.org/parks/coney-island-beach-and-boardwalk/facilities/beaches">Brighton
 Beach</a></td>
 <td style="text-align: left;">Coney Island</td>
-<td style="text-align: center;">𐄂</td>
+<td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.columbia.edu/">Columbia University</a></td>
+<td style="text-align: left;"><a href="https://www.columbia.edu/">Columbia University</a></td>
 <td style="text-align: left;">Morningside Heights</td>
 <td style="text-align: center;">✓</td>
 </tr>
@@ -146,11 +183,11 @@ href="https://www.columbia.edu/">Columbia University</a></td>
 <h2 id="museums">Museums</h2>
 <table>
 <colgroup>
-<col style="width: 18%" />
-<col style="width: 12%" />
-<col style="width: 33%" />
-<col style="width: 27%" />
-<col style="width: 9%" />
+<col style="width: 18%"></col>
+<col style="width: 12%"></col>
+<col style="width: 33%"></col>
+<col style="width: 27%"></col>
+<col style="width: 9%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -174,8 +211,7 @@ free!); free first Friday nights for NYC residents</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.metmuseum.org/">Metropolitan Museum of Art
+<td style="text-align: left;"><a href="https://www.metmuseum.org/">Metropolitan Museum of Art
 (Met)</a></td>
 <td style="text-align: left;">UES</td>
 <td style="text-align: left;">Largest art museum in the western
@@ -202,11 +238,10 @@ American art</td>
 <td style="text-align: left;">$30 adults, $24 students; free Friday
 nights and second Sundays; first floor gallery always free and open to
 the public</td>
-<td style="text-align: center;">𐄂</td>
+<td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.guggenheim.org/">Guggenheim Museum</a></td>
+<td style="text-align: left;"><a href="https://www.guggenheim.org/">Guggenheim Museum</a></td>
 <td style="text-align: left;">UES</td>
 <td style="text-align: left;">Private museum of modern, contemporary,
 and Impressionist art in a building designed by Frank Lloyd Wright</td>
@@ -225,8 +260,7 @@ ticket to film screening; free Thursday afternoons</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.metmuseum.org/plan-your-visit/met-cloisters">Met
+<td style="text-align: left;"><a href="https://www.metmuseum.org/plan-your-visit/met-cloisters">Met
 Cloisters</a></td>
 <td style="text-align: left;">Washington Heights</td>
 <td style="text-align: left;">Medieval art set in an authentic
@@ -244,8 +278,7 @@ Museum</a></td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.brooklynmuseum.org/">Brooklyn Museum</a></td>
+<td style="text-align: left;"><a href="https://www.brooklynmuseum.org/">Brooklyn Museum</a></td>
 <td style="text-align: left;">Prospect Heights</td>
 <td style="text-align: left;">Like the Met but not as big</td>
 <td style="text-align: left;">General admission is pay what you
@@ -253,8 +286,7 @@ wish</td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.tenement.org/">Tenement Museum</a></td>
+<td style="text-align: left;"><a href="https://www.tenement.org/">Tenement Museum</a></td>
 <td style="text-align: left;">LES</td>
 <td style="text-align: left;">Tour of a preserved tenement apartment and
 neighborhood and a look into New York’s Jewish history</td>
@@ -314,10 +346,10 @@ take advantage of this. If you’re a tourist, pay up.</p>
 Parades &amp; Street Fairs</h2>
 <table>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 32%" />
-<col style="width: 40%" />
-<col style="width: 12%" />
+<col style="width: 16%"></col>
+<col style="width: 32%"></col>
+<col style="width: 40%"></col>
+<col style="width: 12%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -329,30 +361,26 @@ Parades &amp; Street Fairs</h2>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://queensnightmarket.com/">Queen’s Night Market</a></td>
+<td style="text-align: left;"><a href="https://queensnightmarket.com/">Queen’s Night Market</a></td>
 <td style="text-align: left;">Flushing Meadows Corona Park</td>
 <td style="text-align: left;">Saturdays spring and summer</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.smorgasburg.com/">Smorgasburg</a></td>
+<td style="text-align: left;"><a href="https://www.smorgasburg.com/">Smorgasburg</a></td>
 <td style="text-align: left;">WTC, Williamsburg, Prospect Park,</td>
 <td style="text-align: left;">Fridays, Saturdays, and Sundays spring and
 summer</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://halloween-nyc.com/">Halloween Parade</a></td>
+<td style="text-align: left;"><a href="https://halloween-nyc.com/">Halloween Parade</a></td>
 <td style="text-align: left;">Greenwich Village</td>
 <td style="text-align: left;">Halloween</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.grownyc.org/greenmarket/brooklyn-grand-army-plaza">Grand
+<td style="text-align: left;"><a href="https://www.grownyc.org/greenmarket/brooklyn-grand-army-plaza">Grand
 Army Plaza Greenmarket</a></td>
 <td style="text-align: left;">Grand Army Plaza</td>
 <td style="text-align: left;">Saturdays</td>
@@ -363,9 +391,9 @@ Army Plaza Greenmarket</a></td>
 <h2 id="theater">Theater</h2>
 <table>
 <colgroup>
-<col style="width: 26%" />
-<col style="width: 53%" />
-<col style="width: 20%" />
+<col style="width: 26%"></col>
+<col style="width: 53%"></col>
+<col style="width: 20%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -376,27 +404,23 @@ Army Plaza Greenmarket</a></td>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.broadway.com/">Broadway</a></td>
+<td style="text-align: left;"><a href="https://www.broadway.com/">Broadway</a></td>
 <td style="text-align: left;">Manhattan (various)</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.centralpark.com/things-to-do/activities/shakespeare-in-the-park/">Shakespeare
+<td style="text-align: left;"><a href="https://www.centralpark.com/things-to-do/activities/shakespeare-in-the-park/">Shakespeare
 in the Park</a></td>
 <td style="text-align: left;">Central Park</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.moliereinthepark.org/">Moliere in the Park</a></td>
+<td style="text-align: left;"><a href="https://www.moliereinthepark.org/">Moliere in the Park</a></td>
 <td style="text-align: left;">Prospect Park</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.brooklyncc.com/">Brooklyn Comedy Collective</a></td>
+<td style="text-align: left;"><a href="https://www.brooklyncc.com/">Brooklyn Comedy Collective</a></td>
 <td style="text-align: left;">Williamsburg</td>
 <td style="text-align: center;">𐄂</td>
 </tr>
@@ -405,8 +429,8 @@ href="https://www.brooklyncc.com/">Brooklyn Comedy Collective</a></td>
 <h2 id="cinema">Cinema</h2>
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 66%" />
+<col style="width: 33%"></col>
+<col style="width: 66%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -416,13 +440,11 @@ href="https://www.brooklyncc.com/">Brooklyn Comedy Collective</a></td>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://nitehawkcinema.com/">Nitehawk</a></td>
+<td style="text-align: left;"><a href="https://nitehawkcinema.com/">Nitehawk</a></td>
 <td style="text-align: left;">Prospect Park and Williamsburg</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://metrograph.com/">Metrograph</a></td>
+<td style="text-align: left;"><a href="https://metrograph.com/">Metrograph</a></td>
 <td style="text-align: left;">LES</td>
 </tr>
 <tr class="odd">
@@ -431,13 +453,11 @@ Center</a></td>
 <td style="text-align: left;">Greenwich Village</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.angelikafilmcenter.com/villageeast">Angelika</a></td>
+<td style="text-align: left;"><a href="https://www.angelikafilmcenter.com/villageeast">Angelika</a></td>
 <td style="text-align: left;">East Village</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://movingimage.org/">MoMI</a></td>
+<td style="text-align: left;"><a href="https://movingimage.org/">MoMI</a></td>
 <td style="text-align: left;">Astoria</td>
 </tr>
 </tbody>
@@ -447,9 +467,9 @@ them!</p>
 <h2 id="bookstores">Bookstores</h2>
 <table>
 <colgroup>
-<col style="width: 46%" />
-<col style="width: 33%" />
-<col style="width: 20%" />
+<col style="width: 46%"></col>
+<col style="width: 33%"></col>
+<col style="width: 20%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -466,14 +486,12 @@ Strand</a></td>
 <td style="text-align: center;">𐄂</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.bookculture.com/">Book Culture</a></td>
+<td style="text-align: left;"><a href="https://www.bookculture.com/">Book Culture</a></td>
 <td style="text-align: left;">Morningside Heights</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.instagram.com/unoppressive/">Unoppressive
+<td style="text-align: left;"><a href="https://www.instagram.com/unoppressive/">Unoppressive
 Non-Imperialist Bargain Books</a></td>
 <td style="text-align: left;">Greenwich Village</td>
 <td style="text-align: center;">𐄂</td>
@@ -491,20 +509,17 @@ Non-Imperialist Bargain Books</a></td>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.smallslive.com/">Smalls</a></td>
+<td style="text-align: left;"><a href="https://www.smallslive.com/">Smalls</a></td>
 <td style="text-align: left;">West Village</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a
-href="https://www.smallslive.com/mezzrow/">Mezzrow</a></td>
+<td style="text-align: left;"><a href="https://www.smallslive.com/mezzrow/">Mezzrow</a></td>
 <td style="text-align: left;">West Village</td>
 <td style="text-align: center;">✓</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.cellardog.net/">Cellar Dog</a></td>
+<td style="text-align: left;"><a href="https://www.cellardog.net/">Cellar Dog</a></td>
 <td style="text-align: left;">West Village</td>
 <td style="text-align: center;">✓</td>
 </tr>
@@ -513,9 +528,9 @@ href="https://www.cellardog.net/">Cellar Dog</a></td>
 <h2 id="libraries">Libraries</h2>
 <table>
 <colgroup>
-<col style="width: 37%" />
-<col style="width: 43%" />
-<col style="width: 18%" />
+<col style="width: 37%"></col>
+<col style="width: 43%"></col>
+<col style="width: 18%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -526,8 +541,7 @@ href="https://www.cellardog.net/">Cellar Dog</a></td>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a
-href="https://www.bklynlibrary.org/">Brooklyn Public Library
+<td style="text-align: left;"><a href="https://www.bklynlibrary.org/">Brooklyn Public Library
 (BPL)</a></td>
 <td style="text-align: left;">Grand Army Plaza/various</td>
 <td style="text-align: center;">✓</td>
@@ -553,3 +567,4 @@ stuff</li>
 <li><a href="https://www.atlasobscura.com/things-to-do/new-york">Atlas
 Obscura</a> - quaint things</li>
 </ul>
+</article></main></body></html>
