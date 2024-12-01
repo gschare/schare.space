@@ -18,6 +18,10 @@ h1, h2 {
     margin-bottom: 5px;
 }
 
+h1 + p:has(span#date) {
+    margin-top: 0;
+}
+
 h3, h4, h5, h6 {
     display: block;
     margin: 0;
