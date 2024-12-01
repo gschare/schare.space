@@ -1,3 +1,4 @@
+<!-- provenance: garden/books.md -->
 <title>Books</title>
 <nav class="secondary">[links](links.html) &centerdot; [flog](flog/)</nav>
 # Books
@@ -30,7 +31,6 @@
 
 ## In Progress
 <div class="flex">
-<img loading="lazy" src="/assets/img/garden/books/toolsforconviviality.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/piranesi.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/prideandprejudice.jpg" />
 <div></div>
@@ -39,6 +39,7 @@
 ## 2024
 
 <div class="flex">
+<img loading="lazy" src="/assets/img/garden/books/toolsforconviviality.jpg" />
 <img loading="lazy" src="/assets/img/garden/books/lhod.jpg" alt="The Left Hand of Darkness by Ursula K. Le Guin" title="The Left Hand of Darkness by Ursula K. Le Guin"/>
 <img loading="lazy" src="/assets/img/garden/books/eitheror.jpg" alt="Either/Or by Elif Batuman" title="Either/Or by Elif Batuman"/>
 <a href="books/dune.html"><img loading="lazy" src="/assets/img/garden/books/dune.webp" /></a>

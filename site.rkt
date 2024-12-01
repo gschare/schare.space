@@ -66,6 +66,7 @@
     :raw (:files (assets/cv.pdf
                   assets/hoogleplus-review.pdf
                   assets/semgus-review.pdf
+                  favicon.ico
                   CNAME
                   ;,(rss-tidings)
                   garden/process-tree/script.js

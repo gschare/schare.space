@@ -97,9 +97,16 @@
          (let* ([expr (sxml:attr node 'expr)]
                 [content-string (format "~v" content)]
                 [styles-string (format "~v" styles)]
+                [title (let ([titles ((sxpath "//title") content)])
+                         (if (empty? titles)
+                             (let ([h1s ((sxpath "//h1") content)])
+                                 (if (empty? h1s) "schare.space"
+                                     (string-normalize-spaces (sxml:text (first h1s)))))
+                             (string-normalize-spaces (sxml:text (first titles)))))]
                 [expr-wrapped
                  (string-append
                   "(let ((content " content-string ")"
+                        "(title \"" title "\")"
                         "(styles " styles-string "))"
                         expr ")")]
                 [value (eval (read (open-input-string expr-wrapped)) ns)])
