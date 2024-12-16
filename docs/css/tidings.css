@@ -2,8 +2,68 @@ a#nav-tidings {
     text-decoration: underline;
 }
 
-p {
+/*  NEVER JUSTIFY TEXT ON THE WEB  */
+/*p {
     text-align: justify;
     text-justify: inter-word;
+}*/
+
+article.article hr {
+    text-align: center;
+    border: none;
+    line-height: 2rlh;
+    color: var(--fg-light);
+    &:before {
+        content: "* \00a0 \00a0 \00a0 * \00a0 \00a0 \00a0 *";
+    }
 }
 
+h2 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--fg-light-secondary);
+}
+
+#toc {
+    position: fixed;
+    left: calc(50vw - var(--article-width));
+    top: 25vh;
+    margin: 10px;
+    background-color: var(--bg-light);
+    border: inherit;
+    border-radius: inherit;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12pt;
+    max-width: 10rem;
+}
+
+#toc h4 {
+    padding-bottom: 5px;
+    margin-top: 16px;
+}
+
+#toc ul {
+    margin-top: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--fg-light-secondary);
+    list-style-type: none;
+    padding-left: 1rem;
+    text-indent: -1rem;
+}
+
+@media screen and (max-width: 1200px) {
+    #toc {
+        all: revert
+    }
+
+    #toc ul {
+        padding-left: revert;
+        list-style-type: revert;
+        text-indent: revert;
+    }
+
+    #toc h4 {
+    }
+}
