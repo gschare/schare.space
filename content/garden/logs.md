@@ -1,6 +1,6 @@
 <title>Logs</title>
 # Logs
-- [blog](/tidings/)
+- [blog](books.html)
 - [flog](flog/)
 - [phlog](phlog/)
 - [μblog](microblog.html)

@@ -3,6 +3,7 @@
 (require "src/build.rkt")
 (require "src/tidings.rkt") ; blog builder
 (require "src/md.rkt")
+(require "src/xml.rkt")
 
 (define rules
   `(:defaults (:template article.sxml
@@ -27,9 +28,6 @@
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css
                       css/justify.css css/background.css))
-            (:path garden/books.html
-             :template garden.sxml
-             :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path garden/aphorisms/index.html
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
@@ -39,6 +37,12 @@
             (:path garden/worm.html
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/garden.css))
+            (:path ,(xml 'garden/books.xml)
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
+            (:path ,(xml 'garden/flog/index.xml)
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
@@ -52,9 +56,6 @@
               (:path garden/sea
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css css/sea.css))
-              (:path garden/flog
-               :template garden.sxml
-               :styles (css/default.css css/article.css css/garden.css css/wide.css))
               ;(:path garden/phlog
               ; :template garden.sxml
               ; :styles (css/default.css css/garden.css))

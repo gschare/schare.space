@@ -46,79 +46,58 @@
         </div>
     </div>
 </header>
-<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><!--  provenance: garden/books.md  -->
-<title>
-Books
-</title>
-<nav class="secondary">
-<a href="links.html">links</a> · <a href="flog/">flog</a>
-</nav>
-<h1 id="books">Books</h1>
-<style>
-#cards img {
-  margin: revert;
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><title>Books</title><nav class="secondary"><a href="links.html">links</a> · <a href="flog/">flog</a></nav><h1>Books</h1><style>
+.cards {
+    display: grid;
+    /* fr = fractional unit */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: start;
+    grid-auto-rows: 400px;
+    gap: 16px;
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cards {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.cards img {
+  /*margin: revert;
   min-width: 10vw;
-  max-width: 15vw;
-  max-height: 600px;
+  max-width: 15vw;*/
+    /*max-height: 400px;*/
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
+    /*overflow: hidden;*/
+  height: 100%;
+    /*aspect-ratio: 4/5;*/
 }
 
-#cards a {
-  display: inherit;
+.cards img:hover:after {
+  content: attr(title);
+  font-size: 16pt;
+  color: white;
+  background: rgba(0,0,0,0.72);
+  opacity: 1;
+  margin: auto;
+  text-align: center;
+  padding: 5%;
 }
-
-.flex {
-  gap: 10px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-</style>
-<div id="cards">
-<p><!--  for CSS specificity >.<  --></p>
-<p><span class="warning"><strong>Note:</strong> this is just a
-placeholder. I later on plan to write my thoughts on certain books I
-read…</span></p>
-<h2 id="in-progress">In Progress</h2>
-<div class="flex">
-<img loading="lazy" src="/assets/img/garden/books/piranesi.jpg">
-<img loading="lazy" src="/assets/img/garden/books/prideandprejudice.jpg">
-<div>
-
+</style><p><span class="warning"><strong>Note:</strong>
+        this is just a placeholder. I later on plan to write my thoughts on certain books I read…
+   </span></p><h2 id="in-progress">In Progress</h2><div class="cards">
+<img loading="lazy" src="/assets/img/garden/books/piranesi.jpg" id="piranesi" alt="Piranesi by Susanna Clarke" title="Piranesi by Susanna Clarke"><img loading="lazy" src="/assets/img/garden/books/prideandprejudice.jpg" id="prideandprejudice" alt="Pride and Prejudice by Jane Austen" title="Pride and Prejudice by Jane Austen"><img loading="lazy" src="/assets/img/garden/books/ficciones.jpg" id="ficciones" alt="Ficciones by Jorge Luis Borges" title="Ficciones by Jorge Luis Borges"><img loading="lazy" src="/assets/img/garden/books/sunalsorises.jpg" id="sunalsorises" alt="The Sun Also Rises by Ernest Hemingway" title="The Sun Also Rises by Ernest Hemingway"><img loading="lazy" src="/assets/img/garden/books/worldofyesterday.jpg" id="worldofyesterday" alt="The World of Yesterday by Stefan Zweig" title="The World of Yesterday by Stefan Zweig">
+</div><h2 id="2024">2024</h2><div class="cards">
+<img loading="lazy" src="/assets/img/garden/books/slouching.jpg" id="slouching" alt="Slouching Towards Bethlehem by Joan Didion" title="Slouching Towards Bethlehem by Joan Didion"><img loading="lazy" src="/assets/img/garden/books/toolsforconviviality.jpg" id="toolsforconviviality" alt="Tools for Conviviality by Ivan Illich" title="Tools for Conviviality by Ivan Illich"><img loading="lazy" src="/assets/img/garden/books/lhod.jpg" id="lhod" alt="The Left Hand of Darkness by Ursula K. Le Guin" title="The Left Hand of Darkness by Ursula K. Le Guin"><img loading="lazy" src="/assets/img/garden/books/eitheror.jpg" id="eitheror" alt="Either/Or by Elif Batuman" title="Either/Or by Elif Batuman"><img loading="lazy" src="/assets/img/garden/books/dune.webp" id="dune" alt="Dune by Frank Herbert" title="Dune by Frank Herbert"><img loading="lazy" src="/assets/img/garden/books/kamalaharris.jpg" id="kamalaharris" alt="The Truths We Hold: An American Journey by Kamala Harris" title="The Truths We Hold: An American Journey by Kamala Harris"><img loading="lazy" src="/assets/img/garden/books/idiot.jpg" id="idiot" alt="The Idiot by Elif Batuman" title="The Idiot by Elif Batuman"><img loading="lazy" src="/assets/img/garden/books/gita.jpg" id="gita" alt="The Bhagavad Gita by Eknath Easwaran (trans.)" title="The Bhagavad Gita by Eknath Easwaran (trans.)"><img loading="lazy" src="/assets/img/garden/books/leguintombs.jpg" id="leguintombs" alt="The Tombs of Atuan by Ursula K. Le Guin" title="The Tombs of Atuan by Ursula K. Le Guin"><img loading="lazy" src="/assets/img/garden/books/leguinlathe.jpg" id="leguinlathe" alt="The Lathe of Heaven by Ursula K. Le Guin" title="The Lathe of Heaven by Ursula K. Le Guin"><img loading="lazy" src="/assets/img/garden/books/hitzthought.jpg" id="hitzthought" alt="Lost in Thought: The Hidden Pleasures of an Intellectual Life by Zena Hitz" title="Lost in Thought: The Hidden Pleasures of an Intellectual Life by Zena Hitz"><img loading="lazy" src="/assets/img/garden/books/snowcrash.jpg" id="snowcrash" alt="Snow Crash by Neal Stephenson" title="Snow Crash by Neal Stephenson"><img loading="lazy" src="/assets/img/garden/books/jacksonessence.jpg" id="jacksonessence" alt="The Essence of Software: Why Concepts Matter for Great Design by Daniel Jackson" title="The Essence of Software: Why Concepts Matter for Great Design by Daniel Jackson">
+</div><h2 id="2023">2023</h2><div class="cards">
+<img loading="lazy" src="/assets/img/garden/books/leguinwizard.jpg" id="leguinwizard" alt="A Wizard of Earthsea by Ursula K. Le Guin" title="A Wizard of Earthsea by Ursula K. Le Guin"><img loading="lazy" src="/assets/img/garden/books/stoner.jpg" id="stoner" alt="Stoner by John Williams" title="Stoner by John Williams"><img loading="lazy" src="/assets/img/garden/books/magicians.jpg" id="magicians" alt="The Magicians by Lev Grossman" title="The Magicians by Lev Grossman"><img loading="lazy" src="/assets/img/garden/books/zevintomorrow.jpg" id="zevintomorrow" alt="Tomorrow and Tomorrow and Tomorrow by Gabrielle Zevin" title="Tomorrow and Tomorrow and Tomorrow by Gabrielle Zevin"><img loading="lazy" src="/assets/img/garden/books/androids.jpg" id="androids" alt="Do Androids Dream of Electric Sheep? by Philip K. Dick" title="Do Androids Dream of Electric Sheep? by Philip K. Dick">
 </div>
-</div>
-<h2 id="section">2024</h2>
-<div class="flex">
-<img loading="lazy" src="/assets/img/garden/books/toolsforconviviality.jpg">
-<img loading="lazy" src="/assets/img/garden/books/lhod.jpg" alt="The Left Hand of Darkness by Ursula K. Le Guin" title="The Left Hand of Darkness by Ursula K. Le Guin">
-<img loading="lazy" src="/assets/img/garden/books/eitheror.jpg" alt="Either/Or by Elif Batuman" title="Either/Or by Elif Batuman">
-<a href="books/dune.html"><img loading="lazy" src="/assets/img/garden/books/dune.webp"></a>
-<img loading="lazy" src="/assets/img/garden/books/kamalaharris.jpg">
-<img loading="lazy" src="/assets/img/garden/books/idiot.jpg">
-<img loading="lazy" src="/assets/img/garden/books/gita.jpg">
-<img loading="lazy" src="/assets/img/garden/books/leguintombs.jpg">
-<img loading="lazy" src="/assets/img/garden/books/leguinlathe.jpg">
-<img loading="lazy" src="/assets/img/garden/books/hitzthought.jpg">
-<img loading="lazy" src="/assets/img/garden/books/jacksonessence.jpg">
-<img loading="lazy" src="/assets/img/garden/books/snowcrash.jpg">
-<div>
-
-</div>
-</div>
-<h2 id="section-1">2023</h2>
-<div class="flex">
-<img loading="lazy" src="/assets/img/garden/books/magicians.jpg">
-<img loading="lazy" src="/assets/img/garden/books/stoner.jpg">
-<img loading="lazy" src="/assets/img/garden/books/zevintomorrow.jpg">
-<img loading="lazy" src="/assets/img/garden/books/androids.jpg">
-<img loading="lazy" src="/assets/img/garden/books/leguinwizard.jpg">
-<div>
-
-</div>
-</div>
-</div>
-<!-- 
-## More
-* Roadside Picnic
-* Notes From Underground -->
 </article></main></body></html>

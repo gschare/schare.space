@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<books>
+    <book title="Piranesi"
+          author="Susanna Clarke"
+          id="piranesi"
+          img="piranesi.jpg"
+          date=""
+    />
+    <book title="Pride and Prejudice"
+          author="Jane Austen"
+          id="prideandprejudice"
+          img="prideandprejudice.jpg"
+          date=""
+    />
+    <book title="Ficciones"
+          author="Jorge Luis Borges"
+          id="ficciones"
+          img="ficciones.jpg"
+          date=""
+    />
+    <book title="The Sun Also Rises"
+          author="Ernest Hemingway"
+          id="sunalsorises"
+          img="sunalsorises.jpg"
+          date=""
+    />
+    <book title="The World of Yesterday"
+          author="Stefan Zweig"
+          id="worldofyesterday"
+          img="worldofyesterday.jpg"
+          date=""
+    />
+    <book title="Slouching Towards Bethlehem"
+          author="Joan Didion"
+          id="slouching"
+          img="slouching.jpg"
+          date="2024-12-20"
+    />
+    <book title="Tools for Conviviality"
+          author="Ivan Illich"
+          id="toolsforconviviality"
+          img="toolsforconviviality.jpg"
+          date="2024-11-27"
+    />
+    <book title="The Left Hand of Darkness"
+          author="Ursula K. Le Guin"
+          id="lhod"
+          img="lhod.jpg"
+          date="2024-11-15"
+    />
+    <book title="Either/Or"
+          author="Elif Batuman"
+          id="eitheror"
+          img="eitheror.jpg"
+          date="2024-10-19"
+    />
+    <book title="Dune"
+          author="Frank Herbert"
+          id="dune"
+          img="dune.webp"
+          date="2024-09-25"
+    />
+    <book title="The Truths We Hold: An American Journey"
+          author="Kamala Harris"
+          id="kamalaharris"
+          img="kamalaharris.jpg"
+          date="2024-09-12"
+    />
+    <book title="The Idiot"
+          author="Elif Batuman"
+          id="idiot"
+          img="idiot.jpg"
+          date="2024-09-08"
+    />
+    <book title="The Bhagavad Gita"
+          author="Eknath Easwaran (trans.)"
+          id="gita"
+          img="gita.jpg"
+          date="2024-08-18"
+    />
+    <book title="The Tombs of Atuan"
+          author="Ursula K. Le Guin"
+          id="leguintombs"
+          img="leguintombs.jpg"
+          date="2024-08-12"
+    />
+    <book title="The Lathe of Heaven"
+          author="Ursula K. Le Guin"
+          id="leguinlathe"
+          img="leguinlathe.jpg"
+          date="2024-06-29"
+    />
+    <book title="Lost in Thought: The Hidden Pleasures of an Intellectual Life"
+          author="Zena Hitz"
+          id="hitzthought"
+          img="hitzthought.jpg"
+          date="2024-06-26"
+    />
+    <book title="Snow Crash"
+          author="Neal Stephenson"
+          id="snowcrash"
+          img="snowcrash.jpg"
+          date="2024-06-11"
+    />
+    <book title="The Essence of Software: Why Concepts Matter for Great Design"
+          author="Daniel Jackson"
+          id="jacksonessence"
+          img="jacksonessence.jpg"
+          date="2024-05-17"
+    />
+    <book title="A Wizard of Earthsea"
+          author="Ursula K. Le Guin"
+          id="leguinwizard"
+          img="leguinwizard.jpg"
+          date="2023-12-14"
+    />
+    <book title="Stoner"
+          author="John Williams"
+          id="stoner"
+          img="stoner.jpg"
+          date="2023-04-22"
+    />
+    <book title="The Magicians"
+          author="Lev Grossman"
+          id="magicians"
+          img="magicians.jpg"
+          date="2023-04"
+    />
+    <book title="Tomorrow and Tomorrow and Tomorrow"
+          author="Gabrielle Zevin"
+          id="zevintomorrow"
+          img="zevintomorrow.jpg"
+          date="2023-03"
+    />
+    <book title="Do Androids Dream of Electric Sheep?"
+          author="Philip K. Dick"
+          id="androids"
+          img="androids.jpg"
+          date="2023-01"
+    />
+<!--
+## More
+* Roadside Picnic
+* Notes From Underground-->
+</books>

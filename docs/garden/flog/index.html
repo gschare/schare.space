@@ -46,95 +46,43 @@
         </div>
     </div>
 </header>
-<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><!--  provenance: local 24.08.03-18.57.md -> garden/flog/index.html  -->
-<nav class="secondary">
-<a href="/garden/books.html">books</a>
-</nav>
-<h1 id="flog">Flog <!--  film log  --></h1>
-<title>
-Flog (Film Log)
-</title>
-<p>See also: my <a href="https://letterboxd.com/gschare/">Letterboxd</a></p>
-<style>
-#cards img {
-  all: revert;
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><title>Flog (Film Log)</title><nav class="secondary"><a href="/garden/books.html">books</a></nav><h1>Flog </h1><p>See also: my <a href="https://letterboxd.com/gschare/">Letterboxd</a></p><style>
+.cards {
+    display: grid;
+    /* fr = fractional unit */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: start;
+    grid-auto-rows: 400px;
+    gap: 16px;
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cards {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.cards img {
+  /*margin: revert;
   min-width: 10vw;
-  max-width: 15vw;
-  max-height: 600px;
+  max-width: 15vw;*/
+    /*max-height: 400px;*/
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
+    /*overflow: hidden;*/
+  height: 100%;
+    /*aspect-ratio: 4/5;*/
 }
-
-.flex {
-  gap: 10px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-</style>
-<div id="cards">
-<p><!--  for CSS specificity >.<  --></p>
-<p><span class="warning"><strong>Note:</strong> this is just a
+</style><p><span class="warning"><strong>Note:</strong> this is just a
 placeholder. I later on plan to write my thoughts on certain films I
-watch…</span></p>
-<h2 id="section">2024</h2>
-<div class="flex">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/13/5c/le/db/879iEKkJMSXSbgqjs3tVOQceNUK-0-2000-0-3000-crop.jpg?v=21519203c7" alt="Watership Down (1978)" title="Watership Down (1978)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/7/7/5/6/47756-my-neighbor-totoro-0-2000-0-3000-crop.jpg?v=749abe71ad" alt="My Neighbor Totoro (1988)" title="My Neighbor Totoro (1988)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-2000-0-3000-crop.jpg?v=cc533700f8" alt="Dune: Part Two (2024)" title="Dune: Part Two (2024)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/7/7/0/4/6/877046-hit-man-0-2000-0-3000-crop.jpg?v=7a8e101a9d" alt="Hit Man (2023)" title="Hit Man (2023)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/7x/ox/ux/z9/p2bjagPNjohe0SyRnCjnNxqnej4-0-2000-0-3000-crop.jpg?v=f5f5b71721" alt="Forbidden Planet (1956)" title="Forbidden Planet (1956)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/9/0/2/3/49023-paprika-0-2000-0-3000-crop.jpg?v=bdcabb9981">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/8/7/2/3/8/387238-crazy-rich-asians-0-2000-0-3000-crop.jpg?v=21695f4b1f">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/7/1/0/9/47109-you-ve-got-mail-0-2000-0-3000-crop.jpg?v=4a6ca4dba1" alt="You've Got Mail (1999)" title="You've Got Mail (1999)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/3/8/1/4/0/838140-the-substance-0-2000-0-3000-crop.jpg?v=ab9e1072f8" alt="The Substance (2024)" title="The Substance (2024)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/2/0/3/2/8/520328-megalopolis-0-2000-0-3000-crop.jpg?v=64ab4fa858" alt="Megalopolis (2024)" title="Megalopolis (2024)">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/0/772230-i-saw-the-tv-glow-0-2000-0-3000-crop.jpg?v=c5e712bb90">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/14/7l/a1/b6/dZaTYgy6sc6Z8ylaKdXw8yq5sRv-0-2000-0-3000-crop.jpg?v=59a0235b75">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-2000-0-3000-crop.jpg?v=49eed12751">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/5/2/6/2/6/752626-la-chimera-0-2000-0-3000-crop.jpg?v=8f8cf76e33">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/5/2/8/1/2/952812-american-fiction-0-2000-0-3000-crop.jpg?v=fbc2c6daf1">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/6/5/9/7/46597-the-messenger-the-story-of-joan-of-arc-0-2000-0-3000-crop.jpg?v=a963f30ee3">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/b3/fj/5k/es/t9uXmc321EzCp6uUYU3XtghjqTq-0-2000-0-3000-crop.jpg?v=8c0964a95e">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/5/3/0/1/1/853011-love-lies-bleeding-0-2000-0-3000-crop.jpg?v=06376e593e">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/9/8/8/8/2/598882-the-banshees-of-inisherin-0-2000-0-3000-crop.jpg?v=933f9af6e7">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/7/9/0/5/2/579052-dinner-in-america-0-2000-0-3000-crop.jpg?v=15a53313fc">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/2/1/8/0/1/21801-love-other-drugs-0-2000-0-3000-crop.jpg?v=08511b998f">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/2/8/2/6/1/928261-kinds-of-kindness-0-2000-0-3000-crop.jpg?v=719ff64e2b">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/6/1/4/4/3/361443-mortal-engines-0-2000-0-3000-crop.jpg?v=9f7020e5b9">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/4/8/8/9/34889-pretty-baby-0-2000-0-3000-crop.jpg?v=1c9d05d1fa">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/cy/cy/d9/jb/the-cook-the-thief-0-2000-0-3000-crop.jpg?v=7ca169fca2">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/7f/z3/ho/6j/6vblWscFAbIm9V5CwHC7IImgAq9-0-2000-0-3000-crop.jpg?v=b505ff45b0">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/9/0/5/4/49054-burn-after-reading-0-2000-0-3000-crop.jpg?v=1a29d1c090">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/4/1/9/9/44199-el-topo-0-2000-0-3000-crop.jpg?v=2523af266a">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-2000-0-3000-crop.jpg?v=a7cd63cbef">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/8/8/3/9/9/488399-the-green-knight-0-2000-0-3000-crop.jpg?v=874a267b92">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/9/3/4/4/1/493441-candyman-0-2000-0-3000-crop.jpg?v=6b8fde38f5">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/0/6/6/0/50660-crank-0-2000-0-3000-crop.jpg?v=c6b361887f">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/1/9/0/4/0/6/190406-genius-0-2000-0-3000-crop.jpg?v=aac63852b9">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/9/5/8/9/7/795897-no-hard-feelings-0-2000-0-3000-crop.jpg?v=d9012766c3">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/2/4/2/2/8/5/242285-puss-in-boots-the-last-wish-0-2000-0-3000-crop.jpg?v=9e9109c5cd">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/5/8/3/9/7/758397-the-idea-of-you-0-2000-0-3000-crop.jpg?v=8c9e3b74af">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/3/4/6/5/6/834656-civil-war-0-2000-0-3000-crop.jpg?v=aefec33dbe">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/9/8/8/0/0/398800-the-zone-of-interest-0-2000-0-3000-crop.jpg?v=0514f658e1">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/2/2/0/9/3/822093-anatomy-of-a-fall-0-2000-0-3000-crop.jpg?v=4efab8aedc">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/1/3/7/4/7/6/137476-american-sniper-0-2000-0-3000-crop.jpg?v=bd4ebfac7c">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/5/9/4/5/1/359451-cargo-0-2000-0-3000-crop.jpg?v=0fdaaebe98">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/8/0/5/1/48051-juno-0-2000-0-3000-crop.jpg?v=19ad3fb7e5">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/1/7/1/2/51712-the-devil-wears-prada-0-2000-0-3000-crop.jpg?v=65a9cdb330">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/7/0/7/8/47078-wedding-crashers-0-2000-0-3000-crop.jpg?v=f3b8dde858">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/6/8/3/4/5/1/683451-damsel-0-2000-0-3000-crop.jpg?v=c22af16d0a">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/6/1/2/5/0/861250-drive-away-dolls-0-2000-0-3000-crop.jpg?v=2e83bbe648">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/8/8/0/0/38800-but-i-m-a-cheerleader-0-2000-0-3000-crop.jpg?v=fb07442029">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/4/9/4/4/2/449442-bodies-bodies-bodies-0-2000-0-3000-crop.jpg?v=1dfddd92ac">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/2/0/4/1/3/20413-symbiopsychotaxiplasm-take-one-0-2000-0-3000-crop.jpg?v=82dc51acf6">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/5/5/5/6/4/755564-the-holdovers-0-2000-0-3000-crop.jpg?v=99bbdd8955">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/1/0/3/5/2/710352-poor-things-0-2000-0-3000-crop.jpg?v=a0f2ee9a0e">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/3/8/6/9/2/438692-the-boy-and-the-heron-0-2000-0-3000-crop.jpg?v=521e114164">
-<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/5/2/7/5/35275-turn-left-at-the-end-of-the-world-0-2000-0-3000-crop.jpg?v=536eeed2a5">
-<div>
-
-</div>
-</div>
-<h2 id="older">Older</h2>
+watch…</span></p><h2 id="2024">2024</h2><div class="cards">
+<img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/1/3/2/5/8/913258-a-real-pain-0-1000-0-1500-crop.jpg?v=893a943872" alt="A Real Pain (2024) dir. Jesse Eisenberg" title="A Real Pain (2024) dir. Jesse Eisenberg"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/7/9/2/2/9/879229-perfect-days-0-1000-0-1500-crop.jpg?v=4ea80661fd" alt="Perfect Days (2023) dir. Wim Wenders" title="Perfect Days (2023) dir. Wim Wenders"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/a0/sz/qf/mq/erBsxkzVwkXuvuzUBpVnNxxPYhO-0-1000-0-1500-crop.jpg?v=80375a32fa" alt="O Brother, Where Art Thou? (2000) dir. Joel Coen" title="O Brother, Where Art Thou? (2000) dir. Joel Coen"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/3/9/4/5/1/739451-flow-2024-0-1000-0-1500-crop.jpg?v=32f49339d9" alt="Flow (2024) dir. Gints Zilbalodis" title="Flow (2024) dir. Gints Zilbalodis"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/1/7/2/3/51723-night-on-earth-0-1000-0-1500-crop.jpg?v=b2c1cfb249" alt="Night On Earth (1991) dir. Jim Jarmusch" title="Night On Earth (1991) dir. Jim Jarmusch"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/13/5c/le/db/879iEKkJMSXSbgqjs3tVOQceNUK-0-2000-0-3000-crop.jpg?v=21519203c7" alt="Watership Down (1978) dir. Martin Rosen" title="Watership Down (1978) dir. Martin Rosen"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/7/7/5/6/47756-my-neighbor-totoro-0-2000-0-3000-crop.jpg?v=749abe71ad" alt="My Neighbor Totoro (1988) dir. Hayao Miyazaki" title="My Neighbor Totoro (1988) dir. Hayao Miyazaki"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-2000-0-3000-crop.jpg?v=cc533700f8" alt="Dune: Part Two (2024) dir. Denis Villeneuve" title="Dune: Part Two (2024) dir. Denis Villeneuve"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/7/7/0/4/6/877046-hit-man-0-2000-0-3000-crop.jpg?v=7a8e101a9d" alt="Hit Man (2023) dir. Richard Linklater" title="Hit Man (2023) dir. Richard Linklater"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/7x/ox/ux/z9/p2bjagPNjohe0SyRnCjnNxqnej4-0-2000-0-3000-crop.jpg?v=f5f5b71721" alt="Forbidden Planet (1956) dir. Fred M. Wilcox" title="Forbidden Planet (1956) dir. Fred M. Wilcox"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/9/0/2/3/49023-paprika-0-2000-0-3000-crop.jpg?v=bdcabb9981" alt="Paprika (2006) dir. Satoshi Kon" title="Paprika (2006) dir. Satoshi Kon"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/8/7/2/3/8/387238-crazy-rich-asians-0-2000-0-3000-crop.jpg?v=21695f4b1f" alt="Crazy Rich Asians (2018) dir. Jon M. Chu" title="Crazy Rich Asians (2018) dir. Jon M. Chu"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/7/1/0/9/47109-you-ve-got-mail-0-2000-0-3000-crop.jpg?v=4a6ca4dba1" alt="You've Got Mail (1998) dir. Nora Ephron" title="You've Got Mail (1998) dir. Nora Ephron"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/3/8/1/4/0/838140-the-substance-0-2000-0-3000-crop.jpg?v=ab9e1072f8" alt="The Substance (2024) dir. Coralie Fargeat" title="The Substance (2024) dir. Coralie Fargeat"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/2/0/3/2/8/520328-megalopolis-0-2000-0-3000-crop.jpg?v=64ab4fa858" alt="Megalopolis (2024) dir. Francis Ford Coppola" title="Megalopolis (2024) dir. Francis Ford Coppola"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/0/772230-i-saw-the-tv-glow-0-2000-0-3000-crop.jpg?v=c5e712bb90" alt="I Saw The TV Glow (2024) dir. Jane Schoenbrun" title="I Saw The TV Glow (2024) dir. Jane Schoenbrun"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/14/7l/a1/b6/dZaTYgy6sc6Z8ylaKdXw8yq5sRv-0-2000-0-3000-crop.jpg?v=59a0235b75" alt="Secretary (2002) dir. Steven Shainberg" title="Secretary (2002) dir. Steven Shainberg"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-2000-0-3000-crop.jpg?v=49eed12751" alt="Dune (2021) dir. Denis Villeneuve" title="Dune (2021) dir. Denis Villeneuve"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/5/2/6/2/6/752626-la-chimera-0-2000-0-3000-crop.jpg?v=8f8cf76e33" alt="La Chimera (2023) dir. Alice Rohrwacher" title="La Chimera (2023) dir. Alice Rohrwacher"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/5/2/8/1/2/952812-american-fiction-0-2000-0-3000-crop.jpg?v=fbc2c6daf1" alt="American Fiction (2023) dir. Cord Jefferson" title="American Fiction (2023) dir. Cord Jefferson"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/6/5/9/7/46597-the-messenger-the-story-of-joan-of-arc-0-2000-0-3000-crop.jpg?v=a963f30ee3" alt="The Messenger: The Story of Joan of Arc (1999) dir. Luc Besson" title="The Messenger: The Story of Joan of Arc (1999) dir. Luc Besson"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/b3/fj/5k/es/t9uXmc321EzCp6uUYU3XtghjqTq-0-2000-0-3000-crop.jpg?v=8c0964a95e" alt="Ghost World (2001) dir. Terry Zwigoff" title="Ghost World (2001) dir. Terry Zwigoff"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/5/3/0/1/1/853011-love-lies-bleeding-0-2000-0-3000-crop.jpg?v=06376e593e" alt="Love Lies Bleeding (2024) dir. Rose Glass" title="Love Lies Bleeding (2024) dir. Rose Glass"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/9/8/8/8/2/598882-the-banshees-of-inisherin-0-2000-0-3000-crop.jpg?v=933f9af6e7" alt="The Banshees of Inisherin (2022) dir. Martin McDonagh" title="The Banshees of Inisherin (2022) dir. Martin McDonagh"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/7/9/0/5/2/579052-dinner-in-america-0-2000-0-3000-crop.jpg?v=15a53313fc" alt="Dinner in America (2020) dir. Adam Rehmeier" title="Dinner in America (2020) dir. Adam Rehmeier"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/2/1/8/0/1/21801-love-other-drugs-0-2000-0-3000-crop.jpg?v=08511b998f" alt="Love and Other Drugs (2010) dir. Edward Zwick" title="Love and Other Drugs (2010) dir. Edward Zwick"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/2/8/2/6/1/928261-kinds-of-kindness-0-2000-0-3000-crop.jpg?v=719ff64e2b" alt="Kinds of Kindness (2024) dir. Yorgos Lanthimos" title="Kinds of Kindness (2024) dir. Yorgos Lanthimos"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/6/1/4/4/3/361443-mortal-engines-0-2000-0-3000-crop.jpg?v=9f7020e5b9" alt="Mortal Engines (2018) dir. Christian Rivers" title="Mortal Engines (2018) dir. Christian Rivers"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/4/8/8/9/34889-pretty-baby-0-2000-0-3000-crop.jpg?v=1c9d05d1fa" alt="Pretty Baby (1978) dir. Louis Malle" title="Pretty Baby (1978) dir. Louis Malle"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/cy/cy/d9/jb/the-cook-the-thief-0-2000-0-3000-crop.jpg?v=7ca169fca2" alt="The Cook, the Thief, His Wife and Her Lover (1989) dir. Peter Greenaway" title="The Cook, the Thief, His Wife and Her Lover (1989) dir. Peter Greenaway"><img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/7f/z3/ho/6j/6vblWscFAbIm9V5CwHC7IImgAq9-0-2000-0-3000-crop.jpg?v=b505ff45b0" alt="House (1977) dir. Nobuhiko Obayashi" title="House (1977) dir. Nobuhiko Obayashi"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/9/0/5/4/49054-burn-after-reading-0-2000-0-3000-crop.jpg?v=1a29d1c090" alt="Burn After Reading (2008) dir. Ethan Coen, Joel Coen" title="Burn After Reading (2008) dir. Ethan Coen, Joel Coen"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/4/1/9/9/44199-el-topo-0-2000-0-3000-crop.jpg?v=2523af266a" alt="El Topo (1970) dir. Alejandro Jodorowsky" title="El Topo (1970) dir. Alejandro Jodorowsky"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-2000-0-3000-crop.jpg?v=a7cd63cbef" alt="Challengers (2024) dir. Luca Guadagnino" title="Challengers (2024) dir. Luca Guadagnino"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/8/8/3/9/9/488399-the-green-knight-0-2000-0-3000-crop.jpg?v=874a267b92" alt="The Green Knight (2021) dir. David Lowery" title="The Green Knight (2021) dir. David Lowery"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/9/3/4/4/1/493441-candyman-0-2000-0-3000-crop.jpg?v=6b8fde38f5" alt="Candyman (2021) dir. Nia DaCosta" title="Candyman (2021) dir. Nia DaCosta"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/0/6/6/0/50660-crank-0-2000-0-3000-crop.jpg?v=c6b361887f" alt="Crank (2006) dir. Brian Taylor, Mark Neveldine" title="Crank (2006) dir. Brian Taylor, Mark Neveldine"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/1/9/0/4/0/6/190406-genius-0-2000-0-3000-crop.jpg?v=aac63852b9" alt="Genius (2016) dir. Michael Grandage" title="Genius (2016) dir. Michael Grandage"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/9/5/8/9/7/795897-no-hard-feelings-0-2000-0-3000-crop.jpg?v=d9012766c3" alt="No Hard Feelings (2023) dir. Gene Stupnitsky" title="No Hard Feelings (2023) dir. Gene Stupnitsky"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/2/4/2/2/8/5/242285-puss-in-boots-the-last-wish-0-2000-0-3000-crop.jpg?v=9e9109c5cd" alt="Puss in Boots: The Last Wish (2022) dir. Joel Crawford" title="Puss in Boots: The Last Wish (2022) dir. Joel Crawford"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/5/8/3/9/7/758397-the-idea-of-you-0-2000-0-3000-crop.jpg?v=8c9e3b74af" alt="The Idea of You (2024) dir. Michael Showalter" title="The Idea of You (2024) dir. Michael Showalter"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/3/4/6/5/6/834656-civil-war-0-2000-0-3000-crop.jpg?v=aefec33dbe" alt="Civil War (2024) dir. Alex Garland" title="Civil War (2024) dir. Alex Garland"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/9/8/8/0/0/398800-the-zone-of-interest-0-2000-0-3000-crop.jpg?v=0514f658e1" alt="The Zone of Interest (2023) dir. Jonathan Glazer" title="The Zone of Interest (2023) dir. Jonathan Glazer"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/1/3/7/4/7/6/137476-american-sniper-0-2000-0-3000-crop.jpg?v=bd4ebfac7c" alt="American Sniper (2014) dir. Clint Eastwood" title="American Sniper (2014) dir. Clint Eastwood"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/2/2/0/9/3/822093-anatomy-of-a-fall-0-2000-0-3000-crop.jpg?v=4efab8aedc" alt="Anatomy of a Fall (2024) dir. Justine Triet" title="Anatomy of a Fall (2024) dir. Justine Triet"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/5/9/4/5/1/359451-cargo-0-2000-0-3000-crop.jpg?v=0fdaaebe98" alt="Cargo (2017) dir. Yolanda Ramke, Ben Howling" title="Cargo (2017) dir. Yolanda Ramke, Ben Howling"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/8/0/5/1/48051-juno-0-2000-0-3000-crop.jpg?v=19ad3fb7e5" alt="Juno (2007) dir. Jason Reitman" title="Juno (2007) dir. Jason Reitman"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/1/7/1/2/51712-the-devil-wears-prada-0-2000-0-3000-crop.jpg?v=65a9cdb330" alt="The Devil Wears Prada (2006) dir. David Frankel" title="The Devil Wears Prada (2006) dir. David Frankel"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/7/0/7/8/47078-wedding-crashers-0-2000-0-3000-crop.jpg?v=f3b8dde858" alt="Wedding Crashers (2005) dir. David Dobkin" title="Wedding Crashers (2005) dir. David Dobkin"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/6/8/3/4/5/1/683451-damsel-0-2000-0-3000-crop.jpg?v=c22af16d0a" alt="Damsel (2024) dir. Juan Carlos Fresnadillo" title="Damsel (2024) dir. Juan Carlos Fresnadillo"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/6/1/2/5/0/861250-drive-away-dolls-0-2000-0-3000-crop.jpg?v=2e83bbe648" alt="Drive-Away Dolls (2024) dir. Ethan Coen" title="Drive-Away Dolls (2024) dir. Ethan Coen"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/8/8/0/0/38800-but-i-m-a-cheerleader-0-2000-0-3000-crop.jpg?v=fb07442029" alt="But I'm a Cheerleader (1999) dir. Jamie Babbit" title="But I'm a Cheerleader (1999) dir. Jamie Babbit"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/4/9/4/4/2/449442-bodies-bodies-bodies-0-2000-0-3000-crop.jpg?v=1dfddd92ac" alt="Bodies Bodies Bodies (2022) dir. Halina Reijn" title="Bodies Bodies Bodies (2022) dir. Halina Reijn"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/2/0/4/1/3/20413-symbiopsychotaxiplasm-take-one-0-2000-0-3000-crop.jpg?v=82dc51acf6" alt="Symbiopsychotaxiplasm (1968) dir. William Greaves" title="Symbiopsychotaxiplasm (1968) dir. William Greaves"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/5/5/5/6/4/755564-the-holdovers-0-2000-0-3000-crop.jpg?v=99bbdd8955" alt="The Holdovers (2023) dir. Alexander Payne" title="The Holdovers (2023) dir. Alexander Payne"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/1/0/3/5/2/710352-poor-things-0-2000-0-3000-crop.jpg?v=a0f2ee9a0e" alt="Poor Things (2023) dir. Yorgos Lanthimos" title="Poor Things (2023) dir. Yorgos Lanthimos"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/3/8/6/9/2/438692-the-boy-and-the-heron-0-2000-0-3000-crop.jpg?v=521e114164" alt="The Boy and the Heron (2023) dir. Hayao Miyazaki" title="The Boy and the Heron (2023) dir. Hayao Miyazaki"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/5/2/7/5/35275-turn-left-at-the-end-of-the-world-0-2000-0-3000-crop.jpg?v=536eeed2a5" alt="Turn Left at the End of the World (2004) dir. Avi Nesher" title="Turn Left at the End of the World (2004) dir. Avi Nesher">
 </div>
 </article></main></body></html>
