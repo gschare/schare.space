@@ -1,9 +1,13 @@
 #lang racket
 
 (require "src/build.rkt")
-(require "src/tidings.rkt") ; blog builder
+(require "src/custom.rkt")
+
+; Custom builders
+;(require "src/tidings.rkt") ; blog builder
 (require "src/md.rkt")
 (require "src/xml.rkt")
+(require "src/phlog.rkt")
 
 (define rules
   `(:defaults (:template article.sxml
@@ -32,22 +36,31 @@
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path garden/links.html
+             :preprocessed #t
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path garden/worm.html
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/garden.css))
-            (:path ,(xml 'garden/books.xml)
+            (:path ,(custom xml 'garden/books.xml)
+             :preprocessed #t
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
-            (:path ,(xml 'garden/flog/index.xml)
+            (:path ,(custom xml 'garden/flog/index.xml)
+             :preprocessed #t
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
             )
-    :folders ((:path ,(md* 'garden #:recursive #t)
+    :folders (
+              (:path ,(custom phlog 'garden/phlog/index.xml)
+               :preprocessed #t
+               :template garden.sxml
+               :styles (css/default.css css/garden.css css/phlog.css))
+              (:path ,(custom md* 'garden #:recursive #t)
+               :preprocessed #t
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css))
               (:path tidings
@@ -56,12 +69,9 @@
               (:path garden/sea
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css css/sea.css))
-              ;(:path garden/phlog
-              ; :template garden.sxml
+              ;(:path garden/jot
+              ; :template default.sxml
               ; :styles (css/default.css css/garden.css))
-              (:path garden/jot
-               :template default.sxml
-               :styles (css/default.css css/garden.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf
@@ -75,7 +85,7 @@
                   )
           :folders (writ js css assets/img assets/fonts assets/papers lab garden/jot/src)
           )
-    :disabled (:files (garden/phlog/2024-08-11.html)
+    :disabled (:files ()
                :folders ()
               )
     )

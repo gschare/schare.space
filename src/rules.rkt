@@ -50,6 +50,7 @@
                  #:folder [folder #f]
                  #:phony [phony #f]
                  #:raw [raw #f]
+                 #:preprocessed [preprocessed #f]
                  #:disabled [disabled #f])
                (if (and (set-member? names path) (not disabled))
                    (error (format "duplicate identifier ~a" path))
@@ -60,6 +61,7 @@
                      '#:folder folder
                      '#:phony phony
                      '#:raw raw
+                     '#:preprocessed preprocessed
                      '#:disabled disabled))])
            ; TODO: refactor this function to just map over hash-update with a
            ; default.
@@ -119,13 +121,15 @@
                  #:folder folder?
                  #:template template
                  #:styles styles
+                 #:preprocessed preprocessed?
                  #:raw _
                  #:disabled disabled?)
-    (let ([path (build-path SRC-DIR (string->path (symbol->string path)))]
+    (let ([path (build-path INTERMEDIATE-DIR
+                            (string->path (symbol->string path)))]
           [template (build-path TEMPLATES-DIR
                                 (string->path (symbol->string template)))]
           [styles (map (λ (s) (build-path
-                               SRC-DIR
+                               INTERMEDIATE-DIR
                                (string->path (symbol->string s)))) styles)])
       (if disabled?
           (void)
@@ -195,10 +199,6 @@
       [_ (error "invalid type ~a" path)]))
 
   (define (pathlist->hash pathlist parent-hash #:folder folder)
-    ; It actually doesn't matter whether or not we assign '#:folder
-    ; correctly at this point since the last time it is queried
-    ; is at the start of rules-closure to create the folders set.
-    ; But, for good hygiene, we require it.
     (make-immutable-hash
      (map (λ (path)
             (let ([sym (path->symbol path)])
@@ -236,7 +236,8 @@
           (loop (hash-union children-folders (hash-remove folders key))
                 (hash-union new-files children-files)))]))
 
-    (current-directory SRC-DIR)
+    (current-directory INTERMEDIATE-DIR)
     (define result (hash-union rules-table (loop folders new-files)))
     (current-directory ROOT-DIR)
+
     result))

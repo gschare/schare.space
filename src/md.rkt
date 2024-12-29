@@ -9,7 +9,7 @@
 (define (md pathsym #:base [base SRC-DIR])
   ; Given a path symbol (e.g. 'garden/myfile.md) specifying a markdown file,
   ; generate the standalone html of the file and write that to file in the
-  ; same directory as the original, with an html extension. This will overwrite
+  ; intermediate directory, with an html extension. This will overwrite
   ; the existing one.
   ;
   ; Optionally accepts a base prefix to prepend to the path symbol to form the full path.
@@ -18,9 +18,14 @@
   ; Returns the symbol of the destination path.
   ;
   ; NOTE: be careful! You may have other rules that affect the .md sources.
-  (let* ([src-path (build-path base (symbol->path pathsym))]
-         [dest-path (path-replace-extension src-path ".html")]
-         [dest-sym (path->symbol (path-replace-extension (symbol->path pathsym) ".html"))])
+  (let* ([path (symbol->path pathsym)]
+         [src-path (build-path base path)]
+         [rel-path (if (absolute-path? src-path)
+                       (find-relative-path SRC-DIR src-path)
+                       src-path)]
+         [dest-path (path-replace-extension (build-path INTERMEDIATE-DIR rel-path) ".html")]
+         [dest-sym (path->symbol (path-replace-extension rel-path ".html"))])
+    (make-parent-directory* dest-path)
     (system (string-append "pandoc --mathjax -f markdown -t html -o " (path->string dest-path) " " (path->string src-path)))
     dest-sym))
 
@@ -40,7 +45,7 @@
   ; This is the only real use case for this function.
   ;
   ; NOTE: be careful! You may have other rules that behave unexpectedly around
-  ; the .md sources or the generated .html files in content/, especially when
+  ; the .md sources or the generated .html files in temp/, especially when
   ; performed recursively.
   (let* ([dir-path (build-path base (symbol->path folder-path-sym))]
          [paths (directory-list dir-path)])
@@ -60,5 +65,3 @@
       (void)))
 
   folder-path-sym)
-
-; TODO: maybe delete the generated HTML in content/ after building is done?

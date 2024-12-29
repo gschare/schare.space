@@ -1,17 +1,19 @@
 <?xml version="1.0"?>
 <days>
     <day date="2024-08-11">
-        <photo link="https://live.staticflickr.com/65535/53917456916_ae67911866_k.jpg">
-            <alt>Colorado mountain vista</alt>
-            <caption/>
-        </photo>
-        <photo link="https://live.staticflickr.com/65535/53917902250_699ef56991_k.jpg">
-            <alt/>
-            <caption/>
-        </photo>
-        <photo link="https://live.staticflickr.com/65535/53917456931_0fa9fee593_k.jpg">
-            <alt/>
-            <caption/>
-        </photo>
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/53917456916_ae67911866_k.jpg">
+                <alt>Colorado mountain vista</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/53917902250_699ef56991_k.jpg">
+                <alt/>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/53917456931_0fa9fee593_k.jpg">
+                <alt/>
+                <caption/>
+            </photo>
+        </photos>
     </day>
 </days>

@@ -32,11 +32,13 @@
 (require "templates.rkt")
 
 (define (lisp-keyword->racket-keyword sym)
-  (let ((sym-string (symbol->string sym)))
-    (cond
-     [(char=? (string-ref sym-string 0) #\:)
-      (string->keyword (substring sym-string 1))]
-     [else sym])))
+  (if (symbol? sym)
+      (let ((sym-string (symbol->string sym)))
+        (cond
+         [(char=? (string-ref sym-string 0) #\:)
+          (string->keyword (substring sym-string 1))]
+         [else sym]))
+      sym))
 
 (define (build rules #:dest [dest "docs"] #:dry-run [dry-run #f])
   (displayln (format "Files to be written to folder: ~a" dest))
@@ -65,6 +67,13 @@
                (by-flag '#:phony))
               (λ (v) (hash-remove v '#:phony)))]
 
+         ; Copy non-preprocessed files to assemble to the intermediate
+         ; directory, where preprocessed files are.
+         ; (This is to keep the SRC dir clean of generated files.)
+         ; Note: reads from disk!
+         ; Note: writes to disk! (but only to intermediate directory)
+         [_ (copy-to-intermediate)]
+
          ; Generate the full build plan by recursively getting the children
          ; of folders and applying their parent settings, unless already
          ; specified.
@@ -87,7 +96,6 @@
                      (set->list (list->set
                                  (hash-values template-assignments))))]
 
-
          ; Build each non-raw file according to the plan.
          ; Only files ending in `.html` will be built.
          [files-sxml
@@ -103,7 +111,7 @@
              (let ([template (hash-ref v '#:template)]
                    [content
                     (html->xexp (file->string
-                      (build-path SRC-DIR
+                      (build-path INTERMEDIATE-DIR
                                   (symbol->path (hash-ref v '#:path)))))]
                    [styles (stylelist->xexp (hash-ref v '#:styles))])
              (values
