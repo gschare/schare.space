@@ -1,0 +1,49 @@
+body {
+    text-align: center;
+}
+
+img {
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+figcaption {
+    max-width: 30rem;
+    margin: auto;
+    padding: 10px 30px 30px;
+    font-size: 120%;
+}
+
+ul {
+    max-width: 35rem;
+    padding: 0;
+    list-style-type: none;
+    margin: auto;
+}
+
+figcaption::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid var(--fg-light-secondary);
+    width: 10rem;
+    margin: auto;
+    padding-top: 20px;
+    border-radius: 1px;
+}
+
+figure {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+@media screen and (max-width: 800px) {
+    img {
+        max-width: 75vw;
+    }
+}
+
+.cursive {
+    font-family: cursive;
+}

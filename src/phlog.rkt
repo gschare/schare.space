@@ -13,6 +13,12 @@
 (struct photo (link alt caption))
 (struct day (date photos))
 
+(define (show-date date)
+  (string-join (list (date-year date)
+                     (date-month date)
+                     (date-day date))
+               "-"))
+
 (define month-table (hash "01" "January"
                           "02" "February"
                           "03" "March"
@@ -26,8 +32,12 @@
                           "11" "November"
                           "12" "December"))
 
-(define (string-repeat n s)
-  (string-join (build-list n (λ (x) s)) ""))
+(define (anchor-or-invisible p x)
+  (if p
+    `(a (@ (href ,p))
+        ,x)
+    `(span ; (@ (class "invisible")) ; actually i'd rather it not be invisible...
+           ,x)))
 
 (define (generate-sxml day prev-href next-href)
   (let* ([date (day-date day)]
@@ -41,39 +51,33 @@
       (title ,title)
       (h1 ,title)
       ,(list 'p
-           (if prev-href
-               `(a (@ (href ,prev-href))
-                   "Prev | ")
-               (string-repeat 7 " ")) ; nbsp
+           (anchor-or-invisible prev-href "Prev")
+           " | "
            '(a (@ (href "../"))
                "Month")
-           (if next-href
-               `(a (@ (href ,next-href))
-                   " | Next")
-               (string-repeat 7 " ")))
+           " | "
+           (anchor-or-invisible next-href "Next"))
       ,(cons 'div
-        (cons '(@ (id "gallery")
-                  (class "gallery"))
+        (cons '(@ (id "gallery"))
         (map
          (λ (photo)
             `(figure (img (@ (src ,(photo-link photo))
+                             (loading "lazy")
                              (alt ,(photo-alt photo))))
-                     (figcaption ,(html->xexp (photo-caption photo)))))
+                     ,(if (photo-caption photo)
+                      `(figcaption ,(html->xexp (photo-caption photo)))
+                      '(div))))
          (day-photos day))))
       ,(list 'footer
-           (if prev-href
-               `(a (@ (href ,prev-href))
-                   "Prev | ")
-               (string-repeat 7 " "))
+           (anchor-or-invisible prev-href "Prev")
+           " | "
            '(a (@ (href "../"))
                "Month")
-           (if next-href
-               `(a (@ (href ,next-href))
-                   " | Next")
-               (string-repeat 7 " "))))))
+           " | "
+           (anchor-or-invisible next-href "Next")))))
 
 (define (parse-xml doc)
-  (define trim (eliminate-whitespace '(alt caption) not))
+  (define trim (eliminate-whitespace '(alt caption em strong p) not))
 
   (define (parse-date datestring)
     ; parses YYYY-MM-DD into a struct
@@ -101,7 +105,11 @@
     (let ([link (get-attr 'link photo-el)]
           [caption (get-el 'caption photo-el)]
           [alt (get-el 'alt photo-el)])
-      (photo link (get-html alt) (get-html caption))))
+      (photo link (get-html alt)
+             (let ([cap (get-html caption)])
+               (if (non-empty-string? cap)
+                   cap
+                   #f)))))
 
   (define (parse-day day-el)
     (let ([date (parse-date (get-attr 'date day-el))]
@@ -121,7 +129,7 @@
 
   ; Parse the XML file.
   (let* ([doc (call-with-input-file src-path (λ (in) (read-xml in)))]
-         [days (sort (parse-xml doc) string<? #:key (λ (x) (string-join "-" (day-date x))))]) ; : list day
+         [days (sort (parse-xml doc) string<? #:key (λ (x) (show-date (day-date x))))]) ; : list day
 
 
   (cond [(null? days) dest-sym] ; stop here
@@ -145,7 +153,7 @@
       (let* ([date (day-date day)]
              [dest (build-path dest-path (date-year date) (date-month date) (date-day date) "index.html")]
              [prev-href (and prev (date-to-href prev))]
-             [next-href (and next (date-to-href next))])
+             [next-href (and next (date-to-href (car next)))])
         (make-parent-directory* dest)
         (write-file (generate-sxml day prev-href next-href) dest)
         (set! next (and next (pair? (cdr next)) (cdr next)))
@@ -159,16 +167,12 @@
        (title ,title)
        (h1 ,title)
        ,(list 'p
-            (if prev-year-href
-                `(a (@ (href ,prev-year-href))
-                    "Prev | ")
-                (string-repeat 7 " "))
+            (anchor-or-invisible prev-year-href "Prev")
+            " | "
             '(a (@ (href "../"))
                 "Up")
-            (if next-year-href
-                `(a (@ (href ,next-year-href))
-                    " | Next")
-                (string-repeat 7 " ")))
+            " | "
+            (anchor-or-invisible next-year-href "Next"))
        ,(cons
          'ul
          (map (λ (m) `(li (a (@ (href ,(string-append m "/")))
@@ -181,16 +185,12 @@
        (title ,title)
        (h1 ,title)
        ,(list 'p
-            (if prev-month-href
-                `(a (@ (href ,prev-month-href))
-                    "Prev | ")
-                (string-repeat 7 " "))
+            (anchor-or-invisible prev-month-href "Prev")
+            " | "
             '(a (@ (href "../"))
                 "Year")
-            (if next-month-href
-                `(a (@ (href ,next-month-href))
-                    " | Next")
-                (string-repeat 7 " ")))
+            " | "
+            (anchor-or-invisible next-month-href "Next"))
        ,(cons
          'ul
          (map (λ (d) `(li (a (@ (href ,(string-append d "/")))
@@ -215,7 +215,7 @@
      (λ (y)
        (let* ([year (date-year (first (first y)))]
               [dest (build-path dest-path year "index.html")]
-              [prev-year-href (and prev-year (build-web-path prev-year))]
+              [prev-year-href (and prev-year (build-web-path (car prev-year)))]
               [next-year-href (and next-year (build-web-path next-year))]
               [months (map (λ (m) (date-month (first m))) y)])
         (write-file (make-year-index year months prev-year-href next-year-href) dest)
@@ -227,8 +227,8 @@
          (λ (m)
            (let* ([month (date-month (first m))]
                   [dest (build-path dest-path year month "index.html")]
-                  [prev-month-href (and prev-month (build-web-path prev-month))]
-                  [next-month-href (and next-month (build-web-path next-month))]
+                  [prev-month-href (and prev-month (build-web-path year (car prev-month)))]
+                  [next-month-href (and next-month (build-web-path year next-month))]
                   [days (map date-day m)])
              (write-file (make-month-index year month days prev-month-href next-month-href) dest)
              (set! prev-month (and prev-month (pair? (cdr prev-month)) (cdr prev-month)))
@@ -245,7 +245,7 @@
       (title "Phlog: taking the “social” out of “social media”")
       (h1 "Phlog")
       (p (@ (class "cursive"))
-         "taking the “social” out of “social media”")
+         "taking the " (span (@ (class "underline")) "social") " out of " (span (@ (class "underline")) "social media"))
       (p
        (a (@ (href ,link))
           "Latest post"))))

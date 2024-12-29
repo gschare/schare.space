@@ -28,6 +28,10 @@ code {
     font-size: 1rem;
 }
 
+span.invisible {
+    visibility: hidden;
+}
+
 .date, #date {
     color: var(--fg-light-secondary);
 }
@@ -285,9 +289,13 @@ footer {
 }
 */
 
+.underline {
+    text-decoration: underline;
+}
+
 footer {
     margin-top: 2em;
-    border-top: 1px solid #646464;
+    /*border-top: 1px solid #646464;*/
 }
 
 nav {
