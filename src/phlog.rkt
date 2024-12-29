@@ -248,7 +248,9 @@
          "taking the " (span (@ (class "underline")) "social") " out of " (span (@ (class "underline")) "social media"))
       (p
        (a (@ (href ,link))
-          "Latest post"))))
+          "Latest post"))
+      (img (@ (src "/assets/img/garden/phlog/finally.jpg")
+              (width "320px")))))
 
   (write-file (make-index (date-to-href (day-date (last days)))) (build-path dest-path "index.html"))
 
