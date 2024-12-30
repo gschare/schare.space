@@ -13,3 +13,4 @@ scripts/blog_index.py
 .DS_Store
 **/.DS_Store
 tidings.json
+temp/
