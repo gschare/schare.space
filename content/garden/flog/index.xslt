@@ -9,7 +9,7 @@
 <!-- provenance: garden/flog/index.xml -->
 <title>Flog (Film Log)</title>
 <nav class="secondary">
-    <a href="/garden/books.html">books</a>
+    <a href="/garden/books/">books</a>
 </nav>
 <h1>Flog <!-- film log --></h1>
 
@@ -81,17 +81,26 @@ watch…</span></p>
 </xsl:template>
 
 <xsl:template match="film">
-    <img loading="lazy">
-        <xsl:attribute name="src">
-            <xsl:value-of select="@img" />
-        </xsl:attribute>
-        <xsl:attribute name="alt">
-            <xsl:value-of select="concat(@title, ' (', @year, ') dir. ', @dir)" disable-output-escaping="yes" />
-        </xsl:attribute>
-        <xsl:attribute name="title">
-            <xsl:value-of select="concat(@title, ' (', @year, ') dir. ', @dir)" disable-output-escaping="yes" />
-        </xsl:attribute>
-    </img>
+    <xsl:variable name="img-tag">
+        <img loading="lazy" src="{@img}">
+            <xsl:attribute name="alt">
+                <xsl:value-of select="concat(@title, ' (', @year, ') dir. ', @dir)" disable-output-escaping="yes" />
+            </xsl:attribute>
+            <xsl:attribute name="title">
+                <xsl:value-of select="concat(@title, ' (', @year, ') dir. ', @dir)" disable-output-escaping="yes" />
+            </xsl:attribute>
+        </img>
+    </xsl:variable>
+    <xsl:choose>
+        <xsl:when test="@link">
+            <a href="{@link}">
+                <xsl:copy-of select="$img-tag" />
+            </a>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:copy-of select="$img-tag" />
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>

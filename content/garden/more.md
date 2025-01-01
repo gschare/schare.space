@@ -11,5 +11,5 @@
 - [NYC is the Center of the Universe](nyc/universe.html)
 - [GF Gaming](gf-games.html)
 - [Microblog](microblog.html)
-- [Books](books.html)
+- [Books](books/)
 - [Links](links.html)

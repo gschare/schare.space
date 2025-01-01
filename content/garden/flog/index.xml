@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Nosferatu"
+          dir="Robert Eggers"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/3/5/9/5/0/5/359505-nosferatu-2024-0-2000-0-3000-crop.jpg?v=a12d4ad648"
+          date="2024-12-30"
+    />
+
     <film title="A Real Pain"
           dir="Jesse Eisenberg"
           year="2024"
@@ -124,6 +131,7 @@
           year="2021"
           img="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-2000-0-3000-crop.jpg?v=49eed12751"
           date="2024-09-02"
+          link="/garden/books/dune.html"
     />
 
     <film title="La Chimera"

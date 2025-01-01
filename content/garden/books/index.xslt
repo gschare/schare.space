@@ -9,7 +9,7 @@
 <!-- provenance: garden/books.xml -->
 <title>Books</title>
 <nav class="secondary">
-    <a href="links.html">links</a> &#183; <a href="flog/">flog</a>
+    <a href="/garden/links.html">links</a> &#183; <a href="/garden/flog/">flog</a>
 </nav>
 <h1>Books</h1>
 <style>
