@@ -106,8 +106,12 @@ a {
     text-decoration: none;
 }
 
-a:visited {
+a:visited:not([href^="http"]) {
     color: var(--link-color-visited);
+}
+
+.dark-mode a:visited:not([href^="http"]) {
+    color: var(--link-color-dark-visited);
 }
 
 a:hover {
