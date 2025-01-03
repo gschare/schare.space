@@ -49,7 +49,7 @@
         (for-each
           (λ (c)
             (let ([dest (build-path INTERMEDIATE-DIR c)])
-              (unless (file-exists? dest)
+              (unless (file-exists? dest) ; BUG: this is a bug. if you don't clear the temp/ folder it won't overwrite files that were there.
                 (make-parent-directory* dest)
                 (copy-file c dest #:exists-ok? #f))))
           children-files)

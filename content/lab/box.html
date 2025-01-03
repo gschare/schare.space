@@ -1,0 +1,107 @@
+<title>Put it in the box</title>
+<script>
+    // always default to dark mode, but do not modify the local storage variable.
+    // Reusing code from the script in the header template...
+    document.body.classList.add('dark-mode');
+    document.getElementById('dark-mode-button').innerHTML = "☀️";
+    document.getElementById('dark-mode-button').title = "Light mode";
+</script>
+<style>
+body.dark-mode {
+    background-color: #1c282f;
+}
+
+.col {
+    padding-right: 30px;
+}
+
+.flex {
+    justify-content: space-around;
+    text-align: center;
+}
+
+.editor {
+    text-align: left;
+    min-width: 20rem;
+    max-width: 35rem;
+    height: 100%;
+    min-height: 40rem;
+    border: 1px solid #646464;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+.editor:focus {
+    outline: none;
+    border-color: #757575;/*#b9ad73;*/
+    background-color: #19262d;
+}
+
+@media screen and (min-width: 800px) {
+    .editor {
+        min-width: 35rem;
+    }
+}
+
+.editor.dark-mode {
+    border: 1px solid #e3e0d7;
+}
+
+header {
+    display: none;
+}
+</style>
+<div class="flex" style="flex-direction: row">
+    <!-- notepad 
+        source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
+    -->
+    <div class="flex">
+        <textarea class="editor" id="editorL" contenteditable="true" placeholder="Type..."></textarea>
+        <script>
+        (function() {
+            var editorKey = 'boxL';
+            var editor = document.getElementById('editorL');
+            var cache = localStorage.getItem(editorKey);
+
+            if (cache) {
+                editor.value = cache;
+            }
+
+            function autosave() {
+                var newValue = editor.value;
+                if (cache != newValue) {
+                    cache = newValue;
+                    localStorage.setItem(editorKey, cache);
+                }
+            }
+
+            editor.addEventListener('input', autosave);
+        })();
+        </script>
+    </div>
+    <div class="flex">
+        <textarea class="editor" id="editorR" contenteditable="true" placeholder="Type..."></textarea>
+        <script>
+        (function() {
+            var editorKey = 'boxR';
+            var editor = document.getElementById('editorR');
+            var cache = localStorage.getItem(editorKey);
+
+            if (cache) {
+                editor.value = cache;
+            }
+
+            function autosave() {
+                var newValue = editor.value;
+                if (cache != newValue) {
+                    cache = newValue;
+                    localStorage.setItem(editorKey, cache);
+                }
+            }
+
+            editor.addEventListener('input', autosave);
+        })();
+        </script>
+    </div>
+</div>

@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@ggschare"><meta name="twitter:title" content="Put it in the box"><meta name="twitter:description" content="Lasciate ogne speranza, voi ch'intrate."><meta name="twitter:image:src" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:title" content="Put it in the box"><meta property="og:type" content="website"><meta property="og:description" content="Lasciate ogne speranza, voi ch'intrate."><meta property="og:image" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:site_name" content="schare.space"><link rel="icon" href="/favicon.ico" type="image/x-icon"><title>Put it in the box</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><title>Put it in the box</title>
+<script>
+    // always default to dark mode, but do not modify the local storage variable.
+    // Reusing code from the script in the header template...
+    document.body.classList.add('dark-mode');
+    document.getElementById('dark-mode-button').innerHTML = "☀️";
+    document.getElementById('dark-mode-button').title = "Light mode";
+</script>
+<style>
+body.dark-mode {
+    background-color: #1c282f;
+}
+
+.col {
+    padding-right: 30px;
+}
+
+.flex {
+    justify-content: space-around;
+    text-align: center;
+}
+
+.editor {
+    text-align: left;
+    min-width: 20rem;
+    max-width: 35rem;
+    height: 100%;
+    min-height: 40rem;
+    border: 1px solid #646464;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+.editor:focus {
+    outline: none;
+    border-color: #757575;/*#b9ad73;*/
+    background-color: #19262d;
+}
+
+@media screen and (min-width: 800px) {
+    .editor {
+        min-width: 35rem;
+    }
+}
+
+.editor.dark-mode {
+    border: 1px solid #e3e0d7;
+}
+
+header {
+    display: none;
+}
+</style>
+<div class="flex" style="flex-direction: row">
+    <!--  notepad 
+        source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
+     -->
+    <div class="flex">
+        <textarea class="editor" id="editorL" contenteditable="true" placeholder="Type..."></textarea>
+        <script>
+        (function() {
+            var editorKey = 'boxL';
+            var editor = document.getElementById('editorL');
+            var cache = localStorage.getItem(editorKey);
+
+            if (cache) {
+                editor.value = cache;
+            }
+
+            function autosave() {
+                var newValue = editor.value;
+                if (cache != newValue) {
+                    cache = newValue;
+                    localStorage.setItem(editorKey, cache);
+                }
+            }
+
+            editor.addEventListener('input', autosave);
+        })();
+        </script>
+    </div>
+    <div class="flex">
+        <textarea class="editor" id="editorR" contenteditable="true" placeholder="Type..."></textarea>
+        <script>
+        (function() {
+            var editorKey = 'boxR';
+            var editor = document.getElementById('editorR');
+            var cache = localStorage.getItem(editorKey);
+
+            if (cache) {
+                editor.value = cache;
+            }
+
+            function autosave() {
+                var newValue = editor.value;
+                if (cache != newValue) {
+                    cache = newValue;
+                    localStorage.setItem(editorKey, cache);
+                }
+            }
+
+            editor.addEventListener('input', autosave);
+        })();
+        </script>
+    </div>
+</div>
+</main></body></html>

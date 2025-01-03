@@ -53,6 +53,9 @@
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
+            (:path lab/box.html
+             :template default.sxml
+             :styles (css/default.css))
             )
     :folders (
               (:path ,(custom phlog 'garden/phlog/index.xml)

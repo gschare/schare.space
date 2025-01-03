@@ -1,6 +1,8 @@
 :root {
     --link-color-light: #40a2b8;
     --link-color-hover: #ffabf9;
+    --link-color-visited: #a055bb;
+    --link-color-dark-visited: #d26adb;
     --bg-light: #fdfcee; /* alternatives: e8e1d0, cornsilk, ivory, floralwhite, mistyrose, oldlace, */
     --bg-light-secondary: #a4a396;
     --bg-dark: #1c2f28; /*#262626;*/
@@ -53,7 +55,9 @@ p .warning {
 
 /* prose */
 div.prose p {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+    margin-top: 0;
+    margin-bottom: 0;
     text-indent: 2rem;
 }
 
@@ -62,13 +66,19 @@ div.prose hr {
     border: none;
     line-height: 2rlh;
     &:before {
-        content: "*";
+        content: "* \00a0 \00a0 \00a0 * \00a0 \00a0 \00a0 *";
     }
 }
 
 div.prose h2 {
-    border-bottom: 1px solid var(--fg-light-secondary);
+    border-bottom: 2px solid var(--fg-light-secondary);
     margin-bottom: 15px;
+}
+
+div.prose h3 {
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 div.prose br {
@@ -94,6 +104,10 @@ div.poem ul ul {
 a {
     color: var(--link-color-light);
     text-decoration: none;
+}
+
+a:visited {
+    color: var(--link-color-visited);
 }
 
 a:hover {
