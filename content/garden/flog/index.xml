@@ -413,4 +413,12 @@
           img="https://a.ltrbxd.com/resized/film-poster/3/5/2/7/5/35275-turn-left-at-the-end-of-the-world-0-2000-0-3000-crop.jpg?v=536eeed2a5"
           date="2024-01-24"
     />
+
+    <film title="Chicken Run"
+          dir="Peter Lord, Nick Park"
+          year="2000"
+          img="https://a.ltrbxd.com/resized/film-poster/4/8/0/3/3/48033-chicken-run-0-2000-0-3000-crop.jpg?v=e8ee6a3b20"
+          date="2024-01-12"
+          link="/garden/flog/chicken-run.html"
+    />
 </films>

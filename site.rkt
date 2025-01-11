@@ -9,6 +9,9 @@
 (require "src/xml.rkt")
 (require "src/phlog.rkt")
 
+(system "rm -r temp/")
+(system "mkdir temp")
+
 (define rules
   `(:defaults (:template article.sxml
                :styles (css/default.css css/article.css))

@@ -5,7 +5,7 @@
         background-repeat: repeat;
     }
 
-    article {
+    article, #toc {
         background: var(--bg-light);
         border: 2px solid var(--bg-light-secondary);
         border-radius: 15px;

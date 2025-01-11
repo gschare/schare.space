@@ -30,6 +30,10 @@ code {
     font-size: 1rem;
 }
 
+h1, h2, section.level1 > h1, section.level2 > h2 {
+    font-size: 1.5rem;
+}
+
 span.invisible {
     visibility: hidden;
 }
@@ -124,6 +128,14 @@ details.details {
     padding-bottom: 5px;
     /*border: 1px solid var(--fg-light);
     border-radius: 10px;*/
+}
+
+details summary {
+    cursor: zoom-in;
+}
+
+details[open] summary {
+    cursor: zoom-out;
 }
 
 details.details.dark-mode {

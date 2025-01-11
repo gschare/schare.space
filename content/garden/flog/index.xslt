@@ -90,6 +90,8 @@ watch…</span></p>
                 <xsl:value-of select="concat(@title, ' (', @year, ') dir. ', @dir)" disable-output-escaping="yes" />
             </xsl:attribute>
         </img>
+        <xsl:text>
+</xsl:text>
     </xsl:variable>
     <xsl:choose>
         <xsl:when test="@link">

@@ -21,6 +21,9 @@ article.article hr {
 h2 {
     padding-bottom: 5px;
     border-bottom: 1px solid var(--fg-light-secondary);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-light);
 }
 
 #toc {
@@ -28,9 +31,6 @@ h2 {
     left: calc(50vw - var(--article-width));
     top: 25vh;
     margin: 10px;
-    background-color: var(--bg-light);
-    border: inherit;
-    border-radius: inherit;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
