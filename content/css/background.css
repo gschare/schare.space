@@ -5,7 +5,7 @@
         background-repeat: repeat;
     }
 
-    article, #toc {
+    article {
         background: var(--bg-light);
         border: 2px solid var(--bg-light-secondary);
         border-radius: 15px;
@@ -28,5 +28,13 @@
     header {
         padding-left: 15px; /* protect against sliding too far to the left past the
                             rounded corner on narrow-width screens. */
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #toc {
+        background: var(--bg-light);
+        border: 2px solid var(--bg-light-secondary);
+        border-radius: 15px;
     }
 }

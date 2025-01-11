@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@ggschare"><meta name="twitter:title" content="The Quotebook"><meta name="twitter:description" content="Lasciate ogne speranza, voi ch'intrate."><meta name="twitter:image:src" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:title" content="The Quotebook"><meta property="og:type" content="website"><meta property="og:description" content="Lasciate ogne speranza, voi ch'intrate."><meta property="og:image" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:site_name" content="schare.space"><link rel="icon" href="/favicon.ico" type="image/x-icon"><title>The Quotebook</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/article.css"><link rel="stylesheet" type="text/css" href="/css/garden.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css?family=Lora:ital,wght@0,400..700;1,400..700" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><!--  provenance: local 24.12.16-18.30.md -> garden/books/conviviality.html  -->
+<section id="the-tools-for-conviviality-quotebook" class="level1">
+<h1>The <em>Tools for Conviviality</em> Quotebook</h1>
+<p><span id="date">Dec 16, 2024</span></p>
+<!--  TODO: a summary of the structure and central argument of the book  -->
+<style>
+summary {
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-light);
+    border-radius: 5px;
+    z-index: 10;
+}
+.dark-mode summary {
+    background-color: var(--bg-dark);
+}
+</style>
+<p>Orla O’Donovan, quoting Erich Fromm in her critique of <em>Tools for
+Conviviality</em> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, argues that the value of Illich’s
+ideas “lies in the fact that they have a liberating effect on the mind
+by showing entirely new possibilities” for leftist political stragegy in
+the postsocialist condition in which we find ourselves today, where the
+Left suffers from not just a “crisis in confidence” but “the absence of
+a broad vision.” His radical, often implacable questioning forces the
+reader to re-examine the thoughtless “anti” and “equal access” that
+characterize the dying Left’s custodial opposition to neoliberal
+movements. The hope is reading Illich’s theory will free us from this
+prison of “sterile, preconceived notions” of justice so that we may once
+again gain ground on social progress without capitulation to, for
+example, hegemonic debates over access to anti-convivial healthcare. In
+short: his ideas allow us to critique the system over the policy, even
+as the Left is relegated, in its exile, to the arena of local
+politics.</p>
+<p>I am not convinced this is the sole value of <em>Tools for
+Conviviality</em>. O’Donovan more or less admits that she disregards the
+bulk of Illich’s normative claims, and only finds value in the style of
+his rhetoric and his no-holds-barred approach to make a ruthless
+critique of everything existing—no matter the content of that critique.
+In fact, Illich puts forth a very specific vision for a convivial
+society, rooted in specific criteria that identify convivial relations
+and their opposites. It is my belief that these ideas have value not
+just for leftist politics, but for designers, researchers, and engineers
+developing social tools, as I cannot comprehend a Left that does not
+take itself seriously enough to mobilize in the offices and laboratories
+where the tools are created that embed anti-convivial ideology into the
+technological world. And it is my intention to study these arguments in
+conflict with the evolution of technology and capitalism since 1971,
+and, if possible, use Illich as a springboard and carve out a system of
+ideas that effectively captures the vision, ethics, requirements,
+spiritual necessity, and political strategy of humane technology, from
+highways and cars to restaurants and bars to websites and paperwork to
+drugs and houses to workplaces and schools.</p>
+<p>To this end I present a brief summary of Illich’s main points below,
+along with arguments that I find suitable for deployment as a liberating
+force in activism, via quotation with occasional commentary. I hope this
+book of quotes may present the liberating opportunities treasured by
+Fromm and O’Donovan while authentically preserving Illich’s
+vision—whether or not we agree with it.</p>
+<p><span class="warning">Coming soon…</span></p>
+<!-- 
+:::fancyquote
+
+<details>
+<summary>
+On
+</summary>
+
+> test
+
+</details>
+:::
+ -->
+</section>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1" role="doc-endnote"><p>O’Donovan, Orla. “Ivan Illich’s Tools
+for Conviviality.” In <em>Mobilising Classics: Reading Radical Writing
+in Ireland</em>, edited by Orla O’Donovan and Fiona Dukelow, 140–56.
+Manchester University Press, 2010. <a href="http://www.jstor.org/stable/j.ctv18b5jt4.14" class="uri">http://www.jstor.org/stable/j.ctv18b5jt4.14</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</article></main></body></html>

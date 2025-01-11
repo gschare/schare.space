@@ -55,7 +55,8 @@ h2 {
 
 @media screen and (max-width: 1200px) {
     #toc {
-        all: revert
+        all: revert;
+        border: none;
     }
 
     #toc ul {
