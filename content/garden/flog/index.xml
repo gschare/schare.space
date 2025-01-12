@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Crimes of the Future"
+          dir="David Cronenberg"
+          year="2022"
+          img="https://a.ltrbxd.com/resized/film-poster/7/3/6/3/1/8/736318-crimes-of-the-future-0-2000-0-3000-crop.jpg?v=ae8a4b1603"
+          date="2025-01-11"
+    />
+    
     <film title="Nosferatu"
           dir="Robert Eggers"
           year="2024"

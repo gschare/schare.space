@@ -19,10 +19,9 @@
 .cards {
     display: grid;
     /* fr = fractional unit */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    justify-content: start;
-    grid-auto-rows: 400px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
+    justify-content: start;
 }
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
@@ -39,15 +38,11 @@
 }
 
 .cards img {
-  /*margin: revert;
-  min-width: 10vw;
-  max-width: 15vw;*/
-    /*max-height: 400px;*/
   object-fit: cover;
   border-radius: 4px;
-    /*overflow: hidden;*/
-  height: 100%;
-    /*aspect-ratio: 4/5;*/
+  width: 100%;
+  height: auto
+  /*aspect-ratio: 2/3;*/
 }
 </style>
 
