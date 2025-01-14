@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <films>
+    <film title="The Brutalist"
+          dir="Brady Corbet"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/4/7/8/4/2/8/478428-the-brutalist-0-2000-0-3000-crop.jpg?v=e23890665e"
+          date="2025-01-12"
+    />
+
     <film title="Crimes of the Future"
           dir="David Cronenberg"
           year="2022"
