@@ -239,6 +239,12 @@ blockquote.dark-mode {
     all: revert;
 }
 
+.fancyquote > p {
+    /* citation */
+    text-indent: -1.5rem;
+    margin-left: 2rem;
+}
+
 hr {
     max-width: 35em;
     border: 1px solid;
