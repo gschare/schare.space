@@ -112,28 +112,30 @@
             source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
         -->
         <div class="flex">
-            <textarea id="editor" contenteditable="true" placeholder="Type..."></textarea>
-            <script>
-            (function() {
-                var editorKey = 'html5-notepad';
-                var editor = document.getElementById('editor');
-                var cache = localStorage.getItem(editorKey);
+            <div>
+                <p>Not enough space? Need to focus? <a href="/lab/box.html">Put it in the box!</a></p>
+                <textarea id="editor" contenteditable="true" placeholder="Type..."></textarea>
+                <script>
+                (function() {
+                    var editorKey = 'html5-notepad';
+                    var editor = document.getElementById('editor');
+                    var cache = localStorage.getItem(editorKey);
 
-                if (cache) {
-                    editor.value = cache;
-                }
-
-                function autosave() {
-                    var newValue = editor.value;
-                    if (cache != newValue) {
-                        cache = newValue;
-                        localStorage.setItem(editorKey, cache);
+                    if (cache) {
+                        editor.value = cache;
                     }
-                }
 
-                editor.addEventListener('input', autosave);
-            })();
-            </script>
+                    function autosave() {
+                        var newValue = editor.value;
+                        if (cache != newValue) {
+                            cache = newValue;
+                            localStorage.setItem(editorKey, cache);
+                        }
+                    }
+
+                    editor.addEventListener('input', autosave);
+                })();
+                </script>
             </div>
         </div>
     </div>
