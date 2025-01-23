@@ -57,6 +57,14 @@ p .warning {
     color: tomato;
 }
 
+p .secondary {
+    color: var(--fg-light-secondary);
+}
+
+p .secondary.dark-mode {
+    color: var(--fg-dark-secondary);
+}
+
 /* prose */
 div.prose p {
     /*margin-bottom: 15px;*/

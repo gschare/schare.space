@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <films>
     <film title="The Brutalist"
+          dir="Neil Burger"
+          year="2011"
+          img="https://a.ltrbxd.com/resized/film-poster/1/3/9/7/2/13972-limitless-0-600-0-900-crop.jpg?v=7599c9da90"
+          date="2025-01-21"
+    />
+
+    <film title="The Brutalist"
           dir="Brady Corbet"
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/4/7/8/4/2/8/478428-the-brutalist-0-600-0-900-crop.jpg?v=e23890665e"
