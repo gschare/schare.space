@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+    <div class="collage">
+        <!-- collage elements -->
+        <img src="img/miseducation_crop.jpeg"
+             class="layer layer1 image background-image"
+             alt="Background Image">
+
+        <div class="layer hover layer3 bottom-third left-two-thirds text exclusion pad-sm rot-10">
+            reality is a rocky shore for a driftwood dreamer
+        </div>
+
+        <div class="layer layer1 video trans25">
+            <video autoplay loop muted id="crossfade-from">
+                <source src="video/loco.webm" type="video/webm">
+            </video>
+            <video autoplay loop muted id="crossfade-to">
+                <source src="video/loco.webm" type="video/webm">
+            </video>
+        </div>
+
+        <div class="layer layer2 left-half top-third font-prose text text-background pad-tiny font-tiny rect-fade-bottom-right">
+            <p>
+                It was crazy before.
+                <br>
+                Here it stands, a vast
+                <br>
+                and lonely inter-net.
+                <br>
+                No strength of will to perform
+                <br>
+                in guise an uncompelling form;
+                <br>
+                indifference is not the word---
+                <br>
+                too far to fathom, such are
+                <br>
+                the insufficiencies revealed.
+                <br>
+                Not prohibition nor passion,
+                <br>
+                neither missive nor permission.
+                <br>
+                It's entirely up to you.
+            </p>
+        </div>
+
+        <div class="layer hover layer2 right-third bottom-third">
+            <img src="img/di_crop.jpeg"
+                 class="image heart layer layer2"
+                 width="100px">
+        </div>
+        <div class="layer layer2 right-third bottom-third pad-tiny "
+             onmouseover="playAudio(this)"
+             onmouseout="pauseAudio(this)">
+            <audio id="pretenders">
+                <source src="audio/pretenders.m4a" type="audio/mpeg">
+            </audio>
+            <div class="layer layer2 text-background rect-fade-top-left spacer"></div>
+            <div class="layer layer3 hover fudge-down text font-sm rot10">
+                <p>
+                    <br>
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Only off to wander /
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Look at that flower!
+                </p>
+            </div>
+        </div>
+
+        <div class="layer layer2 top-third h-middle-third">
+            <img src="img/lds2_crop.jpeg"
+                class="image circle circle-fade fudge-right fudge-down rot15"
+                width="100px">
+        </div>
+
+    </div>
+    </div>
+</body>
+</html>
+
+<!-- ideas
+
+building on fire
+light refracted
+
+reality is a rocky shore for a driftwood dreamer
+ 
+-->

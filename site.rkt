@@ -89,7 +89,10 @@
                   garden/process-tree/script.js
                   garden/process-tree/style.css
                   )
-          :folders (writ js css assets/img assets/fonts assets/papers lab garden/jot/src)
+          :folders (writ js css assets/img assets/fonts assets/papers lab
+                    garden/jot/src
+                    garden/tamas
+                    )
           )
     :disabled (:files ()
                :folders ()

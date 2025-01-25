@@ -1,0 +1,273 @@
+/** Basics **/
+:root {
+    --width: 500px;
+    --height: 500px;
+    --background-color: #2b352c;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--background-color);
+}
+
+.container {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    background: var(--background-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.collage {
+    overflow: hidden !important;
+}
+
+.layer {
+    position: absolute;
+}
+
+/** Layering **/
+.layer1 {
+    z-index: 1;
+}
+
+.layer2 {
+    z-index: 2;
+}
+
+.layer3 {
+    z-index: 3;
+}
+
+.layer4 {
+    z-index: 4;
+}
+
+.exclusion {
+    mix-blend-mode: exclusion;
+}
+
+/** Kinds of elements **/
+.image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.background-image {
+    border-radius: 5px;
+}
+
+.video {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video video {
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spacer {
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text {
+    top: 10%;
+    left: 10%;
+    font-size: 2em;
+    color: #ddd;
+    font-family: 'Arial', sans-serif;
+}
+
+.heart {
+    --_m: radial-gradient(#000 69%,#0000 70%) 84.5%/50%;
+    -webkit-mask-box-image: var(--_m);
+                mask-border: var(--_m);
+    clip-path: polygon(-41% 0,50% 91%, 141% 0);
+}
+
+.font-sm {
+    font-size: 1em;
+}
+
+.font-tiny {
+    font-size: 0.5em;
+}
+
+.font-prose {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.pad-sm {
+    padding: calc(var(--width) / 20);
+}
+
+.pad-lg {
+    padding: calc(var(--width) / 10);
+}
+
+.pad-tiny {
+    padding: calc(var(--width) / 40);
+}
+
+.text-background {
+    background-color: rgb(92, 47, 77, 0.7);
+}
+
+.shape {
+    bottom: 10%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ff7eb9, #ff65a3);
+    transform: rotate(15deg);
+    border-radius: 50%;
+}
+
+/** Positioning **/
+.top-third {
+    top: 0;
+    height: calc(var(--height) / 3);
+}
+
+.v-middle-third {
+    top: 33%;
+    height: calc(var(--height) / 3);
+}
+
+.bottom-third {
+    top: 62%;
+    height: calc(var(--height) / 3);
+}
+
+.left-third {
+    left: 0%;
+    width: calc(var(--width) / 3);
+}
+
+.left-half {
+    left: 0%;
+    width: calc(var(--width) / 2);
+}
+
+.right-third {
+    left: 62%;
+    width: calc(var(--width) / 3);
+}
+
+.right-half {
+    left: 50%;
+    width: calc(var(--width) / 2);
+}
+
+.left-two-thirds {
+    left: 0%;
+    width: calc(var(--width) * 2 / 3);
+}
+
+.h-middle-third {
+    left: 33%;
+    width: calc(var(--width) / 3);
+}
+
+.fudge-right {
+    position: absolute;
+    left: calc(var(--width) / 20);
+}
+
+.fudge-down {
+    position: absolute;
+    top: calc(var(--height) / 12);
+}
+
+.rot15 {
+    transform: rotate(15deg);
+}
+
+.rot10 {
+    transform: rotate(10deg);
+}
+
+.rot-10 {
+    transform: rotate(-10deg);
+}
+
+/** Image manipulation **/
+.circle {
+    border-radius: 50%;
+    text-align: center;
+}
+
+.circle-fade {
+    mask-image: radial-gradient(circle, lime 25%, rgb(0,0,0,0), transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, lime 25%, rgb(0,0,0,0), transparent 100%);
+    filter: hue-rotate(50deg);
+}
+
+.rect-fade-bottom-right {
+    mask-image: linear-gradient(to bottom right, black 25%, rgb(0,0,0,0), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom right, purple 25%, rgb(0,0,0,0), transparent 100%);
+    filter: hue-rotate(50deg);
+}
+
+.opaque {
+    opacity: 1;
+}
+
+.rect-fade-top-left {
+    mask-image: linear-gradient(to top left, black 25%, rgb(0,0,0,0), transparent 100%);
+    -webkit-mask-image: linear-gradient(to left right, purple 25%, rgb(0,0,0,0), transparent 100%);
+    filter: hue-rotate(50deg);
+}
+
+.trans25 {
+    opacity: 25%;
+}
+
+/** Interaction **/
+.hover:hover {
+    z-index: 10 !important;
+    transform: scale(1.1) rotate(0deg) !important;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.collage:has(.hover:hover) *:not(:hover):not(.hidden) {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/** Animation **/
+video {
+    position: absolute;
+    transition: opacity 0.539s ease-in-out;
+}
+
+video.hidden {
+    opacity: 0;
+}
+
+video.visible {
+    opacity: 1;
+}
+
+    /*11.539s*/
