@@ -7,6 +7,9 @@ div.glog a {
 
 :::glog
 
+[Tamas](/garden/tamas/)\
+[Jan 24, 2025]{.date}
+
 [Twenty-Nine Delights](/garden/29.html)\
 [Jan 23, 2025]{.date}
 
