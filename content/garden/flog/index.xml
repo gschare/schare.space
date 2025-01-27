@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 <films>
-    <film title="The Brutalist"
+    <film title="Dune: Part Two"
+          dir="Denis Villeneuve"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-600-0-900-crop.jpg?v=cc533700f8"
+          date="2025-01-26"
+    />
+
+    <film title="Dune"
+          dir="Denis Villeneuve"
+          year="2021"
+          img="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-600-0-900-crop.jpg?v=49eed12751"
+          date="2025-01-26"
+    />
+
+    <film title="Limitless"
           dir="Neil Burger"
           year="2011"
           img="https://a.ltrbxd.com/resized/film-poster/1/3/9/7/2/13972-limitless-0-600-0-900-crop.jpg?v=7599c9da90"

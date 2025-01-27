@@ -1,0 +1,2 @@
+default:
+	racket site.rkt
