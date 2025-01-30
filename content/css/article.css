@@ -261,7 +261,17 @@ article.article .gallery img {
     transition: 0.3s;
 }
 
-article.article .gallery *:not(.fancyquote) figcaption {
+div.widen {
+    display: flex;
+    justify-content: center;
+}
+
+div.widen img {
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+article.article *:not(.fancyquote) figcaption {
     text-align: center;
     margin: 10px 10px 30px;
 }
