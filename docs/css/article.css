@@ -2,18 +2,6 @@
     --article-width: 35rem;
 }
 
-article.article figure img {
-    max-width: var(--article-width);
-    max-height: 600px;
-}
-
-@media screen and (max-width: 800px) {
-    figure img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-}
-
 h1, h2 {
     margin-bottom: 5px;
 }
@@ -162,6 +150,7 @@ blockquote {
     /*font-size: 100%;
     text-align: justify;
     text-justify: inter-word;*/
+    text-align: left;
     padding-left: 2rem;
     border-left: 1px solid var(--fg-light);
     margin-block-start: 0.5rem;
@@ -186,6 +175,7 @@ blockquote.dark-mode {
 
 .simplequote figcaption {
     padding-left: 2rem;
+    text-align: left;
 }
 
 .fancyquote blockquote {
@@ -229,6 +219,7 @@ blockquote.dark-mode {
     margin-block-end: 0.5rem;
     margin-inline-start: 40px;
     margin-inline-end: 40px;
+    text-align: left;
 }
 
 /* Nested quotes don't get the quotes */
@@ -253,58 +244,78 @@ hr {
     color: var(--fg-light);
 }
 
+/* images are specified to be within article, because we don't want this
+ * styling in the modal. It is easier to be precise about where we want these
+ * styles than to undo them where we don't. */
 article.article img {
     border-radius: 5px;
-    max-width: var(--article-width);
-    max-height: 600px;
+    max-width: 100%;
+    height: auto;
+    max-height: 75vh;
     display: block;
     margin: auto;
 }
 
 article.article .gallery img {
     cursor: pointer;
-    border-radius: 5px;
     transition: 0.3s;
-    max-width: var(--article-width);
-    max-height: 600px;
-    display: block;
-    margin: auto;
+}
+
+article.article .gallery *:not(.fancyquote) figcaption {
+    text-align: center;
+    margin: 10px 10px 30px;
+}
+
+article.article figure img {
 }
 
 @media screen and (max-width: 800px) {
-    .gallery img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
     article.article img {
         max-width: 100%;
-        max-height: 100%;
+        max-height: 75vh;
+    }
+
+    article.article .gallery img {
+    }
+
+    article.article figure img {
     }
 }
 
 /* indicate that imgs inside anchor tags are clickable */
-a img {
+article.article a img {
     transition: 0.3s;
 }
 
-a img:hover {
+article.article a img:hover {
     opacity: 0.7;
 }
 
 @media screen and (max-width: 800px) {
-    a img:hover {
+    article.article a img:hover {
         opacity: 1;
     }
 }
 
-.gallery img:hover {
+article.article .gallery img:hover {
     opacity: 0.7;
 }
 
 @media screen and (max-width: 800px) {
-    .gallery img:hover {
+    article.article .gallery img:hover {
         opacity: 1;
+    }
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
     }
 }
 

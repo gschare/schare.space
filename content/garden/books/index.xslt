@@ -16,10 +16,33 @@
 .cards {
     display: grid;
     /* fr = fractional unit */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     justify-content: start;
-    grid-auto-rows: 400px;
     gap: 16px;
+}
+
+
+h2 {
+    border-bottom: 2px solid var(--fg-light);
+    margin: 16px auto 8px;
+    padding: 16px 0 4px 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    font-size: 32pt;
+    background-color: var(--bg-light);
+    z-index: 10;
+}
+
+.dark-mode h2 {
+    border-bottom: 2px solid var(--fg-dark);
+    background-color: var(--bg-dark);
+}
+
+@media screen and (max-width: 800px) {
+    h2 {
+        text-align: center;
+    }
 }
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
@@ -36,15 +59,13 @@
 }
 
 .cards img {
-  /*margin: revert;
-  min-width: 10vw;
-  max-width: 15vw;*/
-    /*max-height: 400px;*/
+  /*max-height: 400px;*/
   object-fit: cover;
   border-radius: 4px;
-    /*overflow: hidden;*/
-  height: 100%;
-    /*aspect-ratio: 4/5;*/
+  height: auto;
+  max-height: 400px;
+  width: auto;
+  /*aspect-ratio: 4/5;*/
 }
 
 .cards img:hover:after {
@@ -76,27 +97,29 @@
         https://www.jenitennison.com/xslt/grouping/muenchian.xml
      -->
 <xsl:for-each select="book[generate-id() = generate-id(key('booksByYear', substring(@date, 1, 4))[1])]">
-    <xsl:choose>
-        <xsl:when test="substring(@date, 1, 4)">
-            <h2>
-                <xsl:attribute name="id">
+    <section class="level2">
+        <xsl:choose>
+            <xsl:when test="substring(@date, 1, 4)">
+                <h2>
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="substring(@date, 1, 4)" />
+                    </xsl:attribute>
                     <xsl:value-of select="substring(@date, 1, 4)" />
-                </xsl:attribute>
-                <xsl:value-of select="substring(@date, 1, 4)" />
-            </h2>
-        </xsl:when>
-        <xsl:otherwise>
-            <h2>
-                <xsl:attribute name="id">in-progress</xsl:attribute>
-                <xsl:text>In Progress</xsl:text>
-            </h2>
-        </xsl:otherwise>
-    </xsl:choose>
+                </h2>
+            </xsl:when>
+            <xsl:otherwise>
+                <h2>
+                    <xsl:attribute name="id">in-progress</xsl:attribute>
+                    <xsl:text>In Progress</xsl:text>
+                </h2>
+            </xsl:otherwise>
+        </xsl:choose>
 
-    <div class="cards">
-        <!-- sort them? -->
-        <xsl:apply-templates select="key('booksByYear', substring(@date, 1, 4))" />
-    </div>
+        <div class="cards">
+            <!-- sort them? -->
+            <xsl:apply-templates select="key('booksByYear', substring(@date, 1, 4))" />
+        </div>
+    </section>
 </xsl:for-each>
 </xsl:template>
 

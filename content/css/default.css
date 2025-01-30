@@ -48,6 +48,7 @@ span.invisible {
 
 .gallery figure {
     margin-left: 0;
+    margin-right: 0;
 }
 
 p .warning {
@@ -57,11 +58,11 @@ p .warning {
     color: tomato;
 }
 
-p .secondary {
+p .secondary, span.secondary {
     color: var(--fg-light-secondary);
 }
 
-p .secondary.dark-mode {
+p .secondary.dark-mode, span.secondary.dark-mode {
     color: var(--fg-dark-secondary);
 }
 
