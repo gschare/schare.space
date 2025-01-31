@@ -280,6 +280,11 @@ article.article figure img {
 }
 
 @media screen and (max-width: 800px) {
+    article.article figure {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     article.article img {
         max-width: 100%;
         max-height: 75vh;
@@ -293,12 +298,13 @@ article.article figure img {
 }
 
 /* indicate that imgs inside anchor tags are clickable */
+/*
 article.article a img {
     transition: 0.3s;
 }
 
 article.article a img:hover {
-    opacity: 0.7;
+    opacity: 1;
 }
 
 @media screen and (max-width: 800px) {
@@ -315,7 +321,7 @@ article.article .gallery img:hover {
     article.article .gallery img:hover {
         opacity: 1;
     }
-}
+}*/
 
 .grid-2 {
     display: grid;
