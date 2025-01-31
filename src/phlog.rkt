@@ -48,6 +48,7 @@
                                ", "
                                (date-year date))])
     `(*TOP*
+      (script "document.body.classList.add('dark-mode'); document.getElementById('dark-mode-button').innerHTML = '☀️'; document.getElementById('dark-mode-button').title = 'Light mode';")
       (title ,title)
       (h1 ,title)
       ,(list 'p
@@ -58,7 +59,7 @@
            " | "
            (anchor-or-invisible next-href "Next"))
       ,(cons 'div
-        (cons '(@ (id "gallery"))
+        (cons '(@ (id "gallery")) ; Not an article .gallery!
         (map
          (λ (photo)
             `(figure (img (@ (src ,(photo-link photo))

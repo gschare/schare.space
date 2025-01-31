@@ -1,9 +1,19 @@
+:root {
+    /* invert colors */
+    /*--fg-light: #e3e0d7;
+    --bg-light: #252a22;
+    --fg-light-secondary: #b2b1aa;
+    --link-color-visited: #d26adb;*/
+    --bg-dark: #252a22;
+}
+
 body {
     text-align: center;
 }
 
-img {
-    max-width: 600px;
+article.article img {
+    max-width: 90vw;
+    max-height: 90vh;
     border-radius: 5px;
 }
 
