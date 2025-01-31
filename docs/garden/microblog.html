@@ -52,6 +52,9 @@ Microblog
 </title>
 <section id="microblog" class="level1">
 <h1>Microblog</h1>
+<div id="see-all">
+<p><a href="#">← See all</a></p>
+</div>
 <div id="2025-01-27" class="note">
 <p><a href="#2025-01-27">#</a> <span class="date">Jan 27, 2025 22:36
 EST</span><br>
@@ -199,75 +202,25 @@ h1 {
     border-bottom: 2px solid var(--fg-light-secondary);
 }
 
-article div {
+article div.note {
     border-bottom: 2px solid var(--fg-light-secondary);
 }
 
-article div.hide {
+article div.note.hide {
+    display: none;
+}
+
+#see-all {
+    display: none;
+}
+
+article:has(div.note:target) #see-all {
+    display: block;
+}
+
+article:has(div.note:target) div.note:not(:target) {
     display: none;
 }
 </style>
-<script>
-function addListeners() {
-    const divs = document.querySelectorAll('div.note');
-    for (const d of divs) {
-        const a = d.querySelector(`a[href="#${d.id}"]`);
-        console.log(d, a);
-        a.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await hidePosts(d.id);
-            window.location.href = a.href;
-        });
-    }
-}
-
-async function hidePosts(exceptId) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            const divs = document.querySelectorAll('div.note');
-            for (const d of divs) {
-                if (d.id === exceptId) {
-                    const back = document.createElement('a');
-                    back.href = '#';
-                    back.id = 'see-all';
-                    back.textContent = '← See all';
-                    back.addEventListener('click', async (e) => {
-                        e.preventDefault();
-                        await restorePosts();
-                        window.location.href = back.href;
-                    });
-                    d.prepend(back);
-                } else {
-                    d.classList.add('hide');
-                }
-            }
-            resolve();
-        }, 0);
-    });
-}
-
-async function restorePosts() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            const back = document.querySelector('a#see-all');
-            if (back) {
-                back.remove();
-            }
-            const divs = document.querySelectorAll('div.note');
-            for (const d of divs) {
-                d.classList.remove('hide');
-            }
-            resolve();
-        }, 0);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.location.hash) {
-      hidePosts();
-  }
-  addListeners();
-});
-</script>
 </section>
 </article></main></body></html>
