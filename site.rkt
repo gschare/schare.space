@@ -34,7 +34,7 @@
             (:path garden/microblog.html
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css
-                      css/justify.css css/background.css))
+                      css/background.css))
             (:path garden/aphorisms/index.html
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))

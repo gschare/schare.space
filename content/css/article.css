@@ -97,8 +97,7 @@ div.emph, span.emph {
 }
 
 p {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px auto;
 }
 
 a.fn:after {
@@ -253,7 +252,7 @@ article.article img {
     height: auto;
     max-height: 75vh;
     display: block;
-    margin: auto;
+    margin: 15px auto;
 }
 
 article.article .gallery img {
