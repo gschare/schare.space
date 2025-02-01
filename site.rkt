@@ -69,9 +69,13 @@
                :preprocessed #t
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css))
-              (:path tidings
+              (:path ,(custom md* 'tidings #:recursive #t)
+               :preprocessed #t
                :template blog.sxml
                :styles (css/default.css css/tidings.css css/article.css css/background.css))
+              ;(:path tidings
+              ; :template blog.sxml
+              ; :styles (css/default.css css/tidings.css css/article.css css/background.css))
               (:path garden/sea
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css css/sea.css))

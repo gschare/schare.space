@@ -26,7 +26,7 @@
          [dest-path (path-replace-extension (build-path INTERMEDIATE-DIR rel-path) ".html")]
          [dest-sym (path->symbol (path-replace-extension rel-path ".html"))])
     (make-parent-directory* dest-path)
-    (system (string-append "pandoc --mathjax -f markdown -t html -o " (path->string dest-path) " " (path->string src-path)))
+    (system (string-append "pandoc --mathjax --section-divs -f markdown -t html -o " (path->string dest-path) " " (path->string src-path)))
     dest-sym))
 
 (define (md* folder-path-sym #:base [base SRC-DIR] #:recursive [recursive #f])
