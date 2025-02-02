@@ -93,6 +93,7 @@
                   garden/process-tree/style.css
                   )
           :folders (writ js css assets/img assets/fonts assets/papers lab
+                    assets/docs
                     garden/jot/src
                     garden/tamas
                     )
