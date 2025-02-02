@@ -39,6 +39,8 @@
     `(span ; (@ (class "invisible")) ; actually i'd rather it not be invisible...
            ,x)))
 
+(define default-dark-mode '(script "document.body.classList.add('dark-mode'); document.getElementById('dark-mode-button').innerHTML = '☀️'; document.getElementById('dark-mode-button').title = 'Light mode';"))
+
 (define (generate-sxml day prev-href next-href)
   (let* ([date (day-date day)]
          [title (string-append "Phlog | "
@@ -48,7 +50,7 @@
                                ", "
                                (date-year date))])
     `(*TOP*
-      (script "document.body.classList.add('dark-mode'); document.getElementById('dark-mode-button').innerHTML = '☀️'; document.getElementById('dark-mode-button').title = 'Light mode';")
+      ,default-dark-mode
       (title ,title)
       (h1 ,title)
       ,(list 'p
@@ -165,6 +167,7 @@
   (define (make-year-index year months prev-year-href next-year-href)
     (let ([title (string-append "Phlog | " year)])
      `(*TOP*
+       ,default-dark-mode
        (title ,title)
        (h1 ,title)
        ,(list 'p
@@ -183,6 +186,7 @@
   (define (make-month-index year month days prev-month-href next-month-href)
     (let ([title (string-append "Phlog | " (hash-ref month-table month) " " year)])
      `(*TOP*
+       ,default-dark-mode
        (title ,title)
        (h1 ,title)
        ,(list 'p
@@ -243,15 +247,17 @@
   ; Overall index, which just links to the most recent post.
   (define (make-index link)
     `(*TOP*
+      ,default-dark-mode
       (title "Phlog: taking the “social” out of “social media”")
       (h1 "Phlog")
       (p (@ (class "cursive"))
          "taking the " (span (@ (class "underline")) "social") " out of " (span (@ (class "underline")) "social media"))
       (p
        (a (@ (href ,link))
-          "Latest post"))
-      (img (@ (src "/assets/img/garden/phlog/finally.jpg")
-              (width "320px")))))
+          "Go to latest post →"))
+      (a (@ (href ,link))
+         (img (@ (src "/assets/img/garden/phlog/finally.jpg")
+              (width "320px"))))))
 
   (write-file (make-index (date-to-href (day-date (last days)))) (build-path dest-path "index.html"))
 
