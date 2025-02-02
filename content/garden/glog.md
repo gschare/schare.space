@@ -5,6 +5,10 @@ div.glog a {
 }
 </style>
 
+There is no definitive path through a garden. But here is one possible path:
+chronological, filtered down arbitrarily by mysterious criteria... I do not
+recommend this path.
+
 :::glog
 
 [Tamas](/garden/tamas/)\

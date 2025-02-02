@@ -17,6 +17,7 @@
   ; Returns the symbol of the destination path.
   ;
   ; NOTE: be careful! You may have other rules that affect the .xml sources.
+  (displayln (format "Render XML of ~a...." pathsym))
   (let* ([src-path (build-path base (symbol->path pathsym))]
          [xslt-path (path-replace-extension src-path ".xslt")]
          [dest-path (path-replace-extension (build-path INTERMEDIATE-DIR (symbol->path pathsym)) ".html")]

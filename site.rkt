@@ -9,8 +9,10 @@
 (require "src/xml.rkt")
 (require "src/phlog.rkt")
 
-(system "rm -r temp/")
-(system "mkdir temp")
+(begin
+  (displayln "Empty temp....")
+  (void (system "rm -r temp/"))
+  (void (system "mkdir temp")))
 
 (define rules
   `(:defaults (:template article.sxml

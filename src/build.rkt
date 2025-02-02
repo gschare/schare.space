@@ -45,12 +45,10 @@
   (let* (; Preprocess: convert ':kw to '#:kw
          [_ (displayln "Rules: preprocess....")]
          [preprocessed (walk lisp-keyword->racket-keyword rules)]
-         [_ (displayln "Rules: preprocess.")]
 
          ; Convert rules to a hash table and check for duplicates
          [_ (displayln "Rules: duplicates check....")]
          [ht (rules->hash-table preprocessed)]
-         [_ (displayln "Rules: duplicates check.")]
 
          ; Follow the DAG to assign each rule a template and list of styles.
          [_ (displayln "Rules: assign templates and styles....")]
@@ -63,7 +61,6 @@
               ht
               (λ (v) (hash-set v '#:styles
                                (hash-ref style-assignments (hash-ref v '#:path)))))]
-         [_ (displayln "Rules: assign templates and styles.")]
 
          ; Remove phonies
          [_ (displayln "Rules: remove phonies....")]
@@ -72,7 +69,6 @@
                ht
                (by-flag '#:phony))
               (λ (v) (hash-remove v '#:phony)))]
-         [_ (displayln "Rules: remove phonies.")]
 
          ; Copy non-preprocessed files to assemble to the intermediate
          ; directory, where preprocessed files are.
@@ -81,7 +77,6 @@
          ; Note: writes to disk! (but only to intermediate directory)
          [_ (displayln "Copy non-preprocessed files to intermediate area....")]
          [_ (copy-to-intermediate)]
-         [_ (displayln "Copy non-preprocessed files to intermediate area.")]
 
          ; Generate the full build plan by recursively getting the children
          ; of folders and applying their parent settings, unless already
@@ -89,7 +84,6 @@
          ; Note: reads from disk!
          [_ (displayln "Generate build plan....")]
          [ht (rules-closure ht)]
-         [_ (displayln "Generate build plan.")]
 
          ; Remove directories and all disabled rules from the ruleset, as we
          ; don't need them anymore.
@@ -101,7 +95,6 @@
                 (λ (v) (or ((by-flag '#:folder) v)
                            ((by-flag '#:disabled) v))))
                (λ (v) (hash-remove (hash-remove v '#:folder) '#:disabled)))]
-         [_ (displayln "Prune build plan.")]
 
          ; Load the templates recursively.
          ; Note: reads from disk!
@@ -109,7 +102,6 @@
          [templates (load-templates
                      (set->list (list->set
                                  (hash-values template-assignments))))]
-         [_ (displayln "Load templates.")]
 
          ; Build each non-raw file according to the plan.
          ; Only files ending in `.html` will be built.
@@ -137,7 +129,6 @@
                 content
                 styles
                 templates)))))]
-         [_ (displayln "Assemble non-raw files.")]
          [raw-plan (hash-keys (hash-filter plan (λ (v) (hash-ref v '#:raw))))])
     (begin
       (when dry-run

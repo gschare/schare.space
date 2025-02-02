@@ -125,6 +125,8 @@
     (map parse-day days-list)))
 
 (define (phlog pathsym)
+  (displayln "Render phlog....")
+
   (let* ([src-path (build-path SRC-DIR (symbol->path pathsym))]
          [dest-folder (apply build-path (drop-right (explode-path (symbol->path pathsym)) 1))]
          [dest-path (build-path INTERMEDIATE-DIR dest-folder)]

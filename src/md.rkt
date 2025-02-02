@@ -6,7 +6,7 @@
 (require racket/system)
 (require "io.rkt")
 
-(define (md pathsym #:base [base SRC-DIR])
+(define (md pathsym #:base [base SRC-DIR] #:announce [announce #t])
   ; Given a path symbol (e.g. 'garden/myfile.md) specifying a markdown file,
   ; generate the standalone html of the file and write that to file in the
   ; intermediate directory, with an html extension. This will overwrite
@@ -18,6 +18,8 @@
   ; Returns the symbol of the destination path.
   ;
   ; NOTE: be careful! You may have other rules that affect the .md sources.
+  (if announce (displayln (format "Render markdown for ~a...." pathsym)) (void))
+
   (let* ([path (symbol->path pathsym)]
          [src-path (build-path base path)]
          [rel-path (if (absolute-path? src-path)
@@ -29,7 +31,7 @@
     (system (string-append "pandoc --mathjax --section-divs -f markdown -t html -o " (path->string dest-path) " " (path->string src-path)))
     dest-sym))
 
-(define (md* folder-path-sym #:base [base SRC-DIR] #:recursive [recursive #f])
+(define (md* folder-path-sym #:base [base SRC-DIR] #:recursive [recursive #f] #:announce [announce #t])
   ; Same as `md`, but for folders.
   ; Generates the .html files for every .md in the directory.
   ; Non-recursive by default.
@@ -47,6 +49,8 @@
   ; NOTE: be careful! You may have other rules that behave unexpectedly around
   ; the .md sources or the generated .html files in temp/, especially when
   ; performed recursively.
+  (if announce (displayln (format "Render markdown in ~a...." folder-path-sym)) (void))
+
   (let* ([dir-path (build-path base (symbol->path folder-path-sym))]
          [paths (directory-list dir-path)])
 
@@ -56,12 +60,11 @@
         ['directory #t]
         [_ (error "invalid type ~a" path)]))
 
-    (map (lambda (p) (md (path->symbol p) #:base dir-path))
+    (map (lambda (p) (md (path->symbol p) #:base dir-path #:announce #f))
          (filter (lambda (p) (path-has-extension? p #".md"))
                  (filter-not folder? paths)))
     (if recursive
-      (map (lambda (d) (md* (path->symbol d) #:base dir-path #:recursive #t))
+      (map (lambda (d) (md* (path->symbol d) #:base dir-path #:recursive #t #:announce #f))
            (filter folder?  paths))
       (void)))
-
   folder-path-sym)
