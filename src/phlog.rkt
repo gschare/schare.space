@@ -56,8 +56,10 @@
       ,(list 'p
            (anchor-or-invisible prev-href "Prev")
            " | "
-           '(a (@ (href "../"))
-               "Month")
+           ;'(a (@ (href "../"))
+           ;    "Month")
+           '(a (@ (href "../../../all.html"))
+               "All")
            " | "
            (anchor-or-invisible next-href "Next"))
       ,(cons 'div
@@ -74,8 +76,10 @@
       ,(list 'footer
            (anchor-or-invisible prev-href "Prev")
            " | "
-           '(a (@ (href "../"))
-               "Month")
+           ;'(a (@ (href "../"))
+           ;    "Month")
+           '(a (@ (href "../../../all.html"))
+               "All")
            " | "
            (anchor-or-invisible next-href "Next")))))
 
@@ -246,6 +250,25 @@
         (set! next-year year)))
      groups))
 
+  ; All time index, which lists every single post.
+  (define (make-all-time)
+    (let ([title (string-append "Phlog | All Posts")])
+     `(*TOP*
+       ,default-dark-mode
+       (title ,title)
+       (h1 ,title)
+       ,(cons
+         'ul
+         (map (λ (day)
+               (let* ([date (day-date day)]
+                      [href (date-to-href date)])
+                `(li (a (@ (href ,href))
+                        ,(show-date date)))))
+              days)))))
+
+  (write-file (make-all-time) (build-path dest-path "all.html"))
+
+
   ; Overall index, which just links to the most recent post.
   (define (make-index link)
     `(*TOP*
@@ -257,6 +280,9 @@
       (p
        (a (@ (href ,link))
           "Go to latest post →"))
+      (p
+       (a (@ (href ,link))
+          "See all →"))
       (a (@ (href ,link))
          (img (@ (src "/assets/img/garden/phlog/finally.jpg")
               (width "320px"))))))
