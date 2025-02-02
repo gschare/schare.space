@@ -44,9 +44,6 @@
              :preprocessed #t
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
-            (:path garden/worm.html
-             :template article-headerless.sxml
-             :styles (css/default.css css/article.css css/garden.css))
             (:path ,(custom xml 'garden/books/index.xml)
              :preprocessed #t
              :template garden.sxml
