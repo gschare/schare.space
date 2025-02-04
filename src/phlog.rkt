@@ -281,9 +281,9 @@
        (a (@ (href ,link))
           "Go to latest post →"))
       (p
-       (a (@ (href ,link))
+       (a (@ (href "all.html"))
           "See all →"))
-      (a (@ (href ,link))
+      (a (@ (href "all.html"))
          (img (@ (src "/assets/img/garden/phlog/finally.jpg")
               (width "320px"))))))
 
