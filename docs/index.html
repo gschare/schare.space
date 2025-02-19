@@ -100,6 +100,18 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
     display: block;
 }
 
+@media (hover: none) {
+  #webline::after {
+    content: "";
+    position: absolute;
+    background: transparent;
+  }
+
+  #webline:active::after {
+    display: none;
+  }
+}
+
 #webline-line {
     border: none;
     height: 2px;
@@ -139,7 +151,7 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
     padding: 0 5px;
     position: absolute;
     display: block;
-    transition: all 0.2s ease-in;
+    transition: opacity 0.2s ease-in, transform 0.2s ease-in;
     background: var(--bg-light);
     opacity: 0;
     transform: scaleY(0);
@@ -153,7 +165,7 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
 #webline:active #webline-text-container,
 #webline:focus #webline-text-container {
     opacity: 1;
-    transition: all 0.2s ease-out 0.2s;
+    transition: opacity 0.2s ease-out 0.2s, transform 0.2s ease-out 0.2s;
     transform: scaleY(1);
 }
 
