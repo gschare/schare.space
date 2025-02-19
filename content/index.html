@@ -12,6 +12,7 @@ human-computer interaction,
 and <a href="/tidings/">all the other stuff I drone on about</a>.
 </p>
 
+<footer>
 <p>
 <a href="https://twitter.com/ggschare">Twitter</a>
 &centerdot;
@@ -23,6 +24,14 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
 &centerdot;
 <a href="cv.html">CV</a>
 </p>
+
+<a id="webline" href="https://hgouni.com/">
+    <hr id="webline-line">
+    <div id="webline-text-container">
+        <span id="webline-text">Twitching Whiskers Webline</span>
+    </div>
+</a>
+</footer>
 
 <div id="mousehouse">
     <div class="mousehouse-roof"></div>
@@ -36,6 +45,84 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
 </div>
 
 <style>
+#webline {
+    position: relative;
+    height: 1lh;
+    width: 100%;
+    display: block;
+}
+
+#webline-line {
+    border: none;
+    height: 2px;
+    background: var(--fg-light-secondary);
+    position: absolute;
+    top: 2px;
+    width: 100%;
+    transition: background 0.2s ease-in-out;
+}
+
+#webline:hover #webline-line,
+#webline:active #webline-line,
+#webline:focus #webline-line {
+    transition: background 0.2s ease-in-out;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+    );
+}
+
+.dark-mode #webline-line {
+    background: var(--fg-dark-secondary);
+}
+
+#webline-text-container {
+    margin: auto 15px;
+    padding: 0 5px;
+    position: absolute;
+    display: block;
+    transition: all 0.2s ease-in;
+    background: var(--bg-light);
+    opacity: 0;
+    transform: scaleY(0);
+}
+
+.dark-mode #webline-text-container {
+    background: var(--bg-dark);
+}
+
+#webline:hover #webline-text-container,
+#webline:active #webline-text-container,
+#webline:focus #webline-text-container {
+    opacity: 1;
+    transition: all 0.2s ease-out 0.2s;
+    transform: scaleY(1);
+}
+
+#webline-text {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 40%,
+        rgba(79, 220, 74, 1) 70%,
+        rgba(63, 218, 216, 1) 90%,
+        rgba(47, 201, 226, 1) 100%
+    );
+    background-clip: text;
+    color: transparent;
+}
+
 @media screen and (max-width: 1100px) {
   div#mousehouse {
     display: none;
