@@ -53,14 +53,8 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
 }
 
 @media (hover: none) {
-  #webline::after {
-    content: "";
-    position: absolute;
-    background: transparent;
-  }
-
-  #webline:active::after {
-    display: none;
+  #webline:focus:not(:active) {
+    pointer-events: none; /* Block navigation on first tap */
   }
 }
 
