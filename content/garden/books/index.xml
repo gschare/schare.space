@@ -30,6 +30,12 @@
           img="worldofyesterday.jpg"
           date=""
     />
+    <book title="Real Life"
+          author="Brandon Taylor"
+          id="reallife"
+          img="reallife.jpg"
+          date="2025-02-22"
+    />
     <book title="Just Kids"
           author="Patti Smith"
           id="justkids"
