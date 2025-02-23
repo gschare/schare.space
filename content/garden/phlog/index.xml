@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-02-23">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54345222495_cb407d5d3a_k.jpg">
+                <alt>Squirrel Brand Company building. There is snow. There is an empty community notice board in the foreground.</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54345222490_4542ad8419_k.jpg">
+                <alt>A community garden covered in snow.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2024-12-28">
         <photos>
             <photo link="https://live.staticflickr.com/65535/54232343102_dbbf70f126_k.jpg">

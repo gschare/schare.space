@@ -411,3 +411,36 @@ ul.deindent, .deindent > ul {
         bottom: 15px;
     }
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    padding: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 50px;
+    padding-bottom: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    overflow-y: scroll;
+}
+
+.modal-content {
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    max-width: calc(100vw - 50px);
+    overflow: hidden;
+}
+
+.modal-image {
+    display: flex;
+    max-height: calc(100vh - 100px);
+}
