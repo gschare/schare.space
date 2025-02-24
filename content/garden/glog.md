@@ -11,6 +11,9 @@ recommend this path.
 
 :::glog
 
+[On energetic quanta and frustration](/garden/quanta.html)\
+[Feb 24, 2025]{.date}
+
 [Tamas](/garden/tamas/)\
 [Jan 24, 2025]{.date}
 
