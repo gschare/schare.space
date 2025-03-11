@@ -1,5 +1,26 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Anora"
+          dir="Sean Baker"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/9/5/9/5/4/0/959540-anora-0-600-0-900-crop.jpg?v=6f92877033"
+          date="2025-03-05"
+    />
+
+    <film title="A Complete Unknown"
+          dir="James Mangold"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/5/8/6/5/8/3/586583-a-complete-unknown-0-600-0-900-crop.jpg?v=f14ab6ecf6"
+          date="2025-03-03"
+    />
+        
+    <film title="Dead Ringers"
+          dir="David Cronenberg"
+          year="1988"
+          img="https://a.ltrbxd.com/resized/sm/upload/o5/f8/9s/nn/4Dq2qYkyJeJGw0mfhQVXgI2pMYx-0-600-0-900-crop.jpg?v=7265fa979c"
+          date="2025-03-02"
+    />
+
     <film title="Twin Peaks: Fire Walk With Me"
           dir="David Lynch"
           year="1992"
