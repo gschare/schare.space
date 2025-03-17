@@ -1,5 +1,19 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Ran"
+          dir="Akira Kurosawa"
+          year="1985"
+          img="https://a.ltrbxd.com/resized/sm/upload/h6/yo/p7/1t/ran-0-600-0-900-crop.jpg?v=3cabb176dc"
+          date="2025-03-15"
+    />
+
+    <film title="Ran"
+          dir="Akira Kurosawa"
+          year="1985"
+          img="https://a.ltrbxd.com/resized/sm/upload/h6/yo/p7/1t/ran-0-600-0-900-crop.jpg?v=3cabb176dc"
+          date="2025-03-14"
+    />
+
     <film title="Anora"
           dir="Sean Baker"
           year="2024"
