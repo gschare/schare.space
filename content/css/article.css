@@ -272,10 +272,13 @@ div.widen img {
 
 article.article *:not(.fancyquote) figcaption {
     text-align: center;
-    margin: 10px 10px 30px;
+    margin: 10px auto;
+    max-width: 70%;
 }
 
-article.article figure img {
+article.article figure {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 @media screen and (max-width: 800px) {
