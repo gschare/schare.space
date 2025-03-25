@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Four Adventures of Reinette and Mirabelle"
+          dir="Éric Rohmer"
+          year="1987"
+          img="https://a.ltrbxd.com/resized/film-poster/2/7/2/3/4/27234-four-adventures-of-reinette-and-mirabelle-0-600-0-900-crop.jpg?v=71e17615ac"
+          date="2025-03-24"
+    />
+
     <film title="Mickey 17"
           dir="Bong Joon Ho"
           year="2025"
