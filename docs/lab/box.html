@@ -70,8 +70,7 @@ body.dark-mode {
 
 .editor {
     text-align: left;
-    min-width: 20rem;
-    max-width: 35rem;
+    min-width: 35rem;
     height: 100%;
     min-height: 40rem;
     border: 1px solid #646464;
@@ -87,7 +86,17 @@ body.dark-mode {
     background-color: #19262d;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (max-width: 968px) {
+    .flex {
+        display: block;
+    }
+
+    .editor {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 968px) {
     .editor {
         min-width: 35rem;
     }
