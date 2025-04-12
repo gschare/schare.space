@@ -172,7 +172,7 @@ blockquote.dark-mode {
     border-left: 1px solid var(--fg-dark);
 }
 
-.simplequote figcaption {
+.simplequote figcaption, figure:has(blockquote) figcaption {
     padding-left: 2rem;
     text-align: left;
 }
@@ -270,7 +270,7 @@ div.widen img {
     max-height: 90vh;
 }
 
-article.article *:not(.fancyquote) figcaption {
+article.article figure:not(:has(blockquote)) figcaption {
     text-align: center;
     margin: 10px auto;
     max-width: 70%;
