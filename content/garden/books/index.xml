@@ -24,6 +24,12 @@
           img="sunalsorises.jpg"
           date=""
     />
+    <book title="Dune Messiah"
+          author="Frank Herbert"
+          id="dunemessiah"
+          img="dunemessiah.jpg"
+          date="2025-04-14"
+    />
     <book title="The World of Yesterday"
           author="Stefan Zweig"
           id="worldofyesterday"
