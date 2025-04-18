@@ -1,5 +1,26 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Dune"
+          dir="David Lynch"
+          year="1984"
+          img="https://a.ltrbxd.com/resized/sm/upload/e9/3l/l6/pt/dune-0-600-0-900-crop.jpg?v=a79bf8b4f6"
+          date="2025-04-16"
+    />
+
+    <film title="A Minecraft Movie"
+          dir="Jared Hess"
+          year="2025"
+          img="https://a.ltrbxd.com/resized/film-poster/8/5/4/6/9/1/854691-a-minecraft-movie-0-600-0-900-crop.jpg?v=074e7fed9e"
+          date="2025-04-14"
+    />
+
+    <film title="Whiplash"
+          dir="Damien Chazelle"
+          year="2014"
+          img="https://a.ltrbxd.com/resized/sm/upload/cl/dn/kr/f1/4C9LHDxMsoYI0S3iMPZdm3Oevwo-0-600-0-900-crop.jpg?v=d13ea36528"
+          date="2025-04-07"
+    />
+
     <film title="Four Adventures of Reinette and Mirabelle"
           dir="Éric Rohmer"
           year="1987"
