@@ -87,6 +87,14 @@ header {
             }
 
             editor.addEventListener('input', autosave);
+
+            editor.addEventListener('keydown', e => { // keypress doesn't work for nonprintable characters
+                if (e.keyCode==9) {
+                    var otherEditor = document.getElementById('editorR');
+                    otherEditor.focus();
+                    e.preventDefault();
+                }
+            });
         })();
         </script>
     </div>
@@ -111,6 +119,14 @@ header {
             }
 
             editor.addEventListener('input', autosave);
+
+            editor.addEventListener('keydown', e => { // keypress doesn't work for nonprintable characters
+                if (e.keyCode==9) {
+                    var otherEditor = document.getElementById('editorL');
+                    otherEditor.focus();
+                    e.preventDefault();
+                }
+            });
         })();
         </script>
     </div>
