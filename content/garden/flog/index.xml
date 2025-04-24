@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Stalker"
+          dir="Andrei Tarkovsky"
+          year="1979"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/0/6/2/51062-stalker-0-600-0-900-crop.jpg?v=1852068db9"
+          date="2025-04-23"
+    />
+
     <film title="Dune"
           dir="David Lynch"
           year="1984"
