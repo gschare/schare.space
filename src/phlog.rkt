@@ -112,6 +112,7 @@
     (let ([link (get-attr 'link photo-el)]
           [caption (get-el 'caption photo-el)]
           [alt (get-el 'alt photo-el)])
+      ; TODO: id
       (photo link (get-html alt)
              (let ([cap (get-html caption)])
                (if (non-empty-string? cap)

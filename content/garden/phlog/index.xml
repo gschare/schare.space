@@ -1,5 +1,69 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-04-26">
+        <photos>
+            <!-- street tree -->
+            <photo link="https://live.staticflickr.com/65535/54477716562_15ee48331d_c.jpg">
+                <alt>
+                    A close-up of the bright green leaves of a tree planted on
+                    the sidewalk of a street.
+                </alt>
+                <caption>
+                    My phone doesn't work these days.
+                </caption>
+            </photo>
+
+            <!-- parking lot tree -->
+            <photo link="https://live.staticflickr.com/65535/54478555126_94a5bd0631_c.jpg">
+                <alt>A white-blossomed tree next to factory windows on a brick wall.</alt>
+                <caption>
+                    It is seven years old. It is slow and buggy when I try to
+                    take photos. I've gotten in the habit of carrying my old
+                    Fujifilm camera (eleven years old) for everyday use.
+                </caption>
+            </photo>
+
+            <!-- other park tree bokeh -->
+            <photo link="https://live.staticflickr.com/65535/54478910205_d2090d4390_c.jpg">
+                <alt>
+                    An out-of-focus shot of a tree at twilight, with bokeh
+                    caused by the lights hanging from the tree.
+                </alt>
+                <caption>
+                    Aside from forcing me to slow down and be deliberate when I
+                    take photos, using the Fujifilm has the odd effect of
+                    closing the gap between "casual" smartphone camera use and
+                    the pretension of "professional" DSLR or mirrorless cameras.
+                </caption>
+            </photo>
+
+            <!-- street -->
+            <photo link="https://live.staticflickr.com/65535/54478839673_8c05f05cf7_c.jpg">
+                <alt>A residential street at twilight.</alt>
+                <caption>
+                    <!-- hipster feeling? -->
+                    I'm using this fancy device to take pictures that are
+                    intended to be nothing more than impressions of what I see
+                    during the day, which I send to my friends. But it goes the
+                    other way, too: this curious habit, negotiated by the camera
+                    with all its fiddly settings and its "professional" affect,
+                    is dignified beyond fleeting record and elevated to <em>craft</em>.
+                    There's a ritual to it: take photos, get home, look through, and
+                    <em>then</em> send them off.
+                </caption>
+            </photo>
+
+            <!-- park light -->
+            <photo link="https://live.staticflickr.com/65535/54478757264_b7874b76d6_c.jpg">
+                <alt>A lamppost in a park at twilight, causing lens flare</alt>
+                <caption>
+                    The whole process takes more thought and effort, and I'm not
+                    sure that's a bad thing.
+                </caption>
+            </photo>
+        </photos>
+    </day>
+
     <day date="2025-02-22">
         <photos>
             <photo link="https://live.staticflickr.com/65535/54345222495_cb407d5d3a_k.jpg">
@@ -12,6 +76,7 @@
             </photo>
         </photos>
     </day>
+
     <day date="2024-12-28">
         <photos>
             <photo link="https://live.staticflickr.com/65535/54232343102_dbbf70f126_k.jpg">
@@ -38,9 +103,9 @@
                 <alt>A person sits working in an empty classroom across a patch of grass.</alt>
                 <caption>Oh, to be working in an empty classroom over the holidays!</caption>
             </photo>
-            
         </photos>
     </day>
+
     <day date="2024-08-11">
         <photos>
             <photo link="https://live.staticflickr.com/65535/53917456916_ae67911866_k.jpg">
