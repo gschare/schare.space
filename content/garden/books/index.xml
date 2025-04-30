@@ -24,6 +24,12 @@
           img="sunalsorises.jpg"
           date=""
     />
+    <book title="Annihilation"
+          author="Jeff VanderMeer"
+          id="annihilation"
+          img="annihilation.jpg"
+          date="2025-04-24"
+    />
     <book title="Dune Messiah"
           author="Frank Herbert"
           id="dunemessiah"
