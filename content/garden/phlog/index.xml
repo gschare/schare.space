@@ -1,5 +1,27 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-05-03">
+        <photos>
+            <!-- cityscape -->
+            <photo link="https://live.staticflickr.com/65535/54497035854_0e93e5484e_c.jpg">
+                <alt>The Boston skyline at night.</alt>
+                    <caption>
+                        Having lived in larger cities, Boston often underwhelms
+                        me. But sometimes I look at the skyline over the water
+                        at night and I think of the scale of it, how many people
+                        occupy those lighted rooms, this human-concrete machine,
+                        how much ground I can cover in a day on the T, and I
+                        feel in awe, and very lucky to be here.
+                    </caption>
+            </photo>
+
+            <!-- mit power plant -->
+            <photo link="https://live.staticflickr.com/65535/54497035809_f829599713_c.jpg">
+                <alt>A power plant at night, in black and white.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-04-26">
         <photos>
             <!-- street tree -->
