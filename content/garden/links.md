@@ -46,4 +46,9 @@ ul {
     padding-left: 0;
     list-style-type: none;
 }
+
+li {
+  text-indent: -1rem;
+  padding-left: 1rem;
+}
 </style>
