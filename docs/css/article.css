@@ -213,14 +213,6 @@ blockquote.dark-mode {
     position: absolute;
 }
 
-.fancyquote figcaption, .fancyquote > p {
-    margin-block-start: 0.5rem;
-    margin-block-end: 0.5rem;
-    margin-inline-start: 40px;
-    margin-inline-end: 40px;
-    text-align: left;
-}
-
 /* Nested quotes don't get the quotes */
 .fancyquote blockquote blockquote:before {
     all: revert;
@@ -229,10 +221,17 @@ blockquote.dark-mode {
     all: revert;
 }
 
-.fancyquote > p {
+.fancyquote figcaption, .fancyquote > p {
     /* citation */
-    text-indent: -1.5rem;
-    margin-left: 2rem;
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    /*text-align: left;*/
+    /*text-indent: -1.5rem;
+    margin-left: 2rem;*/
+    margin-left: 35%;
+    text-align: right;
 }
 
 hr {
