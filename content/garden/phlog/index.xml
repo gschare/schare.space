@@ -1,5 +1,25 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-05-11">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54520204433_cbe8f926d4_c.jpg">
+                <alt>A wooded hillside in early morning.</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54519081597_5347f414de_c.jpg">
+                <alt>
+                    A tree with green and white leaves against a blue early
+                    morning sky, a stone wall in the background.
+                </alt>
+                <caption>
+                    If only I had made a photograph of the burning incense's
+                    twirling smoke, or the stone walls of Morningside, or the
+                    rock on which we danced. I was entirely present for the
+                    magic of those moments.
+                </caption>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-05-03">
         <photos>
             <!-- cityscape -->
