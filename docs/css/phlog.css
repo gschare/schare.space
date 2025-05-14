@@ -21,7 +21,7 @@ figcaption {
     max-width: 40ch;
     margin: auto;
     padding: 10px 30px 30px;
-    font-size: 120%;
+    /*font-size: 120%;*/
     text-align: justify;
     text-align-last: center;
     text-justify: inter-word;
