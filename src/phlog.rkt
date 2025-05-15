@@ -7,6 +7,7 @@
 (provide phlog)
 (require "io.rkt")
 (require xml)
+(require sxml)
 (require html-parsing)
 
 (struct date (year month day))

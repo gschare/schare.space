@@ -1,0 +1,73 @@
+<h1>Dialogue Boxes</h1>
+
+<div id="dialogue" class="dialog">
+</div>
+
+<form>
+    <input type="button" value="Add dialogue" onclick="dialogBox();"/>
+</form>
+
+<script>
+let nMessages = 0;
+
+function dialogBox () {
+    const newDialogue = prompt("Enter some dialogue:", "Wherefore art thou Romeo?");
+    if (newDialogue == "" || newDialogue == null) {
+        return;
+    }
+    const p = document.createElement('p');
+    p.classList.add(nMessages % 2 == 0 ? 'left' : 'right');
+    const pContent = document.createTextNode(newDialogue);
+    p.appendChild(pContent);
+
+    const dialogue = document.getElementById('dialogue');
+    dialogue.appendChild(p);
+
+    nMessages += 1;
+}
+</script>
+
+<style>
+input[type="button"] {
+    margin: 30px auto;
+    display: block;
+    font-size: 16px;
+    font-family: 'Lora', serif;
+    padding: 5px 15px;
+    background-color: var(--fg-light-accent);
+    border-color: var(--bg-light-secondary);
+    border-radius: 10px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    font-weight: 700;
+    cursor: pointer;
+}
+input[type="button"]:hover {
+    transform: scale(1.1);
+}
+.dialog .left, .dialog .right {
+    border-radius: 15px;
+    padding: 7.5px 12.5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 61.8%;
+    display: block;
+    width: fit-content;
+}
+.dialog .left {
+    margin-left: 0;
+    margin-right: auto;
+    color: #E1E1E1;
+    background-color: #3B3B3D;
+}
+.dialog .right {
+    margin-left: auto;
+    margin-right: 0;
+    color: #FFFFFF;
+    background-color: #3F86F7;
+}
+.dialog .left a, .dialog .right a {
+    color: inherit;
+    text-decoration: underline;
+}
+</style>

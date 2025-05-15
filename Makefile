@@ -1,3 +1,3 @@
 default:
-	rm -r docs/
+	[ -e docs/ ] && rm -r docs/ || true
 	racket site.rkt
