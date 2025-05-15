@@ -5,6 +5,16 @@
 
 <!-- newer ones nearer the top -->
 
+* [solar.lowtechmagazine.com](https://solar.lowtechmagazine.com/)
+* [100r.co](https://100r.co) [hundred rabbits]
+* [www.cameronsworld.net](https://www.cameronsworld.net/)
+* [endless.horse](http://endless.horse/)
+* [billwurtz.com](https://billwurtz.com/)
+* [xxiivv.com](https://xxiivv.com) [devine]
+* [folk.computer](https://folk.computer/)
+* [thesephist.com](https://thesephist.com/)
+* [platypus1917.org](https://platypus1917.org)
+* [erich-friedman.github.io/numbers.html](https://erich-friedman.github.io/numbers.html) [what's special about this number?]
 * [www.nytimes.com/2011/01/02/books/review/Batuman-t-web.html](https://www.nytimes.com/2011/01/02/books/review/Batuman-t-web.html) [why criticism matters]
 * [macintoshgarden.org](https://macintoshgarden.org/)
 * [www.soulsista.com/titanic/baraka](http://www.soulsista.com/titanic/baraka.html) [technology & ethos]
