@@ -47,11 +47,12 @@
     </div>
 </header>
 <main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><!--  provenance: local 24.06.08-05.55.md -> garden/laziness.html  -->
+<section id="laziness" class="level1">
+<h1>Laziness</h1>
+<span id="date"><em>Jun 7, 2024</em></span>
 <title>
 Laziness
 </title>
-<h1 id="laziness">Laziness</h1>
-<p><span id="date"><em>Jun 7, 2024</em></span></p>
 <p>When researchers talk about the differences between programming
 languages, we have a number of axes on which to formally compare them.
 <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony Hoare</a> gave
@@ -98,7 +99,8 @@ vs. laziness. Let us focus on the third axis. By way of updated example,
 strict languages include C++, Python, Javascript, Go, and OCaml, along
 with pretty much everything else you’ve ever heard of or used. Lazy
 languages include Haskell.</p>
-<h2 id="semantics-of-strictness">Semantics of Strictness</h2>
+<section id="semantics-of-strictness" class="level2">
+<h2>Semantics of Strictness</h2>
 <p>We <span class="tooltip" data-title="associate a variable name with a value for future computations">bind</span>
 variables in Python like so:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> <span class="dv">10</span></span>
@@ -191,7 +193,9 @@ statements. You can adequately define them like so:</p>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>   <span class="cf">else</span>:</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> q</span></code></pre></div>
 <p><code>q</code> only gets evaluated in half of the possible cases.</p>
-<h2 id="semantics-of-laziness">Semantics of Laziness</h2>
+</section>
+<section id="semantics-of-laziness" class="level2">
+<h2>Semantics of Laziness</h2>
 <p>Lazy languages, by contrast, evaluate expressions and function
 arguments only when needed. As a result, they only produce <span class="math inline">\(\bot\)</span> in programs where <span class="math inline">\(\bot\)</span> is used.</p>
 <p>In Haskell, <span class="math inline">\(\bot\)</span> is written as
@@ -207,7 +211,9 @@ differs from Python because Haskell has non-strict evaluation.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> foo x <span class="ot">=</span> <span class="dv">0</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> foo <span class="fu">undefined</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span></code></pre></div>
-<h2 id="self-reference">Self-Reference</h2>
+</section>
+<section id="self-reference" class="level2">
+<h2>Self-Reference</h2>
 <p>Python and Haskell differ in another way, related to laziness. Python
 does not permit self-referential variables, but Haskell does, as a side
 effect of lazy evaluation.</p>
@@ -236,7 +242,9 @@ value of <code>x</code>, it will enter an infinite loop:</p>
 stopped by sending an interrupt signal to the process. In the old days
 before fancy operating systems, you would have to restart the
 computer.</p>
-<h2 id="recursion">Recursion</h2>
+</section>
+<section id="recursion" class="level2">
+<h2>Recursion</h2>
 <p>While <code>x = x</code> is universally nonsense, there exist useful
 self-referential (also called <em>recursive</em>) programs. It is often
 sensible to define a function in terms of itself so long as there is a
@@ -267,7 +275,9 @@ operations.</p>
 <p>Recursion is useful for working with data structures of arbitrary
 size. It is often more natural to express programs recursively as
 opposed to iteratively, especially when dealing with trees.</p>
-<h2 id="circular-data-structures">Circular Data Structures</h2>
+</section>
+<section id="circular-data-structures" class="level2">
+<h2>Circular Data Structures</h2>
 <p>We have seen that:</p>
 <ul>
 <li>in Python, functions can be recursive but values cannot; and,</li>
@@ -347,7 +357,9 @@ created too, and these are cascadingly evaluated when called for.</p>
 In that sense, the whole motivation for laziness can be construed as a
 solution to the problem of creating circular data structures in pure
 languages.</p>
-<h2 id="infinite-data-structures">Infinite Data Structures</h2>
+</section>
+<section id="infinite-data-structures" class="level2">
+<h2>Infinite Data Structures</h2>
 <p>I have mentioned a few times now that thunks are only evaluated when
 called. The previous example revealed that thunks can contain thunks,
 and these nested thunks are evaluated outside-in, so you do not have to
@@ -407,7 +419,9 @@ that is perhaps more pedagogical:</p>
 <p>It may surprise you that the same thing is possible in Python using a
 feature called <em>generators</em>. They are not as ergonomic, but the
 feature exists.</p>
-<h2 id="expressivity">Expressivity</h2>
+</section>
+<section id="expressivity" class="level2">
+<h2>Expressivity</h2>
 <p>It is important to note at this point that lazy and strict languages
 are equally powerful. That is, there is no problem that can be solved in
 one that cannot be solved in the other. The differences are entirely in
@@ -428,7 +442,9 @@ Haskell has built-in features for granularly controlling evaluation
 behavior. You can force strict evaluation where you want it without
 heavy boilerplate or using special libraries. Haskell is a lazy
 language, but with convenient access to strictness when necessary.</p>
-<h2 id="who-cares">Who Cares?</h2>
+</section>
+<section id="who-cares" class="level2">
+<h2>Who Cares?</h2>
 <p>While it is pedagogically interesting to find the “right” way to
 introduce the basics of laziness, nothing here is terribly deep or
 surprising. The existence of the feature might be unfamiliar at first,
@@ -453,6 +469,8 @@ able to precisely dictate when something is evaluated?</li>
 </ul>
 <p>At the time of writing I am not knowledgeable about any of these
 topics.</p>
+</section>
+</section>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>

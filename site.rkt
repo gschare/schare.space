@@ -39,7 +39,7 @@
                       css/background.css))
             (:path garden/aphorisms/index.html
              :template garden.sxml
-             :styles (css/default.css css/article.css css/garden.css css/wide.css))
+             :styles (css/default.css css/garden.css css/wide.css))
             (:path garden/links.html
              :preprocessed #t
              :template garden.sxml

@@ -8,6 +8,7 @@ function dither(file) {
   const img = document.createElement('img');
   img.setAttribute('src', url);
   img.onload = () => { /* say "thank you ChatGPT!" */
+      // TODO: add contrast slider
       const width = document.getElementById('width-slider').value;
       const height = width * (img.height / img.width);
       canvas.setAttribute('width', width);
