@@ -40,9 +40,19 @@ span.invisible {
 
 .date, #date {
     color: var(--fg-light-secondary);
+    display: block;
 }
 
 .date.dark-mode, #date.dark-mode {
+    color: var(--fg-dark-secondary);
+}
+
+.subtitle, #subtitle {
+    color: var(--fg-light-secondary);
+    display: block;
+}
+
+.subtitle.dark-mode, #subtitle.dark-mode {
     color: var(--fg-dark-secondary);
 }
 

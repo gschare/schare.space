@@ -40,18 +40,19 @@
          [else sym]))
       sym))
 
-(define (build rules #:dest [dest "docs"] #:dry-run [dry-run #f])
-  (displayln (format "Files to be written to folder: ~a." dest))
+(define (build rules #:dest [dest "docs"] #:dry-run [dry-run #f] #:silent [silent #f])
+  (define (displayln-unless-silent . args) (unless silent (apply displayln args)))
+  (displayln-unless-silent (format "Files to be written to folder: ~a." dest))
   (let* (; Preprocess: convert ':kw to '#:kw
-         [_ (displayln "Rules: preprocess....")]
+         [_ (displayln-unless-silent "Rules: preprocess....")]
          [preprocessed (walk lisp-keyword->racket-keyword rules)]
 
          ; Convert rules to a hash table and check for duplicates
-         [_ (displayln "Rules: duplicates check....")]
+         [_ (displayln-unless-silent "Rules: duplicates check....")]
          [ht (rules->hash-table preprocessed)]
 
          ; Follow the DAG to assign each rule a template and list of styles.
-         [_ (displayln "Rules: assign templates and styles....")]
+         [_ (displayln-unless-silent "Rules: assign templates and styles....")]
          [style-assignments (resolve-graph (make-adjacency-list ht '#:styles ".") ".css")]
          [template-assignments
           (hash-map-update
@@ -63,7 +64,7 @@
                                (hash-ref style-assignments (hash-ref v '#:path)))))]
 
          ; Remove phonies
-         [_ (displayln "Rules: remove phonies....")]
+         [_ (displayln-unless-silent "Rules: remove phonies....")]
          [ht (hash-map-update
               (hash-filter-not
                ht
@@ -75,20 +76,20 @@
          ; (This is to keep the SRC dir clean of generated files.)
          ; Note: reads from disk!
          ; Note: writes to disk! (but only to intermediate directory)
-         [_ (displayln "Copy non-preprocessed files to intermediate area....")]
+         [_ (displayln-unless-silent "Copy non-preprocessed files to intermediate area....")]
          [_ (copy-to-intermediate)]
 
          ; Generate the full build plan by recursively getting the children
          ; of folders and applying their parent settings, unless already
          ; specified.
          ; Note: reads from disk!
-         [_ (displayln "Generate build plan....")]
+         [_ (displayln-unless-silent "Generate build plan....")]
          [ht (rules-closure ht)]
 
          ; Remove directories and all disabled rules from the ruleset, as we
          ; don't need them anymore.
          ; This give us our final build plan!
-         [_ (displayln "Prune build plan....")]
+         [_ (displayln-unless-silent "Prune build plan....")]
          [plan (hash-map-update
                (hash-filter-not
                 ht
@@ -98,14 +99,14 @@
 
          ; Load the templates recursively.
          ; Note: reads from disk!
-         [_ (displayln "Load templates....")]
+         [_ (displayln-unless-silent "Load templates....")]
          [templates (load-templates
                      (set->list (list->set
                                  (hash-values template-assignments))))]
 
          ; Build each non-raw file according to the plan.
          ; Only files ending in `.html` will be built.
-         [_ (displayln "Assemble non-raw files....")]
+         [_ (displayln-unless-silent "Assemble non-raw files....")]
          [files-sxml
           (hash-map/copy
            (hash-filter
@@ -139,7 +140,7 @@
         (for-each (λ (x) (display "  ") (display x) (display "\n")) raw-plan)
         )
 
-      (displayln "Writing files....")
+      (displayln-unless-silent "Writing files....")
       (hash-for-each
        files-sxml
        (λ (k v)
@@ -149,9 +150,9 @@
             (make-parent-directory* dest)
             (write-file v dest))
            )))
-      (displayln (if dry-run "Dry run: no files written." (format "~a files written." (hash-count files-sxml))))
+      (displayln-unless-silent (if dry-run "Dry run: no files written." (format "~a files written." (hash-count files-sxml))))
 
-      (displayln "Copying raw files....")
+      (displayln-unless-silent "Copying raw files....")
       (for-each
        (λ (x)
          (let* ([path (symbol->path x)]
@@ -162,5 +163,5 @@
             (copy-file src dest #:exists-ok? #t))
            ))
        raw-plan)
-      (displayln (if dry-run "Dry run: no raw files copied." (format "~a raw files copied." (length raw-plan))))
+      (displayln-unless-silent (if dry-run "Dry run: no raw files copied." (format "~a raw files copied." (length raw-plan))))
     )))

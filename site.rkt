@@ -9,8 +9,22 @@
 (require "src/xml.rkt")
 (require "src/phlog.rkt")
 
+(require racket/cmdline)
+
+(define dry-run #f)
+(define silent #f)
+(define dest "docs")
+
+(command-line
+ #:program "site"
+ #:once-each
+ [("-d" "--dry-run") "Do not write any files" (set! dry-run #t)]
+ [("-o" "--dest") dest "Destination folder" (void)]
+ [("-s" "--silent") "Silence output" (set! silent #t)]
+ )
+
 (begin
-  (displayln "Empty temp....")
+  (unless silent (displayln "Empty temp...."))
   (void (system "rm -r temp/"))
   (void (system "mkdir temp")))
 
@@ -104,18 +118,6 @@
     )
   )
 
-(require racket/cmdline)
-
-(define dry-run #f)
-(define dest "docs")
-
-(command-line
- #:program "site"
- #:once-each
- [("-d" "--dry-run") "Do not write any files" (set! dry-run #t)]
- [("-o" "--dest") dest "Destination folder" (void)]
- )
-
 ;TODO: compile all markdown sources into html sources using pandoc before building?
-(build rules #:dest dest #:dry-run dry-run)
+(build rules #:dest dest #:dry-run dry-run #:silent silent)
 
