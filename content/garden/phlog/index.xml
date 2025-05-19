@@ -1,5 +1,21 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-05-17">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54531548845_7ffc6979f6_b.jpg">
+                <alt>Tree canopy against a partly cloudy sky</alt>
+                <caption>Picnic, looking up!</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54531389294_9a6d46f01f_k.jpg">
+                <alt>Tree canopy against a partly cloudy sky</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54531548850_bd8599d2ed_k.jpg">
+                <alt>Tree canopy against a partly cloudy sky</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-05-13">
         <photos>
             <photo link="https://live.staticflickr.com/65535/54520018426_804fc122e8_c.jpg">
