@@ -124,20 +124,32 @@ h2 {
 </xsl:template>
 
 <xsl:template match="book">
-    <img loading="lazy">
-        <xsl:attribute name="src">
-            <xsl:value-of select="concat('/assets/img/garden/books/', @img)" />
-        </xsl:attribute>
-        <xsl:attribute name="id">
-            <xsl:value-of select="@id" />
-        </xsl:attribute>
-        <xsl:attribute name="alt">
-            <xsl:value-of select="concat(@title, ' by ', @author)" />
-        </xsl:attribute>
-        <xsl:attribute name="title">
-            <xsl:value-of select="concat(@title, ' by ', @author)" />
-        </xsl:attribute>
-    </img>
+    <xsl:variable name="img-tag">
+        <img loading="lazy">
+            <xsl:attribute name="src">
+                <xsl:value-of select="concat('/assets/img/garden/books/', @img)" />
+            </xsl:attribute>
+            <xsl:attribute name="id">
+                <xsl:value-of select="@id" />
+            </xsl:attribute>
+            <xsl:attribute name="alt">
+                <xsl:value-of select="concat(@title, ' by ', @author)" />
+            </xsl:attribute>
+            <xsl:attribute name="title">
+                <xsl:value-of select="concat(@title, ' by ', @author)" />
+            </xsl:attribute>
+        </img>
+    </xsl:variable>
+    <xsl:choose>
+        <xsl:when test="@link">
+            <a href="{@link}">
+                <xsl:copy-of select="$img-tag" />
+            </a>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:copy-of select="$img-tag" />
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
