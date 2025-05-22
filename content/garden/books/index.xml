@@ -18,6 +18,12 @@
           img="ficciones.jpg"
           date=""
     />
+    <book title="Race After Technology"
+          author="Ruha Benjamin"
+          id="raceaftertechnology"
+          img="raceaftertechnology.jpg"
+          date="2025-05-22"
+    />
     <book title="The Sun Also Rises"
           author="Ernest Hemingway"
           id="sunalsorises"
