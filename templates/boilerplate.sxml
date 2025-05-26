@@ -38,7 +38,7 @@
                    (type "text/javascript")))
         (script (@ (data-goatcounter "https://schare.goatcounter.com/count")
                    (async)
-                   (src "//gc.zgo.at/count.js")))
+                   (src "/js/count.js")))
 
         (template (@ (target "stylesheets.sxml"))))
     (body
