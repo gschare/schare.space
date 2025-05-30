@@ -1,5 +1,23 @@
 <?xml version="1.0"?>
 <days>
+
+    <day date="2025-05-30">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54555547417_a348fc0764_b.jpg">
+                <alt>Dark stormclouds over darker trees next to the facade of a brick-and-stone building.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+
+    <day date="2025-05-22">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54556666333_979dc06e6b_b.jpg">
+                <alt>Worm on wet stone</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-05-17">
         <photos>
             <photo link="https://live.staticflickr.com/65535/54531548845_7ffc6979f6_b.jpg">
