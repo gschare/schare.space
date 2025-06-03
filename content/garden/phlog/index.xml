@@ -1,5 +1,28 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-06-01">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54564610731_8a47b9dbdd_b.jpg">
+                <alt>Lamps in a small city park at night.</alt>
+                    <caption>
+                        There's a jazzy mural in the Lilypad and it reminds me
+                        of the sort of painting my parents and grandparents have
+                        in their house: musicians rendered cubistly, frenetic
+                        atmosphere. Let the good times roll. You can make a
+                        whole career off that sort of art; it's very
+                        commercially viable, very pretty. And why not? I'm pretty sure
+                        aesthetics are fascist&mdash;expecially when profound
+                        confrontation of modernity is recast as nostalgic
+                        kitsch&mdash;but wouldn't it be cool to live
+                        in a Parisian fantasy? And the whole world is a
+                        painting by Monet...
+                        <br/>
+                        <br/>
+                        Oh yes. That's been done. By Monet.
+                    </caption>
+            </photo>
+        </photos>
+    </day>
 
     <day date="2025-05-30">
         <photos>
