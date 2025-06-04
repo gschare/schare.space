@@ -1,0 +1,3 @@
+'(*TOP*
+  (template (@ (target "article-no-dark.sxml"))
+    (insert (@ (expr "content")))))

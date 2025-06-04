@@ -48,7 +48,7 @@
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/background.css))
             (:path garden/microblog.html
-             :template garden.sxml
+             :template garden-no-dark.sxml
              :styles (css/default.css css/article.css css/garden.css
                       css/background.css))
             (:path garden/aphorisms/index.html
