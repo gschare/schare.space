@@ -1,0 +1,307 @@
+body {
+    background-color: black;
+    background: url(https://art.teleportacia.org/index_files/128.gif);
+    color: white;
+    font-family: "Arial", sans-serif;
+}
+
+#info a {
+    color: lightblue;
+    &:visited {
+        color: pink;
+    }
+}
+
+#colman {
+    overflow-y: scroll;
+    height: 600px;
+    max-width: 600px;
+
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0,0,0,.5);
+        box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
+
+    img {
+        max-width: 100%;
+        object-fit: cover;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {transform: rotate(15deg) scale(1);}
+    50% {transform: rotate(15deg) scale(1.1);}
+}
+
+@keyframes shimmer {
+    0% {background-position: 0% 50%;}
+    100% {background-position: 100% 50%;}
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+table {
+    margin: auto;
+}
+td {
+    padding: 30px;
+}
+
+#fegan {
+    max-width: 600px;
+    max-height: 600px;
+    overflow-y: scroll;
+    img {
+        max-width: 100%;
+        object-fit: cover;
+    }
+    #lyrics {
+        max-width: 85%;
+        position: relative;
+    }
+    #waveform {
+        position: relative;
+        #soundcloud {
+            z-index: 2;
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    #birthday {
+        position: absolute;
+        right: -60px;
+        top: 85px;
+        /*font-size: 3rem;*/
+        color: lightblue;
+        font-weight: bold;
+        display: inline-block;
+        background: linear-gradient(
+                270deg,
+                red, orange, yellow, green, cyan, blue, violet, red, orange, yellow
+              );
+        background-size: 500% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: pulse 0.8s infinite ease-in-out,
+                   shimmer 8s linear infinite;
+    }
+    .marquee {
+        a {
+            color: skyblue;
+        }
+        z-index: 3;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        #insta {
+            display: inline-block;
+            animation: scroll-left 10s linear infinite;
+            padding-left: 100%;
+        }
+    }
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h1, h2 {
+    text-align: center;
+}
+#button {
+    text-align: center;
+    margin: auto;
+}
+
+#curtain {
+    --curtain-height: 394px;
+    --curtain-width: 301px;
+    text-align: center;
+    margin: 100px auto;
+    width: calc(var(--curtain-width)*3);
+    .flex {
+        display: flex;
+        position: relative;
+    }
+    .stage {
+        z-index: 1;
+        position: absolute;
+        left: var(--curtain-width);
+        width: var(--curtain-width);
+        height: var(--curtain-height);
+        background: none;
+        background-color: black;
+        img {
+            transform: translateY(35%);
+            text-align: center;
+            margin: auto;
+            width: var(--curtain-width);
+        }
+    }
+    input[type="range"] {
+        z-index: 2;
+        /* disappear the thing */
+        -webkit-appearance: none;
+        appearance: none;
+        display: inline;
+        width: calc(1.5 * var(--curtain-width));
+        height: var(--curtain-height);
+        background: transparent;
+        margin: 0;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+        z-index: 0;
+        width: 100%;
+        height: var(--curtain-height);
+        background: transparent;
+    }
+    input[type="range"]::-moz-range-track {
+        z-index: 0;
+        width: 100%;
+        height: var(--curtain-height);
+        background: transparent;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        z-index: 2;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        width: var(--curtain-width);
+        height: var(--curtain-height);
+        background-size: cover;
+    }
+    input[type="range"]::-moz-range-thumb {
+        z-index: 2;
+        border: none;
+        cursor: pointer;
+        width: var(--curtain-width);
+        height: var(--curtain-height);
+        background-size: cover;
+    }
+    input[type="range"].left::-webkit-slider-thumb {
+        background: url("curtain-left.png") no-repeat center center;
+    }
+    input[type="range"].left::-moz-range-thumb {
+        background: url("curtain-left.png") no-repeat center center;
+    }
+    input[type="range"].right::-webkit-slider-thumb {
+        background: url("curtain-right.png") no-repeat center center;
+    }
+    input[type="range"].right::-moz-range-thumb {
+        background: url("curtain-right.png") no-repeat center center;
+    }
+}
+
+#oscar {
+    .background {
+        background: url("strawberry.jpg") no-repeat center center;
+        border: 30px solid transparent;
+        border-image: url("frame-full.jpg") 130 round;
+        max-width: 1400px;
+        max-height: 1005px;
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+    h2 {
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: cursive;
+        padding-top: 20px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    font-family: serif;
+    font-size: 120%;
+    text-align: center;
+    margin: 100px auto;
+    display: block;
+    img#him {
+        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    div#picture {
+        position: relative;
+        height: 600px;
+        max-width: 600px;
+        text-align: center;
+        margin: auto;
+    }
+    .speech-bubble {
+        position: absolute;
+        background: #fff;
+        border-radius: 4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        color: black;
+        margin: initial;
+        top: 0;
+        right: 0;
+    }
+    #replica {
+        top: 10px;
+        right: -55px;
+        transform: rotate(10deg);
+        &:after {
+            border-bottom: 0;
+            border-left: 0;
+            margin-left: -45.5px;
+            margin-bottom: -71px;
+            bottom: 0;
+        }
+    }
+    #creative {
+        top: 360px;
+        right: 10px;
+        transform: rotate(-5deg);
+        &:after {
+            border-top: 0;
+            border-left: 0;
+            margin-left: -35.5px;
+            margin-top: -71px;
+            border-bottom-color: #fff;
+            top: 0;
+        }
+    }
+    #hedonism {
+        top: 60px;
+        left: -50px;
+        width: 300px;
+        transform: rotate(-12deg);
+        &:after {
+            border-bottom: 0;
+            border-right: 0;
+            margin-left: 55.5px;
+            margin-bottom: -71px;
+            bottom: 0;
+        }
+    }
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 71px solid transparent;
+        border-top-color: #fff;
+        z-index: 100;
+    }
+}
+
+#trees {
+    margin: 100px auto;
+
+}

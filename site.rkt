@@ -110,6 +110,7 @@
                     assets/docs
                     garden/jot/src
                     garden/tamas
+                    garden/manifold-revealing
                     )
           )
     :disabled (:files ()
