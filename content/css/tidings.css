@@ -18,6 +18,10 @@ article.article hr {
     }
 }
 
+h1 {
+    margin-bottom: 0 !important;
+}
+
 h2 {
     padding-bottom: 5px;
     border-bottom: 1px solid var(--fg-light-secondary);

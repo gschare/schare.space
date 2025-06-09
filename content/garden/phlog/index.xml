@@ -1,5 +1,109 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-06-07">
+        <!-- night walk -->
+        <photos>
+            <!-- street -->
+            <photo link="https://live.staticflickr.com/65535/54578646208_8a00e66fa6_b.jpg">
+                <alt>A steep, empty street at night</alt>
+                <caption/>
+            </photo>
+
+            <!-- blue orange -->
+            <photo link="https://live.staticflickr.com/65535/54578600824_0221b03192_b.jpg">
+                <alt>A warmly lit room above a blue-lit garage</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-06-06">
+        <!-- rose garden and MFA -->
+        <photos>
+            <!-- white rose -->
+            <photo link="https://live.staticflickr.com/65535/54578646433_8a989f34da_b.jpg">
+                <alt>White roses against a white sky</alt>
+                <caption/>
+            </photo>
+
+            <!-- rose arch -->
+            <photo link="https://live.staticflickr.com/65535/54578420971_e1084fe358_b.jpg">
+                <alt>People walking underneath an arch covered with rose bushes</alt>
+                <caption/>
+            </photo>
+
+            <!-- rose 2 -->
+            <photo link="https://live.staticflickr.com/65535/54578751390_48bb90ac9a_b.jpg">
+                <alt>Trees and rose bushes in a garden with buildings in the distance</alt>
+                <caption/>
+            </photo>
+
+            <!-- MFA -->
+            <photo link="https://live.staticflickr.com/65535/54578420976_79a1b9fa24_b.jpg">
+                <alt>The Museum of Fine Arts peeking out behind trees</alt>
+                <caption/>
+            </photo>
+
+            <!-- selfie -->
+            <photo link="https://live.staticflickr.com/65535/54578646353_4e287b13b4_b.jpg">
+                <alt>Selfie in a window surrounded by vines</alt>
+                <caption/>
+            </photo>
+
+            <!-- courtyard 3 -->
+            <photo link="https://live.staticflickr.com/65535/54578751230_cdaaf5535b_b.jpg">
+                <alt>Corner of the wall vines</alt>
+                <caption/>
+            </photo>
+
+            <!-- courtyard 2 -->
+            <photo link="https://live.staticflickr.com/65535/54578420861_9fba707fb7_b.jpg">
+                <alt>Green wall vines and white flowers fill the frame</alt>
+                <caption/>
+            </photo>
+
+            <!-- courtyard -->
+            <photo link="https://live.staticflickr.com/65535/54578420916_e45c77456d_b.jpg">
+                <alt>Sun-lit courtyard with seating and grass</alt>
+                <caption/>
+            </photo>
+
+            <!-- field -->
+            <photo link="https://live.staticflickr.com/65535/54578420786_fed823de9a_b.jpg">
+                <alt>Two people standing silhouetted together in front of a field with stadium lights at twilight</alt>
+                <caption/>
+            </photo>
+
+            <!-- city -->
+            <photo link="https://live.staticflickr.com/65535/54578751105_06b568c6bd_b.jpg">
+                <alt>Dark cityscape of Boston at night</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-06-05">
+        <!-- killian court -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54578646533_e7db2abdd5_b.jpg">
+                <alt>Close-up of grass with dappled sunlight</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-06-03">
+        <!-- cambridge charles esplanade -->
+        <photos>
+            <!-- bench -->
+            <photo link="https://live.staticflickr.com/65535/54578751430_2f2bb32013_b.jpg">
+                <alt>Couple sit on a bridge looking at sunset over a river</alt>
+                <caption/>
+            </photo>
+            <!-- bridge -->
+            <photo link="https://live.staticflickr.com/65535/54577557457_8bed8d13eb_b.jpg">
+                <alt>Bridge at sunset</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-06-01">
         <photos>
             <photo link="https://live.staticflickr.com/65535/54564610731_8a47b9dbdd_b.jpg">
