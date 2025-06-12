@@ -18,6 +18,18 @@
           img="ficciones.jpg"
           date=""
     />
+    <book title="This Is How You Lose the Time War"
+          author="Amal El-Mohtar and Max Gladstone"
+          id="timewar"
+          img="timewar.jpg"
+          date=""
+    />
+    <book title="The Farthest Shore"
+          author="Ursula K. Le Guin"
+          id="farthestshore"
+          img="farthestshore.jpg"
+          date="2025-06-10"
+    />
     <book title="Race After Technology"
           author="Ruha Benjamin"
           id="raceaftertechnology"

@@ -2,6 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:output method="html" indent="yes"/>
 
+<!-- TODO: a way to mark rewatches -->
+
 <!-- key by which to group the books -->
 <xsl:key name="filmsByYear" match="film" use="substring(@date, 1, 4)" />
 

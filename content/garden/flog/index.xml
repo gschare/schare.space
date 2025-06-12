@@ -1,5 +1,35 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Underground"
+          dir="Emir Kusturica"
+          year="1995"
+          img="https://a.ltrbxd.com/resized/film-poster/4/4/9/0/4/44904-underground-0-600-0-900-crop.jpg?v=5968f90a81"
+          date="2025-06-08"
+    />
+    <film title="The Worst Person in the World"
+          dir="Joachim Trier"
+          year="2021"
+          img="https://a.ltrbxd.com/resized/film-poster/5/8/5/2/5/8/585258-the-worst-person-in-the-world-0-600-0-900-crop.jpg?v=92bc344c27"
+          date="2025-06-07"
+    />
+    <film title="The Life of Chuck"
+          dir="Mike Flanagan"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/7/5/7/6/1/2/757612-the-life-of-chuck-0-600-0-900-crop.jpg?v=7ac670c0be"
+          date="2025-06-02"
+    />
+    <film title="Good Will Hunting"
+          dir="Gus Van Sant"
+          year="1997"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/6/2/1/51621-good-will-hunting-0-600-0-900-crop.jpg?v=acb4766abd"
+          date="2025-05-25"
+    />
+    <film title="Encounters at the End of the World"
+          dir="Werner Herzog"
+          year="2007"
+          img="https://a.ltrbxd.com/resized/sm/upload/lu/t5/t7/ry/55BB185UVBNAMbFcSiZC3GIE8Lu-0-600-0-900-crop.jpg?v=a0220de068"
+          date="2025-05-24"
+    />
     <film title="Sinners"
           dir="Ryan Coogler"
           year="2025"
