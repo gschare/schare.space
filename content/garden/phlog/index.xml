@@ -1,5 +1,85 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-06-23">
+        <!-- chatham -->
+        <photos>
+            <!-- crab -->
+            <photo link="https://live.staticflickr.com/65535/54610621147_a13fa8c8ce_b.jpg">
+                <alt>Horseshoe crab!!!</alt>
+                <caption>Horseshoe crab!!!</caption>
+            </photo>
+
+            <!-- inlet -->
+            <photo link="https://live.staticflickr.com/65535/54611712028_0e6fb32936_b.jpg">
+                <alt>A beach curving on an inlet with a woman walking</alt>
+                <caption>Been out naturing in Massachusetts with my family.</caption>
+            </photo>
+
+            <!-- atlantic sandbar -->
+            <photo link="https://live.staticflickr.com/65535/54611804720_f98faaebae_b.jpg">
+                <alt>A sandbar on the ocean.</alt>
+                <caption>I find myself inspired by the nature and uninspired by the kitschy coastal towns (unless I transform disgust into inspiration, which is known to be possible).</caption>
+            </photo>
+
+            <!-- atlantic sandbar 2 -->
+            <photo link="https://live.staticflickr.com/65535/54611496671_17d3c7b91d_b.jpg">
+                <alt>A sandbar on the ocean with some people beaching</alt>
+                <caption>I miss California.</caption>
+            </photo>
+
+            <!-- jellyfish -->
+            <photo link="https://live.staticflickr.com/65535/54611804035_bbe454af1f_b.jpg">
+                <alt>A jellyfish in the water</alt>
+                <caption>Aside: jellyfish!!! (We think it's a lion's mane.)</caption>
+            </photo>
+
+            <!-- salt marshes -->
+            <photo link="https://live.staticflickr.com/65535/54611804085_6ebce78dd6_b.jpg">
+                <alt>Grassy coastal dunes and salt marsh</alt>
+                <caption>The next day, I went on a very beautiful hike through some coastal woods and swamps that reminded me of home... in my imagination I exchanged grassy dunes and salt marshes for scrublands and chapparal...</caption>
+            </photo>
+
+            <!-- pond -->
+            <photo link="https://live.staticflickr.com/65535/54611497111_0d8d32431c_b.jpg">
+                <alt>A pond at sunset</alt>
+                <caption>Still it is nice to see what all this "Cape Cod" fuss is about, to plod around new biomes, to contend with the East Coast heat wave on the heathland, to end the day by sitting down at the pond watching the sunset.</caption>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-06-22">
+        <!-- brewster -->
+        <photos>
+            <!-- path -->
+            <photo link="https://live.staticflickr.com/65535/54611500031_417b0bcf69_b.jpg">
+                <alt>A sunny nature trail lined by bushes</alt>
+                <caption/>
+            </photo>
+
+            <!-- marsh -->
+            <photo link="https://live.staticflickr.com/65535/54610620677_c14dc2deb7_b.jpg">
+                <alt>Grassy marshland on a sunny day</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-06-11">
+        <!-- chinatown -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54611499976_42f82396f4_b.jpg">
+                <alt>A handrail in a dingy stairwell.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-06-08">
+        <!-- cambridge -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54611699284_fc950905a8_b.jpg">
+                <alt>A black-and-white photo of a bridge.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-06-07">
         <!-- night walk -->
         <photos>
