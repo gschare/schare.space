@@ -128,6 +128,14 @@
                 }
 
                 editor.addEventListener('input', autosave);
+
+                // Only fires in other windows. Ensures nothing gets out of date.
+                window.addEventListener('storage', (e) => {
+                  if (e.key === editorKey) {
+                    console.log('editor changed in another tab:', e.newValue);
+                    editor.value = e.newValue;
+                  }
+                });
             })();
             </script>
         </div>
