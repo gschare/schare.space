@@ -18,11 +18,23 @@
           img="ficciones.jpg"
           date=""
     />
+    <book title="M Train"
+          author="Patti Smith"
+          id="mtrain"
+          img="mtrain.jpg"
+          date="2025-07-20"
+    />
+    <book title="Ethan Frome"
+          author="Edith Wharton"
+          id="ethanfrome"
+          img="ethanfrome.jpg"
+          date="2025-06-18"
+    />
     <book title="This Is How You Lose the Time War"
           author="Amal El-Mohtar and Max Gladstone"
           id="timewar"
           img="timewar.jpg"
-          date=""
+          date="2025-06-14"
     />
     <book title="The Farthest Shore"
           author="Ursula K. Le Guin"

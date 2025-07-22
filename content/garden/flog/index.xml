@@ -1,5 +1,29 @@
 <?xml version="1.0"?>
 <films>
+    <film title="The Lord of the Rings: The Fellowship of the Ring"
+          dir="Peter Jackson"
+          year="2001"
+          img="https://a.ltrbxd.com/resized/sm/upload/3t/vq/0u/m6/1tX9ZlgVvWjAQhMs1vAfsYpi7VK-0-600-0-900-crop.jpg?v=30bbb824e1"
+          date="2025-07-14"
+    />
+    <film title="Raiders of the Lost Ark"
+          dir="Steven Spielberg"
+          year="1981"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/9/6/5/51965-raiders-of-the-lost-ark-0-600-0-900-crop.jpg?v=2b066bfd52"
+          date="2025-07-14"
+    />
+    <film title="House"
+          dir="Nobuhiko Obayashi"
+          year="1977"
+          img="https://a.ltrbxd.com/resized/sm/upload/7f/z3/ho/6j/6vblWscFAbIm9V5CwHC7IImgAq9-0-600-0-900-crop.jpg?v=b505ff45b0"
+          date="2025-06-28"
+    />
+    <film title="Star Trek"
+          dir="J.J. Abrams"
+          year="2009"
+          img="https://a.ltrbxd.com/resized/film-poster/4/3/8/6/0/43860-star-trek-0-600-0-900-crop.jpg?v=a48a19a106"
+          date="2025-06-12"
+    />
     <film title="Underground"
           dir="Emir Kusturica"
           year="1995"
