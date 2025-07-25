@@ -1,10 +1,22 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Dungeons and Dragons: Honor Among Thieves"
+          dir="John Francis Daley, Jonathan Goldstein"
+          year="2023"
+          img="https://a.ltrbxd.com/resized/film-poster/4/2/4/0/0/3/424003-dungeons-dragons-honor-among-thieves-0-600-0-900-crop.jpg?v=7c3c4fddf9"
+          date="2025-07-23"
+    />
+    <film title="The Lord of the Rings: The Two Towers"
+          dir="Peter Jackson"
+          year="2002"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/9/2/9/51929-the-lord-of-the-rings-the-two-towers-0-600-0-900-crop.jpg?v=9ef6c09783"
+          date="2025-07-23"
+    />
     <film title="The Lord of the Rings: The Fellowship of the Ring"
           dir="Peter Jackson"
           year="2001"
           img="https://a.ltrbxd.com/resized/sm/upload/3t/vq/0u/m6/1tX9ZlgVvWjAQhMs1vAfsYpi7VK-0-600-0-900-crop.jpg?v=30bbb824e1"
-          date="2025-07-14"
+          date="2025-07-15"
     />
     <film title="Raiders of the Lost Ark"
           dir="Steven Spielberg"

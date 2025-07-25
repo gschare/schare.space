@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 <books>
-    <book title="Piranesi"
-          author="Susanna Clarke"
-          id="piranesi"
-          img="piranesi.jpg"
-          date=""
-    />
     <book title="Pride and Prejudice"
           author="Jane Austen"
           id="prideandprejudice"
@@ -17,6 +11,12 @@
           id="ficciones"
           img="ficciones.jpg"
           date=""
+    />
+    <book title="Piranesi"
+          author="Susanna Clarke"
+          id="piranesi"
+          img="piranesi.jpg"
+          date="2025-07-23"
     />
     <book title="M Train"
           author="Patti Smith"
