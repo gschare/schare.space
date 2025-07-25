@@ -42,6 +42,16 @@ h2 {
     border: 1px solid #e3e0d7;
 }
 
+#editor.hidden {
+    display: none;
+}
+
+#editor-toggle {
+    display: inline;
+    background: none;
+
+}
+
 #search {
     border: 1px solid #646464;
     background: none;

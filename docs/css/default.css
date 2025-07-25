@@ -322,6 +322,19 @@ button#dark-mode-button:hover {
     transition: 0.2s;
 }
 
+.anchor-button {
+    background-color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    color: var(--link-color-light);
+    display: inline;
+}
+
+.anchor-button:hover {
+    color: var(--link-color-hover);
+}
+
 /*
 @media screen and (max-width:600px) {
     button {
