@@ -1,5 +1,205 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-07-25">
+        <!-- snowcreek meadow preserve -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54685644530_8ccb879519_b.jpg">
+                <alt>Babbling brook</alt>
+                <caption><a href="/garden/29.html#20">#20</a></caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685644445_0feabacaee_b.jpg">
+                <alt></alt>
+                <caption><a href="https://www.poetryfoundation.org/poems/46317/often-i-am-permitted-to-return-to-a-meadow">OFTEN I AM PERMITTED TO RETURN TO A MEADOW</a></caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685312026_d91cd36f16_b.jpg">
+                <alt>A complex mass of a building on a hill</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-21">
+        <!-- JMT day 6 -->
+        <photos>
+            <photo link="/assets/img/garden/phlog/2025-07-21.jpg">
+                <alt>Me posing in front of Nevada Falls.</alt>
+                <caption>Completing my 70-mile section of the JMT. Thanks to Pot Luck and Meriwether for the photo, lunch, and most importantly their company on the trail!</caption>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-19">
+        <!-- JMT day 4 -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54685639760_0d81636e13_b.jpg">
+                <alt>Rocky landscape of Donohue Pass</alt>
+                <caption>Today I cross Donohue Pass into Yosemite.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685307241_b45eb84538_b.jpg">
+                <alt>Rocky landscape of Donohue Pass</alt>
+                <caption>I was on the JMT for 2 more days after this, but my camera died.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685307226_743b93c9d8_b.jpg">
+                <alt>Rocky landscape of Donohue Pass</alt>
+                <caption>I have some phone pics of Yosemite, but none of the most beautiful part: the meadow near Cathedral Pass, which I reached in the early afternoon. The evening I completed the hike, I went to the Clocktower and chatted with Nicole about using photography to express your particular perspective upon seeing a place as widely captured as Yosemite.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685548744_05a6d69a20_b.jpg">
+                <alt>Rocky peaks above Donohue Pass</alt>
+                <caption>But that meadow resisted capture. No point in taking photos anyway - it's the sound, the whole experience. The bees and butterflies. The peace.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685639695_d5e4186e4e_b.jpg">
+                <alt>Rocky landscape of Donohue Pass</alt>
+                <caption>A smirking part of me is glad I cannot share it with you - glad that place remains reachable only via a challenging hike.</caption>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-18">
+        <!-- JMT day 3 -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54685525228_fc056d16f2_b.jpg">
+                <alt>Trees with a glimpse of snowy mountains</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684482412_296c33cd77_b.jpg">
+                <alt>Meadow framed by rock formations</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685525198_374dd77c0d_b.jpg">
+                <alt>Rocky trail down to Garnet Lake</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685632145_e915784d5f_b.jpg">
+                <alt>Garnet Lake</alt>
+                <caption>Garnet Lake.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685541149_c390c92d78_b.jpg">
+                <alt>Garnet Lake with cascading mountains behind it</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684482242_eb1a5b3873_b.jpg">
+                <alt>Thousand Island Lake</alt>
+                <caption>Thousand Island Lake.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685299256_1b1d02f7c3_b.jpg">
+                <alt>Stormclouds over Thousand Island Lake</alt>
+                <caption>Stormclouds lingered ominously as I crossed Thousand Island Pass and Donohue Pass the next day, but I never got rained on.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685631965_8135717581_b.jpg">
+                <alt>Trail between two rock formations</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-17">
+        <!-- JMT day 2 -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54685626770_43703103db_b.jpg">
+                <alt>Trail with conifers</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684476702_8ca8ed86d4_b.jpg">
+                <alt>Glimpse of bright blue Shadow Lake through the trees</alt>
+                <caption>I owe my sustained sanity on these endless switchbacks to Patti Smith's <em>M Train</em>.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685626740_f0ef88e609_b.jpg">
+                <alt>Mountains in the background, conifers in midground, rocks in foreground</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685294171_b9efd4ed8f_b.jpg">
+                <alt>Rocks and short grass</alt>
+                <caption>I camped here, next to a waterfall that stimulated the imagination towards a longing to spend an entire summer just here, writing and frolicking by the waters of Rush Creek.</caption>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-16">
+        <!-- JMT day 1 -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54685590085_1d3f19106e_b.jpg">
+                <alt>Trail sign indicating Crater Meadows and Red Cones</alt>
+                <caption>Solo thru-hiking from Mammoth to Yosemite in six days. On the seventh day I rested.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685590080_5df016498b_b.jpg">
+                <alt>Trees and a mountains framed by two trees</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684439292_6174f008b5_b.jpg">
+                <alt>Landscape of conifers, many destroyed by the 1992 Rainbow Fire</alt>
+                <caption>I wondered why this valley was full of destroyed conifers. Turns out they were burned in the 1992 Rainbow Fire.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684439147_2ec764f4a4_b.jpg">
+                <alt>Layers of clouds above mountains and conifers on Mammoth Crest Trail</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685256266_a2e6c9012c_b.jpg">
+                <alt>Trail shaded by conifers</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685256221_52d6b239e8_b.jpg">
+                <alt>Forest near Reds Meadow</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685498579_eba7dd73a5_b.jpg">
+                <alt>Forest trail near Reds Meadow</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685589635_7c59b56034_b.jpg">
+                <alt>Reds Meadow</alt>
+                <caption>Reds Meadow. I stopped at the cafe for a lemonade and a slice of damn fine cherry pie, surrounded by JMT thru-hikers, feeling like I had not truly earned it yet.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685498399_0076d6c166_b.jpg">
+                <alt>Forest near Reds Meadow</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684438857_eb9a03e040_b.jpg">
+                <alt>Forest near Reds Meadow; mountains visible in the background</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685255991_62bf2842e0_b.jpg">
+                <alt>Forest near Reds Meadow in the glare of the sun</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685481588_d554e8dbe7_b.jpg">
+                <alt>Trail leading to Devils Postpile</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54684438567_6251c15cff_b.jpg">
+                <alt>Devils Postpile</alt>
+                <caption>Devils Postpile.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685498164_d12416d605_b.jpg">
+                <alt>Devils Postpile</alt>
+                <caption/>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685481558_b2d7c41ac9_b.jpg">
+                <alt>River and meadow near Devils Postpile</alt>
+                <caption>For legal reasons I cannot disclose where I camped tonight.</caption>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-14">
+        <!-- deer lakes day 2 -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54685249251_b59ccf9190_b.jpg">
+                <alt>Mountains in the morning sun</alt>
+                <caption>The scenery was really giving Death Stranding. In fact it gave a lot of things; the rapid change in terrain as you hike high up into the peaks above the Lakes Basin felt like navigating different biomes in Minecraft. Starting with glacial lakes and lodgepole pines... keep going up and you find yourself among ferrous red sand on a crest overlooking the entire basin... continue further and you discover low scrubland reminiscent of much lower elevations... a dry mountainside evocative of the chaparral of home territory... then it's peak meadows full of flowers that smell strongly of maize, opposite a view of endless mountains fading into the horizon... the marshy Deer Lakes... rocky cliffs at the top of a trail composed of shattered stone... and finally scattered boulders and grasses as you see here, with the occasional patch of summer snow. The descent is an entirely different story - a much buggier one.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685582880_6df97edc37_b.jpg">
+                <alt>Duck Lake reflecting the mountain</alt>
+                <caption>Don't get me wrong - the lakes were beautiful, but the mosquitos rather dampened the mood.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54685249226_80c91ccb73_b.jpg">
+                <alt>Rocks and trees under the glare of the morning sun with mountains in the background</alt>
+                <caption>I wish I had taken more photos of the descent. It was on the rocky switchbacks past Duck Lake that I had the stunning realization that <a href="https://en.wikipedia.org/wiki/Expulsion_from_the_Garden_of_Eden_(Cole)">Thomas Cole</a> wasn't making it up.</caption>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-13">
+        <!-- deer lakes day 1 -->
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54684426737_cb6a3d222b_b.jpg">
+                <alt>Beach of Horseshoe Lake</alt>
+                <caption>Horseshoe Lake. Start of a solo overnight on the Deer Lakes Loop to test my equipment before my longer hike.</caption>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-06-23">
         <!-- chatham -->
         <photos>

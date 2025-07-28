@@ -85,7 +85,7 @@
            (anchor-or-invisible next-href "Next")))))
 
 (define (parse-xml doc)
-  (define trim (eliminate-whitespace '(alt caption em strong p) not))
+  (define trim (eliminate-whitespace '(alt caption a em strong p) not))
 
   (define (parse-date datestring)
     ; parses YYYY-MM-DD into a struct
