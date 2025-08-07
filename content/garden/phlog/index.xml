@@ -1,5 +1,29 @@
 <?xml version="1.0"?>
 <days>
+    <day date="2025-08-04">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54705338594_ef3338ddd6_b.jpg">
+                <alt>A portrait of me with a flower in my hair.</alt>
+                <caption>By Olivia.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54705341944_fd3306c86c_b.jpg">
+                <alt>A person sitting with their head in the crook of a tree where the trunk splits into two.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
+    <day date="2025-07-31">
+        <photos>
+            <photo link="https://live.staticflickr.com/65535/54705308453_4495f7c8cf_b.jpg">
+                <alt>Lake, the mountains above it retain some snow in summer.</alt>
+                <caption>Lake below Kearsarge Pass.</caption>
+            </photo>
+            <photo link="https://live.staticflickr.com/65535/54704284112_5ef459aed0_b.jpg">
+                <alt>The same mountains from a different angle.</alt>
+                <caption/>
+            </photo>
+        </photos>
+    </day>
     <day date="2025-07-25">
         <!-- snowcreek meadow preserve -->
         <photos>
