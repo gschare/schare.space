@@ -14,4 +14,4 @@
 
 > "Cela est bien dit, répondit Candide, mais il faut cultiver notre jardin."
 
-[--- Voltaire, _Candide_]{.cite}
+[Voltaire, _Candide_]{.cite}
