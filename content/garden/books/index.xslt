@@ -130,7 +130,7 @@ h2 {
                 <xsl:value-of select="concat('/assets/img/garden/books/', @img)" />
             </xsl:attribute>
             <xsl:attribute name="id">
-                <xsl:value-of select="@id" />
+                <xsl:value-of select="substring-before(@img, '.')" />
             </xsl:attribute>
             <xsl:attribute name="alt">
                 <xsl:value-of select="concat(@title, ' by ', @author)" />

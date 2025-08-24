@@ -1,5 +1,59 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Palm Springs"
+          dir="Max Barbakow"
+          year="2020"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/5/4/6/7/515467-palm-springs-0-600-0-900-crop.jpg?v=d3df94888b"
+          date="2025-08-19"
+    />
+    <film title="History of the World: Part I"
+          dir="Mel Brooks"
+          year="1981"
+          img="https://a.ltrbxd.com/resized/film-poster/4/6/4/9/3/46493-history-of-the-world-part-i-0-600-0-900-crop.jpg?v=1409b38bed"
+          date="2025-08-10"
+    />
+    <film title="Plan 9 from Outer Space"
+          dir="Edward D. Wood Jr."
+          year="1957"
+          img="https://a.ltrbxd.com/resized/film-poster/4/6/1/5/9/46159-plan-9-from-outer-space-0-600-0-900-crop.jpg?v=3d447bc86a"
+          date="2025-08-10"
+    />
+    <film title="Pirates of the Caribbean: Dead Man's Chest"
+          dir="Gore Verbinski"
+          year="2006"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/9/8/9/51989-pirates-of-the-caribbean-dead-man-s-chest-0-600-0-900-crop.jpg?v=f9c46ae728"
+          date="2025-08-05"
+    />
+    <film title="Pirates of the Caribbean: The Curse of the Black Pearl"
+          dir="Gore Verbinski"
+          year="2003"
+          img="https://a.ltrbxd.com/resized/film-poster/2/6/9/5/2695-pirates-of-the-caribbean-the-curse-of-the-black-pearl-0-600-0-900-crop.jpg?v=272b36c0d8"
+          date="2025-08-05"
+    />
+    <film title="Penguins of Madagascar"
+          dir="Simon J. Smith, Eric Darnell"
+          year="2014"
+          img="https://a.ltrbxd.com/resized/film-poster/1/9/4/3/0/3/194303-penguins-of-madagascar-0-600-0-900-crop.jpg?v=23cba02b90"
+          date="2025-08-03"
+    />
+    <film title="Aftersun"
+          dir="Charlotte Wells"
+          year="2022"
+          img="https://a.ltrbxd.com/resized/film-poster/8/6/8/5/5/8/868558-aftersun-0-600-0-900-crop.jpg?v=5ce2118fca"
+          date="2025-07-31"
+    />
+    <film title="Nice Guys"
+          dir="Shane Black"
+          year="2016"
+          img="https://a.ltrbxd.com/resized/film-poster/2/1/6/3/0/1/216301-the-nice-guys-0-600-0-900-crop.jpg?v=40616daa2c"
+          date="2025-07-29"
+    />
+    <film title="When Marnie Was There"
+          dir="Hiromasa Yonebayashi"
+          year="2014"
+          img="https://a.ltrbxd.com/resized/film-poster/1/7/0/0/6/2/170062-when-marnie-was-there-0-600-0-900-crop.jpg?v=7e34859d4e"
+          date="2025-07-25"
+    />
     <film title="Dungeons and Dragons: Honor Among Thieves"
           dir="John Francis Daley, Jonathan Goldstein"
           year="2023"
