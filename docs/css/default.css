@@ -56,6 +56,12 @@ span.invisible {
     color: var(--fg-dark-secondary);
 }
 
+span.deck {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
 .gallery figure {
     margin-left: 0;
     margin-right: 0;

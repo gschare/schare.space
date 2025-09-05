@@ -82,6 +82,10 @@
                :preprocessed #t
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css))
+              (:path ,(custom md* 'question #:recursive #t)
+               :preprocessed #t
+               :template garden.sxml
+               :styles (css/default.css css/article.css))
               (:path ,(custom md* 'tidings #:recursive #t)
                :preprocessed #t
                :template blog.sxml
