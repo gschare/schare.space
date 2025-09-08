@@ -27,7 +27,7 @@ and technology in order to better understand and critique historical and
 contemporary currents of technological thought.
 We will analyze the social and political structures that interact dialectically with
 technology, investigate the phenomenology of information technology,
-and discuss the ethical questions that float heavily today.
+and clarify the ethical questions that float heavily today.
 By contending with both software engineering doctrine and key philosophical
 works, we aim to develop our thinking, provide context for the current moment,
 and imagine the design discipline of the future.
