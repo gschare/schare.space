@@ -112,6 +112,7 @@
                   )
           :folders (writ js css assets/img assets/fonts assets/papers lab
                     assets/docs
+                    assets/question
                     garden/jot/src
                     garden/tamas
                     garden/manifold-revealing

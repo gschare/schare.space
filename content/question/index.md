@@ -36,53 +36,28 @@ and imagine the design discipline of the future.
 
 [_Ibid._]{.cite}
 
-**required reading**\
-recommended reading
+---
+
+## Syllabus
+**bold = required reading**\
+normal = recommended reading
 
 ## September 8 | Introduction
-> To think _critically_ about the nature of technology and its role in our
-> lives and our society requires, in part, instilling a healthy
-> skepticism about two common, unreflective positions on technology: (1) the
-> fanatical techno-boosterism of the popular science and technology press, in
-> which technology is seen as the key to heaven on earth, and (2) a knee-jerk,
-> doom-and-gloom luddism and technology-bashing.
-
-[Matthew J. Brown]{.cite}
-
-- **Morozov**, selections from _To Save Everything, Click Here_
-
-## September 15 | Politics
-- **Winner**, "Do Artifacts Have Politics?"
+- **Winner**, ["Do Artifacts Have Politics?"](/assets/question/winner.pdf)
 - [SEP](https://plato.stanford.edu/entries/technology/)
 
-## September 22 | Design
-
-## September 29 | Conviviality
-- **Illich**, selections from _Tools for Conviviality_
-- Marx, Fragment on Machines (Grundrisse)
-
-## October 6 | Cybernetics
-
+## September 15 | TBD
+## September 22 | TBD
+## September 29 | TBD
+## October 6 | TBD
 ## October 13
 **No meeting: midterms.**
 
-## October 20 | Continental
-
-## October 27 | Data
-
-## November 3 | Alignment
-
-## November 10 | Creativity
-
-## November 17
-TBD
-
-## November 24
-TBD
-
-## December 1
-TBD
-
-## December 8 | Conclusion
-Huxley, _Brave New World_.
-
+## October 20 | TBD
+## October 27 | TBD
+## November 3 | TBD
+## November 10 | TBD
+## November 17 | TBD
+## November 24 | TBD
+## December 1 | TBD
+## December 8 | TBD
