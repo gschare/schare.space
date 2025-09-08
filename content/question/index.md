@@ -42,11 +42,10 @@ and imagine the design discipline of the future.
 **bold = required reading**\
 normal = recommended reading
 
-## September 8 | Introduction
+## September 15 | Introduction
 - **Winner**, ["Do Artifacts Have Politics?"](/assets/question/winner.pdf)
 - [SEP](https://plato.stanford.edu/entries/technology/)
 
-## September 15 | TBD
 ## September 22 | TBD
 ## September 29 | TBD
 ## October 6 | TBD
