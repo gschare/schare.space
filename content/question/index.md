@@ -39,8 +39,8 @@ and imagine the design discipline of the future.
 ---
 
 ## Syllabus
-**bold = required reading**\
-normal = recommended reading
+**bold = primary reading**\
+normal = recommended/background reading
 
 ## September 15 | Introduction
 - **Winner**, ["Do Artifacts Have Politics?"](/assets/question/winner.pdf)
