@@ -46,8 +46,13 @@ normal = recommended/background reading
 - **Winner**, ["Do Artifacts Have Politics?"](/assets/question/winner.pdf)
 - [SEP](https://plato.stanford.edu/entries/technology/)
 
-## September 22 | TBD
-## September 29 | TBD
+## September 22 | Software
+- **Winograd & Flores**, selections from _Understanding Computers and Cognition_ (link coming soon)
+
+## September 29 | Design
+- selections from _Design for the Pluriverse_ (link coming soon)
+- Friedman, _Value-Sensitive Design_ (link coming soon)
+
 ## October 6 | TBD
 ## October 13
 **No meeting: midterms.**
