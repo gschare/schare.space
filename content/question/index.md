@@ -50,18 +50,29 @@ normal = recommended/background reading
 - **Winograd & Flores**, selections from _Understanding Computers and Cognition_ (link coming soon)
 
 ## September 29 | Design
-- selections from _Design for the Pluriverse_ (link coming soon)
-- Friedman, _Value-Sensitive Design_ (link coming soon)
+- selections from _Design for the Pluriverse_
+- Friedman, _Value-Sensitive Design_
 
-## October 6 | TBD
+## October 6 | History
+- Mumford, selections from _Technics and Civilization_
+
 ## October 13
 **No meeting: midterms.**
 
-## October 20 | TBD
-## October 27 | TBD
-## November 3 | TBD
+## October 20 | Conviviality
+- **Illich**, selections from _Tools for Conviviality_
+- Marx, "The Fragment on Machines" (from _The Grundrisse_)
+
+## October 27 | Danger
+- Heidegger, "The Question Concerning Technology"
+
+## November 3 | Cybernetics
+- Haraway, selections from _Simians, Cyborgs, and Women_
+
 ## November 10 | TBD
 ## November 17 | TBD
 ## November 24 | TBD
 ## December 1 | TBD
-## December 8 | TBD
+## December 8 | Conclusion <!-- Dystopia -->
+TBD
+<!-- Huxley -->
