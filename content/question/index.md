@@ -47,7 +47,10 @@ normal = recommended/background reading
 - [SEP](https://plato.stanford.edu/entries/technology/)
 
 ## September 22 | Software
-- **Winograd & Flores**, selections from _Understanding Computers and Cognition_ (link coming soon)
+- Winograd & Flores, selections from _Understanding Computers and Cognition_:
+  - **Chapter 12: ["Using Computers: A direction for design"](/assets/question/winograd-ch12.pdf)**
+  - Background on phenomenology: Chapter 3: ["Understanding and Being"](/assets/question/winograd-ch3.pdf)
+  - Background on biological framing: Chapter 4: ["Cognition as a biological phenomenon"](/assets/question/winograd-ch4.pdf)
 
 ## September 29 | Design
 - selections from _Design for the Pluriverse_
