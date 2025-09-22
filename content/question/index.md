@@ -39,23 +39,25 @@ and imagine the design discipline of the future.
 ---
 
 ## Syllabus
+<div style="background-color: yellow">
 **bold = primary reading**\
 normal = recommended/background reading
+</div>
 
 ## September 15 | Introduction
 - **Winner**, ["Do Artifacts Have Politics?"](/assets/question/winner.pdf)
 - [SEP](https://plato.stanford.edu/entries/technology/)
 
 ## September 22 | Software
-- Winograd & Flores, selections from _Understanding Computers and Cognition_:
+- Winograd & Flores, selections from _Understanding Computers and Cognition_ (1986):
   - **Chapter 12: ["Using Computers: A direction for design"](/assets/question/winograd-ch12.pdf)**
   - Background on phenomenology: Chapter 3: ["Understanding and Being"](/assets/question/winograd-ch3.pdf)
   - Background on biological framing: Chapter 4: ["Cognition as a biological phenomenon"](/assets/question/winograd-ch4.pdf)
   - Also of potential interest concerning the question of software engineering: [Chapter 7: "Computers and Representation"](/assets/question/winograd-ch7.pdf)
 
 ## September 29 | Design
-- selections from _Design for the Pluriverse_
-- Friedman, _Value-Sensitive Design_
+<!--- selections from _Design for the Pluriverse_-->
+- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)
 
 ## October 6 | History
 - Mumford, selections from _Technics and Civilization_
