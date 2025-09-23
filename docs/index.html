@@ -47,6 +47,22 @@
     </div>
 </header>
 <main><div id="modal" class="modal"><div id="modal-content" class="modal-content"><img id="modal-image" class="modal-image" src=""></div></div><script src="/js/modal.js"></script><article class="article"><title>Carmel Schare</title>
+
+<div id="mousehouse">
+    <div class="mousehouse-roof"></div>
+    <div class="mousehouse-chimney">
+        <div class="mousehouse-smoke"></div>
+        <div class="mousehouse-smoke"></div>
+        <div class="mousehouse-smoke"></div>
+    </div>
+    <div class="mousehouse-walls"></div>
+    <p style="color: var(--fg-light-secondary); text-align: center; position: absolute; top: 55px; left: -50px; font-size: 8pt; width: 140px;">Mouse House<br>(<i>&ldquo;House for your mouse!&rdquo;</i>)</p>
+</div>
+
+<!-- 
+<img id="profile" src="" width="280px">
+ -->
+
 <h1>Carmel Schare</h1>
 <p>
 I am a PhD student in the <a href="http://sdg.csail.mit.edu/">Software Design Group</a> at MIT.
@@ -82,18 +98,12 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
 </a>
 </footer>
 
-<div id="mousehouse">
-    <div class="mousehouse-roof"></div>
-    <div class="mousehouse-chimney">
-        <div class="mousehouse-smoke"></div>
-        <div class="mousehouse-smoke"></div>
-        <div class="mousehouse-smoke"></div>
-    </div>
-    <div class="mousehouse-walls"></div>
-    <p style="color: var(--fg-light-secondary); text-align: center; position: absolute; top: 55px; left: -50px; font-size: 8pt; width: 140px;">Mouse House<br>(<i>&ldquo;House for your mouse!&rdquo;</i>)</p>
-</div>
-
 <style>
+#profile {
+    margin-left: 0;
+    border-radius: 10px;
+}
+
 #webline {
     position: relative;
     height: 1lh;
@@ -185,9 +195,13 @@ and <a href="/tidings/">all the other stuff I drone on about</a>.
 }
 
 div#mousehouse {
+    position: relative;
+    left: -8vw;
+    /* right side version:
     position: absolute;
     right: 25vw;
     top: 120px;
+    */
 }
 
 div#mousehouse div {

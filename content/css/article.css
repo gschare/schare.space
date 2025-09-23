@@ -64,6 +64,10 @@ main article.article {
     main article.article {
         padding: 0px 10px 30px 10px;
     }
+    nav {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 /* really specific thing... */
