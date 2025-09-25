@@ -57,6 +57,7 @@ normal = recommended/background reading
 
 ## September 29 | Augmentation
 - **Bush**, ["As We May Think"](/assets/question/bush.pdf)
+- **Turkle**, ["Always On"](/assets/question/turkle.pdf) (from _Alone Together_)
 
 ## October 6 | History
 - Mumford, selections from _Technics and Civilization_
