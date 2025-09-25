@@ -55,9 +55,8 @@ normal = recommended/background reading
   - Background on biological framing: Chapter 4: ["Cognition as a biological phenomenon"](/assets/question/winograd-ch4.pdf)
   - Also of potential interest concerning the question of software engineering: [Chapter 7: "Computers and Representation"](/assets/question/winograd-ch7.pdf)
 
-## September 29 | Design
-<!--- selections from _Design for the Pluriverse_-->
-- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)
+## September 29 | Augmentation
+- **Bush**, ["As We May Think"](/assets/question/bush.pdf)
 
 ## October 6 | History
 - Mumford, selections from _Technics and Civilization_
@@ -75,7 +74,10 @@ normal = recommended/background reading
 ## November 3 | Cybernetics
 - Haraway, selections from _Simians, Cyborgs, and Women_
 
-## November 10 | TBD
+## November 10 | Design
+<!--- selections from _Design for the Pluriverse_-->
+- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)
+
 ## November 17 | TBD
 ## November 24 | TBD
 ## December 1 | TBD
