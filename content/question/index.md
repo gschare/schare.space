@@ -57,10 +57,9 @@ normal = recommended/background reading
 
 ## September 29 | Augmentation
 - **Bush**, ["As We May Think"](/assets/question/bush.pdf)
-- **Turkle**, ["Always On"](/assets/question/turkle.pdf) (from _Alone Together_)
 
-## October 6 | History
-- Mumford, selections from _Technics and Civilization_
+## October 6 | Cyborgs
+- **Turkle**, ["Always On"](/assets/question/turkle.pdf) (from _Alone Together_)
 
 ## October 13
 **No meeting: midterms.**
@@ -80,6 +79,8 @@ normal = recommended/background reading
 - **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)
 
 ## November 17 | TBD
+<!-- - Mumford, selections from _Technics and Civilization_ -->
+
 ## November 24 | TBD
 ## December 1 | TBD
 ## December 8 | Conclusion <!-- Dystopia -->
