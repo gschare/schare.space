@@ -20,17 +20,22 @@
           img="letterstoayoungpoet.jpg"
           date=""
     />
-    <book title="Ficciones"
+    <!--<book title="Ficciones"
           author="Jorge Luis Borges"
           img="ficciones.jpg"
           date=""
-    />
+    />-->
     <book title="Pride and Prejudice"
           author="Jane Austen"
           img="prideandprejudice.jpg"
           date=""
     />
 
+    <book title="A Psalm for the Wild-Built"
+          author="Becky Chambers"
+          img="apftwb.jpg"
+          date="2025-10-01"
+    />
     <book title="The Call of the Wild"
           author="Jack London"
           img="callofthewild.jpg"
