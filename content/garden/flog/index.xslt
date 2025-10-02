@@ -17,6 +17,34 @@
 
 <p>See also: my <a href="https://letterboxd.com/gschare/">Letterboxd</a></p>
 
+<p><span class="warning"><strong>Note:</strong> this is just a
+placeholder. I later on plan to write my thoughts on certain films I
+watch…</span></p>
+
+<div id="tags">
+<nav id="tag-select" class="secondary">
+    <!-- it's definitely possible to automate this but for now the way it works
+    is whenever I add a tag I have to list it here and then if I click on it,
+    it filters to the ones with that tag. -->
+    <a href="#reset">✕</a>
+    <a href="#cinema" class="cinema" title="watched in theaters!">#cinema</a>
+    <a href="#horror-tuesdays" class="horror-tuesdays">#horror-tuesdays</a>
+</nav>
+<div id="tag-list">
+    <div id="reset"></div>
+    <div id="cinema"></div>
+    <div id="horror-tuesdays"></div>
+</div>
+<style>
+article:has(#cinema:target) .cards .card:not(.cinema) { display: none; }
+article:has(#cinema:target) nav#tag-select a.cinema { font-weight: bold; }
+article:has(#horror-tuesdays:target) .cards .card:not(.horror-tuesdays) { display: none; }
+article:has(#horror-tuesdays:target) nav#tag-select a.horror-tuesdays { font-weight: bold; }
+nav#tag-select a:after { content: " "; }
+div#tag-list { display: none; }
+</style>
+</div>
+
 <style>
 .cards {
     display: grid;
@@ -71,10 +99,6 @@ h2 {
 }
 </style>
 
-<p><span class="warning"><strong>Note:</strong> this is just a
-placeholder. I later on plan to write my thoughts on certain films I
-watch…</span></p>
-
 <xsl:apply-templates select="films" />
 </xsl:template>
 
@@ -113,18 +137,24 @@ watch…</span></p>
             </xsl:attribute>
         </img>
         <xsl:text>
-</xsl:text>
+        </xsl:text>
     </xsl:variable>
-    <xsl:choose>
-        <xsl:when test="@link">
-            <a href="{@link}">
+    <div>
+        <xsl:attribute name="class">
+            <xsl:text>card </xsl:text>
+            <xsl:value-of select="@tags"/>
+        </xsl:attribute>
+        <xsl:choose>
+            <xsl:when test="@link">
+                <a href="{@link}">
+                    <xsl:copy-of select="$img-tag" />
+                </a>
+            </xsl:when>
+            <xsl:otherwise>
                 <xsl:copy-of select="$img-tag" />
-            </a>
-        </xsl:when>
-        <xsl:otherwise>
-            <xsl:copy-of select="$img-tag" />
-        </xsl:otherwise>
-    </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
+    </div>
 </xsl:template>
 
 </xsl:stylesheet>

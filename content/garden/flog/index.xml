@@ -1,5 +1,53 @@
 <?xml version="1.0"?>
 <films>
+    <film title="The Long Walk"
+          dir="Francis Lawrence"
+          year="2025"
+          img="https://a.ltrbxd.com/resized/film-poster/5/3/1/3/1/6/531316-the-long-walk-2025-0-600-0-900-crop.jpg?v=9cf0c245aa"
+          date="2025-09-30"
+          tags="cinema horror-tuesdays"
+    />
+    <film title="V for Vendetta"
+          dir="James McTeigue"
+          year="2005"
+          img="https://a.ltrbxd.com/resized/film-poster/5/1/4/0/0/51400-v-for-vendetta-0-600-0-900-crop.jpg?v=c962ca4bec"
+          date="2025-09-28"
+    />
+    <film title="The Endless"
+          dir="Aaron Moorhead, Justin Benson"
+          year="2017"
+          img="https://a.ltrbxd.com/resized/film-poster/3/6/3/4/7/2/363472-the-endless-0-600-0-900-crop.jpg?v=5eff632518"
+          date="2025-09-23"
+          tags="horror-tuesdays"
+    />
+    <film title="Saint Maud"
+          dir="Rose Glass"
+          year="2019"
+          img="https://a.ltrbxd.com/resized/sm/upload/8i/fl/ux/x4/uQjxpEYktu36ZiWKfn0t0FySmXl-0-600-0-900-crop.jpg?v=adf9e62e9b"
+          date="2025-09-20"
+          tags="horror-tuesdays"
+    />
+    <film title="Suspiria"
+          dir="Dario Argento"
+          year="1977"
+          img="https://a.ltrbxd.com/resized/film-poster/4/4/9/0/0/44900-suspiria-0-600-0-900-crop.jpg?v=d1fbb1d377"
+          date="2025-09-09"
+          tags="horror-tuesdays"
+    />
+    <film title="Coraline"
+          dir="Henry Selick"
+          year="2009"
+          img="https://a.ltrbxd.com/resized/film-poster/4/2/7/7/9/42779-coraline-0-600-0-900-crop.jpg?v=b792483e2a"
+          date="2025-09-06"
+          tags="horror-tuesdays"
+    />
+    <film title="Kiki's Delivery Service"
+          dir="Hayao Miyazaki"
+          year="1989"
+          img="https://a.ltrbxd.com/resized/sm/upload/5e/rk/0e/99/C70E830B-E641-4CD4-87B3-8DFB91383E20-0-600-0-900-crop.jpg?v=359a791d0d"
+          date="2025-08-30"
+          tags="cinema"
+    />
     <film title="Palm Springs"
           dir="Max Barbakow"
           year="2020"
@@ -83,6 +131,7 @@
           year="1977"
           img="https://a.ltrbxd.com/resized/sm/upload/7f/z3/ho/6j/6vblWscFAbIm9V5CwHC7IImgAq9-0-600-0-900-crop.jpg?v=b505ff45b0"
           date="2025-06-28"
+          tags="cinema"
     />
     <film title="Star Trek"
           dir="J.J. Abrams"
@@ -107,6 +156,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/7/5/7/6/1/2/757612-the-life-of-chuck-0-600-0-900-crop.jpg?v=7ac670c0be"
           date="2025-06-02"
+          tags="cinema"
     />
     <film title="Good Will Hunting"
           dir="Gus Van Sant"
@@ -125,6 +175,7 @@
           year="2025"
           img="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/6/0/0/1116600-sinners-2025-0-600-0-900-crop.jpg?v=00ce32e0ba"
           date="2025-05-12"
+          tags="cinema"
     />
 
     <film title="Withnail and I"
@@ -132,6 +183,7 @@
           year="1987"
           img="/assets/img/garden/flog/withnail.jpg"
           date="2025-05-08"
+          tags="cinema"
     />
 
     <film title="The Artist"
@@ -153,6 +205,7 @@
           year="1984"
           img="https://a.ltrbxd.com/resized/sm/upload/e9/3l/l6/pt/dune-0-600-0-900-crop.jpg?v=a79bf8b4f6"
           date="2025-04-16"
+          tags="cinema"
     />
 
     <film title="A Minecraft Movie"
@@ -160,6 +213,7 @@
           year="2025"
           img="https://a.ltrbxd.com/resized/film-poster/8/5/4/6/9/1/854691-a-minecraft-movie-0-600-0-900-crop.jpg?v=074e7fed9e"
           date="2025-04-14"
+          tags="cinema"
     />
 
     <film title="Whiplash"
@@ -189,6 +243,7 @@
           year="2025"
           img="https://a.ltrbxd.com/resized/film-poster/6/2/0/2/8/1/620281-mickey-17-0-600-0-900-crop.jpg?v=93e4d2af6d"
           date="2025-03-22"
+          tags="cinema"
     />
 
     <film title="Ran"
@@ -196,6 +251,7 @@
           year="1985"
           img="https://a.ltrbxd.com/resized/sm/upload/h6/yo/p7/1t/ran-0-600-0-900-crop.jpg?v=3cabb176dc"
           date="2025-03-15"
+          tags="cinema"
     />
 
     <film title="Ran"
@@ -203,6 +259,7 @@
           year="1985"
           img="https://a.ltrbxd.com/resized/sm/upload/h6/yo/p7/1t/ran-0-600-0-900-crop.jpg?v=3cabb176dc"
           date="2025-03-14"
+          tags="cinema"
     />
 
     <film title="Anora"
@@ -210,6 +267,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/9/5/9/5/4/0/959540-anora-0-600-0-900-crop.jpg?v=6f92877033"
           date="2025-03-05"
+          tags="cinema"
     />
 
     <film title="A Complete Unknown"
@@ -217,6 +275,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/5/8/6/5/8/3/586583-a-complete-unknown-0-600-0-900-crop.jpg?v=f14ab6ecf6"
           date="2025-03-03"
+          tags="cinema"
     />
         
     <film title="Dead Ringers"
@@ -231,6 +290,7 @@
           year="1992"
           img="https://a.ltrbxd.com/resized/sm/upload/xb/qg/78/zd/tOQekTHJmVCgfUYXTb6dLAu6l8W-0-600-0-900-crop.jpg?v=647348df81"
           date="2025-02-09"
+          tags="cinema"
     />
 
     <film title="The Talented Mr. Ripley"
@@ -245,6 +305,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-600-0-900-crop.jpg?v=cc533700f8"
           date="2025-01-26"
+          tags="cinema"
     />
 
     <film title="Dune"
@@ -252,6 +313,7 @@
           year="2021"
           img="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-600-0-900-crop.jpg?v=49eed12751"
           date="2025-01-26"
+          tags="cinema"
     />
 
     <film title="Limitless"
@@ -267,6 +329,7 @@
           img="https://a.ltrbxd.com/resized/film-poster/4/7/8/4/2/8/478428-the-brutalist-0-600-0-900-crop.jpg?v=e23890665e"
           date="2025-01-12"
           link="/garden/flog/brutalist.html"
+          tags="cinema"
     />
 
     <film title="Crimes of the Future"
@@ -281,6 +344,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/3/5/9/5/0/5/359505-nosferatu-2024-0-600-0-900-crop.jpg?v=a12d4ad648"
           date="2024-12-30"
+          tags="cinema"
     />
 
     <film title="A Real Pain"
@@ -288,6 +352,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/9/1/3/2/5/8/913258-a-real-pain-0-1000-0-1500-crop.jpg?v=893a943872"
           date="2024-12-20"
+          tags="cinema"
     />
 
     <film title="Perfect Days"
@@ -309,6 +374,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/7/3/9/4/5/1/739451-flow-2024-0-1000-0-1500-crop.jpg?v=32f49339d9"
           date="2024-12-07"
+          tags="cinema"
     />
 
     <film title="Night On Earth"
@@ -379,6 +445,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/8/3/8/1/4/0/838140-the-substance-0-600-0-900-crop.jpg?v=ab9e1072f8"
           date="2024-10-14"
+          tags="cinema"
     />
 
     <film title="Megalopolis"
@@ -386,6 +453,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/5/2/0/3/2/8/520328-megalopolis-0-600-0-900-crop.jpg?v=64ab4fa858"
           date="2024-10-05"
+          tags="cinema"
     />
 
     <film title="I Saw The TV Glow"
@@ -471,6 +539,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/9/2/8/2/6/1/928261-kinds-of-kindness-0-600-0-900-crop.jpg?v=719ff64e2b"
           date="2024-07-02"
+          tags="cinema"
     />
 
     <film title="Mortal Engines"
@@ -492,6 +561,7 @@
           year="1989"
           img="https://a.ltrbxd.com/resized/sm/upload/cy/cy/d9/jb/the-cook-the-thief-0-600-0-900-crop.jpg?v=7ca169fca2"
           date="2024-06-19"
+          tags="cinema"
     />
 
     <film title="House"
@@ -499,6 +569,7 @@
           year="1977"
           img="https://a.ltrbxd.com/resized/sm/upload/7f/z3/ho/6j/6vblWscFAbIm9V5CwHC7IImgAq9-0-600-0-900-crop.jpg?v=b505ff45b0"
           date="2024-06-08"
+          tags="cinema"
     />
 
     <film title="Burn After Reading"
@@ -513,6 +584,7 @@
           year="1970"
           img="https://a.ltrbxd.com/resized/film-poster/4/4/1/9/9/44199-el-topo-0-600-0-900-crop.jpg?v=2523af266a"
           date="2024-06-01"
+          tags="cinema"
     />
 
     <film title="Challengers"
@@ -520,6 +592,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-600-0-900-crop.jpg?v=a7cd63cbef"
           date="2024-05-29"
+          tags="cinema"
     />
 
     <film title="The Green Knight"
@@ -527,6 +600,7 @@
           year="2021"
           img="https://a.ltrbxd.com/resized/film-poster/4/8/8/3/9/9/488399-the-green-knight-0-600-0-900-crop.jpg?v=874a267b92"
           date="2024-05-26"
+          tags="cinema"
     />
 
     <film title="Candyman"
@@ -576,6 +650,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/8/3/4/6/5/6/834656-civil-war-0-600-0-900-crop.jpg?v=aefec33dbe"
           date="2024-05-02"
+          tags="cinema"
     />
 
     <film title="The Zone of Interest"
@@ -639,6 +714,7 @@
           year="2024"
           img="https://a.ltrbxd.com/resized/film-poster/8/6/1/2/5/0/861250-drive-away-dolls-0-600-0-900-crop.jpg?v=2e83bbe648"
           date="2024-02-28"
+          tags="cinema"
     />
 
     <film title="But I'm a Cheerleader"
@@ -674,6 +750,7 @@
           year="2023"
           img="https://a.ltrbxd.com/resized/film-poster/7/1/0/3/5/2/710352-poor-things-0-600-0-900-crop.jpg?v=a0f2ee9a0e"
           date="2024-02-10"
+          tags="cinema"
     />
 
     <film title="The Boy and the Heron"
@@ -681,6 +758,7 @@
           year="2023"
           img="https://a.ltrbxd.com/resized/film-poster/4/3/8/6/9/2/438692-the-boy-and-the-heron-0-600-0-900-crop.jpg?v=521e114164"
           date="2024-02-03"
+          tags="cinema"
     />
 
     <film title="Turn Left at the End of the World"
