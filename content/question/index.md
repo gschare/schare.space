@@ -61,8 +61,7 @@ normal = recommended/background reading
 ## October 6 | Cyborgs
 - **Turkle**, ["Always On"](/assets/question/turkle.pdf) (from _Alone Together_)
 
-## October 13
-**No meeting: midterms.**
+## October 13 | TBD
 
 ## October 20 | Conviviality
 - **Illich**, selections from _Tools for Conviviality_
