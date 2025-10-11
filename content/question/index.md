@@ -65,8 +65,12 @@ normal = recommended/background reading
 **No meeting. Institute holiday.**
 
 ## October 20 | Conviviality
-- **Illich**, selections from _Tools for Conviviality_
-- Marx, "The Fragment on Machines" (from _The Grundrisse_)
+- Illich, selections from _Tools for Conviviality_ (1973):
+  - [**II. Convivial Reconstruction**](/assets/question/illich-ii-reconstruction.pdf)
+  - [**III. The Multiple Balance**](/assets/question/illich-iii-balance.pdf)
+  * (_optional_) [I. Two Watersheds](/assets/question/illich-i-watersheds.pdf)
+  * (_optional_) [IV. Recovery](/assets/question/illich-iv-recovery.pdf)
+  * (_optional_) [V. Political Inversion](/assets/question/illich-v-inversion.pdf)
 
 ## October 27 | Danger
 - Heidegger, "The Question Concerning Technology"
