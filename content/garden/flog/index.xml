@@ -1,5 +1,25 @@
 <?xml version="1.0"?>
 <films>
+    <film title="One Battle After Another"
+          dir="Paul Thomas Anderson"
+          year="2025"
+          img="https://a.ltrbxd.com/resized/film-poster/9/5/1/2/7/7/951277-one-battle-after-another-0-600-0-900-crop.jpg?v=d27c4cc662"
+          date="2025-10-13"
+          tags="cinema"
+    />
+    <film title="The Witch"
+          dir="Robert Eggers"
+          year="2015"
+          img="https://a.ltrbxd.com/resized/sm/upload/y2/i8/9s/h1/tNr2KYytArZNSh0K8PUcHU3JnX4-0-600-0-900-crop.jpg?v=45f739a242"
+          date="2025-10-07"
+          tags="horror-tuesdays"
+    />
+    <film title="The Wild Robot"
+          dir="Chris Sanders"
+          year="2024"
+          img="https://a.ltrbxd.com/resized/film-poster/1/0/7/1/1/9/6/1071196-the-wild-robot-0-600-0-900-crop.jpg?v=a70bdbaea0"
+          date="2025-10-04"
+    />
     <film title="The Long Walk"
           dir="Francis Lawrence"
           year="2025"
