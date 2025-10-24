@@ -39,10 +39,8 @@ and imagine the design discipline of the future.
 ---
 
 ## Syllabus
-<div style="background-color: yellow">
 **bold = primary reading**\
 normal = recommended/background reading
-</div>
 
 ## September 15 | Introduction
 - **Winner**, ["Do Artifacts Have Politics?"](/assets/question/winner.pdf)
@@ -72,15 +70,15 @@ normal = recommended/background reading
   * (_optional_) [IV. Recovery](/assets/question/illich-iv-recovery.pdf)
   * (_optional_) [V. Political Inversion](/assets/question/illich-v-inversion.pdf)
 
-## October 27 | Danger
-- Heidegger, "The Question Concerning Technology"
+## October 27 | Design
+- **Escobar**, ["An Outline of Ontological Design"](/assets/question/escobar-ontology.pdf) (from _Designs for the Pluriverse_)
 
-## November 3 | Cybernetics
-- Haraway, selections from _Simians, Cyborgs, and Women_
+## November 3 | TBD
 
-## November 10 | Design
-<!--- selections from _Design for the Pluriverse_-->
-- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)
+## November 10 | TBD
+<!--- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)-->
+<!-- - Heidegger, "The Question Concerning Technology" -->
+<!-- - Haraway, selections from _Simians, Cyborgs, and Women_ -->
 
 ## November 17 | TBD
 <!-- - Mumford, selections from _Technics and Civilization_ -->
