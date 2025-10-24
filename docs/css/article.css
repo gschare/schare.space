@@ -105,6 +105,29 @@ div.emph, span.emph {
     }
 }
 
+div.comment {
+    float: right;
+    max-width: calc(0.5 * var(--article-width));
+    position: relative;
+    margin-right: calc(-0.5*var(--article-width) - 72.5px);
+    padding: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    /*background: var(--bg-light);
+    border-top: 2px solid var(--bg-light-secondary);
+    border-right: 2px solid var(--bg-light-secondary);
+    border-bottom: 2px solid var(--bg-light-secondary);
+    border-left: 3px solid var(--bg-light);
+    border-radius: 15px;
+    border-top-left-radius: 7.5px;
+    border-bottom-left-radius: 7.5px;*/
+    font-size: max(11pt, 75%);
+}
+
+div.comment p {
+    margin: 0;
+}
+
 p {
     margin: 15px auto;
 }
