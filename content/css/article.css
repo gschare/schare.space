@@ -105,7 +105,14 @@ div.emph, span.emph {
     }
 }
 
+/* TODO: fix this, it's terrible on mobile */
 div.comment {
+    padding: 5px 10px;
+    font-size: max(11pt, 75%);
+    border: 1px solid var(--fg-light-secondary);
+    border-radius: 7.5px;
+    color: var(--fg-light-secondary);
+    /*
     float: right;
     max-width: calc(0.5 * var(--article-width));
     position: relative;
@@ -121,7 +128,15 @@ div.comment {
     border-radius: 15px;
     border-top-left-radius: 7.5px;
     border-bottom-left-radius: 7.5px;*/
-    font-size: max(11pt, 75%);
+}
+
+div.comment::before {
+    content: "Comment:";
+    display: block;
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--fg-light-secondary);
+    margin-bottom: 0.2em;
 }
 
 div.comment p {
