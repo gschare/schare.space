@@ -55,9 +55,23 @@
     document.getElementById('dark-mode-button').title = "Light mode";
 </script>
 <!--  TODO: redo this where the links themselves are part of the local browser storage & editable  -->
-<div class="flex" style="flex-direction: row">
-    <div class="flex" style="flex-direction: column">
-        <div>
+
+<dialog id="editDialog">
+  <form method="dialog">
+    <label>Text:</label>
+    <input id="itemText" required="required">
+    <label>Link:</label>
+    <input id="itemLink" required="required">
+    <menu>
+      <button value="cancel" formmethod="dialog">Cancel</button>
+      <button value="ok">OK</button>
+    </menu>
+  </form>
+</dialog>
+
+<div class="container">
+    <section class="left">
+        <div id="search-bar">
             <h2> <span id="Van_Nuys_z14e" style="display: block; min-height: 1.5em"></span> </h2>
 
             <form action="https://duckduckgo.com/">
@@ -65,95 +79,166 @@
             </form>
         </div>
 
-        <div class="flex" style="flex-direction: row">
-            <div class="flex" style="flex-direction: column; justify-content: start">
-                <div class="flex" style="flex-direction: row; justify-content: start">
-                    <div class="col">
-                    <h2 id="organization">organization</h2>
-                    <ul>
-                    <li><a href="https://mail.google.com/mail/u/0/">Gmail 📫</a></li>
-                    <li><a href="https://drive.google.com/drive/u/0/">Google Drive 🚘</a></li>
-                    <li><a href="https://calendar.google.com/calendar/u/0/r">Calendar 📆</a></li>
-                    <li><a href="https://www.google.com/maps/">Maps 📍</a></li>
-                    </ul>
-                    </div>
+        <!-- <button class="add-list">+</button> -->
 
-                    <div class="col">
-                    <h2 id="socials">socials</h2>
-                    <ul>
-                    <li><a href="https://web.whatsapp.com/">WhatsApp 💬</a></li>
-                    <li><a href="https://letterboxd.com/">Letterboxd 🍿</a></li>
-                    <li><a href="https://www.facebook.com/">Facebook 🙋‍♂️</a></li>
-                    <li><a href="https://www.instagram.com/">Instagram 📸</a>
-                        | <a href="https://www.instagram.com/direct/inbox/">✉️</a></li>
-                    <li><a href="https://twitter.com/">Twitter 🦜</a></li>
-                    <li><a href="https://types.pl">types.pl 🦣</a></li>
-                    <li><a href="https://bsky.app/">Bluesky 🦋</a></li>
-                    </ul>
-                    </div>
+        <div class="lists-grid-container" id="lists">
+        </div>
 
-                    <div class="col">
-                    <h2 id="content">content</h2>
-                    <ul>
-                    <li><a href="https://www.youtube.com/feed/subscriptions">YouTube ▶️</a></li>
-                    <li><a href="https://www.netflix.com/">Netflix 🅱️</a></li>
-                    <li><a href="https://www.hulu.com/">Hulu 🈯️</a></li>
-                    <li><a href="https://play.max.com/">Max Ⓜ️</a></li>
-                    <li><a href="https://www.paramountplus.com/home/">Paramount+ +</a></li>
-                    <li><a href="https://www.peacocktv.com/">Peacock 🦚</a></li>
-                    <li><a href="https://www.kanopy.com/">Kanopy 🌳</a></li>
-                    <li><a href="https://www.justwatch.com/">JustWatch 🇺🇸</a></li>
+        <div id="time-and-weather">
+            <div>
+                <code>
+                LAX 🌴: <span id="Los_Angeles_z14e"></span><br>
+                UTC 🕗: <span id="UTC_za00"></span><br>
+                NYC 🗽: <span id="New_York_z161"></span> <br>
+                IST 🇹🇷: <span id="Istanbul_z710"></span> <br>
+                </code>
+                <a href="https://time.is/" id="time_is_link" rel="nofollow">Get the time at Time.is!</a>
+                <script src="//widget.time.is/en.js"></script>
+                <script>
+                time_is_widget.init({
+                    UTC_za00 : {},
+                    Los_Angeles_z14e:{},
+                    New_York_z161:{},
+                    Istanbul_z710:{},
+                    Van_Nuys_z14e:{template:"DATE", date_format:"dayname, monthname dnum, year"}
+                });
+                </script>
+            </div>
 
-                    </ul>
-                    </div>
-                </div>
-
-                <div class="flex" style="flex-direction: row">
-                    <div class="col">
-                    <h2 id="useful">useful</h2>
-                    <ul>
-                    <li><a href="https://translate.google.com/">Translate 🈳</a></li>
-                    <li><a href="https://www.wordreference.com/">WordRef. 🇫🇷</a></li>
-                    <li><a href="https://www.tldraw.com/">tldraw 🎨</a></li>
-                    </ul>
-                    </div>
-
-                    <div class="col">
-                    <h2>time</h2>
-                    <code>
-                    LAX 🌴: <span id="Los_Angeles_z14e"></span><br>
-                    UTC 🕗: <span id="UTC_za00"></span><br>
-                    NYC 🗽: <span id="New_York_z161"></span> <br>
-                    IST 🇹🇷: <span id="Istanbul_z710"></span> <br>
-                    </code>
-                    <a href="https://time.is/" id="time_is_link" rel="nofollow">Get the time at Time.is!</a>
-                    <script src="//widget.time.is/en.js"></script>
-                    <script>
-                    time_is_widget.init({
-                        UTC_za00 : {},
-                        Los_Angeles_z14e:{},
-                        New_York_z161:{},
-                        Istanbul_z710:{},
-                        Van_Nuys_z14e:{template:"DATE", date_format:"dayname, monthname dnum, year"}
-                    });
-                    </script>
-                    </div>
-
-                    <div class="col">
-                    <h2>weather</h2>
-                    <iframe src="https://wttr.in/?0q" title="title" weather="weather" in="in" current="current" location="location"></iframe>
-                        <br>
-                    Source: <a href="https://wttr.in/">wttr.in</a>
-                    </div>
-                </div>
+            <div>
+                <iframe src="https://wttr.in/?0q" title="title" weather="weather" in="in" current="current" location="location"></iframe>
+                    <br>
+                Source: <a href="https://wttr.in/">wttr.in</a>
             </div>
         </div>
-    </div>
+    </section>
+
+<script>
+const listsContainer = document.getElementById('lists');
+const dialog = document.getElementById('editDialog');
+const itemText = document.getElementById('itemText');
+const itemLink = document.getElementById('itemLink');
+
+let currentList = null;
+let editingItem = null;
+
+function populateLinks() {
+    const listsJson = localStorage.getItem('links');
+    if (!listsJson) return;
+    const lists = JSON.parse(listsJson);
+    for (let l of lists) {
+        const ul = createList();
+        for (let link of l) {
+            ul.appendChild(createItem(link.text, link.link));
+        }
+    }
+}
+
+populateLinks();
+
+function saveLinks() {
+    const uls = listsContainer.querySelectorAll('ul');
+    let newLinks = [];
+    for (let ul of uls) {
+        let newList = [];
+        for (let a of ul.querySelectorAll('li a')) {
+            newList.push({link: a.href, text: a.textContent});
+        }
+        if (newList != []) newLinks.push(newList);
+    }
+    localStorage.setItem('links', JSON.stringify(newLinks));
+}
+
+function createList() {
+    const div = document.createElement('div');
+    div.className = 'link-list-container';
+    const ul = document.createElement('ul');
+    div.appendChild(ul);
+
+    const addButton = document.createElement('button');
+    addButton.textContent = '+';
+    addButton.className = 'add-item';
+    addButton.onclick = () => openAddDialog(ul);
+    div.appendChild(addButton);
+  
+    listsContainer.appendChild(div);
+
+    return ul;
+}
+
+function openAddDialog(ul) {
+    currentList = ul;
+    editingItem = null;
+    itemText.value = '';
+    itemLink.value = '';
+    dialog.showModal();
+}
+
+function openEditDialog(li, text, link) {
+    editingItem = li;
+    itemText.value = text;
+    itemLink.value = link || '';
+    dialog.showModal();
+}
+
+function createItem(text, link) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = text;
+    a.href = link || '#';
+    li.appendChild(a);
+
+    const controls = document.createElement('div');
+    controls.className = 'controls';
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = '✎';
+    editBtn.onclick = () => openEditDialog(li, text, link);
+
+    const upBtn = document.createElement('button');
+    upBtn.textContent = '↑';
+    upBtn.onclick = () => {li.previousElementSibling && li.parentNode.insertBefore(li, li.previousElementSibling); saveLinks();}
+
+    const downBtn = document.createElement('button');
+    downBtn.textContent = '↓';
+    downBtn.onclick = () => {li.nextElementSibling && li.parentNode.insertBefore(li.nextElementSibling, li); saveLinks();}
+
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '🗑';
+    delBtn.onclick = () => {li.remove(); saveLinks();}
+
+    controls.append(editBtn, upBtn, downBtn, delBtn);
+    li.appendChild(controls);
+
+    return li;
+}
+
+// Listener to apply changes
+dialog.addEventListener('close', () => {
+  if (dialog.returnValue !== 'ok') return;
+
+  const text = itemText.value.trim();
+  const link = itemLink.value.trim();
+
+  if (editingItem) {
+    // Editing an item
+    const a = editingItem.querySelector('a');
+    a.textContent = text;
+    a.href = link || '#';
+  } else if (currentList) {
+    // Creating new item
+    currentList.appendChild(createItem(text, link));
+  }
+  saveLinks();
+});
+
+document.querySelector('.add-list').addEventListener('click', createList);
+</script>
 
     <!--  notepad 
         source: https://blog.jverkamp.com/2018/09/26/simple-localstorage-notepad/
      -->
-    <div class="flex">
+    <section class="right">
         <div>
             <p>Not enough space? Need to focus? <a href="/lab/box.html">Put it in the box!</a> <input type="button" class="anchor-button" id="editor-toggle" value="Hide"></p>
             
@@ -215,6 +300,6 @@
             </script>
             <p>Parallel play with the wind.</p>
         </div>
-    </div>
+    </section>
 </div>
 </main></body></html>

@@ -1,3 +1,6 @@
+body {
+    margin-bottom: 0 !important;
+}
 header {
     margin: 0;
 }
@@ -11,20 +14,99 @@ h2 {
     padding-right: 30px;
 }
 
-.col > ul {
-    margin-left: -10px;
+.container { /* Top-level container */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1rem;
+    align-items: start;
 }
 
-.col ul {
+section.left {
+    grid-column: 1 / 2;
+}
+
+section.right {
+    grid-column: 2 / 3;
+}
+
+
+#search-bar {
+    grid-column: 1 / -1;
+}
+
+#time-and-weather {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 0.4fr));
+    gap: 1.5rem;
+}
+
+/*** Links ***/
+.lists-grid-container { /* Container for the whole grid of lists */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1.5rem;
+    position: relative;
+}
+
+.link-list-container { /* Container for each list */
+    margin-bottom: 20px;
+}
+
+.link-list-container ul {
     list-style: none;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+.link-list-container ul li {
+    position: relative;
+}
+
+.add-list {
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: var(--fg-dark-secondary);
+}
+
+.add-item {
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: var(--fg-dark-secondary);
     padding-left: 10px;
 }
 
+li .controls {
+    margin-left: 5px;
+    display: inline;
+    position: absolute;
+    top: -1lh;
+    background-color: var(--bg-dark);
+    border-radius: 4px;
+    left: 0;
+    visibility: hidden;
+    z-index: 99;
+    opacity: .9;
+}
+
+li:hover .controls {
+    visibility: visible;
+}
+
+.controls button {
+    background: none;
+    color: var(--fg-dark-secondary);
+    border: none;
+    cursor: pointer;
+}
+
+/*** Editor ***/
 #editor {
     min-width: 20rem;
     max-width: 35rem;
     height: 100%;
-    min-height: 20lh;
+    min-height: 27lh;
     border: 1px solid #646464;
     background: none;
     color: inherit;
