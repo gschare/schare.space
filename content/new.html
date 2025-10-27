@@ -31,10 +31,10 @@
             </form>
         </div>
 
-        <!--<button class="add-list">+</button>-->
-
         <div class="lists-grid-container" id="lists">
         </div>
+
+        <button class="add-list">+</button>
 
         <div id="time-and-weather">
             <div>
@@ -96,7 +96,7 @@ function saveLinks() {
         for (let a of ul.querySelectorAll('li a')) {
             newList.push({link: a.href, text: a.textContent});
         }
-        if (newList != []) newLinks.push(newList);
+        if (newList.length) newLinks.push(newList);
     }
     localStorage.setItem('links', JSON.stringify(newLinks));
 }
