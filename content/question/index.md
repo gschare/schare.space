@@ -73,11 +73,11 @@ normal = recommended/background reading
 ## October 27 | Design
 - **Escobar**, ["An Outline of Ontological Design"](/assets/question/escobar-ontology.pdf) (from _Designs for the Pluriverse_)
 
-## November 3 | TBD
+## November 3 | Questioning
+- **Heidegger**, ["The Question Concerning Technology"](/assets/question/heidegger.pdf)
 
 ## November 10 | TBD
 <!--- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)-->
-<!-- - Heidegger, "The Question Concerning Technology" -->
 <!-- - Haraway, selections from _Simians, Cyborgs, and Women_ -->
 
 ## November 17 | TBD
