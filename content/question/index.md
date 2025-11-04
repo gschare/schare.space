@@ -76,14 +76,18 @@ normal = recommended/background reading
 ## November 3 | Questioning
 - **Heidegger**, ["The Question Concerning Technology"](/assets/question/heidegger.pdf)
 
-## November 10 | TBD
+## November 10
+**No meeting. Institute holiday.**
 <!--- **Friedman & Hendry**, selections from _Value-Sensitive Design_ (2019)-->
 <!-- - Haraway, selections from _Simians, Cyborgs, and Women_ -->
 
-## November 17 | TBD
+## November 17 | Humanity
 <!-- - Mumford, selections from _Technics and Civilization_ -->
+- **Haraway**, [_A Cyborg Manifesto_](/assets/question/haraway.pdf)
 
-## November 24 | TBD
+## November 24 | Science
+- **Latour**, ["Opening Pandora's Black Box"](/assets/question/latour.pdf) (from _Science in Action_)
+
 ## December 1 | TBD
 ## December 8 | Conclusion <!-- Dystopia -->
 TBD
