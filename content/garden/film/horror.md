@@ -10,11 +10,13 @@ We adopt a strongly pluralist attitude toward what qualifies as horror.
 
 <details>
 <summary>
-Potential Watchlist
+Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1cD-bz_aaM8xCVaPoRVE4rLUGe2HbpY0bnoKQvec/edit?usp=sharing)
 </summary>
 
+\* = particularly exciting to me
+
 - Psychological horror
-  - Rosemary's Baby
+  - **Rosemary's Baby**
   - Black Swan
   - anything by David Lynch
   - Killing of A Sacred Deer
@@ -25,8 +27,8 @@ Potential Watchlist
   - Plan 9 From Outer Space - quite possibly the worst movie I've ever seen
   - Phase IV
 - Body horror
-  - Possession
-  - anything by Cronenberg (e.g. Videodrome)
+  - **Possession**
+  - anything by Cronenberg (e.g. **Videodrome**)
   - [x] The Substance
 - Monster
   - Jaws
@@ -37,22 +39,22 @@ Potential Watchlist
     - Twilight (save it for Robby Patty series)
     - Interview with the Vampire
   - Zombie movies
-    - Night of the Living Dead
+    - **Night of the Living Dead**
     - Dawn of the Dead
     - Shaun of the Dead
-    - 28 Days Later (my favorite movie)
+    - **28 Days Later** (my favorite movie)
     - Train to Busan
     - World War Z
     - I Am Legend
-    - Warm Bodies
+    - **Warm Bodies**
     - Cargo
     - Poison
     - lots of TV shows in this category: The Walking Dead, The Last of Us
 - Slasher
   - The Shining, for an elevated instance
-  - Halloween
-  - Scream
-  - Nightmare on Elm Street
+  - **Halloween**
+  - **Scream**
+  - **Nightmare on Elm Street**
   - Psycho
 - A24
   - Hereditary
@@ -60,29 +62,29 @@ Potential Watchlist
   - [x] The Witch
   - [x] Saint Maud
 - Sci-fi horror
-  - Alien
+  - **Alien**
   - Cube
-  - The Thing
+  - **The Thing**
   - Annihilation
 - Cozy or funny horror
-  - Corpse Bride
+  - **Corpse Bride**
   - The Nightmare Before Christmas
   - Halloweentown
   - Beetlejuice
   - House by Obayashi
   - Big Bad Wolves
 - Contemporary
-  - Barbarian
+  - **Barbarian**
   - I Saw The TV Glow
-  - Weapons
+  - **Weapons**
   - Us
-- Silence of the Lambs
-- The Exorcist
+- **Silence of the Lambs**
+- **The Exorcist**
 - Pan's Labyrinth
 - Cape Fear
 - Sijjin
 - Cuckoo
-- A girl Walks Home Alone At Night
+- A Girl Walks Home Alone At Night
 - Under the Shadow
 
 </details>
