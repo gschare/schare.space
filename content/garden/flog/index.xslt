@@ -12,6 +12,7 @@
 <title>Flog (Film Log)</title>
 <nav class="secondary">
     <a href="/garden/books/">books</a>
+    · <a href="/garden/film/">film</a>
 </nav>
 <h1>Flog <!-- film log --></h1>
 
