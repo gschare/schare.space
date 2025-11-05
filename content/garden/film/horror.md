@@ -13,7 +13,7 @@ We adopt a strongly pluralist attitude toward what qualifies as horror.
 Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1cD-bz_aaM8xCVaPoRVE4rLUGe2HbpY0bnoKQvec/edit?usp=sharing)
 </summary>
 
-\* = particularly exciting to me
+**bold** = particularly exciting to me
 
 - Psychological horror
   - **Rosemary's Baby**
