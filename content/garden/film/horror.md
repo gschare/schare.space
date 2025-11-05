@@ -109,4 +109,5 @@ tr + tr { border-top: 1px solid var(--fg-light-secondary); }
 thead { border-bottom: 1px solid var(--fg-light-secondary); }
 table { border-collapse: collapse; width: 100%; }
 td, th { padding-left: 10px; padding-right: 10px; }
+tr td:first-child { min-width: 6ch; }
 </style>
