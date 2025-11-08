@@ -5,3 +5,4 @@
 
 # Film
 - [Horror Movie Tuesdays](horror.html)
+- [Cinema of Asia](asia.html)
