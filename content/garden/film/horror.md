@@ -64,7 +64,7 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
 - Sci-fi horror
   - **Alien**
   - Cube
-  - **The Thing**
+  - [x] **The Thing**
   - Annihilation
 - Cozy or funny horror
   - **Corpse Bride**
@@ -101,7 +101,8 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
 | Oct  7 | [_The Witch_](https://letterboxd.com/film/the-witch-2015/) | Navodita |
 | Oct 28 | [_The Substance_](https://letterboxd.com/film/the-substance/) | Varun |
 | Nov  4 | [_Coherence_](https://letterboxd.com/film/coherence/) | Andre |
-| Nov 18 | TBD. Possibly _The Thing_. |
+| Nov 18 | [_The Thing_](https://letterboxd.com/film/the-thing/) | Carmel |
+| Nov 26 | TBD. Possibly _Frankenstein_ (2025). |
 
 <style>
 td + td, th + th { border-left: 1px solid var(--fg-light-secondary); }
