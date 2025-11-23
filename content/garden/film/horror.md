@@ -102,7 +102,8 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
 | Oct 28 | [_The Substance_](https://letterboxd.com/film/the-substance/) | Varun |
 | Nov  4 | [_Coherence_](https://letterboxd.com/film/coherence/) | Andre |
 | Nov 18 | [_The Thing_](https://letterboxd.com/film/the-thing/) | Carmel |
-| Nov 26 | TBD. Possibly _Frankenstein_ (2025). |
+| Nov 19 | [_Frankenstein_ (2025)](https://letterboxd.com/film/frankenstein-2025/) | Nuri |
+| Nov 26 | [_The Night of the Hunter_](https://letterboxd.com/film/the-night-of-the-hunter/)
 
 <style>
 td + td, th + th { border-left: 1px solid var(--fg-light-secondary); }

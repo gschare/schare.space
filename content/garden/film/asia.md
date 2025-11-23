@@ -6,11 +6,11 @@
 # Film Series: Cinema of East Asia
 | Date | Film | Country |
 |--:|:---------|:---|
-| Nov 16 | [_Chungking Express_](https://letterboxd.com/film/chungking-express/) dir. Wong Kar-Wai | Hong Kong |
-| Nov 23 | [_Ikiru_](https://letterboxd.com/film/ikiru/) dir. Akira Kurosawa | Japan |
-| Nov 30 | [_Yi Yi_](https://letterboxd.com/film/yi-yi/) dir. Edward Yang | Taiwan |
-| Dec  7 | [_Memories of Murder_](https://letterboxd.com/film/memories-of-murder/) dir. Bong Joon Ho | South Korea |
-| Dec 14 | [_A New Old Play_](https://letterboxd.com/film/a-new-old-play/) dir. Qiu Jiongjiong | China |
+| TBD | [_Chungking Express_](https://letterboxd.com/film/chungking-express/) dir. Wong Kar-Wai | Hong Kong |
+| TBD | [_Ikiru_](https://letterboxd.com/film/ikiru/) dir. Akira Kurosawa | Japan |
+| TBD | [_Yi Yi_](https://letterboxd.com/film/yi-yi/) dir. Edward Yang | Taiwan |
+| TBD | [_Memories of Murder_](https://letterboxd.com/film/memories-of-murder/) dir. Bong Joon Ho | South Korea |
+| TBD | [_A New Old Play_](https://letterboxd.com/film/a-new-old-play/) dir. Qiu Jiongjiong | China |
 
 <style>
 td + td, th + th { border-left: 1px solid var(--fg-light-secondary); }
