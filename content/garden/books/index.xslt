@@ -12,6 +12,27 @@
     <a href="/garden/links.html">links</a> &#183; <a href="/garden/flog/">flog</a>
 </nav>
 <h1>Books</h1>
+
+<div id="tags">
+<nav id="tag-select" class="secondary">
+    <!-- it's definitely possible to automate this but for now the way it works
+    is whenever I add a tag I have to list it here and then if I click on it,
+    it filters to the ones with that tag. -->
+    <a href="#reset">✕</a>
+    <a href="#audiobook" class="audiobook">#audiobook</a>
+</nav>
+<div id="tag-list">
+    <div id="reset"></div>
+    <div id="audiobook"></div>
+</div>
+<style>
+article:has(#audiobook:target) .cards .card:not(.audiobook) { display: none; }
+article:has(#audiobook:target) nav#tag-select a.audiobook { font-weight: bold; }
+nav#tag-select a:after { content: " "; }
+div#tag-list { display: none; }
+</style>
+</div>
+
 <style>
 .cards {
     display: grid;
@@ -140,16 +161,23 @@ h2 {
             </xsl:attribute>
         </img>
     </xsl:variable>
-    <xsl:choose>
-        <xsl:when test="@link">
-            <a href="{@link}">
+
+    <div>
+        <xsl:attribute name="class">
+            <xsl:text>card </xsl:text>
+            <xsl:value-of select="@tags"/>
+        </xsl:attribute>
+        <xsl:choose>
+            <xsl:when test="@link">
+                <a href="{@link}">
+                    <xsl:copy-of select="$img-tag" />
+                </a>
+            </xsl:when>
+            <xsl:otherwise>
                 <xsl:copy-of select="$img-tag" />
-            </a>
-        </xsl:when>
-        <xsl:otherwise>
-            <xsl:copy-of select="$img-tag" />
-        </xsl:otherwise>
-    </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
+    </div>
 </xsl:template>
 
 </xsl:stylesheet>
