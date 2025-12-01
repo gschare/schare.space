@@ -33,6 +33,7 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
 - Monster
   - Jaws
   - It Follows
+  - **Young Frankenstein**
   - Vampire
     - Nosferatu
     - Bram Stoker's Dracula
