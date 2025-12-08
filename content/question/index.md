@@ -88,7 +88,11 @@ normal = recommended/background reading
 ## November 24 | Science
 - **Latour**, ["Opening Pandora's Black Box"](/assets/question/latour.pdf) (from _Science in Action_)
 
-## December 1 | TBD
-## December 8 | Conclusion <!-- Dystopia -->
-TBD
-<!-- Huxley -->
+## December 1
+**No meeting.**
+
+## December 8
+**No meeting.**
+
+## December 15 | Conclusion
+- **Hui**, ["The Genesis of Digital Objects"](/assets/question/hui.pdf) (from _On the Existence of Digital Objects_)
