@@ -91,8 +91,5 @@ normal = recommended/background reading
 ## December 1
 **No meeting.**
 
-## December 8
-**No meeting.**
-
-## December 15 | Conclusion
+## December 8 | Conclusion
 - **Hui**, ["The Genesis of Digital Objects"](/assets/question/hui.pdf) (from _On the Existence of Digital Objects_)
