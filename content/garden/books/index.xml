@@ -16,16 +16,56 @@
           img="letterstoayoungpoet.jpg"
           date=""
     />
-    <!--<book title="Ficciones"
+    <book title="Ficciones"
           author="Jorge Luis Borges"
           img="ficciones.jpg"
           date=""
-    />-->
+    />
     <book title="Pride and Prejudice"
           author="Jane Austen"
           img="prideandprejudice.jpg"
           date=""
     />
+    <book title="Reading Machines: Toward an Algorithmic Criticism"
+          author="Stephen Ramsay"
+          img="readingmachines.jpg"
+          date=""
+    />
+    <book title="Simulacra and Simulation"
+          author="Jean Baudrillard"
+          img="simulacra.jpg"
+          date=""
+    />
+    <book title="My Year of Rest and Relaxation"
+          author="Ottessa Moshfegh"
+          img="myorr.jpg"
+          date=""
+    />
+    <book title="The Dispossessed"
+          author="Ursula K. Le Guin"
+          img="dispossessed.jpg"
+          date=""
+    />
+    <book title="Pachinko"
+          author="Min Jin Lee"
+          img="pachinko.webp"
+          date=""
+    />
+    <book title="Samuel Johnson is Indignant"
+          author="Lydia Davis"
+          img="davis-indignant.jpg"
+          date=""
+    />
+    <!-- 
+        dignify the partiality of:
+          Understanding Computers and Cognition
+          Computer Power and Human Reason
+          Latour Science in Action
+          On the Existence of Digital Objects
+          Designs for the Pluriverse
+          Alone Together
+          
+    -->
 
     <!-- Read -->
 

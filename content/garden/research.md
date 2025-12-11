@@ -2,7 +2,8 @@
 # Research???
 
 * [The Uses of AI](ai.html)
-* [Papers You Should Consider Reading](papers.html)
+* [Papers](papers.html) and [Essays](essays.html) I liked
+* [The Question Concerning Software](/question/)
 * [Research Moodboard](moodboard.html)
 * [Laziness](laziness.html)
 * [Web Languages](weblang.html)
