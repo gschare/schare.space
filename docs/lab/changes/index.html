@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@ggschare"><meta name="twitter:title" content="I Ching: Book of Changes"><meta name="twitter:description" content="Lasciate ogne speranza, voi ch'intrate."><meta name="twitter:image:src" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:title" content="I Ching: Book of Changes"><meta property="og:type" content="website"><meta property="og:description" content="Lasciate ogne speranza, voi ch'intrate."><meta property="og:image" content="https://schare.space/assets/img/nessie.jpg"><meta property="og:site_name" content="schare.space"><link rel="icon" href="/favicon.ico" type="image/x-icon"><title>I Ching: Book of Changes</title><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script data-goatcounter="https://schare.goatcounter.com/count" async="async" src="/js/count.js"></script><link rel="stylesheet" type="text/css" href="/css/default.css"><link rel="stylesheet" type="text/css" href="/css/wide.css"><link rel="stylesheet" type="text/css" href="/css/article.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="crossorigin"><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..600;1,400..600" rel="stylesheet" type="text/css"><link href="/css/pandoc-highlighting.css" rel="stylesheet" type="text/css"></head><body><header>
+    <div>
+        <div style="display: inline-block;">
+            <nav>
+                <a id="nav-home" href="/">Home</a>
+                &centerdot;
+                <a id="nav-tidings" href="/tidings/">Tidings</a>
+                &centerdot;
+                <a id="nav-garden" href="/garden/">Garden</a>
+                &centerdot;
+                <a id="nav-now" href="/now.html">Now</a>
+                &centerdot;
+                <div style="display: inline-block;">
+                    <button class="fancybutton" title="Dark mode" onclick="toggleDarkMode()" type="button" id="dark-mode-button" style="border: none;"><div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div></button>
+                    <script>
+        // Start light
+        function goDark() {
+            document.body.classList.add('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = "☀️";
+            document.getElementById('dark-mode-button').title = "Light mode";
+            localStorage.setItem('dark-mode', 'enabled');
+        }
+
+        function goLight() {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('dark-mode-button').innerHTML = '<div style="filter: hue-rotate(180deg) brightness(105%) grayscale(90%);">🌕</div>';
+            document.getElementById('dark-mode-button').title = "Dark mode";
+            localStorage.setItem('dark-mode', null);
+        }
+
+        function toggleDarkMode() {
+            var containerClasses = document.body.classList;
+            if (containerClasses.contains('dark-mode')) {
+                goLight();
+            } else {
+                goDark();
+            }
+        }
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            goDark();
+        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main><h1><i>I Ching</i>: Book of Changes</h1>
+<title>I Ching: Book of Changes</title>
+
+<p> <a href="hexagram/">Browse hexagrams</a> </p>
+
+<fieldset>
+<legend for="method">Method</legend>
+<select name="method" id="method">
+    <option value="three">Three-coin</option>
+    <option value="three-yarrow" selected="selected">Modified three-coin</option>
+    <option value="two">Two-coin</option>
+</select>
+</fieldset>
+
+<style>
+form.procedure { display: none; }
+form.procedure.selected { display: block; }
+.hidden { visibility: hidden; }
+button.coin:before { content: "🪙"; }
+button.flip-all:before { content: "Flip all 🪙"; }
+fieldset {
+    max-width: fit-content;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#numbers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#numbers-list li { display: inline-block; width: 1rem; }
+#numbers-list li input { background-color: transparent; border: none; text-align: center; }
+#numbers-list li:not(:first-child) { margin-left: 2px; }
+#numbers-list li input::placeholder { text-decoration: underline; color: var(--fg-light-secondary); }
+/* Chrome, Safari, Edge, Opera */
+#numbers-list li input::-webkit-outer-spin-button,
+#numbers-list li input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+#numbers-list li input[type=number] {
+  -moz-appearance: textfield;
+}
+#copy:before { content: "📋 "; }
+#share-notif { opacity: 1; display: inline-block; }
+#share-notif.fading {
+    opacity: 0;
+    transition: opacity 2s linear;
+}
+button, select, input {
+    font-family: Lora, Garamond, serif;
+    color: var(--fg-light);
+    font-size: clamp(1.1rem, 1vw, 16px);
+}
+button { margin-bottom: 2px; }
+</style>
+
+<form class="procedure" name="three">
+    <fieldset>
+        <legend>Throw</legend>
+        <button class="flip-all"></button>
+
+        <div class="toss">
+            <select name="first-toss">
+                <option disabled="disabled" selected="selected" value="value"></option>
+                <option value="heads">Heads</option>
+                <option value="tails">Tails</option>
+            </select>
+            <button class="coin"></button>
+        </div>
+
+        <div class="toss">
+            <select name="second-toss">
+                <option disabled="disabled" selected="selected" value="value"></option>
+                <option value="heads">Heads</option>
+                <option value="tails">Tails</option>
+            </select>
+            <button class="coin"></button>
+        </div>
+
+        <div class="toss">
+            <select name="third-toss">
+                <option disabled="disabled" selected="selected" value="value"></option>
+                <option value="heads">Heads</option>
+                <option value="tails">Tails</option>
+            </select>
+            <button class="coin"></button>
+        </div>
+
+        <input type="submit" name="submit" value="Submit" disabled="disabled">
+    
+</fieldset></form>
+
+<form class="procedure selected" name="three-yarrow">
+    <fieldset>
+    <legend>Throw</legend>
+    <button class="flip-all"></button>
+
+    <div class="toss">
+        <select name="first-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="second-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="third-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <input type="submit" name="submit" value="Submit" disabled="disabled">
+    </fieldset>
+</form>
+
+<form class="procedure" name="two">
+    <fieldset>
+    <legend>Throw</legend>
+    <button class="flip-all"></button>
+
+    <div class="toss">
+        <select name="first-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="second-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="third-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="fourth-toss">
+            <option disabled="disabled" selected="selected" value="value"></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <input type="submit" name="submit" value="Submit" disabled="disabled">
+    </fieldset>
+</form>
+
+<div id="numbers">
+    <fieldset>
+        <legend>Numbers</legend>
+    <ul id="numbers-list">
+        <li><input type="number" min="6" max="9" id="n0" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n1" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n2" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n3" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n4" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n5" placeholder="  "></li>
+    </ul>
+    </fieldset>
+</div>
+
+<button id="submit-consultation" class="submit hidden">Receive consultation</button> <!--  only appears if 6 numbers are generated  -->
+
+<div id="results" class="hidden">
+    <div id="hexagram">
+        <p><b>Hexagram:</b> <span id="hexagram-result"></span></p>
+    </div>
+    <div id="alternative" class="hidden">
+        <p><b>Changing to:</b> <span id="alternative-result"></span></p>
+    </div>
+    <div id="share">
+        <button id="share-btn" class="copy">Share</button>
+        <span id="share-notif" class="hidden">Copied!</span>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</main></body></html>

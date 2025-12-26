@@ -52,7 +52,7 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
     - Poison
     - lots of TV shows in this category: The Walking Dead, The Last of Us
 - Slasher
-  - The Shining, for an elevated instance
+  - [x] The Shining, for an elevated instance
   - **Halloween**
   - **Scream**
   - **Nightmare on Elm Street**
@@ -103,9 +103,11 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
 | Oct  7 | [_The Witch_](https://letterboxd.com/film/the-witch-2015/) | Navodita |
 | Oct 28 | [_The Substance_](https://letterboxd.com/film/the-substance/) | Varun |
 | Nov  4 | [_Coherence_](https://letterboxd.com/film/coherence/) | Andre |
+| Nov  9 | [_The Shining_](https://letterboxd.com/film/the-shining/)
 | Nov 18 | [_The Thing_](https://letterboxd.com/film/the-thing/) | Carmel |
 | Nov 19 | [_Frankenstein_ (2025)](https://letterboxd.com/film/frankenstein-2025/) | Nuri |
 | Nov 25 | [_Tumbbad_](https://letterboxd.com/film/tumbbad/) | Varun |
+| Dec 12 | [_Wake Up Dead Man_](https://letterboxd.com/film/wake-up-dead-man/) | Andre |
 
 <style>
 td + td, th + th { border-left: 1px solid var(--fg-light-secondary); }

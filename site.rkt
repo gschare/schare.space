@@ -13,6 +13,7 @@
 
 (define dry-run #f)
 (define silent #f)
+(define verbose #f)
 (define dest "docs")
 
 (command-line
@@ -21,6 +22,7 @@
  [("-d" "--dry-run") "Do not write any files" (set! dry-run #t)]
  [("-o" "--dest") dest "Destination folder" (void)]
  [("-s" "--silent") "Silence output" (set! silent #t)]
+ [("-v" "--verbose") "Verbose output" (set! verbose #t)]
  )
 
 (begin
@@ -72,6 +74,9 @@
             (:path lab/box.html
              :template default.sxml
              :styles (css/default.css))
+            (:path lab/changes/hexagram/index.html
+             :template default.sxml
+             :styles (css/default.css css/article.css))
             )
     :folders (
               (:path ,(custom phlog 'garden/phlog/index.xml)
@@ -103,6 +108,12 @@
               ;(:path garden/jot
               ; :template default.sxml
               ; :styles (css/default.css css/garden.css))
+              (:path lab/changes
+               :template default.sxml
+               :styles (css/default.css css/wide.css css/article.css))
+              (:path lab/changes/hexagram
+               :template hexagram.sxml
+               :styles (css/default.css css/article.css css/hexagram.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf
@@ -113,6 +124,8 @@
                   ;,(rss-tidings)
                   garden/process-tree/script.js
                   garden/process-tree/style.css
+                  lab/changes/app.js
+                  lab/changes/hexagram.js
                   )
           :folders (writ js css assets/img assets/fonts assets/papers lab
                     assets/docs
@@ -129,5 +142,5 @@
   )
 
 ;TODO: compile all markdown sources into html sources using pandoc before building?
-(build rules #:dest dest #:dry-run dry-run #:silent silent)
+(build rules #:dest dest #:dry-run dry-run #:silent silent #:verbose verbose)
 

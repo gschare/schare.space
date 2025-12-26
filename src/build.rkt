@@ -40,8 +40,9 @@
          [else sym]))
       sym))
 
-(define (build rules #:dest [dest "docs"] #:dry-run [dry-run #f] #:silent [silent #f])
+(define (build rules #:dest [dest "docs"] #:dry-run [dry-run #f] #:silent [silent #f] #:verbose [verbose #f])
   (define (displayln-unless-silent . args) (unless silent (apply displayln args)))
+  (define (displayln-if-verbose . args) (if verbose (apply displayln args) (void)))
   (displayln-unless-silent (format "Files to be written to folder: ~a." dest))
   (let* (; Preprocess: convert ':kw to '#:kw
          [_ (displayln-unless-silent "Rules: preprocess....")]
@@ -96,6 +97,13 @@
                 (λ (v) (or ((by-flag '#:folder) v)
                            ((by-flag '#:disabled) v))))
                (λ (v) (hash-remove (hash-remove v '#:folder) '#:disabled)))]
+         [_ (if verbose
+                (hash-map-update
+                 (hash-filter
+                  ht
+                  (λ (v) ((by-flag '#:disabled) v)))
+                 (λ (v) (displayln-if-verbose (format "Disable ~a" (hash-ref v '#:path)))))
+                (void))]
 
          ; Load the templates recursively.
          ; Note: reads from disk!
@@ -123,6 +131,7 @@
                       (build-path INTERMEDIATE-DIR
                                   (symbol->path (hash-ref v '#:path)))))]
                    [styles (stylelist->xexp (hash-ref v '#:styles))])
+             (displayln-if-verbose (format "Plan ~a with template ~a and styles ~a" (hash-ref v '#:path) template (hash-ref v '#:styles)))
              (values
               k
               (apply-template
@@ -130,7 +139,7 @@
                 content
                 styles
                 templates)))))]
-         [raw-plan (hash-keys (hash-filter plan (λ (v) (hash-ref v '#:raw))))])
+         [raw-plan (hash-keys (hash-filter plan (λ (v) (displayln-if-verbose (format "Raw plan ~a" (hash-ref v '#:path))) (hash-ref v '#:raw))))])
     (begin
       (when dry-run
         (display "This is a dry run. No files will be written.\n")
@@ -146,6 +155,7 @@
        (λ (k v)
          (let* ([path (symbol->path k)]
                 [dest (build-path dest path)])
+           (displayln-if-verbose (format "Writing ~a -> ~a" path dest))
            (unless dry-run
             (make-parent-directory* dest)
             (write-file v dest))
@@ -158,6 +168,7 @@
          (let* ([path (symbol->path x)]
                 [src (build-path SRC-DIR path)]
                 [dest (build-path dest path)])
+           (displayln-if-verbose (format "Writing raw ~a -> ~a" path dest))
            (unless dry-run
             (make-parent-directory* dest)
             (copy-file src dest #:exists-ok? #t))

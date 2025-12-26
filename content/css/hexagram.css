@@ -1,0 +1,19 @@
+/* Line judgements hidden by default, shown if relevant */
+.lj {
+    display: none;
+}
+.lj.show {
+    display: block;
+}
+
+.alternative {
+    display: none;
+}
+.alternative.show {
+    display: block;
+}
+
+/* don't show lines at all if none are relevant */
+#lines:not(:has(.lj.show)) {
+    display: none;
+}

@@ -1,0 +1,207 @@
+<h1><i>I Ching</i>: Book of Changes</h1>
+<title>I Ching: Book of Changes</title>
+
+<p> <a href="hexagram/">Browse hexagrams</a> </p>
+
+<fieldset>
+<legend for="method">Method</legend>
+<select name="method" id="method">
+    <option value="three">Three-coin</option>
+    <option value="three-yarrow" selected>Modified three-coin</option>
+    <option value="two">Two-coin</option>
+</select>
+</fieldset>
+
+<style>
+form.procedure { display: none; }
+form.procedure.selected { display: block; }
+.hidden { visibility: hidden; }
+button.coin:before { content: "🪙"; }
+button.flip-all:before { content: "Flip all 🪙"; }
+fieldset {
+    max-width: fit-content;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#numbers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#numbers-list li { display: inline-block; width: 1rem; }
+#numbers-list li input { background-color: transparent; border: none; text-align: center; }
+#numbers-list li:not(:first-child) { margin-left: 2px; }
+#numbers-list li input::placeholder { text-decoration: underline; color: var(--fg-light-secondary); }
+/* Chrome, Safari, Edge, Opera */
+#numbers-list li input::-webkit-outer-spin-button,
+#numbers-list li input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+#numbers-list li input[type=number] {
+  -moz-appearance: textfield;
+}
+#copy:before { content: "📋 "; }
+#share-notif { opacity: 1; display: inline-block; }
+#share-notif.fading {
+    opacity: 0;
+    transition: opacity 2s linear;
+}
+button, select, input {
+    font-family: Lora, Garamond, serif;
+    color: var(--fg-light);
+    font-size: clamp(1.1rem, 1vw, 16px);
+}
+button { margin-bottom: 2px; }
+</style>
+
+<form class="procedure" name="three">
+    <fieldset>
+        <legend>Throw</legend>
+        <button class="flip-all"></button>
+
+        <div class="toss">
+            <select name="first-toss">
+                <option disabled selected value></option>
+                <option value="heads">Heads</option>
+                <option value="tails">Tails</option>
+            </select>
+            <button class="coin"></button>
+        </div>
+
+        <div class="toss">
+            <select name="second-toss">
+                <option disabled selected value></option>
+                <option value="heads">Heads</option>
+                <option value="tails">Tails</option>
+            </select>
+            <button class="coin"></button>
+        </div>
+
+        <div class="toss">
+            <select name="third-toss">
+                <option disabled selected value></option>
+                <option value="heads">Heads</option>
+                <option value="tails">Tails</option>
+            </select>
+            <button class="coin"></button>
+        </div>
+
+        <input type="submit" name="submit" value="Submit" disabled>
+    </input>
+</form>
+
+<form class="procedure selected" name="three-yarrow">
+    <fieldset>
+    <legend>Throw</legend>
+    <button class="flip-all"></button>
+
+    <div class="toss">
+        <select name="first-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="second-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="third-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <input type="submit" name="submit" value="Submit" disabled>
+    </fieldset>
+</form>
+
+<form class="procedure" name="two">
+    <fieldset>
+    <legend>Throw</legend>
+    <button class="flip-all"></button>
+
+    <div class="toss">
+        <select name="first-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="second-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="third-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <div class="toss">
+        <select name="fourth-toss">
+            <option disabled selected value></option>
+            <option value="heads">Heads</option>
+            <option value="tails">Tails</option>
+        </select>
+        <button class="coin"></button>
+    </div>
+
+    <input type="submit" name="submit" value="Submit" disabled>
+    </fieldset>
+</form>
+
+<div id="numbers">
+    <fieldset>
+        <legend>Numbers</legend>
+    <ul id="numbers-list">
+        <li><input type="number" min="6" max="9" id="n0" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n1" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n2" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n3" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n4" placeholder="  "></li>
+        <li><input type="number" min="6" max="9" id="n5" placeholder="  "></li>
+    </ul>
+    </fieldset>
+</div>
+
+<button id="submit-consultation" class="submit hidden">Receive consultation</button> <!-- only appears if 6 numbers are generated -->
+
+<div id="results" class="hidden">
+    <div id="hexagram">
+        <p><b>Hexagram:</b> <span id="hexagram-result"></span></p>
+    </div>
+    <div id="alternative" class="hidden">
+        <p><b>Changing to:</b> <span id="alternative-result"></span></p>
+    </div>
+    <div id="share">
+        <button id="share-btn" class="copy">Share</button>
+        <span id="share-notif" class="hidden">Copied!</span>
+    </div>
+</div>
+
+<script src="app.js"></script>
