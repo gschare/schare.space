@@ -236,7 +236,9 @@ function setup() {
     let timeoutId;
     share.addEventListener('click', (e) => {
         const result = document.getElementById('result');
-        navigator.clipboard.writeText(`${window.location}?c=${numbers.join('')}`);
+        const url = new URL(window.location.href);
+        url.searchParams.set('c', numbers.join(''));
+        navigator.clipboard.writeText(url);
         const notif = document.getElementById('share-notif');
         notif.classList.remove('hidden');
         if (timeoutId) {
