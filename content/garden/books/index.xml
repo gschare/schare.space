@@ -56,6 +56,16 @@
           img="davis-indignant.jpg"
           date=""
     />
+    <book title="Computer Power and Human Reason"
+          author="Joseph Weizenbaum"
+          img="weizenbaum.jpg"
+          date=""
+    />
+    <book title="A Pattern Language"
+          author="Christopher Alexander"
+          img="pattern.jpg"
+          date=""
+    />
     <!-- 
         dignify the partiality of:
           Understanding Computers and Cognition
@@ -69,6 +79,12 @@
 
     <!-- Read -->
 
+    <book title="Designs for the Pluriverse"
+          author="Arturo Escobar"
+          img="pluriverse.jpg"
+          date="2025-10-27"
+          tags="partial"
+    />
     <book title="Didion and Babitz"
           author="Lili Anolik"
           img="didionandbabitz.jpg"
@@ -79,6 +95,12 @@
           author="Becky Chambers"
           img="apftwb.jpg"
           date="2025-10-01"
+    />
+    <book title="Understanding Computers and Cognition"
+          author="Terry Winograd and Fernando Flores"
+          img="winograd-understanding.jpg"
+          date="2025-09-22"
+          tags="partial"
     />
     <book title="The Call of the Wild"
           author="Jack London"

@@ -53,9 +53,6 @@
              :template garden-no-dark.sxml
              :styles (css/default.css css/article.css css/garden.css
                       css/background.css))
-            (:path garden/aphorisms/index.html
-             :template garden.sxml
-             :styles (css/default.css css/garden.css css/wide.css))
             (:path garden/links.html
              :preprocessed #t
              :template garden.sxml
@@ -75,6 +72,10 @@
              :template default.sxml
              :styles (css/default.css))
             (:path lab/changes/hexagram/index.html
+             :template default.sxml
+             :styles (css/default.css css/article.css))
+            (:path ,(custom md 'lab/changes/about.md)
+             :preprocessed #t
              :template default.sxml
              :styles (css/default.css css/article.css))
             )
@@ -114,6 +115,9 @@
               (:path lab/changes/hexagram
                :template hexagram.sxml
                :styles (css/default.css css/article.css css/hexagram.css))
+              (:path garden/aphorisms
+               :template garden.sxml
+               :styles (css/default.css css/garden.css css/wide.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf

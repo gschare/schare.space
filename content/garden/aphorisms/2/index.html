@@ -1,0 +1,252 @@
+<!-- provenance: html garden/aphorisms/2/index.html -->
+<title>Wisdoms</title>
+<!-- For me -->
+<style>
+/* cards */
+.cards {
+    display: grid;
+    /* fr = fractional unit */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    /*grid-auto-rows: auto;*/
+    grid-gap: 1rem;
+}
+@media screen and (min-width: 400px) and (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cards {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .card {
+        max-height: 50vh;
+    }
+}
+
+.card {
+    /*border: 2px solid var(--bg-light-secondary);*/
+    border-radius: 7px; /* 5px img + 2px */
+    /*object-fit: cover;
+    width: 100%;
+    height: auto; /* we'll cut off top and bottom if need be */
+    /*display: grid;*/
+    /*grid-template-rows: max-content 200px 1fr;*/
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    max-height: 75vh;
+}
+
+.card .card-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+
+.card .card-text {
+    font-family: "Lora", serif;
+    font-size: 18pt;
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 400px) {
+    .card .card-text {
+        font-size: 18pt;
+    }
+}
+
+.hovercard {
+    position: relative;
+}
+
+.hovercard .card-text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.72);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s, visibility .2s;
+}
+
+.hovercard:hover .card-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* end cards */
+</style>
+
+<h1>Wisdoms</h1>
+<p>Hover/tap the images</p>
+<p>Previous: <a href="../">Aphorisms</a></p>
+<!-- next: epigrams? sayings? precepts? axioms? maxims? pearls? koans? proverbs? mantras? expressions? adages? formulae? meditations? apothegms? dictums? sentences? decrees? edicts? truisms? -->
+
+<div class="cards">
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/courtyard.jpg"/>
+        <div class="card-text">
+            <p>That <q>I am here now</q> is a tautology does not detract from its truth or its wisdom.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/stadium.png"/>
+        <div class="card-text">
+            <p>Focus is a muscle. The body obeys.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/tumnus.jpg"/>
+        <div class="card-text">
+            <p>At the time of solstice, do not travel through the provinces.
+            </p>
+            <!-- ill-advised winter journey out of necessity is very dramatically compelling -->
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/gehry.jpg"/>
+        <div class="card-text">
+            <p>Real-time collaboration hits like crack.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/ramen.jpg"/>
+        <div class="card-text">
+            <p>Communion and daily bread are not Christian rituals.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/desk.jpg"/>
+        <div class="card-text">
+            <p>If it hurts... don't do it!
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/carmel.jpg"/>
+        <div class="card-text">
+            <p>Nostalgia is like envy: comparison is an invitation to tend your own garden.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/lamp.png"/>
+        <div class="card-text">
+            <p>It helps to have a direction.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/intervale.jpg"/>
+        <div class="card-text">
+            <p>A thousand miles an hour in a thousand directions.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/cadillac.jpg"/>
+        <div class="card-text">
+            <p>It seems as if chance were at work.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/smeagol.jpg"/>
+        <div class="card-text">
+            <p>
+            Ged said: The one power that is real and worth the having is the power, not to take, but to accept.
+            </p>
+            <!--
+              An alternative:
+                That selfhood which is our torment, and our treasure, and our
+                humanity, does not endure. It changes; it is gone, a wave on the
+                sea. Would you have the sea grow still and the tides cease, to save
+                one wave, to save yourself?
+              But I find this quote unconvincing. "Who allows? Who forbids?"
+            -->
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/lincoln.jpg"/>
+        <div class="card-text">
+            <p>Ogion the Silent said: To hear, one must be silent.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/fairy.jpg"/>
+        <div class="card-text">
+            <p>Pain is inevitable. Suffering is optional.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/isabella.jpg"/>
+        <div class="card-text">
+            <p>History happens behind the backs of its participants.
+            </p>
+        </div>
+    </div>
+    
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/auburn.jpg"/>
+        <div class="card-text">
+            <p>Success is doing what you must.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/charles.jpg"/>
+        <div class="card-text">
+            <p>Take the lively air, and, lovely, learn by going where I have to go.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/simi.jpg"/>
+        <div class="card-text">
+            <p>The mystery of life is not a problem to solve but a reality to experience.
+            </p>
+        </div>
+    </div>
+
+    <div class="card hovercard">
+        <img loading="lazy" class="card-img" src="/assets/img/garden/aphorisms/2/nordic.jpg"/>
+        <div class="card-text">
+            <p>The wind rises! We must try to live!
+            </p>
+        </div>
+    </div>
+
+</div> <!-- cards -->
