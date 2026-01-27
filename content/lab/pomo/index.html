@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<title>Po(st)mo(dernism)doro</title>
+<style>
+body.pomo {
+    background-color: #1c282f;
+}
+
+body.pause {
+    background-color: #2c2d2e;
+}
+
+body.pomo, body.pause {
+    color: white;
+}
+
+body.done {
+    background-color: #ffcffc;
+}
+
+.col {
+    padding-right: 30px;
+}
+
+.app {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*gap: 1.25rem;*/
+    font-family: system-ui, sans-serif;
+    margin: 0;
+}
+
+#timer {
+    font-size: 3rem;
+    font-variant-numeric: tabular-nums;
+    margin-top: 1.25rem;
+}
+
+.modes {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.controls {
+    display: flex;
+    gap: 0.75rem;
+}
+
+button {
+    background: none;
+    border: 1px solid #555;
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+body.pomo button, body.pause button {
+    border-color: #ccc;
+    color: white;
+}
+
+button.active {
+    background: #222;
+    color: white;
+    border-color: #222;
+}
+
+.controls button {
+    font-size: 3rem;
+    border: none;
+}
+
+.controls button#reset {
+    transform: translateY(-10%); /* to match vertically with play/pause button */
+}
+
+body.pomo button.active, body.pause button.active {
+    background: white;
+    color: #222;
+    border-color: white;
+}
+
+.progress {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #222;
+    transition: background 0.2s ease;
+}
+
+.dot.active {
+    background: #fffad5; /* a little brighter & paler in day */
+    box-shadow: 0 0 4px rgba(255,247,176,1); /* smaller but more intense glow in day */
+}
+
+body.pomo .dot.active, body.pause .dot.active {
+    background: #fff178; /* a little warmer at night */
+    box-shadow: 0 0 10px rgba(255,247,176,0.3); /* larger but less intense glow at night */
+}
+
+header {
+    display: none;
+}
+</style>
+
+<div class="app">
+    <div class="modes">
+        <button data-mode="focus">Focus</button>
+        <button data-mode="shortBreak">Short Break</button>
+        <button data-mode="longBreak">Long Break</button>
+    </div>
+    <div id="timer">25:00</div>
+    <div class="controls">
+        <button id="playpause" onclick="toggle()">&#x23F5;</button>
+        <button id="reset" onclick="reset()">&#8634;</button>
+    </div>
+    <div class="progress">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</div>
+
+<script>
+    const DURATIONS = { focus: 25*60, shortBreak: 5*60, longBreak: 20*60 };
+    let mode = 'focus'; // 'focus', 'shortBreak', 'longBreak'
+    let seconds = DURATIONS.focus;
+    let interval = null;
+    let pomodoroCount = 0;
+
+    function saveState() {
+        localStorage.setItem("pomodoroState", JSON.stringify({
+            mode,
+            seconds,
+            pomodoroCount
+            //running
+        }));
+    }
+
+    function loadState() {
+        const saved = localStorage.getItem("pomodoroState");
+        if (!saved) return;
+        const state = JSON.parse(saved);
+        mode = state.mode;
+        seconds = state.seconds;
+        pomodoroCount = state.pomodoroCount;
+        //running = state.running;
+    }
+
+    function updateDisplay() {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        document.getElementById("timer").textContent =
+          String(mins).padStart(2, "0") + ":" +
+          String(secs).padStart(2, "0");
+        document.querySelectorAll(".modes button").forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.mode === mode);
+        });
+    }
+
+    function stop() {
+        clearInterval(interval);
+        interval = null;
+        document.getElementById('playpause').textContent = '\u23F5';
+    }
+
+    function toggle() {
+        if (interval) {
+            document.body.classList.remove('done');
+            document.body.classList.add('pomo');
+            document.body.classList.add('pause');
+            stop();
+        } else {
+            interval = setInterval(() => {
+                seconds--;
+                if (seconds <= 0) {
+                    finishPhase();
+                }
+                updateDisplay();
+            }, 1000);
+
+            document.getElementById('playpause').textContent = '\u23F8';
+            document.body.classList.remove('done');
+            document.body.classList.remove('pause');
+            document.body.classList.add('pomo');
+        }
+        saveState();
+    }
+
+    function finishPhase() {
+        stop();
+        document.body.classList.remove('pomo');
+        document.body.classList.remove('pause');
+        document.body.classList.add('done');
+        if (mode === "focus") {
+            pomodoroCount++;
+            updateProgress();
+            mode = (pomodoroCount % 4 === 0) ? "longBreak" : "shortBreak";
+        } else {
+            mode = "focus";
+        }
+        seconds = DURATIONS[mode];
+        saveState();
+    }
+
+    function updateProgress() {
+        const dots = document.querySelectorAll(".dot");
+        let lit = pomodoroCount % 4;
+        if (mode === 'longBreak') lit = 4; // special case to show all 4 lit *while in the break* (as a little visually satisfying reward) but still reset when we go back to focus mode
+       
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i < lit);
+        });
+     }
+
+    function reset() {
+        clearInterval(interval);
+        interval = null;
+        document.getElementById('playpause').textContent = '\u23F5';
+        document.body.classList.remove('pomo');
+        document.body.classList.remove('pause');
+        document.body.classList.add('done');
+        seconds = DURATIONS[mode];
+        updateDisplay();
+        saveState();
+    }
+
+    document.querySelectorAll(".modes button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            console.log('btn');
+            stop();
+            document.body.classList.remove('pomo');
+            document.body.classList.remove('pause');
+            document.body.classList.add('done');
+            mode = btn.dataset.mode;
+            if (mode === 'longBreak') pomodoroCount = 0;
+            seconds = DURATIONS[mode];
+            saveState();
+            updateDisplay();
+            updateProgress();
+        });
+    });
+
+    document.addEventListener("keydown", e => {
+        if (e.code === "Space") {
+            e.preventDefault();
+            toggle();
+        }
+    });
+
+    loadState();
+    updateProgress();
+    updateDisplay();
+    document.body.classList.add('done');
+
+  </script>
+</body>
+</html>
