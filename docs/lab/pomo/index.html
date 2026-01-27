@@ -7,6 +7,10 @@
 <body>
 <title>Po(st)mo(dernism)doro</title>
 <style>
+* {
+    transition: background 0.2s ease;
+}
+
 body.pomo {
     background-color: #1c282f;
 }
@@ -112,6 +116,24 @@ body.pomo .dot.active, body.pause .dot.active {
     box-shadow: 0 0 10px rgba(255,247,176,0.3); /* larger but less intense glow at night */
 }
 
+.progress.reset-armed .dot {
+    background: #bbb;
+}
+
+.progress.reset-armed .dot.active {
+    background: #ff4a3a;
+    box-shadow: 0 0 4px rgba(255,75,75,0.7);
+}
+
+body.pomo .progress.reset-armed .dot, body.pause .progress.reset-armed .dot {
+    background: #888;
+}
+
+body.pomo .progress.reset-armed .dot.active, body.pause .progress.reset-armed .dot.active {
+    background: #fb4242;
+    box-shadow: 0 0 6px rgba(251,66,66,0.35);
+}
+
 header {
     display: none;
 }
@@ -126,7 +148,7 @@ header {
     <div id="timer">25:00</div>
     <div class="controls">
         <button id="playpause" onclick="toggle()">&#x23F5;</button>
-        <button id="reset" onclick="reset()">&#8634;</button>
+        <button id="reset">&#8634;</button>
     </div>
     <div class="progress">
         <span class="dot"></span>
@@ -142,6 +164,8 @@ header {
     let seconds = DURATIONS.focus;
     let interval = null;
     let pomodoroCount = 0;
+    let shift = false;
+    let hadLongBreak = false;
 
     function saveState() {
         localStorage.setItem("pomodoroState", JSON.stringify({
@@ -207,8 +231,10 @@ header {
         document.body.classList.remove('pomo');
         document.body.classList.remove('pause');
         document.body.classList.add('done');
+        if (mode === "longBreak") hadLongBreak = true;
         if (mode === "focus") {
             pomodoroCount++;
+            hadLongBreak = false;
             updateProgress();
             mode = (pomodoroCount % 4 === 0) ? "longBreak" : "shortBreak";
         } else {
@@ -221,7 +247,19 @@ header {
     function updateProgress() {
         const dots = document.querySelectorAll(".dot");
         let lit = pomodoroCount % 4;
-        if (mode === 'longBreak') lit = 4; // special case to show all 4 lit *while in the break* (as a little visually satisfying reward) but still reset when we go back to focus mode
+        if (pomodoroCount === 4 && !hadLongBreak) lit = 4;
+        /* Worth explaining how this works.
+         * You're allowed to change modes whenever you want, but the lights at
+         * the bottom are basically encouragement to actually follow the method
+         * and work up to the long break. The lights track how close you are to
+         * a long break, remind you to take it if you see all four lit up, and
+         * if you're in a long break they will stay on while in the break as a
+         * little visually satisfying reward to show you actually worked up to
+         * it. Only once you actually take the long break will the lights
+         * disappear, or if you finish another focus block. You can reset your
+         * progress by shift-clicking the reset button. Of course you can also
+         * just update things manually in the console.
+         */
        
         dots.forEach((dot, i) => {
             dot.classList.toggle("active", i < lit);
@@ -248,7 +286,6 @@ header {
             document.body.classList.remove('pause');
             document.body.classList.add('done');
             mode = btn.dataset.mode;
-            if (mode === 'longBreak') pomodoroCount = 0;
             seconds = DURATIONS[mode];
             saveState();
             updateDisplay();
@@ -260,6 +297,44 @@ header {
         if (e.code === "Space") {
             e.preventDefault();
             toggle();
+        }
+    });
+
+    const resetButton = document.getElementById("reset");
+    const progress = document.querySelector(".progress");
+
+    document.addEventListener("keydown", e => {
+        if (e.key === "Shift") {
+            shift = true;
+            if (resetButton.matches(":hover")) {
+                progress.classList.add("reset-armed");
+            }
+        }
+    });
+
+    document.addEventListener("keyup", e => {
+        if (e.key === "Shift") {
+            shift = false;
+            progress.classList.remove("reset-armed");
+        }
+    });
+    
+    resetButton.addEventListener("mouseenter", () => {
+        if (shift) progress.classList.add("reset-armed");
+    });
+    
+    resetButton.addEventListener("mouseleave", () => {
+        progress.classList.remove("reset-armed");
+    });
+
+    resetButton.addEventListener("click", (e) => {
+        if (e.shiftKey) {
+            pomodoroCount = Math.floor(pomodoroCount / 4) * 4;
+            saveState();
+            updateProgress();
+            progress.classList.remove("reset-armed");
+        } else {
+            reset();
         }
     });
 
