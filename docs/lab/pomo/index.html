@@ -235,13 +235,13 @@ header {
         if (mode === "focus") {
             pomodoroCount++;
             hadLongBreak = false;
-            updateProgress();
             mode = (pomodoroCount % 4 === 0) ? "longBreak" : "shortBreak";
         } else {
             mode = "focus";
         }
         seconds = DURATIONS[mode];
         saveState();
+        updateProgress();
     }
 
     function updateProgress() {
