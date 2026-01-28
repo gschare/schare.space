@@ -281,6 +281,7 @@ header {
     let pomodoroCount = 0;
     let shift = false;
     let intentions = [];
+    let startTime = Date.now();
 
     function saveState() {
         localStorage.setItem("pomodoroState", JSON.stringify({
@@ -329,6 +330,11 @@ header {
         } else {
             interval = setInterval(() => {
                 seconds[mode]--;
+                if (startTime + (seconds[mode] * 1000) < Date.now()) {
+                    seconds[mode] -= Date.now() - startTime - (seconds[mode] * 1000)
+                    console.log('jumped ahead from', new Date(startTime).toString(), "to", new Date().toString());
+                    startTime = Date.now();
+                }
                 if (seconds[mode] <= 0) {
                     finishPhase();
                 }
@@ -357,6 +363,7 @@ header {
             document.getElementById('intentionInput').classList.remove('hide');
         }
         seconds[mode] = DURATIONS[mode];
+        startTime = Date.now();
         saveState();
         updateProgress();
     }
@@ -458,6 +465,7 @@ header {
             } else {
                 document.getElementById('intentionList').classList.remove('focus');
             }
+            startTime = Date.now();
             saveState();
             updateDisplay();
             updateProgress();
