@@ -330,9 +330,22 @@ header {
         } else {
             interval = setInterval(() => {
                 seconds[mode]--;
-                if (startTime + (seconds[mode] * 1000) < Date.now()) {
-                    seconds[mode] -= Date.now() - startTime - (seconds[mode] * 1000)
-                    console.log('jumped ahead from', new Date(startTime).toString(), "to", new Date().toString());
+                // Chrome will fuck with the interval when the tab is not
+                // focused, so we need an efficient way to catch up the time.
+                // The +1 prevents this from happening too often, since it
+                // doesn't matter if we're a second behind.
+                // This should prevent any drift as it will correct pretty immediately.
+                if (startTime + ((seconds[mode] + 1) * 1000) < Date.now()) {
+                    //const mins = Math.floor(seconds[mode] / 60);
+                    //const secs = seconds[mode] % 60;
+                    //const disp = String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+                    //console.log('starttime:', new Date(startTime).toString());
+                    //console.log('seconds left:', disp);
+                    //console.log('starttime + seconds:', new Date(startTime + seconds[mode]*1000).toString());
+                    //console.log('now:', new Date(Date.now()).toString());
+                    //console.log('delta in ms:', Date.now() - startTime - (seconds[mode] * 1000));
+                    //console.log('delta in  s:', Math.floor((Date.now() - startTime - (seconds[mode] * 1000)) / 1000));
+                    seconds[mode] -= Math.floor((Date.now() - startTime - (seconds[mode] * 1000)) / 1000);
                     startTime = Date.now();
                 }
                 if (seconds[mode] <= 0) {
