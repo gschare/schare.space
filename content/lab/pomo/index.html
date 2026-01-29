@@ -336,6 +336,7 @@ header {
                     startTime = Date.now();
                 }
                 if (seconds[mode] <= 0) {
+                    seconds[mode] = 0;
                     finishPhase();
                 }
                 updateDisplay();
