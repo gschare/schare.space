@@ -479,6 +479,7 @@ header {
             } else {
                 document.getElementById('intentionList').classList.remove('focus');
             }
+            if (seconds[mode] === 0) seconds[mode] = DURATIONS[mode];
             startTime = Date.now();
             saveState();
             updateDisplay();
