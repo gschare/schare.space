@@ -58,7 +58,7 @@ body.done {
 
 .modes {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .controls {
@@ -80,6 +80,38 @@ body.pomo button {
     color: var(--dark);
 }
 
+.modes button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    transition: opacity 0.3s, filter 0.3s;
+}
+
+.modes button img {
+    width: auto;
+    height: auto;
+    min-height: 8rem;
+    max-height: 15vh;
+    object-fit: contain;
+    display: block;
+}
+
+.modes button:not(.active) {
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+
+.modes button:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.modes:has(button:hover) button:not(:hover) {
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+
+/*
 button.active {
     background: var(--light);
     color: var(--dark);
@@ -91,6 +123,7 @@ body.pomo button.active {
     color: var(--light);
     border-color: var(--dark);
 }
+*/
 
 .controls button {
     font-size: 3rem;
@@ -250,9 +283,9 @@ header {
 
 <div class="app">
     <div class="modes">
-        <button data-mode="focus">Focus</button>
-        <button data-mode="shortBreak">Short Break</button>
-        <button data-mode="longBreak">Long Break</button>
+        <button data-mode="focus"><img loading="lazy" src="/assets/img/lab/pomo/focus.png"></button>
+        <button data-mode="shortBreak"><img loading="lazy" src="/assets/img/lab/pomo/break.png"></button>
+        <button data-mode="longBreak"><img loading="lazy" src="/assets/img/lab/pomo/rest.png"></button>
     </div>
     <div id="timer">25:00</div>
     <div class="controls">
