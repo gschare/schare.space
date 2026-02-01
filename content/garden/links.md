@@ -5,6 +5,8 @@
 
 <!-- newer ones nearer the top -->
 
+* [Self-portrait of Michelangelo painting the ceiling of the Sistine Chapel](https://upload.wikimedia.org/wikipedia/commons/6/67/Michelangelo_painting_God.JPG)
+* [hdl.loc.gov/loc.wdl/wdl.10597](https://hdl.loc.gov/loc.wdl/wdl.10597) [Sangallo's Sienese Sketchbook]
 * [www--arc.com](https://www--arc.com/) [web design as architecture]
 * [solar.lowtechmagazine.com](https://solar.lowtechmagazine.com/)
 * [100r.co](https://100r.co) [hundred rabbits]
