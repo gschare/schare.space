@@ -68,6 +68,9 @@
             ;(:path ,(index-tidings)
             ; :template blog.sxml
             ; :styles (css/default.css css/tidings.css))
+            (:path ,(custom md 'lab/index.md)
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css))
             (:path lab/box.html
              :template default.sxml
              :styles (css/default.css))
