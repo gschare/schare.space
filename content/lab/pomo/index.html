@@ -422,7 +422,7 @@ header {
     function updateProgress() {
         const dots = document.querySelectorAll(".dot");
         let lit = pomodoroCount % 4;
-        if (pomodoroCount === 4 && seconds.longBreak > 0) lit = 4;
+        if (pomodoroCount % 4 === 0 && pomodoroCount > 0 && seconds.longBreak > 0) lit = 4;
         /* Worth explaining how this works.
          * You're allowed to change modes whenever you want, but the lights at
          * the bottom are basically encouragement to actually follow the method
