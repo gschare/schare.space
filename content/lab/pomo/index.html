@@ -365,6 +365,7 @@ header {
             document.body.classList.add('pause');
             stop();
         } else {
+            startTime = Date.now(); // unpause => don't try to catch up
             interval = setInterval(() => {
                 seconds[mode]--;
                 // Chrome will fuck with the interval when the tab is not
