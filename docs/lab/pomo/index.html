@@ -12,6 +12,9 @@
     --light-secondary: #555;
     --dark: white;
     --dark-secondary: #ccc;
+    --bg-done: #ffcffc;
+    --bg-pomo: #1c282f;
+    --bg-pause: #2c2d2e;
 }
 
 body {
@@ -23,16 +26,16 @@ body {
 }
 
 body.pomo {
-    background-color: #1c282f;
+    background-color: var(--bg-pomo);
     color: var(--dark);
 }
 
 body.pomo.pause {
-    background-color: #2c2d2e;
+    background-color: var(--bg-pause);
 }
 
 body.done {
-    background-color: #ffcffc;
+    background-color: var(--bg-done);
 }
 
 .col {
@@ -188,6 +191,32 @@ body.pomo .progress.reset-armed .dot.active {
     gap: 0.5rem;
     height: 15lh;
     overflow-y: auto; /* scrollable */
+    /* Below is what remains of an attempt to get a nice fade scroll hint but
+       it doesn't work on dark mode for some reason so I scrapped it. With dark
+    mode you would want to make the fade color white instead of black, and
+    screen instead of multiply, or just use color-mix for light and dark, but
+    oddly on dark mode it appears as a thin border not a gradient fade. so I gave up. */
+    /*--shadow-size: 15px;
+    background:
+      linear-gradient(var(--bg-done), var(--bg-done)) top / 100% var(--shadow-size) no-repeat,
+      linear-gradient(var(--bg-done), var(--bg-done)) bottom / 100% var(--shadow-size) no-repeat,
+
+      radial-gradient(
+        farthest-side at 50% 0,
+        rgba(0,0,0,0.15),
+        transparent
+      ) center top / 100% var(--shadow-size) no-repeat,
+
+      radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(0,0,0,0.15),
+        transparent
+      ) center bottom / 100% var(--shadow-size) no-repeat,
+
+      var(--bg-done);
+
+    background-attachment: local, local, scroll, scroll, scroll;
+    background-blend-mode: normal, normal, multiply, multiply, normal;*/
 }
 
 .intentions input {
@@ -391,6 +420,7 @@ header {
                     finishPhase();
                 }
                 updateDisplay();
+                updateProgress();
             }, 1000);
 
             document.getElementById('playpause').textContent = '\u23F8';
@@ -423,7 +453,7 @@ header {
     function updateProgress() {
         const dots = document.querySelectorAll(".dot");
         let lit = pomodoroCount % 4;
-        if (pomodoroCount % 4 === 0 && pomodoroCount > 0 && seconds.longBreak > 0) lit = 4;
+        if (pomodoroCount % 4 === 0 && pomodoroCount > 0 && seconds.longBreak > 0 && (mode === 'longBreak' || seconds[mode] === DURATIONS[mode])) lit = 4;
         /* Worth explaining how this works.
          * You're allowed to change modes whenever you want, but the lights at
          * the bottom are basically encouragement to actually follow the method
@@ -453,6 +483,7 @@ header {
         document.body.classList.add('done');
         seconds[mode] = DURATIONS[mode];
         updateDisplay();
+        updateProgress();
         saveState();
     }
 
