@@ -147,3 +147,19 @@ li:hover .controls {
 .flex {
     justify-content: center;
 }
+
+button#previous, button#next {
+    background: none;
+    color: var(--fg-dark);
+    border: none;
+    cursor: pointer;
+    display: inline;
+}
+
+#saying {
+    min-width: 6rem;
+    max-width: 20rem;
+    height: 1lh;
+    max-height: 1lh;
+    display: inline-block;
+}

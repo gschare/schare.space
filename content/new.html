@@ -250,7 +250,70 @@ document.querySelector('.add-list').addEventListener('click', createList);
                 });
             })();
             </script>
-            <p>Parallel play with the wind.</p>
+            <div id="attention">
+                <button id="previous">← </button>
+                    <p id="saying" contenteditable="true"></p>
+                <button id="next"> →</button>
+            </div>
+            <script>
+            (function() {
+                var sayingKey = 'sayings';
+                var saying = document.getElementById('saying');
+                var cache = localStorage.getItem(sayingKey);
+                var sayings = [];
+                var idx = 0;
+
+                if (cache) {
+                    const data = JSON.parse(cache);
+                    idx = data.idx;
+                    sayings = data.sayings;
+                } else {
+                    sayings.push("Parallel play with the wind.");
+                    sayings.push("");
+                }
+
+                function updateDisplay() {
+                    saying.textContent = sayings[idx];
+                }
+
+                var next = document.getElementById('next');
+                next.addEventListener('click', () => {
+                    idx += 1;
+                    if (idx === sayings.length) idx = 0;
+                    updateDisplay();
+                    localStorage.setItem(sayingKey, JSON.stringify({idx: idx, sayings: sayings}));
+                });
+
+                var prev = document.getElementById('previous');
+                prev.addEventListener('click', () => {
+                    if (idx === 0) idx = sayings.length;
+                    idx -= 1;
+                    updateDisplay();
+                    localStorage.setItem(sayingKey, JSON.stringify({idx: idx, sayings: sayings}));
+                });
+
+                function save() {
+                    var oldValue = sayings[idx];
+                    var newValue = saying.textContent;
+                    if (newValue != oldValue) {
+                        sayings[idx] = newValue;
+                        if (newValue === "") sayings.splice(idx, 1);
+                        if (oldValue === "") sayings.push("");
+                        localStorage.setItem(sayingKey, JSON.stringify({idx: idx, sayings: sayings}));
+                    }
+                }
+
+                saying.addEventListener('keydown', (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        save();
+                        e.target.blur();
+                    }
+                });
+
+                updateDisplay();
+            })();
+            </script>
         </div>
     </section>
 </div>
