@@ -252,12 +252,39 @@ function setup() {
     });
 
     const coinBtns = document.querySelectorAll('button.coin');
+    const FLIP_DURATION_MS = 700;
     for (let coinBtn of coinBtns) {
         coinBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const s = e.target.parentElement.querySelector('select');
-            s.selectedIndex = Math.floor(Math.random() * (s.options.length - 1) + 1);
-            s.dispatchEvent(new Event('change'));
+            if (coinBtn.classList.contains('flipping')) return;
+            const isMainCoin = coinBtn.classList.contains('coin-toss-main');
+            const form = coinBtn.closest('form');
+            let s;
+            if (isMainCoin) {
+                const selects = form.querySelectorAll('.toss select');
+                // First option is placeholder; selectedIndex === 0 means "not yet set"
+                s = Array.from(selects).find((el) => el.selectedIndex === 0);
+                if (!s) return; // all throws already set
+            } else {
+                s = coinBtn.closest('.toss').querySelector('select');
+            }
+            coinBtn.classList.add('flipping');
+            const applyResult = () => {
+                coinBtn.classList.remove('flipping');
+                s.selectedIndex = Math.floor(Math.random() * (s.options.length - 1) + 1);
+                s.dispatchEvent(new Event('change'));
+            };
+            const onAnimationEnd = () => {
+                coinBtn.removeEventListener('animationend', onAnimationEnd);
+                applyResult();
+            };
+            coinBtn.addEventListener('animationend', onAnimationEnd);
+            setTimeout(() => {
+                if (coinBtn.classList.contains('flipping')) {
+                    coinBtn.removeEventListener('animationend', onAnimationEnd);
+                    applyResult();
+                }
+            }, FLIP_DURATION_MS + 50);
         });
     }
 
@@ -265,11 +292,11 @@ function setup() {
     for (let btn of flipAllBtns) {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const ss = e.target.form.querySelectorAll('select');
-            for (let s of ss) {
-                s.selectedIndex = Math.floor(Math.random() * (s.options.length - 1) + 1);
-                s.dispatchEvent(new Event('change'));
-            }
+            const form = e.target.form;
+            const coinBtns = form.querySelectorAll('.toss button.coin');
+            coinBtns.forEach((coinBtn, i) => {
+                setTimeout(() => coinBtn.click(), i * (FLIP_DURATION_MS + 80));
+            });
         });
     }
 

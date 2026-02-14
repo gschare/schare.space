@@ -49,7 +49,11 @@
 <main><h1><i>I Ching</i>: Book of Changes</h1>
 <title>I Ching: Book of Changes</title>
 
-<p> <a href="hexagram/">Browse hexagrams</a> </p>
+<p>
+<a href="hexagram/">Browse hexagrams</a> 
+<br>
+<a href="about.html">What is this?</a>
+</p>
 
 <fieldset>
 <legend for="method">Method</legend>
@@ -104,12 +108,61 @@ button, select, input {
     font-size: clamp(1.1rem, 1vw, 16px);
 }
 button { margin-bottom: 2px; }
+
+/* Coin flip animation */
+.coin-flip-wrapper {
+    display: inline-block;
+    perspective: 280px;
+}
+.coin-flip-wrapper button.coin {
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+}
+.coin-flip-wrapper button.coin.flipping {
+    pointer-events: none;
+    animation: coin-flip 0.7s ease-out forwards;
+}
+@keyframes coin-flip {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(1800deg); }
+}
+
+/* Big main coin above Throw fieldset */
+.throw-section {
+    margin-bottom: 0.5rem;
+}
+.coin-flip-wrapper.coin-toss-main {
+    perspective: 320px;
+    display: block;
+}
+.coin-flip-wrapper.coin-toss-main button.coin {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0.25rem;
+    cursor: pointer;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.coin-flip-wrapper.coin-toss-main button.coin:focus {
+    outline: none;
+}
+.coin-flip-wrapper.coin-toss-main button.coin:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
 </style>
 
 <form class="procedure" name="three">
+    <div class="throw-section">
+        <span class="coin-flip-wrapper coin-toss-main"><button type="button" class="coin coin-toss-main" aria-label="Flip coin"></button></span>
+    </div>
     <fieldset>
         <legend>Throw</legend>
-        <button class="flip-all"></button>
+        <button type="button" class="flip-all"></button>
 
         <div class="toss">
             <select name="first-toss">
@@ -117,7 +170,7 @@ button { margin-bottom: 2px; }
                 <option value="heads">Heads</option>
                 <option value="tails">Tails</option>
             </select>
-            <button class="coin"></button>
+            <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
         </div>
 
         <div class="toss">
@@ -126,7 +179,7 @@ button { margin-bottom: 2px; }
                 <option value="heads">Heads</option>
                 <option value="tails">Tails</option>
             </select>
-            <button class="coin"></button>
+            <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
         </div>
 
         <div class="toss">
@@ -135,7 +188,7 @@ button { margin-bottom: 2px; }
                 <option value="heads">Heads</option>
                 <option value="tails">Tails</option>
             </select>
-            <button class="coin"></button>
+            <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
         </div>
 
         <input type="submit" name="submit" value="Submit" disabled="disabled">
@@ -143,9 +196,12 @@ button { margin-bottom: 2px; }
 </fieldset></form>
 
 <form class="procedure selected" name="three-yarrow">
+    <div class="throw-section">
+        <span class="coin-flip-wrapper coin-toss-main"><button type="button" class="coin coin-toss-main" aria-label="Flip coin"></button></span>
+    </div>
     <fieldset>
     <legend>Throw</legend>
-    <button class="flip-all"></button>
+    <button type="button" class="flip-all"></button>
 
     <div class="toss">
         <select name="first-toss">
@@ -153,7 +209,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <div class="toss">
@@ -162,7 +218,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <div class="toss">
@@ -171,7 +227,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <input type="submit" name="submit" value="Submit" disabled="disabled">
@@ -179,9 +235,12 @@ button { margin-bottom: 2px; }
 </form>
 
 <form class="procedure" name="two">
+    <div class="throw-section">
+        <span class="coin-flip-wrapper coin-toss-main"><button type="button" class="coin coin-toss-main" aria-label="Flip coin"></button></span>
+    </div>
     <fieldset>
     <legend>Throw</legend>
-    <button class="flip-all"></button>
+    <button type="button" class="flip-all"></button>
 
     <div class="toss">
         <select name="first-toss">
@@ -189,7 +248,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <div class="toss">
@@ -198,7 +257,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <div class="toss">
@@ -207,7 +266,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <div class="toss">
@@ -216,7 +275,7 @@ button { margin-bottom: 2px; }
             <option value="heads">Heads</option>
             <option value="tails">Tails</option>
         </select>
-        <button class="coin"></button>
+        <span class="coin-flip-wrapper"><button type="button" class="coin"></button></span>
     </div>
 
     <input type="submit" name="submit" value="Submit" disabled="disabled">

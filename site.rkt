@@ -79,7 +79,7 @@
              :styles (css/default.css css/article.css))
             (:path ,(custom md 'lab/changes/about.md)
              :preprocessed #t
-             :template default.sxml
+             :template article.sxml
              :styles (css/default.css css/article.css))
             )
     :folders (
