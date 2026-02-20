@@ -82,7 +82,7 @@
              :preprocessed #t
              :template article.sxml
              :styles (css/default.css css/article.css))
-            (:path ,(custom redirect 'garden/shanawdithit.html "https://docs.google.com/presentation/d/1RjYAYZnmckHroYHq-ftTMQjY7AvsoXlN1EJ8WpX-SJU/edit?usp=sharing")
+            (:path ,(custom redirect 'garden/shanawdithit.html "https://docs.google.com/presentation/d/1RjYAYZnmckHroYHq-ftTMQjY7AvsoXlN1EJ8WpX-SJU/edit?usp=sharing" #:title "Shanawdithit's maps and more")
              :preprocessed #t
              :template redirect.sxml)
             )
