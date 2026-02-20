@@ -8,6 +8,7 @@
 (require "src/md.rkt")
 (require "src/xml.rkt")
 (require "src/phlog.rkt")
+(require "src/redirect.rkt")
 
 (require racket/cmdline)
 
@@ -81,6 +82,9 @@
              :preprocessed #t
              :template article.sxml
              :styles (css/default.css css/article.css))
+            (:path ,(custom redirect 'garden/shanawdithit.html "https://docs.google.com/presentation/d/1RjYAYZnmckHroYHq-ftTMQjY7AvsoXlN1EJ8WpX-SJU/edit?usp=sharing")
+             :preprocessed #t
+             :template redirect.sxml)
             )
     :folders (
               (:path ,(custom phlog 'garden/phlog/index.xml)
