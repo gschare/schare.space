@@ -2,7 +2,8 @@
 :root {
   --bg-light: white !important;
 }
-h1, h2, p, ul, ol, span, table { max-width: 45rem; margin-left: auto; margin-right: auto; }
+h1, h2, p, ul, ol, span, table, hr { max-width: 45rem; margin-left: auto; margin-right: auto; }
+hr { margin-top: 2rem; margin-bottom: 2rem; }
 h1 { font-size: revert; }
 h2 { padding-right: 0; }
 img, figure img, p img { max-width: 60rem; margin-left: auto; margin-right: auto; display: block; }
@@ -11,6 +12,7 @@ table th { border-bottom: 1px solid black; }
 table th + th { border-left: 1px solid black; padding-left: 0.5rem; padding-right: 0.5rem; }
 table td + td { border-left: 1px solid black; }
 table, th, td { border-collapse: collapse; }
+figure { margin-top: 2rem; margin-bottom: 2rem; }
 </style>
 
 # Assignment 2 | 6.C85 Vis & Society
@@ -191,8 +193,6 @@ Communities act, so we cannot answer the first question directly. Instead we can
 look at which municipalities are "MBTA Communities" and get a sense of how Metro
 Boston would be impacted by the policy.
 
-![ []{} ](img/mbta_communities.png)
-
 MBTA Communities notably do not include Boston; the purpose of the designation
 is to encourage development in areas that are served by the MBTA but less dense
 and less well-connected than cities closer to the metropolitan center. The other
@@ -208,6 +208,8 @@ powerful representation. Consider this an "anti-visualization."
 |Milford|No|30,379|
 |Hudson|No|20,092|
 |Bolton|No|5,665|
+
+---
 
 As for the second question, these datasets have no very good proxy for place
 value or market potential value that we can use in identifying areas of high
@@ -227,14 +229,121 @@ to make some very tentative claims about which cities would benefit from
 transit-oriented development.
 
 Basically the hypothesis goes that areas mostly zoned for single-family housing
-only but which have a high number of existing transit connections are likely to
-benefit from transit-oriented development.
+only but which have a high number of existing transit connections (we focus on
+rail for now) are likely to benefit from transit-oriented development. We can
+plot each municipality as a point on a scatter plot to see if any clusters
+emerge.
 
+![ []{} ](img/explore_rail_stops_vs_single_family.png)
 
+Certainly some clustering is happening, but Boston is such an outlier that it is
+hard to tell anything. It's not an MBTA Community anyway, so we can try again
+without it.
 
-We can also look into how those variables correlate with income and race.
+![ []{} ](img/explore_rail_stops_vs_single_family_no_boston.png)
 
-TODO: 
+The very good candidates for transit-oriented development would appear in the
+top-right. We can see that Newton and Brookline are good candidates; this should
+not be surprising as they are cities neighboring Boston with high economic
+activity and existing transit connections, but lots of residential land zoned
+for single-family housing. It should be noted that the y-axis indicates land
+zoned for single-family housing *only*, not the percentage of land actually used
+by single-family housing, and it does not take into account proximity to rail
+stations, which is what the Communities Act focuses on. Conceivably every corner
+could be a good candidate for transit-oriented development:
+
+- Top-right: prime for upzoning to bring more people to existing significant rail routes
+- Top-left: prime for upzoning and new rail connections (provided reasonable
+  proximity to existing rail stations and real need for it---nuances that data on
+  economic relationship to other cities and job and population growth can help
+  illuminate)
+- Bottom-left: already upzoned and ready for new rail connections
+
+In classic Vis & Society fashion we should ask ourselves why there are no points
+in the bottom-right (except Boston). In theory those would be the municipalities already
+undergoing transit-oriented development. Have none succeeded? Removing the
+outliers Newton and Brookline, we can get a better picture.
+
+![ []{} ](img/explore_rail_vs_sf_no_boston_brookline_newton.png)
+
+Now things become pretty clear. The bottom-right *does* exist---it is the inner
+core cities of Boston, Cambridge, and Somerville. Boston suburbs with many rail
+stops, such as Newton, Brookline, Wellesley, and Waltham, are great candidates
+for immediate transit-oriented development. Other suburbs may need more rail
+connections before they are viable candidates, but transit investment may be
+justified if growth is predicted.
+
+Let us make sure this conclusion is justified by looking at the data from other perspectives.
+
+One way is to look at rail stops per capita, but since our population data is
+unreliable, we have to take this with a grain of salt. Still, for the sake of
+method, I show an attempt here.
+
+![ []{} ](img/explore_tod_disparity_rail_per_capita_vs_sf_no_boston.png)
+
+Now Dedham appears as the ideal candidate---except that its very high transit
+per capita might give us pause. The other data points remain consistent.
+
+Sticking with absolute number of transit connections, we still have more we can
+do. We can expand our filter from just rail stops to include all transit stops.
+
+![ []{} ](img/explore_transit_vs_single_family_small_multiples_no_boston_brookline_newton.png)
+
+The data points are basically consistent. Rail is a good proxy for all transit.
+This is not surprising given the map of MBTA stops and lines we saw at the beginning.
+
+We implied already that single-family zoning is not, on its own, a good proxy
+for density or transit-oriented development potential. There is no good proxy!
+But we can understand the situation better by looking at other variables, such
+as income and race demographics.
+
+![ []{} ](img/explore_tod_value_disparity_scatter_no_boston.png)
+
+Again, we exclude Boston. As in the other scatter plots, there is an argument to be made for each corner being a good candidate for transit-oriented development. Lower-income areas 
+
+We have redlining data, but it is unfortunately not terribly useful because it
+is limited to only a few areas.
+
+![ []{} ](img/redlining_stops.png)
+
+These zones can be visualized to show a significant correlation with the demographics,
+the real estate zones deemed more "risky" in the 1930s are today still the most
+diverse.
+
+![ []{} ](img/redlining_ethnicity_by_grade.png)
+
+Instead we can use the demographic data from the census to help watch out for
+how prioritizing transit-oriented development based on the other proxies might
+perpetuate systemic racism. Note that Somerville, Chelsea, Everett, and
+Burlington are excluded due to lack of demographic data.
+
+![ []{} ](img/explore_rail_stops_vs_race_no_boston.png)
+
+Newton and Brookline, our favorite candidates, are majority white. Malden and
+Revere are also good candidates for TOD. Their relatively lower incomes and
+transit connections might be due to historical racial discrimination and
+segregation.  
+
+Since we're essentially playing with the different variables one by one,
+this investigation would certainly benefit from interactive visualization. I'm
+excited to learn how to make them later in the class!
+
+Let us conclude by taking the (admittedly questionable) proxy for transit, make
+a measure of its correlation with income as a proxy for economic value, and map
+it by municipality, as one final way to understand whether our recommendations
+make sense.  As before, we do not exclude Boston but use a log scale on the
+number of rail stops to make the color scale more readable.
+
+![ []{} ](img/explore_tod_potential_choropleth_log_scale.png)
+
+And we can compare this against measuring by correlation with percentage of
+single-family only zoning, as a mediocre proxy for density. This essentially
+shifts the focus away from everywhere that is already dense, like Boston and
+Cambridge.
+
+![ []{} ](img/explore_tod_disparity_sf_choropleth_log_scale.png)
+
+---
 
 Given that one of my questions became intractable, I'll throw you one more fun
 piece of data investigation: how do the inner core cities (Boston, Cambridge,
@@ -254,26 +363,66 @@ Now with a good sense of the inner core cities, let us compare to the rest of Me
 
 ![ []{} ](img/explore_inner_core_aggregate.png)
 
-![ []{} ](img/inner_core_ethnicity.png)
+We might expect that the inner core, with all its young students, features
+smaller household sizes and more individual apartments, but this is not the
+case.
 
+![ []{} ](img/explore_inner_core_family_household_size.png)
 
+I think these are pretty interesting!
 
 ## Summary
+It is hard to make any strong conclusions from these visualizations. I think I
+succeeded only at using the data to confirm basic demographic intuitions, like
+that the suburbs are wealthier and whiter than the inner core cities, and that
+most of the municipalities in Metro Boston are not well-connected to the MBTA.
+
+To be honest, I'm not personally convinced that the distant suburbs to the north
+and west of Boston particularly need transit-oriented development. If these
+datasets included information about the economic activity of those areas and
+particularly their economic relationship to Boston and the other inner core
+cities, I might find arguments that sway me in one direction or the other. As it
+stands, however, I cannot quite see the value in spending lots of money on
+transit-oriented development in suburbs that have built their entire identity
+and infrastructure around cars. It's the nearer satellites of Boston, and Boston
+itself, that I think could benefit most from more mixed-use development and
+denser housing. This would go much further towards addressing the affordability
+crisis than trying to connect very distant suburbs to the transit system,
+especially if those suburbs don't want to be connected by rail in the first
+place.
 
 The data on transit-oriented development cannot address other concerns I have
 about the topic, such as the fact that the buildings erected are often 5-over-1s
 and supremely ugly. (I simply do not wish for the new face of dynamic
-transit-oriented American cities to look identical to Graduate Junction.)
+transit-oriented American cities to look identical to Graduate Junction.) I
+jest, but this points to a deeper concern in transit-oriented development: how
+to involve the communities being impacted in the planning process. I used to
+live on a small street near Central Square. On that street is a vacant lot that
+was recently marked for development into affordable housing. I'm excited about
+the project, except that the building is incredibly ugly and boring-looking. I
+looked into the history of the development and found that they had a handful of
+community meetings in which neighbors expressed dissatisfaction with the design;
+this was essentially ignored by the architects. The project's files suggested an
+incommensurate amount of effort and research went into designing a facade that
+fit the neighborhood and yet the result looks hardly different from the
+stereotypical, cookie-cutter 5-over-1s so commonplace these days: flat,
+depthless surfaces, boxy massing, unadorned windows, and exteriors bucket-filled
+with a range of colors that look like the auto-generated palettes of a Tableau
+bar chart. Aesthetics are not the only thing that matters, but they come up a
+lot in arguments against transit-oriented development and development in
+general; I think this aspect of building for affordability cannot be ignored.
 
-I am strongly in favor of transit-oriented development. At various junctures in
-my life I opted to live in walkable cities instead of the alternative. Where I
-live now I am a few minutes walk from major bus lines and a 15 minute walk from
-a major subway station. When I lived in Brooklyn, I was a 2 minute walk from a
-major subway station. The difference between those experiences is dramatic, but
-nothing compared to the experience of not having reasonable access to transit.
-Where I grew up in the suburbs, the nearest bus stop was a 30 minute walk away.
-I never once rode the bus until New Year's Eve a couple of months ago, when the
-transit authority subsidized it with free service to discourage drunk driving.
-With total sincerity I can say that this assignment gave me an appreciation for
-the work that data analysts and transportation researchers do in helping build
-more livable, more equitable, more sustainable, and more vibrant cities.
+In cities and especially in suburban sprawl (economically connected but sparse
+and car-dependent), I am strongly in favor of transit-oriented development. At
+various junctures in my life I opted to live in walkable cities instead of the
+alternative. Where I live now I am a few minutes walk from major bus lines and a
+15 minute walk from a major subway station. When I lived in Brooklyn, I was a 2
+minute walk from a major subway station. The difference between those
+experiences is dramatic, but nothing compared to the experience of not having
+reasonable access to transit.  Where I grew up in the suburbs, the nearest bus
+stop was a 30 minute walk away.  I never once rode the bus until New Year's Eve
+a couple of months ago, when the transit authority subsidized it with free
+service to discourage drunk driving.  With total sincerity I can say that this
+assignment gave me an appreciation for the work that data analysts and
+transportation researchers do in helping build more livable, more equitable,
+more sustainable, and more vibrant cities.
