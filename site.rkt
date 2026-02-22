@@ -85,6 +85,10 @@
             (:path ,(custom redirect 'garden/shanawdithit.html "https://docs.google.com/presentation/d/1RjYAYZnmckHroYHq-ftTMQjY7AvsoXlN1EJ8WpX-SJU/edit?usp=sharing" #:title "Shanawdithit's maps and more")
              :preprocessed #t
              :template redirect.sxml)
+            (:path ,(custom md 'vis-a2/index.md)
+             :preprocessed #t
+             :template article-headerless.sxml
+             :styles (css/default.css css/article.css css/wide.css))
             )
     :folders (
               (:path ,(custom phlog 'garden/phlog/index.xml)
@@ -144,6 +148,7 @@
                     garden/jot/src
                     garden/tamas
                     garden/manifold-revealing
+                    vis-a2/img
                     )
           )
     :disabled (:files ()
