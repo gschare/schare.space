@@ -299,7 +299,13 @@ as income and race demographics.
 
 ![ []{} ](img/explore_tod_value_disparity_scatter_no_boston.png)
 
-Again, we exclude Boston. As in the other scatter plots, there is an argument to be made for each corner being a good candidate for transit-oriented development. Lower-income areas 
+Again, we exclude Boston. As in the other scatter plots, there is an argument
+to be made for each corner being a good candidate for transit-oriented
+development. Lower-income areas may benefit from more affordable housing and
+begin to flourish; high-income areas may indicate high economic activity and
+growth areas that may need more housing soon. Low-transit areas need more
+transit; high-transit areas would benefit from dense development around their
+transit.
 
 We have redlining data, but it is unfortunately not terribly useful because it
 is limited to only a few areas.
