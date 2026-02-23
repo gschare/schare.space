@@ -1,0 +1,180 @@
+<title>Mothership Character Sheet</title>
+
+<div id="save-status">
+</div>
+
+<fieldset>
+    <legend>Character Name</legend>
+    <input type="text" id="charName" class="editable-stat" name="charName">
+</fieldset>
+
+<fieldset>
+    <legend>Character ID</legend>
+    <input type="text" id="charId" class="editable-stat" name="charId" placeholder="mac">
+    <button id="copyUrl">Copy URL</button>
+</fieldset>
+tooltip: In order to save your character, enter a short ID.
+If you already have a character, enter their ID to load it.
+Browse saved characters.
+
+<fieldset>
+    <legend>High Score</legend>
+    <input type="number" id="highScore" class="editable-stat" name="highScore" value="0">
+</fieldset>
+
+<fieldset>
+    <legend>Personal Notes</legend>
+    <textarea id="personalNotes" class="editable-stat" name="personalNotes"></textarea>
+</fieldset>
+
+<fieldset>
+    <legend>Stats</legend>
+    <div class="stats-container">
+        <fieldset>
+            <legend>Strength</legend>
+            <input type="number" id="strength" class="editable-stat" name="strength">
+        </fieldset>
+
+        <fieldset>
+            <legend>Speed</legend>
+            <input type="number" id="speed" class="editable-stat" name="speed">
+        </fieldset>
+
+        <fieldset>
+            <legend>Intellect</legend>
+            <input type="number" id="intellect" class="editable-stat" name="intellect">
+        </fieldset>
+
+        <fieldset>
+            <legend>Combat</legend>
+            <input type="number" id="combat" class="editable-stat" name="combat">
+        </fieldset>
+    </div>
+</fieldset>
+
+Sanity
+Fear
+Body
+
+Health
+Wounds
+
+Stress
+
+Loadout
+Trinket
+Patch
+Armor Points
+Credits
+
+<fieldset>
+    <legend>Skills</legend>
+    <fieldset>
+        <legend>Trained Skills</legend>
+        <div class="trained-skills-container">
+            <input type="checkbox" id="skill-corewise">
+            <label for="skill-corewise">Corewise</label>
+            <input type="checkbox" id="skill-linguistics">
+            <label for="skill-linguistics">Linguistics</label>
+            <input type="checkbox" id="skill-zoology">
+            <label for="skill-zoology">Zoology</label>
+            <input type="checkbox" id="skill-botany">
+            <label for="skill-botany">Botany</label>
+            <input type="checkbox" id="skill-geology">
+            <label for="skill-geology">Geology</label>
+            <input type="checkbox" id="skill-industrial-equipment">
+            <label for="skill-industrial-equipment">Industrial Equipment</label>
+            <input type="checkbox" id="skill-jury-rigging">
+            <label for="skill-jury-rigging">Jury-Rigging</label>
+            <input type="checkbox" id="skill-chemistry">
+            <label for="skill-chemistry">Chemistry</label>
+            <input type="checkbox" id="skill-computers">
+            <label for="skill-computers">Computers</label>
+            <input type="checkbox" id="skill-zero-g">
+            <label for="skill-mathematics">Mathematics</label>
+            <input type="checkbox" id="skill-art">
+            <label for="skill-art">Art</label>
+            <input type="checkbox" id="skill-archaeology">
+            <label for="skill-archaeology">Archaeology</label>
+            <input type="checkbox" id="skill-theology">
+            <label for="skill-theology">Theology</label>
+            <input type="checkbox" id="skill-military-training">
+            <label for="skill-military-training">Military Training</label>
+            <input type="checkbox" id="skill-rimwise">
+            <label for="skill-rimwise">Rimwise</label>
+            <input type="checkbox" id="skill-athletics">
+            <label for="skill-athletics">Athletics</label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Expert Skills</legend>
+        <div class="expert-skills-container">
+            <input type="checkbox" id="skill-administration">
+            <label for="skill-administration">Administration</label>
+            <input type="checkbox" id="skill-networking">
+            <label for="skill-networking">Networking</label>
+            <input type="checkbox" id="skill-psychology">
+            <label for="skill-psychology">Psychology</label>
+            <input type="checkbox" id="skill-pathology">
+            <label for="skill-pathology">Pathology</label>
+            <input type="checkbox" id="skill-field-medicine">
+            <label for="skill-field-medicine">Field Medicine</label>
+            <input type="checkbox" id="skill-ecology">
+            <label for="skill-ecology">Ecology</label>
+            <input type="checkbox" id="skill-asteroid-mining">
+            <label for="skill-asteroid-mining">Asteroid Mining</label>
+            <input type="checkbox" id="skill-mechanical-repair">
+            <label for="skill-mechanical-repair">Mechanical Repair</label>
+            <input type="checkbox" id="skill-explosives">
+            <label for="skill-explosives"></label>Explosives</label>
+            <input type="checkbox" id="skill-pharmacology">
+            <label for="skill-pharmacology">Pharmacology</label>
+            <input type="checkbox" id="skill-hacking">
+            <label for="skill-hacking">Hacking</label>
+            <input type="checkbox" id="skill-piloting">
+            <label for="skill-piloting">Piloting</label>
+            <input type="checkbox" id="skill-physics">
+            <label for="skill-physics">Physics</label>
+            <input type="checkbox" id="skill-mysticism">
+            <label for="skill-mysticism">Mysticism</label>
+            <input type="checkbox" id="skill-wilderness-survival">
+            <label for="skill-wilderness-survival">Wilderness Survival</label>
+            <input type="checkbox" id="skill-firearms">
+            <label for="skill-firearms">Firearms</label>
+            <input type="checkbox" id="skill-hand-to-hand-combat">
+            <label for="skill-hand-to-hand-combat">Hand-to-Hand Combat</label>
+            <textarea id="other-skills" class="textbox" name="other-skills"></textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Master Skills</legend>
+        <div class="master-skills-container">
+            <input type="checkbox" id="skill-sophontology">
+            <label for="skill-sophontology">Sophontology</label>
+            <input type="checkbox" id="skill-exobiology">
+            <label for="skill-exobiology">Exobiology</label>
+            <input type="checkbox" id="skill-surgery">
+            <label for="skill-surgery">Surgery</label>
+            <input type="checkbox" id="skill-planetology">
+            <label for="skill-planetology">Planetology</label>
+            <input type="checkbox" id="skill-robotics">
+            <label for="skill-robotics">Robotics</label>
+            <input type="checkbox" id="skill-engineering">
+            <label for="skill-engineering">Engineering</label>
+            <input type="checkbox" id="skill-cybernetics">
+            <label for="skill-cybernetics">Cybernetics</label>
+            <input type="checkbox" id="skill-artificial-intelligence">
+            <label for="skill-artificial-intelligence">Artificial Intelligence</label>
+            <input type="checkbox" id="skill-hyperspace">
+            <label for="skill-hyperspace">Hyperspace</label>
+            <input type="checkbox" id="skill-xenoesotericism">
+            <label for="skill-xenoesotericism">Xenoesotericism</label>
+            <input type="checkbox" id="skill-lawfare">
+            <label for="skill-lawfare">Lawfare</label>
+            <input type="checkbox" id="skill-finance">
+            <label for="skill-finance">Finance</label>
+            <input type="checkbox" id="skill-command">
+            <label for="skill-command">Command</label>
+        </div>
+    </fieldset>
+</fieldset>
