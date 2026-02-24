@@ -606,7 +606,7 @@ function setupDiceRolls() {
     rollBtn.addEventListener('click', () => {
       if (isPanic) {
         input.value = String(Math.floor(Math.random() * 20) + 1);
-        if (Math.random() < 0.1) triggerPanicFlash();
+        if (Math.random() < 0.05) triggerPanicFlash();
       } else {
         input.value = String(Math.floor(Math.random() * 10));
       }
