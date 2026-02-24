@@ -153,6 +153,10 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   box-sizing: border-box;
   min-height: calc(100vh - 2in);
   background-color: var(--plastic-dark);
+  background-image: var(--plastic-texture);
+  background-repeat: repeat;
+  background-size: var(--plastic-texture-size) var(--plastic-texture-size);
+  background-blend-mode: multiply;
 }
 
 /* Logo in top bezel strip: fixed height so frame is even 0.5in all around */
@@ -188,7 +192,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid var(--plastic-border);
-  box-shadow: 2px 2px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.2), -1px -1px 3px rgba(255,255,255,0.35), 2px 2px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
 }
 
 .sheet-main {
@@ -199,6 +203,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   border-radius: 6px;
   padding: 0.5rem;
   box-sizing: border-box;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.3), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 /* Right column: personal notes on top, journal below */
@@ -218,9 +223,13 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 }
 
 .personal-notes-box textarea {
-  min-height: 3em;
-  resize: vertical;
+  height: calc(3lh + 2.5px);
+  overflow: auto;
+  resize: none;
+  font-size: var(--text-sm);
+  padding: 5px;
 }
+
 
 .journal-aside {
   min-height: 0;
@@ -235,7 +244,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   padding: 0.5rem;
   border-radius: 4px;
   border: 1px solid var(--plastic-border);
-  box-shadow: inset 0 0 0 1px var(--plastic-light);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.35), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 .journal-label {
@@ -339,7 +348,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: normal;
-  box-shadow: 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.6);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.4), 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.6);
 }
 
 .character-box {
@@ -376,17 +385,6 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   flex: 0 1 auto;
 }
 
-/* Personal notes: small fixed area with scroll */
-#personalNotes {
-  width: 20rem;
-  max-width: 100%;
-  max-height: 5lh;
-  min-height: 3lh;
-  overflow: auto;
-  resize: none;
-  font-size: var(--text-sm);
-}
-
 .character-box textarea {
   /* min-height: 60px; */
   text-align: left;
@@ -396,7 +394,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 
 .logo {
   font-size: 3lh;
-  color: var(--plastic-shadow);
+  color: #373d37;
   font-family: 'Dancing Script', cursive, 'Share Tech Mono', 'IBM Plex Mono', Consolas, 'Courier New', monospace;
 }
 
@@ -410,7 +408,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
   margin-bottom: 0.25rem;
 }
 
@@ -419,6 +417,13 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   min-width: 0;
   margin-bottom: 0;
   padding: 0.4rem 0.5rem 0.25rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.id-score-row .box .panel-label {
+  flex-shrink: 0;
 }
 
 .id-score-row .box input {
@@ -456,7 +461,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   background-repeat: repeat, no-repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
   background-blend-mode: multiply, normal;
-  box-shadow: 1px 1px 0 var(--key-blue-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-blue-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 .box-key-blue .panel-label {
@@ -468,7 +473,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   background-repeat: repeat, no-repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
   background-blend-mode: multiply, normal;
-  box-shadow: 1px 1px 0 var(--key-amber-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-amber-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 .box-key-amber .panel-label {
@@ -480,7 +485,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   background-repeat: repeat, no-repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
   background-blend-mode: multiply, normal;
-  box-shadow: 1px 1px 0 var(--key-red-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-red-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 .box-key-red .panel-label {
@@ -600,7 +605,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   flex: 0 0 auto;
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   min-height: 0;
 }
 
@@ -608,9 +613,10 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 .stats-saves-column .save-circles {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.4rem;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 /* ---- Stats & Saves (inside right column) ---- */
@@ -623,22 +629,27 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   padding: 0.5rem 0.5rem 0.35rem 0.5rem;
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
-  width: fit-content;
+  align-items: flex-start;
+  min-width: 11rem;
+  box-sizing: border-box;
   background-color: var(--plastic-light);
   background-image: var(--plastic-texture);
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: normal;
   box-shadow: 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
+  position: relative;
 }
 
 .stats-section .panel-label,
 .saves-section .panel-label {
-  padding: 0 0.25rem 0.25rem 0.25rem;
+  padding: 0 0.25rem 0.25rem 0;
   font-size: var(--text-sm);
   color: var(--plastic-shadow);
   font-weight: bold;
+  text-align: right;
+  align-self: flex-end;
+  position: absolute;
 }
 
 /* Stats & Saves: amber key panels (override plastic when .box-key-amber) */
@@ -650,7 +661,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   background-repeat: repeat, no-repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
   background-blend-mode: multiply, normal;
-  box-shadow: 1px 1px 0 var(--key-amber-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-amber-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 .stats-section.box-key-amber .panel-label,
@@ -669,6 +680,8 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   gap: 0.4rem;
   flex-wrap: nowrap;
   justify-content: center;
+  width: 17rem;
+  margin-right: 3.5rem;
 }
 
 .stat-circle,
@@ -783,13 +796,13 @@ textarea#conditions {
 }
 
 .health-col-inner {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   min-width: 0;
-  max-width: none;
+  width: fit-content;
 }
 
 .rounded-box {
-  flex: 1 1 0;
+  width: fit-content;
   min-width: 0;
   border: 1px solid var(--plastic-border);
   border-radius: 10px;
@@ -800,7 +813,7 @@ textarea#conditions {
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: normal;
-  box-shadow: 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.4), 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
 }
 
 .rounded-box-red {
@@ -809,7 +822,7 @@ textarea#conditions {
   background-repeat: repeat, no-repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
   background-blend-mode: multiply, normal;
-  box-shadow: 1px 1px 0 var(--key-red-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-red-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 .rounded-box .panel-label {
@@ -817,10 +830,12 @@ textarea#conditions {
   font-size: var(--text-sm);
   color: var(--plastic-shadow);
   font-weight: bold;
+  text-align: center;
 }
 
 .rounded-box-red .panel-label {
   color: var(--key-red-bottom);
+  text-align: center;
 }
 
 /* Current/Max: two small rounded-square inputs side by side, labels under each; buttons left/right */
@@ -904,6 +919,7 @@ textarea#conditions {
   align-items: center;
   justify-content: center;
   font-family: inherit;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.4), -1px -1px 1px rgba(255,255,255,0.15), inset 1px 1px 0 rgba(255,255,255,0.1);
 }
 
 /*
@@ -1029,7 +1045,7 @@ input#highScore {
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: multiply;
-  box-shadow: 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.4), 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
   max-width: 25rem;
 }
 
@@ -1052,7 +1068,7 @@ input#highScore {
   background-repeat: repeat, no-repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
   background-blend-mode: multiply, normal;
-  box-shadow: 1px 1px 0 var(--key-blue-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-blue-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
 /* Loadout: top row = AP + CR */
@@ -1076,6 +1092,10 @@ input#highScore {
 .loadout-ap-cr-row .loadout-field-row.armor-points-row,
 .loadout-ap-cr-row .loadout-field-row.credits-row {
   align-items: flex-end;
+}
+
+.loadout-field-row.credits-row {
+  margin-top: 5px;
 }
 
 .loadout-ap-cr-row .char-field-label {
@@ -1203,6 +1223,7 @@ input#armor-points {
   font-size: 0.65rem;
   color: var(--plastic-shadow);
   line-height: 1;
+  margin-bottom: 5px;
 }
 
 .cell-buttons-vertical {
@@ -1275,7 +1296,7 @@ input#armor-points {
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: normal;
-  box-shadow: 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.4), 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
 }
 
 .skills-section > .panel-label {
@@ -1301,7 +1322,7 @@ input#armor-points {
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: normal;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.35), inset 1px 1px 0 rgba(255,255,255,0.5);
 }
 
 .skill-column .panel-label {
