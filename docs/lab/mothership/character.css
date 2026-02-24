@@ -397,7 +397,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 
 /* Shorter bounding boxes for name and pronouns */
 #pronouns, #charClass {
-  max-width: 5rem;
+  max-width: 10rem;
   flex: 0 1 auto;
 }
 #charName {
@@ -463,12 +463,13 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 }
 
 /* Lock button: same look as num-btn (increase/decrease) */
-.lock-btn {
+.char-id-row .lock-btn {
   flex-shrink: 0;
   min-width: 2.75rem;
   width: auto;
   padding: 0 0.25rem;
   font-size: var(--text-base);
+  height: 1.5lh;
 }
 
 /* Colored key panels: border transparent so panel border doesn’t interrupt */
