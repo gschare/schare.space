@@ -1,0 +1,36 @@
+{
+    "charId": "addison",
+    "charName": "Addison Domarus",
+    "pronouns": "he/him",
+    "charClass": "Marine",
+    "personalNotes": "a.k.a. \"Addy\" a.k.a. \"The King\".\nEnlisted marine.\nNext of Kin: Karen Domarus (mother)",
+    "highScore": 0,
+    "strength": 33,
+    "speed": 35,
+    "intellect": 34,
+    "combat": 46,
+    "sanity": 18,
+    "fear": 36,
+    "body": 30,
+    "conditions": "",
+    "health": 16,
+    "health-max": 16,
+    "wounds": 0,
+    "wounds-max": 3,
+    "stress": 2,
+    "stress-min": 2,
+    "loadout": "Advanced Battle Dress (AP 10)\nFlamethrower (4 shots)\nBoarding Axe",
+    "trinket": "Casino Playing Cards",
+    "patch": "Red Shirt Logo",
+    "armor-points": 10,
+    "credits": 50,
+    "skills": [
+      "military-training",
+      "athletics",
+      "firearms"
+    ],
+    "journalPages": [
+      ""
+    ],
+    "journalPageIndex": 0
+  }

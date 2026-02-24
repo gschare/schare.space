@@ -50,6 +50,7 @@ function getStateFromForm() {
     'armor-points': num(document.getElementById('armor-points')),
     credits: num(document.getElementById('credits')),
     skills: getSkillsState(),
+    imageUrl: id(document.getElementById('imageUrl')),
     journalPages: journalPages.slice(),
     journalPageIndex,
   };
@@ -98,6 +99,7 @@ function applyStateToForm(state) {
     journalPageIndex = Math.min(Math.max(0, parseInt(state.journalPageIndex, 10) || 0), Math.max(0, journalPages.length - 1));
   updateJournalUI();
   updateTraumaResponse();
+  updateCharacterImage();
 }
 
 // Key we save to: only when locked.
@@ -167,6 +169,33 @@ function updateTraumaResponse() {
   } else {
     traumaTextarea.value = '';
   }
+}
+
+function updateCharacterImage() {
+  const input = document.getElementById('imageUrl');
+  const img = document.getElementById('character-image');
+  if (!input || !img) return;
+  const url = (input.value || '').trim();
+  if (url) {
+    img.src = url;
+    img.alt = 'Character image';
+    img.style.display = '';
+  } else {
+    img.removeAttribute('src');
+    img.alt = '';
+    img.style.display = 'none';
+  }
+}
+
+function setupCharacterImage() {
+  const input = document.getElementById('imageUrl');
+  if (!input) return;
+  input.addEventListener('input', () => {
+    updateCharacterImage();
+  });
+  input.addEventListener('change', () => {
+    updateCharacterImage();
+  });
 }
 
 // Ensure trauma response updates when the class changes
@@ -306,6 +335,95 @@ function bindPersist() {
   });
 }
 
+function setPrintLoadMessage(text) {
+  const el = document.getElementById('print-load-msg');
+  if (el) el.value = text || '';
+}
+
+function setupPrintLoadButtons() {
+  const printBtn = document.getElementById('print-json-btn');
+  const loadBtn = document.getElementById('load-json-btn');
+  const modal = document.getElementById('load-modal');
+  const loadInput = document.getElementById('load-json-input');
+  const modalCancel = document.getElementById('load-modal-cancel');
+  const modalSubmit = document.getElementById('load-modal-submit');
+  const backdrop = modal?.querySelector('.load-modal-backdrop');
+
+  if (printBtn) {
+    printBtn.addEventListener('click', () => {
+      const key = getCharacterKeyForDisplay();
+      if (!key) {
+        setPrintLoadMessage('Enter or lock a character ID first.');
+        return;
+      }
+      const state = getStateFromForm();
+      state.charId = key;
+      try {
+        const json = JSON.stringify(state, null, 2);
+        navigator.clipboard.writeText(json).then(
+          () => setPrintLoadMessage('Copied to clipboard.'),
+          () => setPrintLoadMessage('Clipboard copy failed.')
+        );
+      } catch (e) {
+        setPrintLoadMessage('Failed to serialize state.');
+      }
+    });
+  }
+
+  function openLoadModal() {
+    if (modal && loadInput) {
+      loadInput.value = '';
+      modal.setAttribute('data-open', 'true');
+      loadInput.focus();
+    }
+  }
+
+  function closeLoadModal() {
+    if (modal) modal.removeAttribute('data-open');
+  }
+
+  if (loadBtn) loadBtn.addEventListener('click', openLoadModal);
+  if (modalCancel) modalCancel.addEventListener('click', closeLoadModal);
+  if (backdrop) backdrop.addEventListener('click', closeLoadModal);
+
+  if (modalSubmit && loadInput) {
+    modalSubmit.addEventListener('click', () => {
+      let state;
+      try {
+        state = JSON.parse(loadInput.value);
+      } catch (e) {
+        setPrintLoadMessage('Invalid JSON.');
+        return;
+      }
+      if (!state || typeof state !== 'object') {
+        setPrintLoadMessage('Invalid JSON.');
+        return;
+      }
+      const charId = state.charId;
+      if (!charId || typeof charId !== 'string' || !/^[a-z0-9_-]+$/i.test(charId.trim())) {
+        setPrintLoadMessage('Valid character ID (charId) required in JSON.');
+        return;
+      }
+      const key = charId.trim();
+      try {
+        localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(state));
+      } catch (e) {
+        setPrintLoadMessage('Failed to save to storage.');
+        return;
+      }
+      applyStateToForm(state);
+      const charIdEl = document.getElementById('charId');
+      if (charIdEl) charIdEl.value = key;
+      lockedCharacterKey = key;
+      updateLockUI();
+      const url = `${window.location.origin}${window.location.pathname}?c=${encodeURIComponent(key)}`;
+      history.replaceState(null, '', url);
+      setPrintLoadMessage(`Loaded character "${key}".`);
+      closeLoadModal();
+    });
+  }
+}
+
 // Load character: only when ?c= is set. Otherwise charId starts empty; user types to load or lock to save.
 async function setup() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -314,6 +432,8 @@ async function setup() {
   setupCopyUrl();
   setupCharIdLoadOnType();
   setupLockButton();
+  setupPrintLoadButtons();
+  setupCharacterImage();
   bindPersist();
   setupJournalPages();
   updateLockUI();

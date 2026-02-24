@@ -89,6 +89,9 @@
              :preprocessed #t
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/wide.css))
+            (:path lab/mothership/index.html
+             :template boilerplate.sxml
+             :styles (lab/mothership/character.css))
             )
     :folders (
               (:path ,(custom phlog 'garden/phlog/index.xml)
@@ -141,6 +144,8 @@
                   garden/process-tree/style.css
                   lab/changes/app.js
                   lab/changes/hexagram.js
+                  ;lab/dnd/mothership/app.js
+                  ;lab/dnd/mothership/character.css
                   )
           :folders (writ js css assets/img assets/fonts assets/papers lab
                     assets/docs

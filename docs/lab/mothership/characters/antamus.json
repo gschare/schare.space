@@ -1,0 +1,39 @@
+{
+    "charId": "antamus",
+    "imageUrl": "characters/antamus.png",
+    "charName": "Antamus",
+    "pronouns": "it/its",
+    "charClass": "Android",
+    "personalNotes": "Autonomous service robot manufactured in the core worlds. Expensive, reliable, obedient. Chassis: alloy metal covered by treated birch wood; humanoid.",
+    "highScore": 0,
+    "strength": 37,
+    "speed": 38,
+    "intellect": 55,
+    "combat": 28,
+    "sanity": 18,
+    "fear": 81,
+    "body": 15,
+    "conditions": "",
+    "health": 12,
+    "health-max": 12,
+    "wounds": 0,
+    "wounds-max": 3,
+    "stress": 2,
+    "stress-min": 2,
+    "loadout": "Hazard Suit (AP 5)\nFoam Gun (2 charges)\nSample Collection Kit\nScrewdriver (as Assorted Tools)",
+    "trinket": "Pills: Areca Nut",
+    "patch": "\"Space IS My Home\" (Sad Astronaut)",
+    "armor-points": 5,
+    "credits": 60,
+    "skills": [
+        "linguistics",
+        "industrial-equipment",
+        "computers",
+        "zero-g",
+        "mathematics"
+    ],
+    "journalPages": [
+        ""
+    ],
+    "journalPageIndex": 0
+}
