@@ -428,6 +428,7 @@ function setupPrintLoadButtons() {
 async function setup() {
   const urlParams = new URLSearchParams(window.location.search);
   const charKey = urlParams.get('c');
+  const localKey = urlParams.get('local');
 
   setupCopyUrl();
   setupCharIdLoadOnType();
@@ -444,7 +445,7 @@ async function setup() {
   }
 
   let state = loadFromStorage(charKey);
-  if (!state) {
+  if (!state || localKey === 'false' || localKey === '0') { // localKey tells us to ignore local storage
     try {
       const r = await fetch(`characters/${charKey}.json`);
       if (r.ok) state = await r.json();

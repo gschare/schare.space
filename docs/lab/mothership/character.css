@@ -101,8 +101,6 @@ textarea::placeholder {
   background-color: transparent;
   box-shadow: none;
   color: var(--crt-text);
-  text-align: right;
-  direction: rtl;
 }
 
 .editable-stat[type="number"] {
@@ -1004,6 +1002,7 @@ textarea#conditions {
 input#highScore {
   width: 3ch;
   min-width: 3ch;
+  text-align: center;
 }
 
 /* Stat/save circle + buttons wrapper */
@@ -1203,6 +1202,7 @@ input#highScore {
 
 input#armor-points {
   height: 40px;
+  text-align: center;
 }
 
 .armor-points-row .cell-buttons {
@@ -1224,6 +1224,7 @@ input#armor-points {
   height: 40px;
   box-sizing: border-box;
   flex-shrink: 0;
+  text-align: right;
 }
 
 .credits-buttons {
