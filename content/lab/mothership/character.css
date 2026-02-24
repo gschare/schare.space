@@ -2,6 +2,44 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
+/* Narrow viewport: blank white screen with instruction to use desktop (width > 1041px) */
+.narrow-viewport-message {
+  display: none;
+}
+
+@media (max-width: 1041px) {
+  body {
+    background: #fff;
+    background-image: none;
+  }
+
+  .sheet-outer,
+  .load-modal {
+    display: none !important;
+  }
+
+  .narrow-viewport-message {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #333;
+  }
+}
+
+@media (min-width: 1042px) {
+  .narrow-viewport-message {
+    display: none !important;
+  }
+}
+
 :root {
   /* Off-white plastic */
   /*--plastic: #e6e2d9;*/
@@ -1585,21 +1623,21 @@ input#armor-points {
   justify-content: flex-end;
 }
 
-/* Layout only: prevent right column from overlapping main pane on narrow viewports */
-@media (max-width: 60rem) {
+/* Reflow: put sheet-right-col below sheet-main on thinner viewports for more horizontal room */
+@media (max-width: 1439px) {
   .sheet-layout {
     flex-direction: column;
   }
 
   .sheet-right-col {
     flex: none;
-    width: 100%;
+    width: 22rem;
   }
 
   .journal-aside {
     position: relative;
-    flex: 1 1 0;
-    min-height: 16rem;
-    max-height: 40vh;
+    /* flex: 1 1 0; */
+    /*min-height: 16rem;*/
+    /*max-height: 40vh;*/
   }
 }
