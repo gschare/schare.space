@@ -7,9 +7,44 @@ const STORAGE_PREFIX = 'mothership-char-';
 // When set, all changes save to this key. When null, charId is editable and we only load on type (no save).
 let lockedCharacterKey = null;
 
+// When true, we don't save to localStorage.
+let localStorageDisabled = false;
+
 // Journal: multiple pages; current page text is in the textarea, rest in memory.
 let journalPages = [''];
 let journalPageIndex = 0;
+
+const emptyState = (charId) => ({
+  charId: charId || '',
+  charName: '',
+  pronouns: '',
+  charClass: '',
+  personalNotes: '',
+  highScore: 0,  
+  strength: 0,
+  speed: 0,
+  intellect: 0,
+  combat: 0,
+  sanity: 0,
+  fear: 0,
+  body: 0,
+  conditions: '',
+  health: 0,
+  'health-max': 0,
+  wounds: 0,
+  'wounds-max': 0,
+  stress: 0,
+  'stress-min': 0,
+  loadout: '',
+  trinket: '',
+  patch: '',
+  'armor-points': 0,
+  credits: 0,
+  skills: [],
+  imageUrl: '',
+  journalPages: [''],
+  journalPageIndex: 0,
+});
 
 // Build state object from form (all inputs, textareas, checkboxes).
 function getStateFromForm() {
@@ -116,7 +151,7 @@ function getCharacterKeyForDisplay() {
 
 function saveToStorage() {
   const key = getCharacterKey();
-  if (!key) {
+  if (!key || localStorageDisabled) {
     setSaveStatus('unsaved');
     return;
   }
@@ -135,7 +170,7 @@ function updateLockUI() {
   const btn = document.getElementById('lock-character-btn');
   if (input) input.disabled = !!lockedCharacterKey;
   if (btn) btn.disabled = !!lockedCharacterKey;
-  setSaveStatus(lockedCharacterKey ? 'saved' : 'unsaved');
+  setSaveStatus((lockedCharacterKey && !localStorageDisabled) ? 'saved' : 'unsaved');
 }
 
 function setSaveStatus(status) {
@@ -343,6 +378,7 @@ function setPrintLoadMessage(text) {
 function setupPrintLoadButtons() {
   const printBtn = document.getElementById('print-json-btn');
   const loadBtn = document.getElementById('load-json-btn');
+  const clearBtn = document.getElementById('clear-json-btn');
   const modal = document.getElementById('load-modal');
   const loadInput = document.getElementById('load-json-input');
   const modalCancel = document.getElementById('load-modal-cancel');
@@ -367,6 +403,41 @@ function setupPrintLoadButtons() {
       } catch (e) {
         setPrintLoadMessage('Failed to serialize state.');
       }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', async () => {
+      const charKey = getCharacterKeyForDisplay();
+      if (charKey) localStorage.removeItem(STORAGE_PREFIX + charKey);
+
+      let state = null;
+
+      let reloadedFromFetch = false;
+      if (charKey) {
+        try {
+          const r = await fetch(`characters/${charKey}.json`);
+          if (r.ok) {
+            const fetched = await r.json();
+            if (fetched && typeof fetched === 'object') {
+              state = fetched;
+              reloadedFromFetch = true;
+            }
+          }
+        } catch (e) {
+          // No static file or network error; keep state null.
+        }
+      }
+
+      // If no state fetched, create an empty one (with charKey if it exists) to force overwrite.
+      if (!state) state = emptyState(charKey);
+      applyStateToForm(state);
+      const el = document.getElementById('charId');
+      if (el) el.value = charKey;
+      lockedCharacterKey = charKey;
+      updateLockUI();
+
+      setPrintLoadMessage(reloadedFromFetch ? 'Reset character.' : 'Cleared character.');
     });
   }
 
@@ -429,6 +500,9 @@ async function setup() {
   const urlParams = new URLSearchParams(window.location.search);
   const charKey = urlParams.get('c');
   const localKey = urlParams.get('local');
+  if (localKey === 'false' || localKey === '0') { // localKey tells us to ignore local storage
+    localStorageDisabled = true;
+  }
 
   setupCopyUrl();
   setupCharIdLoadOnType();
@@ -441,11 +515,13 @@ async function setup() {
 
   if (!charKey || !/^[a-z0-9_-]+$/i.test(charKey)) {
     setSaveStatus('unsaved');
+    applyStateToForm(emptyState(null));
     return;
   }
 
-  let state = loadFromStorage(charKey);
-  if (!state || localKey === 'false' || localKey === '0') { // localKey tells us to ignore local storage
+  let state = localStorageDisabled ? null : loadFromStorage(charKey);
+
+  if (!state) {
     try {
       const r = await fetch(`characters/${charKey}.json`);
       if (r.ok) state = await r.json();
@@ -454,7 +530,9 @@ async function setup() {
     }
   }
 
-  if (state) applyStateToForm(state);
+  if (!state) state = emptyState(charKey);
+
+  applyStateToForm(state);
   const el = document.getElementById('charId');
   if (el) el.value = charKey;
   lockedCharacterKey = charKey;
