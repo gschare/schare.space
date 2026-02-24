@@ -1,5 +1,7 @@
 // Character sheet state: all editable fields as JSON, saved to localStorage keyed by character ID.
 
+// TODO: image, seeing original values
+
 const STORAGE_PREFIX = 'mothership-char-';
 
 // When set, all changes save to this key. When null, charId is editable and we only load on type (no save).
@@ -41,25 +43,23 @@ function getStateFromForm() {
     wounds: num(document.getElementById('wounds')),
     'wounds-max': num(document.getElementById('wounds-max')),
     stress: num(document.getElementById('stress')),
-    'stress-max': num(document.getElementById('stress-max')),
+    'stress-min': num(document.getElementById('stress-min')),
     loadout: id(document.getElementById('loadout')),
     trinket: id(document.getElementById('trinket')),
     patch: id(document.getElementById('patch')),
     'armor-points': num(document.getElementById('armor-points')),
     credits: num(document.getElementById('credits')),
     skills: getSkillsState(),
-    'other-skills-trained': id(document.getElementById('other-skills-trained')),
-    'other-skills-expert': id(document.getElementById('other-skills-expert')),
-    'other-skills-master': id(document.getElementById('other-skills-master')),
     journalPages: journalPages.slice(),
     journalPageIndex,
   };
 }
 
 function getSkillsState() {
-  const skills = {};
+  const skills = [];
   document.querySelectorAll('[id^="skill-"]').forEach((el) => {
-    if (el.id && el.type === 'checkbox') skills[el.id] = el.checked;
+    if (el.id && el.type === 'checkbox' && el.checked)
+      skills.push(el.id.replace(/^skill-/, ''));
   });
   return skills;
 }
@@ -74,8 +74,16 @@ function applyStateToForm(state) {
   };
   Object.keys(state).forEach((key) => {
     if (key === 'skills') {
-      const s = state.skills || {};
-      Object.keys(s).forEach((skillId) => set(skillId, s[skillId]));
+      const s = state.skills;
+      if (Array.isArray(s)) {
+        const ids = new Set(s.map((n) => String(n).trim()).filter(Boolean));
+        document.querySelectorAll('[id^="skill-"]').forEach((el) => {
+          if (el.type === 'checkbox' && el.id)
+            el.checked = ids.has(el.id.replace(/^skill-/, ''));
+        });
+      } else if (s && typeof s === 'object') {
+        Object.keys(s).forEach((skillId) => set(skillId, s[skillId]));
+      }
     } else if (key !== 'journalPages' && key !== 'journalPageIndex') {
       set(key, state[key]);
     }
@@ -194,18 +202,26 @@ function setupCopyUrl() {
   });
 }
 
-// When user types in charId, load that character if it exists (overwrites form).
+// When user types in charId, load that character from localStorage or by fetching the JSON file.
 let charIdLoadTimeout = null;
 function setupCharIdLoadOnType() {
   const input = document.getElementById('charId');
   if (!input) return;
   input.addEventListener('input', () => {
     if (charIdLoadTimeout) clearTimeout(charIdLoadTimeout);
-    charIdLoadTimeout = setTimeout(() => {
+    charIdLoadTimeout = setTimeout(async () => {
       charIdLoadTimeout = null;
       const key = (input.value || '').trim();
       if (!key || !/^[a-z0-9_-]+$/i.test(key)) return;
-      const state = loadFromStorage(key);
+      let state = loadFromStorage(key);
+      if (!state) {
+        try {
+          const r = await fetch(`characters/${key}.json`);
+          if (r.ok) state = await r.json();
+        } catch (e) {
+          // No file or network error; leave form as-is.
+        }
+      }
       if (state) {
         applyStateToForm(state);
         input.value = key;

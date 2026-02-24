@@ -1,6 +1,10 @@
 <title>Mothership Character Sheet</title>
 
 <div class="sheet-outer">
+  <span class="bezel-screw bezel-screw-tl" aria-hidden="true"></span>
+  <span class="bezel-screw bezel-screw-tr" aria-hidden="true"></span>
+  <span class="bezel-screw bezel-screw-bl" aria-hidden="true"></span>
+  <span class="bezel-screw bezel-screw-br" aria-hidden="true"></span>
   <div class="sheet-bezel">
     <div class="logo">Ceres <span class="logo-version">128k</span></div>
   </div>
@@ -182,12 +186,12 @@
               <span class="current-max-label">Cur</span>
             </div>
             <div class="current-max-cell current-max-cell-right">
-              <input type="number" id="stress-max" class="editable-stat spinnerless stat-size-input" name="stress-max">
-              <span class="current-max-label">Max</span>
+              <input type="number" id="stress-min" class="editable-stat spinnerless stat-size-input" name="stress-min">
+              <span class="current-max-label">Min</span>
             </div>
             <div class="cell-buttons cell-buttons-right">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="stress-max">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="stress-max">▼</button>
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase min" data-target="stress-min">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease min" data-target="stress-min">▼</button>
             </div>
           </div>
         </div>
@@ -215,7 +219,7 @@
 
       <!-- Trauma Response + Conditions -->
       <div class="trauma-conditions-row">
-        <div class="box box-key loadout-field-row armor-points-row">
+        <div class="box box-key loadout-field-row box-key-blue armor-points-row">
           <span class="char-field-label">AP</span>
           <input type="number" id="armor-points" class="editable-stat spinnerless" name="armor-points">
           <div class="cell-buttons cell-buttons-right">
@@ -223,7 +227,7 @@
             <button type="button" class="num-btn num-btn-dec" aria-label="Decrease armor" data-target="armor-points">▼</button>
           </div>
         </div>
-        <div class="box box-key loadout-field-row credits-row">
+        <div class="box box-key loadout-field-row box-key-green credits-row">
           <span class="char-field-label">CR</span>
           <input type="number" id="credits" class="editable-stat spinnerless credits-input" name="credits">
           <div class="credits-buttons">
@@ -257,7 +261,7 @@
             </div>
           </div>
         </div>
-        <div class="box conditions-box box-key box-key-blue">
+        <div class="box conditions-box box-key box-key-red">
           <span class="panel-label">Conditions</span>
           <textarea id="conditions" class="editable-stat" name="conditions"></textarea>
         </div>
@@ -272,7 +276,7 @@
     <div class="skills-section">
       <span class="panel-label">Skills</span>
       <div class="skills-columns">
-        <div class="skill-column">
+        <div class="skill-column box-key box-key-green">
           <span class="panel-label">Trained</span>
           <div class="trained-skills-container">
             <label><input type="checkbox" id="skill-corewise"> Corewise</label>
@@ -295,7 +299,7 @@
             <!--<label>Other <textarea id="other-skills-trained" class="textbox textbox-small" name="other-skills-trained"></textarea></label>-->
           </div>
         </div>
-        <div class="skill-column">
+        <div class="skill-column box-key box-key-blue">
           <span class="panel-label">Expert</span>
           <div class="expert-skills-container">
             <label><input type="checkbox" id="skill-administration"> Administration</label>
@@ -318,7 +322,7 @@
             <!--<label>Other <textarea id="other-skills-expert" class="textbox textbox-small" name="other-skills-expert"></textarea></label>-->
           </div>
         </div>
-        <div class="skill-column">
+        <div class="skill-column box-key box-key-amber">
           <span class="panel-label">Master</span>
           <div class="master-skills-container">
             <label><input type="checkbox" id="skill-sophontology"> Sophontology</label>

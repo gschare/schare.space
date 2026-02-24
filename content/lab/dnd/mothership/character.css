@@ -35,6 +35,9 @@
   --key-amber-top: #e8e0d0;
   --key-amber-face: #c4b090;
   --key-amber-bottom: #8b7a5a;
+  --key-green-top: #d0e4d0;
+  --key-green-face: #8fa88f;
+  --key-green-bottom: #5a6d5a;
   /* Slightly larger base text */
   --text-base: 1.05em;
   --text-sm: 0.98em;
@@ -145,6 +148,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 /* ---- Outer frame: terminal bezel; even width all around (0.5in); ~1in background visible ---- */
 
 .sheet-outer {
+  position: relative;
   margin: 1in;
   padding: 0 0.5in 0.5in 0.5in; /* top 0: bezel provides top; sides/bottom 0.5in for even frame */
   padding-bottom: 1in;
@@ -158,6 +162,24 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: multiply;
 }
+
+/* Screws at each corner of the bezel; scaled down and dulled */
+.bezel-screw {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  background-image: url('screw.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  filter: brightness(0.7) saturate(0.5) contrast(0.9);
+  opacity: 0.9;
+}
+.bezel-screw-tl { top: 0.25in; left: 0.25in; }
+.bezel-screw-tr { top: 0.25in; right: 0.25in; }
+.bezel-screw-bl { bottom: 0.25in; left: 0.25in; }
+.bezel-screw-br { bottom: 0.25in; right: 0.25in; }
 
 /* Logo in top bezel strip: fixed height so frame is even 0.5in all around */
 .sheet-bezel {
@@ -400,7 +422,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 
 .logo-version {
   font-size: 50%;
-  color: red;
+  color: #d33636;
   font-family: 'Share Tech Mono', 'IBM Plex Mono', Consolas, 'Courier New', monospace;
 }
 
@@ -490,6 +512,18 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 
 .box-key-red .panel-label {
   color: var(--key-red-bottom);
+}
+
+.box-key-green {
+  background-image: var(--plastic-texture), linear-gradient(180deg, var(--key-green-top) 0%, var(--key-green-face) 100%);
+  background-repeat: repeat, no-repeat;
+  background-size: var(--plastic-texture-size) var(--plastic-texture-size), auto;
+  background-blend-mode: multiply, normal;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25), -1px -1px 2px rgba(255,255,255,0.35), 1px 1px 0 var(--key-green-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+.box-key-green .panel-label {
+  color: var(--key-green-bottom);
 }
 
 .copy-button {
@@ -747,7 +781,7 @@ textarea {
 }
 
 textarea#conditions {
-  width: 20ch;
+  width: 28ch;
   max-width: 100%;
   min-width: 15ch;
   min-height: 2.2em;
@@ -770,8 +804,8 @@ textarea#conditions {
   max-height: 2.8lh;
   height: 2.8lh;
   min-width: 15ch;
-  max-width: 20ch;
-  width: 20ch;
+  max-width: 100%;
+  width: 28ch;
   font-size: var(--text-sm);
   text-align: left;
   box-sizing: border-box;
@@ -1080,12 +1114,12 @@ input#highScore {
   margin-bottom: 0.35rem;
 }
 
-.loadout-ap-cr-row .loadout-field-row {
-  display: flex;
+.loadout-field-row.armor-points-row, .loadout-field-row.credits-row {
+  /*display: flex;
   flex-wrap: nowrap;
   align-items: baseline;
   gap: 0.3rem;
-  font-size: var(--text-sm);
+  font-size: var(--text-sm);*/
   color: var(--plastic-shadow);
 }
 
@@ -1115,10 +1149,10 @@ input#highScore {
   max-width: 22rem;
   width: 22rem;
   min-width: 0;
-  max-height: 18lh;
-  height: 18lh;
+  min-height: 10lh;
+  max-height: 13lh;
+  height: 12lh;
   font-size: var(--text-sm);
-  height: 10lh;
   box-sizing: border-box;
 }
 
@@ -1317,18 +1351,18 @@ input#armor-points {
   padding: 0.45rem 0.45rem 0.3rem 0.45rem;
   margin: 0;
   min-width: 0;
-  background-color: var(--plastic);
+  /*background-color: var(--plastic);
   background-image: var(--plastic-texture);
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: normal;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.35), inset 1px 1px 0 rgba(255,255,255,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.35), inset 1px 1px 0 rgba(255,255,255,0.5);*/
 }
 
 .skill-column .panel-label {
   padding: 0 0.25rem 0.25rem 0.25rem;
   font-size: var(--text-sm);
-  color: var(--plastic-shadow);
+  /*color: var(--plastic-shadow);*/
   font-weight: bold;
 }
 
@@ -1345,10 +1379,10 @@ input#armor-points {
   align-items: center;
   gap: 0.25rem;
   font-size: var(--text-sm);
-  color: var(--plastic-shadow);
+  /*color: var(--plastic-shadow);*/
 }
 
-/* Checkbox: bright red LED when checked */
+/* Checkbox: bright white-yellow-amber LED when checked */
 .skill-column input[type="checkbox"] {
   appearance: none;
   width: 1em;
@@ -1361,9 +1395,9 @@ input#armor-points {
 }
 
 .skill-column input[type="checkbox"]:checked {
-  background: #ff4040;
-  border-color: #b02020;
-  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 80, 80, 0.7);
+  background: #fff8d0;
+  border-color: #d4b830;
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 230, 150, 0.8);
 }
 
 .skill-column .textbox-small {
