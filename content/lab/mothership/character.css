@@ -40,6 +40,35 @@
   }
 }
 
+/* ---- Panic die flash overlay (1/10 chance on panic roll) ---- */
+.panic-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.panic-flash img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.panic-flash.panic-flash--show {
+  animation: panic-flash 0.7s ease-out forwards;
+}
+
+@keyframes panic-flash {
+  0% { opacity: 0; }
+  20% { opacity: 0.95; }
+  40% { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+
 :root {
   /* Off-white plastic */
   /*--plastic: #e6e2d9;*/

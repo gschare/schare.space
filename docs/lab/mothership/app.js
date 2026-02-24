@@ -581,6 +581,19 @@ function setupNumButtons() {
 }
 
 // ---- Dice rolls: two d10 (0–9), one panic (1–20) ----
+function triggerPanicFlash() {
+  const el = document.getElementById('panic-flash');
+  if (!el) return;
+  el.classList.remove('panic-flash--show');
+  el.offsetHeight; // reflow so animation can run again
+  el.classList.add('panic-flash--show');
+  const onEnd = () => {
+    el.removeEventListener('animationend', onEnd);
+    el.classList.remove('panic-flash--show');
+  };
+  el.addEventListener('animationend', onEnd);
+}
+
 function setupDiceRolls() {
   document.querySelectorAll('.die-roll-cell').forEach((cell) => {
     const input = cell.querySelector('.die-roll-input');
@@ -593,6 +606,7 @@ function setupDiceRolls() {
     rollBtn.addEventListener('click', () => {
       if (isPanic) {
         input.value = String(Math.floor(Math.random() * 20) + 1);
+        if (Math.random() < 0.1) triggerPanicFlash();
       } else {
         input.value = String(Math.floor(Math.random() * 10));
       }
