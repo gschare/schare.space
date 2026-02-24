@@ -131,6 +131,29 @@
     </div>
 
     <div class="health-col">
+      <div class="die-roll-row">
+        <div class="die-roll-cell die-roll-cell-d10">
+          <input type="number" id="die-roll-d10-1" class="editable-stat spinnerless die-roll-input" readonly min="0" max="9" aria-label="d10 result">
+          <div class="die-roll-buttons">
+            <button type="button" class="num-btn num-btn-roll" aria-label="Roll d10">ROLL</button>
+            <button type="button" class="num-btn num-btn-reset" aria-label="Reset">RESET</button>
+          </div>
+        </div>
+        <div class="die-roll-cell die-roll-cell-d10">
+          <input type="number" id="die-roll-d10-2" class="editable-stat spinnerless die-roll-input" readonly min="0" max="9" aria-label="d10 result">
+          <div class="die-roll-buttons">
+            <button type="button" class="num-btn num-btn-roll" aria-label="Roll d10">ROLL</button>
+            <button type="button" class="num-btn num-btn-reset" aria-label="Reset">RESET</button>
+          </div>
+        </div>
+        <div class="die-roll-cell die-roll-cell-panic">
+          <input type="number" id="die-roll-panic" class="editable-stat spinnerless die-roll-input die-roll-input-panic" readonly min="1" max="20" aria-label="Panic die result">
+          <div class="die-roll-buttons">
+            <button type="button" class="num-btn num-btn-roll" aria-label="Roll panic">ROLL</button>
+            <button type="button" class="num-btn num-btn-reset" aria-label="Reset">RESET</button>
+          </div>
+        </div>
+      </div>
       <div class="health-col-inner">
         <div class="rounded-box rounded-box-red">
           <span class="panel-label">Health</span>

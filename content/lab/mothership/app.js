@@ -135,6 +135,15 @@ function applyStateToForm(state) {
   updateJournalUI();
   updateTraumaResponse();
   updateCharacterImage();
+  updatePageTitle();
+}
+
+const DEFAULT_TITLE = 'Mothership Character Sheet';
+
+function updatePageTitle() {
+  const nameEl = document.getElementById('charName');
+  const name = nameEl && (nameEl.value || '').trim();
+  document.title = name || DEFAULT_TITLE;
 }
 
 // Key we save to: only when locked.
@@ -231,6 +240,13 @@ function setupCharacterImage() {
   input.addEventListener('change', () => {
     updateCharacterImage();
   });
+}
+
+function setupPageTitle() {
+  const nameEl = document.getElementById('charName');
+  if (!nameEl) return;
+  nameEl.addEventListener('input', updatePageTitle);
+  nameEl.addEventListener('change', updatePageTitle);
 }
 
 // Ensure trauma response updates when the class changes
@@ -509,6 +525,7 @@ async function setup() {
   setupLockButton();
   setupPrintLoadButtons();
   setupCharacterImage();
+  setupPageTitle();
   bindPersist();
   setupJournalPages();
   updateLockUI();
@@ -563,6 +580,30 @@ function setupNumButtons() {
   });
 }
 
+// ---- Dice rolls: two d10 (0–9), one panic (1–20) ----
+function setupDiceRolls() {
+  document.querySelectorAll('.die-roll-cell').forEach((cell) => {
+    const input = cell.querySelector('.die-roll-input');
+    const rollBtn = cell.querySelector('.num-btn-roll');
+    const resetBtn = cell.querySelector('.num-btn-reset');
+    if (!input || !rollBtn || !resetBtn) return;
+
+    const isPanic = cell.classList.contains('die-roll-cell-panic');
+
+    rollBtn.addEventListener('click', () => {
+      if (isPanic) {
+        input.value = String(Math.floor(Math.random() * 20) + 1);
+      } else {
+        input.value = String(Math.floor(Math.random() * 10));
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      input.value = '';
+    });
+  });
+}
+
 // Credits +/- buttons with step (1, 10, 100, 1000), allow negative credit values
 function setupCreditsButtons() {
   document.querySelectorAll('.num-btn-plus, .num-btn-minus').forEach((btn) => {
@@ -583,10 +624,12 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     setupNumButtons();
     setupCreditsButtons();
+    setupDiceRolls();
     setup();
   });
 } else {
   setupNumButtons();
   setupCreditsButtons();
+  setupDiceRolls();
   setup();
 }
