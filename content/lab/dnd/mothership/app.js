@@ -1,76 +1,340 @@
-// Read the query parameters to determine the character.
+// Character sheet state: all editable fields as JSON, saved to localStorage keyed by character ID.
 
-function setup() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const charKey = urlParams.get('c');
+const STORAGE_PREFIX = 'mothership-char-';
 
-    if (!/^[a-z0-9_-]+$/i.test(charKey)) {
-        throw new Error('Invalid character key');
-      }
+// When set, all changes save to this key. When null, charId is editable and we only load on type (no save).
+let lockedCharacterKey = null;
 
-    const charSrc = `characters/${charKey}.json`;
+// Journal: multiple pages; current page text is in the textarea, rest in memory.
+let journalPages = [''];
+let journalPageIndex = 0;
 
-    const charData = await fetch(charSrc)
-      .then(r => {
-        if (!r.ok) throw new Error('Not found');
-        return r.json();
-      });
+// Build state object from form (all inputs, textareas, checkboxes).
+function getStateFromForm() {
+  const id = (el) => el && el.value !== undefined ? el.value : '';
+  const num = (el) => {
+    if (!el || el.type !== 'number') return 0;
+    const n = parseInt(el.value, 10);
+    return Number.isNaN(n) ? 0 : n;
+  };
 
-    // If not in database, load it from local storage.
-    
-    // Browse saved characters.
-    'keys'
+  const journalEl = document.getElementById('journal');
+  if (journalEl) journalPages[journalPageIndex] = journalEl.value;
+
+  return {
+    charId: id(document.getElementById('charId')),
+    charName: id(document.getElementById('charName')),
+    pronouns: id(document.getElementById('pronouns')),
+    charClass: id(document.getElementById('charClass')),
+    personalNotes: id(document.getElementById('personalNotes')),
+    highScore: num(document.getElementById('highScore')),
+    strength: num(document.getElementById('strength')),
+    speed: num(document.getElementById('speed')),
+    intellect: num(document.getElementById('intellect')),
+    combat: num(document.getElementById('combat')),
+    sanity: num(document.getElementById('sanity')),
+    fear: num(document.getElementById('fear')),
+    body: num(document.getElementById('body')),
+    conditions: id(document.getElementById('conditions')),
+    health: num(document.getElementById('health')),
+    'health-max': num(document.getElementById('health-max')),
+    wounds: num(document.getElementById('wounds')),
+    'wounds-max': num(document.getElementById('wounds-max')),
+    stress: num(document.getElementById('stress')),
+    'stress-max': num(document.getElementById('stress-max')),
+    loadout: id(document.getElementById('loadout')),
+    trinket: id(document.getElementById('trinket')),
+    patch: id(document.getElementById('patch')),
+    'armor-points': num(document.getElementById('armor-points')),
+    credits: num(document.getElementById('credits')),
+    skills: getSkillsState(),
+    'other-skills-trained': id(document.getElementById('other-skills-trained')),
+    'other-skills-expert': id(document.getElementById('other-skills-expert')),
+    'other-skills-master': id(document.getElementById('other-skills-master')),
+    journalPages: journalPages.slice(),
+    journalPageIndex,
+  };
 }
 
-// Local storage functionality for character sheets.
-// Allow us to alter stats, take notes, etc., all by character.
-// Save to local storage after every change.
+function getSkillsState() {
+  const skills = {};
+  document.querySelectorAll('[id^="skill-"]').forEach((el) => {
+    if (el.id && el.type === 'checkbox') skills[el.id] = el.checked;
+  });
+  return skills;
+}
 
-// Save status
+function applyStateToForm(state) {
+  if (!state || typeof state !== 'object') return;
+  const set = (id, value) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.type === 'checkbox') el.checked = !!value;
+    else if (value !== undefined && value !== null) el.value = String(value);
+  };
+  Object.keys(state).forEach((key) => {
+    if (key === 'skills') {
+      const s = state.skills || {};
+      Object.keys(s).forEach((skillId) => set(skillId, s[skillId]));
+    } else if (key !== 'journalPages' && key !== 'journalPageIndex') {
+      set(key, state[key]);
+    }
+  });
+  if (Array.isArray(state.journalPages) && state.journalPages.length)
+    journalPages = state.journalPages.slice();
+  else if (state.journal !== undefined && typeof state.journal === 'string')
+    journalPages = [state.journal];
+  else
+    journalPages = [''];
+  if (state.journalPageIndex !== undefined)
+    journalPageIndex = Math.min(Math.max(0, parseInt(state.journalPageIndex, 10) || 0), Math.max(0, journalPages.length - 1));
+  updateJournalUI();
+}
 
-// Characer name
+// Key we save to: only when locked.
+function getCharacterKey() {
+  return lockedCharacterKey;
+}
 
-// Character ID
-// Check if it exists in the database. If not, create it. If it does, warn the
-// user that it already exists.
+// Key for copy URL / display: locked key or current input.
+function getCharacterKeyForDisplay() {
+  if (lockedCharacterKey) return lockedCharacterKey;
+  const el = document.getElementById('charId');
+  return el && el.value ? String(el.value).trim() : '';
+}
 
-// High score
+function saveToStorage() {
+  const key = getCharacterKey();
+  if (!key) {
+    setSaveStatus('unsaved');
+    return;
+  }
+  setSaveStatus('saving');
+  try {
+    const state = getStateFromForm();
+    localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(state));
+    setSaveStatus('saved');
+  } catch (e) {
+    setSaveStatus('error');
+  }
+}
 
-// Personal notes
+function updateLockUI() {
+  const input = document.getElementById('charId');
+  const btn = document.getElementById('lock-character-btn');
+  if (input) input.disabled = !!lockedCharacterKey;
+  setSaveStatus(lockedCharacterKey ? 'saved' : 'unsaved');
+}
 
-// Multi-page journal.
+function setSaveStatus(status) {
+  const el = document.getElementById('save-status');
+  if (!el) return;
+  el.classList.remove('saved', 'unsaved', 'saving', 'error');
+  el.classList.add(status);
+  /* Do not update text content, because it's meant to look like a physical
+   * label, so it shouldn't change. That's why we have the indicator light. */
+}
 
-// Editing stats
+function loadFromStorage(key) {
+  if (!key) return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_PREFIX + key);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
 
-// Basic stats: strength, speed, intellect, combat
+// Copy current sheet URL with character key to clipboard.
+function setupCopyUrl() {
+  const btn = document.getElementById('copyUrl');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const key = getCharacterKeyForDisplay();
+    const url = key
+      ? `${window.location.origin}${window.location.pathname}?c=${encodeURIComponent(key)}`
+      : window.location.href;
+    navigator.clipboard.writeText(url).then(() => {}, () => {});
+  });
+}
 
-// Saves: sanity, fear, body
+// When user types in charId, load that character if it exists (overwrites form).
+let charIdLoadTimeout = null;
+function setupCharIdLoadOnType() {
+  const input = document.getElementById('charId');
+  if (!input) return;
+  input.addEventListener('input', () => {
+    if (charIdLoadTimeout) clearTimeout(charIdLoadTimeout);
+    charIdLoadTimeout = setTimeout(() => {
+      charIdLoadTimeout = null;
+      const key = (input.value || '').trim();
+      if (!key || !/^[a-z0-9_-]+$/i.test(key)) return;
+      const state = loadFromStorage(key);
+      if (state) {
+        applyStateToForm(state);
+        input.value = key;
+      }
+    }, 350);
+  });
+}
 
-// Hover to see original values
+// Lock: save current form to charId and set locked. Cannot unlock (skeuomorphic: control is one-way).
+function setupLockButton() {
+  const btn = document.getElementById('lock-character-btn');
+  const input = document.getElementById('charId');
+  if (!btn || !input) return;
+  btn.addEventListener('click', () => {
+    if (lockedCharacterKey) return;
+    const key = (input.value || '').trim();
+    if (!key) return;
+    if (!/^[a-z0-9_-]+$/i.test(key)) return;
+    lockedCharacterKey = key;
+    const url = `${window.location.origin}${window.location.pathname}?c=${encodeURIComponent(key)}`;
+    history.replaceState(null, '', url);
+    updateLockUI();
+    saveToStorage();
+  });
+}
 
-// Stress
-// Health
-// Wounds
+function updateJournalUI() {
+  const ta = document.getElementById('journal');
+  const info = document.getElementById('journal-page-info');
+  const prevBtn = document.getElementById('journal-prev');
+  const nextBtn = document.getElementById('journal-next');
+  if (ta) ta.value = journalPages[journalPageIndex] ?? '';
+  if (info) info.textContent = `Page ${journalPageIndex + 1} of ${journalPages.length}`;
+  if (prevBtn) prevBtn.disabled = journalPageIndex <= 0;
+  if (nextBtn) nextBtn.disabled = false;
+}
 
-// Conditions
+function setupJournalPages() {
+  const prevBtn = document.getElementById('journal-prev');
+  const nextBtn = document.getElementById('journal-next');
+  const ta = document.getElementById('journal');
+  if (!ta) return;
 
-// Inventory
+  prevBtn?.addEventListener('click', () => {
+    if (journalPageIndex <= 0) return;
+    journalPages[journalPageIndex] = ta.value;
+    journalPageIndex -= 1;
+    updateJournalUI();
+    saveToStorage();
+  });
 
-// Credits
+  nextBtn?.addEventListener('click', () => {
+    journalPages[journalPageIndex] = ta.value;
+    if (journalPageIndex >= journalPages.length - 1) {
+      journalPages.push('');
+      journalPageIndex = journalPages.length - 1;
+    } else {
+      journalPageIndex += 1;
+    }
+    updateJournalUI();
+    saveToStorage();
+  });
 
-// Armor points
+  ta.addEventListener('input', saveToStorage);
+  updateJournalUI();
+}
 
-// Skills
-// Select skills
-// Add skill
-// Intentionally haven't implemented the prerequisite system. DnD is more flexible.
-// Expect the players to make sure their skills are valid and approved by the DM.
+// Bind every editable field so changes update state and persist to localStorage.
+function bindPersist() {
+  const persist = () => saveToStorage();
 
+  const inputs = document.querySelectorAll(
+    '.sheet-layout input:not([type="button"]):not([type="submit"]), .sheet-layout textarea'
+  );
+  inputs.forEach((el) => {
+    el.addEventListener('input', persist);
+    el.addEventListener('change', persist);
+  });
+
+  document.querySelectorAll('.sheet-layout input[type="checkbox"]').forEach((el) => {
+    el.addEventListener('change', persist);
+  });
+}
+
+// Load character: only when ?c= is set. Otherwise charId starts empty; user types to load or lock to save.
+async function setup() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const charKey = urlParams.get('c');
+
+  setupCopyUrl();
+  setupCharIdLoadOnType();
+  setupLockButton();
+  bindPersist();
+  setupJournalPages();
+  updateLockUI();
+
+  if (!charKey || !/^[a-z0-9_-]+$/i.test(charKey)) {
+    setSaveStatus('unsaved');
+    return;
+  }
+
+  let state = loadFromStorage(charKey);
+  if (!state) {
+    try {
+      const r = await fetch(`characters/${charKey}.json`);
+      if (r.ok) state = await r.json();
+    } catch (e) {
+      // No static file or network error; keep state null.
+    }
+  }
+
+  if (state) applyStateToForm(state);
+  const el = document.getElementById('charId');
+  if (el) el.value = charKey;
+  setSaveStatus('unsaved');
+}
+
+// ---- Number increment/decrement buttons (wedge buttons next to Cur/Max cells) ----
+function setupNumButtons() {
+  document.querySelectorAll('.num-btn-inc').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-target');
+      const input = document.getElementById(id);
+      if (input && input.type === 'number') {
+        input.stepUp();
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    });
+  });
+  document.querySelectorAll('.num-btn-dec').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-target');
+      const input = document.getElementById(id);
+      if (input && input.type === 'number') {
+        input.stepDown();
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    });
+  });
+}
+
+// Credits +/- buttons with step (1, 10, 100, 1000), allow negative credit values
+function setupCreditsButtons() {
+  document.querySelectorAll('.num-btn-plus, .num-btn-minus').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-target');
+      const delta = parseInt(btn.getAttribute('data-delta'), 10);
+      const input = document.getElementById(id);
+      if (!input || input.type !== 'number') return;
+      const cur = parseInt(input.value || '0', 10) || 0;
+      const next = cur + delta; // allow negative numbers
+      input.value = String(next);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  });
+}
 
 if (document.readyState === 'loading') {
-    document.addEventListener("DOMContentLoaded", () => {
-        setup();
-    });
-} else {
+  document.addEventListener('DOMContentLoaded', () => {
+    setupNumButtons();
+    setupCreditsButtons();
     setup();
+  });
+} else {
+  setupNumButtons();
+  setupCreditsButtons();
+  setup();
 }

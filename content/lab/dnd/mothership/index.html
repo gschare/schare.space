@@ -1,180 +1,345 @@
 <title>Mothership Character Sheet</title>
 
-<div id="save-status">
+<div class="sheet-layout">
+  <div class="sheet-main">
+    <!-- Thin top row: ID + High Score only -->
+    <div class="id-score-row">
+      <div class="logo">Ceres <span class="logo-version">128k</span></div>
+      <div class="box box-key">
+        <span class="panel-label">Character ID</span>
+        <div class="char-id-row">
+          <input type="text" id="charId" class="editable-stat" name="charId">
+          <button type="button" id="lock-character-btn" class="num-btn lock-btn" aria-label="Lock character to save">Lock</button>
+        </div>
+        <div id="save-status" class="save-status-row">
+          <span class="save-indicator" aria-hidden="true"></span>
+          <span class="save-status-text">Saved</span>
+        </div>
+      </div>
+      <div class="box box-key">
+        <span class="panel-label">High Score</span>
+        <div class="high-score-with-buttons">
+          <input type="number" id="highScore" class="editable-stat spinnerless" name="highScore" value="0">
+          <div class="cell-buttons cell-buttons-right">
+            <button type="button" class="num-btn num-btn-inc" aria-label="Increase high score" data-target="highScore">▲</button>
+            <button type="button" class="num-btn num-btn-dec" aria-label="Decrease high score" data-target="highScore">▼</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Character box (left half) + Stats & Saves stacked (right half), same combined height -->
+    <div class="character-stats-row">
+      <div class="box character-box">
+        <span class="panel-label">Character</span>
+        <label><span class="char-field-label">Name</span> <input type="text" id="charName" class="editable-stat" name="charName"></label>
+        <label><span class="char-field-label">Pronouns</span> <input type="text" id="pronouns" class="editable-stat" name="pronouns"></label>
+        <label><span class="char-field-label">Class</span> <input type="text" id="charClass" class="editable-stat" name="charClass"></label>
+        <label>Personal Notes <textarea id="personalNotes" class="editable-stat" name="personalNotes"></textarea></label>
+      </div>
+      <div class="stats-saves-column">
+        <div class="stats-section box-key box-key-amber">
+          <span class="panel-label">Stats</span>
+          <div class="stat-circles">
+            <div class="stat-circle-wrap">
+              <label class="stat-circle">
+                <span class="stat-circle-inner"><input type="number" id="strength" class="editable-stat spinnerless" name="strength"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="strength">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="strength">▼</button>
+                </div>
+                <span class="stat-label">Strength</span>
+              </label>
+            </div>
+            <div class="stat-circle-wrap">
+              <label class="stat-circle">
+                <span class="stat-circle-inner"><input type="number" id="speed" class="editable-stat spinnerless" name="speed"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="speed">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="speed">▼</button>
+                </div>
+                <span class="stat-label">Speed</span>
+              </label>
+            </div>
+            <div class="stat-circle-wrap">
+              <label class="stat-circle">
+                <span class="stat-circle-inner"><input type="number" id="intellect" class="editable-stat spinnerless" name="intellect"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="intellect">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="intellect">▼</button>
+                </div>
+                <span class="stat-label">Intellect</span>
+              </label>
+            </div>
+            <div class="stat-circle-wrap">
+              <label class="stat-circle">
+                <span class="stat-circle-inner"><input type="number" id="combat" class="editable-stat spinnerless" name="combat"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="combat">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="combat">▼</button>
+                </div>
+                <span class="stat-label">Combat</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="saves-section box-key box-key-amber">
+          <span class="panel-label">Saves</span>
+          <div class="save-circles">
+            <div class="stat-circle-wrap">
+              <label class="save-circle">
+                <span class="stat-circle-inner"><input type="number" id="sanity" class="editable-stat spinnerless" name="sanity"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="sanity">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="sanity">▼</button>
+                </div>
+                <span class="stat-label">Sanity</span>
+              </label>
+            </div>
+            <div class="stat-circle-wrap">
+              <label class="save-circle">
+                <span class="stat-circle-inner"><input type="number" id="fear" class="editable-stat spinnerless" name="fear"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="fear">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="fear">▼</button>
+                </div>
+                <span class="stat-label">Fear</span>
+              </label>
+            </div>
+            <div class="stat-circle-wrap">
+              <label class="save-circle">
+                <span class="stat-circle-inner"><input type="number" id="body" class="editable-stat spinnerless" name="body"></span>
+                <div class="cell-buttons cell-buttons-below">
+                  <button type="button" class="num-btn num-btn-inc" aria-label="Increase" data-target="body">▲</button>
+                  <button type="button" class="num-btn num-btn-dec" aria-label="Decrease" data-target="body">▼</button>
+                </div>
+                <span class="stat-label">Body</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="health-row">
+        <div class="health-row-inner">
+          <div class="rounded-box rounded-box-red">
+            <span class="panel-label">Health</span>
+            <div class="current-max-pair">
+              <div class="cell-buttons cell-buttons-left">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="health">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="health">▼</button>
+              </div>
+              <div class="current-max-cell current-max-cell-left">
+                <input type="number" id="health" class="editable-stat spinnerless stat-size-input" name="health">
+                <span class="current-max-label">Cur</span>
+              </div>
+              <div class="current-max-cell current-max-cell-right">
+                <input type="number" id="health-max" class="editable-stat spinnerless stat-size-input" name="health-max">
+                <span class="current-max-label">Max</span>
+              </div>
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="health-max">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="health-max">▼</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="health-row-inner">
+          <div class="rounded-box rounded-box-red">
+            <span class="panel-label">Wounds</span>
+            <div class="current-max-pair">
+              <div class="cell-buttons cell-buttons-left">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="wounds">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="wounds">▼</button>
+              </div>
+              <div class="current-max-cell current-max-cell-left">
+                <input type="number" id="wounds" class="editable-stat spinnerless stat-size-input" name="wounds">
+                <span class="current-max-label">Cur</span>
+              </div>
+              <div class="current-max-cell current-max-cell-right">
+                <input type="number" id="wounds-max" class="editable-stat spinnerless stat-size-input" name="wounds-max">
+                <span class="current-max-label">Max</span>
+              </div>
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="wounds-max">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="wounds-max">▼</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="health-row-inner">
+          <div class="rounded-box rounded-box-red">
+            <span class="panel-label">Stress</span>
+            <div class="current-max-pair">
+              <div class="cell-buttons cell-buttons-left">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="stress">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="stress">▼</button>
+              </div>
+              <div class="current-max-cell current-max-cell-left">
+                <input type="number" id="stress" class="editable-stat spinnerless stat-size-input" name="stress">
+                <span class="current-max-label">Cur</span>
+              </div>
+              <div class="current-max-cell current-max-cell-right">
+                <input type="number" id="stress-max" class="editable-stat spinnerless stat-size-input" name="stress-max">
+                <span class="current-max-label">Max</span>
+              </div>
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="stress-max">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="stress-max">▼</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loadout with concave top-right; Conditions sits in the notch -->
+    <div class="loadout-conditions-wrapper">
+      <div class="box conditions-box box-key box-key-blue conditions-in-notch">
+        <span class="panel-label">Conditions</span>
+        <textarea id="conditions" class="editable-stat" name="conditions"></textarea>
+      </div>
+      <div class="loadout-section loadout-concave">
+      <span class="panel-label">Loadout</span>
+      <div class="loadout-top-row">
+        <textarea id="loadout" class="textbox loadout-textarea" name="loadout"></textarea>
+        <div class="loadout-side-fields">
+          <label class="loadout-inline loadout-field-row">
+            <span class="loadout-label">Trinket</span>
+            <input type="text" id="trinket" class="editable-stat loadout-oneline" name="trinket">
+          </label>
+          <label class="loadout-inline loadout-field-row">
+            <span class="loadout-label">Patch</span>
+            <input type="text" id="patch" class="editable-stat loadout-oneline" name="patch">
+          </label>
+          <div class="loadout-inline loadout-field-row armor-points-row">
+            <span class="loadout-label">AP</span>
+            <input type="number" id="armor-points" class="editable-stat spinnerless" name="armor-points">
+            <div class="cell-buttons cell-buttons-right">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase armor" data-target="armor-points">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease armor" data-target="armor-points">▼</button>
+            </div>
+          </div>
+          <div class="loadout-inline loadout-field-row credits-row">
+            <span class="loadout-label">CR</span>
+            <input type="number" id="credits" class="editable-stat spinnerless credits-input" name="credits">
+            <div class="credits-buttons">
+              <div class="credit-step-group">
+                <span class="credit-step-label">1</span>
+                <div class="cell-buttons cell-buttons-vertical">
+                  <button type="button" class="num-btn num-btn-plus" aria-label="+1" data-target="credits" data-delta="1">+</button>
+                  <button type="button" class="num-btn num-btn-minus" aria-label="-1" data-target="credits" data-delta="-1">−</button>
+                </div>
+              </div>
+              <div class="credit-step-group">
+                <span class="credit-step-label">10</span>
+                <div class="cell-buttons cell-buttons-vertical">
+                  <button type="button" class="num-btn num-btn-plus" aria-label="+10" data-target="credits" data-delta="10">+</button>
+                  <button type="button" class="num-btn num-btn-minus" aria-label="-10" data-target="credits" data-delta="-10">−</button>
+                </div>
+              </div>
+              <div class="credit-step-group">
+                <span class="credit-step-label">100</span>
+                <div class="cell-buttons cell-buttons-vertical">
+                  <button type="button" class="num-btn num-btn-plus" aria-label="+100" data-target="credits" data-delta="100">+</button>
+                  <button type="button" class="num-btn num-btn-minus" aria-label="-100" data-target="credits" data-delta="-100">−</button>
+                </div>
+              </div>
+              <div class="credit-step-group">
+                <span class="credit-step-label">1000</span>
+                <div class="cell-buttons cell-buttons-vertical">
+                  <button type="button" class="num-btn num-btn-plus" aria-label="+1000" data-target="credits" data-delta="1000">+</button>
+                  <button type="button" class="num-btn num-btn-minus" aria-label="-1000" data-target="credits" data-delta="-1000">−</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Skills: three columns -->
+    <div class="skills-section">
+      <span class="panel-label">Skills</span>
+      <div class="skills-columns">
+        <div class="skill-column">
+          <span class="panel-label">Trained</span>
+          <div class="trained-skills-container">
+            <label><input type="checkbox" id="skill-corewise"> Corewise</label>
+            <label><input type="checkbox" id="skill-linguistics"> Linguistics</label>
+            <label><input type="checkbox" id="skill-zoology"> Zoology</label>
+            <label><input type="checkbox" id="skill-botany"> Botany</label>
+            <label><input type="checkbox" id="skill-geology"> Geology</label>
+            <label><input type="checkbox" id="skill-industrial-equipment"> Industrial Equipment</label>
+            <label><input type="checkbox" id="skill-jury-rigging"> Jury-Rigging</label>
+            <label><input type="checkbox" id="skill-chemistry"> Chemistry</label>
+            <label><input type="checkbox" id="skill-computers"> Computers</label>
+            <label><input type="checkbox" id="skill-zero-g"> Zero-G</label>
+            <label><input type="checkbox" id="skill-mathematics"> Mathematics</label>
+            <label><input type="checkbox" id="skill-art"> Art</label>
+            <label><input type="checkbox" id="skill-archaeology"> Archaeology</label>
+            <label><input type="checkbox" id="skill-theology"> Theology</label>
+            <label><input type="checkbox" id="skill-military-training"> Military Training</label>
+            <label><input type="checkbox" id="skill-rimwise"> Rimwise</label>
+            <label><input type="checkbox" id="skill-athletics"> Athletics</label>
+            <!--<label>Other <textarea id="other-skills-trained" class="textbox textbox-small" name="other-skills-trained"></textarea></label>-->
+          </div>
+        </div>
+        <div class="skill-column">
+          <span class="panel-label">Expert</span>
+          <div class="expert-skills-container">
+            <label><input type="checkbox" id="skill-administration"> Administration</label>
+            <label><input type="checkbox" id="skill-networking"> Networking</label>
+            <label><input type="checkbox" id="skill-psychology"> Psychology</label>
+            <label><input type="checkbox" id="skill-pathology"> Pathology</label>
+            <label><input type="checkbox" id="skill-field-medicine"> Field Medicine</label>
+            <label><input type="checkbox" id="skill-ecology"> Ecology</label>
+            <label><input type="checkbox" id="skill-asteroid-mining"> Asteroid Mining</label>
+            <label><input type="checkbox" id="skill-mechanical-repair"> Mechanical Repair</label>
+            <label><input type="checkbox" id="skill-explosives"> Explosives</label>
+            <label><input type="checkbox" id="skill-pharmacology"> Pharmacology</label>
+            <label><input type="checkbox" id="skill-hacking"> Hacking</label>
+            <label><input type="checkbox" id="skill-piloting"> Piloting</label>
+            <label><input type="checkbox" id="skill-physics"> Physics</label>
+            <label><input type="checkbox" id="skill-mysticism"> Mysticism</label>
+            <label><input type="checkbox" id="skill-wilderness-survival"> Wilderness Survival</label>
+            <label><input type="checkbox" id="skill-firearms"> Firearms</label>
+            <label><input type="checkbox" id="skill-hand-to-hand-combat"> Hand-to-Hand Combat</label>
+            <!--<label>Other <textarea id="other-skills-expert" class="textbox textbox-small" name="other-skills-expert"></textarea></label>-->
+          </div>
+        </div>
+        <div class="skill-column">
+          <span class="panel-label">Master</span>
+          <div class="master-skills-container">
+            <label><input type="checkbox" id="skill-sophontology"> Sophontology</label>
+            <label><input type="checkbox" id="skill-exobiology"> Exobiology</label>
+            <label><input type="checkbox" id="skill-surgery"> Surgery</label>
+            <label><input type="checkbox" id="skill-planetology"> Planetology</label>
+            <label><input type="checkbox" id="skill-robotics"> Robotics</label>
+            <label><input type="checkbox" id="skill-engineering"> Engineering</label>
+            <label><input type="checkbox" id="skill-cybernetics"> Cybernetics</label>
+            <label><input type="checkbox" id="skill-artificial-intelligence"> Artificial Intelligence</label>
+            <label><input type="checkbox" id="skill-hyperspace"> Hyperspace</label>
+            <label><input type="checkbox" id="skill-xenoesotericism"> Xenoesotericism</label>
+            <label><input type="checkbox" id="skill-lawfare"> Lawfare</label>
+            <label><input type="checkbox" id="skill-finance"> Finance</label>
+            <label><input type="checkbox" id="skill-command"> Command</label>
+            <!--<label>Other <textarea id="other-skills-master" class="textbox textbox-small" name="other-skills-master"></textarea></label>-->
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
-<fieldset>
-    <legend>Character Name</legend>
-    <input type="text" id="charName" class="editable-stat" name="charName">
-</fieldset>
-
-<fieldset>
-    <legend>Character ID</legend>
-    <input type="text" id="charId" class="editable-stat" name="charId" placeholder="mac">
-    <button id="copyUrl">Copy URL</button>
-</fieldset>
-tooltip: In order to save your character, enter a short ID.
-If you already have a character, enter their ID to load it.
-Browse saved characters.
-
-<fieldset>
-    <legend>High Score</legend>
-    <input type="number" id="highScore" class="editable-stat" name="highScore" value="0">
-</fieldset>
-
-<fieldset>
-    <legend>Personal Notes</legend>
-    <textarea id="personalNotes" class="editable-stat" name="personalNotes"></textarea>
-</fieldset>
-
-<fieldset>
-    <legend>Stats</legend>
-    <div class="stats-container">
-        <fieldset>
-            <legend>Strength</legend>
-            <input type="number" id="strength" class="editable-stat" name="strength">
-        </fieldset>
-
-        <fieldset>
-            <legend>Speed</legend>
-            <input type="number" id="speed" class="editable-stat" name="speed">
-        </fieldset>
-
-        <fieldset>
-            <legend>Intellect</legend>
-            <input type="number" id="intellect" class="editable-stat" name="intellect">
-        </fieldset>
-
-        <fieldset>
-            <legend>Combat</legend>
-            <input type="number" id="combat" class="editable-stat" name="combat">
-        </fieldset>
+  <aside class="journal-aside">
+    <label class="journal-label">Journal</label>
+    <div class="journal-pages">
+      <div class="journal-nav">
+        <button type="button" id="journal-prev" class="journal-nav-btn" aria-label="Previous page">←</button>
+        <span id="journal-page-info" class="journal-page-info">Page 1</span>
+        <button type="button" id="journal-next" class="journal-nav-btn" aria-label="Next page">→</button>
+      </div>
+      <textarea id="journal" class="journal-textbox" name="journal" data-current-page></textarea>
     </div>
-</fieldset>
+  </aside>
+</div>
 
-Sanity
-Fear
-Body
-
-Health
-Wounds
-
-Stress
-
-Loadout
-Trinket
-Patch
-Armor Points
-Credits
-
-<fieldset>
-    <legend>Skills</legend>
-    <fieldset>
-        <legend>Trained Skills</legend>
-        <div class="trained-skills-container">
-            <input type="checkbox" id="skill-corewise">
-            <label for="skill-corewise">Corewise</label>
-            <input type="checkbox" id="skill-linguistics">
-            <label for="skill-linguistics">Linguistics</label>
-            <input type="checkbox" id="skill-zoology">
-            <label for="skill-zoology">Zoology</label>
-            <input type="checkbox" id="skill-botany">
-            <label for="skill-botany">Botany</label>
-            <input type="checkbox" id="skill-geology">
-            <label for="skill-geology">Geology</label>
-            <input type="checkbox" id="skill-industrial-equipment">
-            <label for="skill-industrial-equipment">Industrial Equipment</label>
-            <input type="checkbox" id="skill-jury-rigging">
-            <label for="skill-jury-rigging">Jury-Rigging</label>
-            <input type="checkbox" id="skill-chemistry">
-            <label for="skill-chemistry">Chemistry</label>
-            <input type="checkbox" id="skill-computers">
-            <label for="skill-computers">Computers</label>
-            <input type="checkbox" id="skill-zero-g">
-            <label for="skill-mathematics">Mathematics</label>
-            <input type="checkbox" id="skill-art">
-            <label for="skill-art">Art</label>
-            <input type="checkbox" id="skill-archaeology">
-            <label for="skill-archaeology">Archaeology</label>
-            <input type="checkbox" id="skill-theology">
-            <label for="skill-theology">Theology</label>
-            <input type="checkbox" id="skill-military-training">
-            <label for="skill-military-training">Military Training</label>
-            <input type="checkbox" id="skill-rimwise">
-            <label for="skill-rimwise">Rimwise</label>
-            <input type="checkbox" id="skill-athletics">
-            <label for="skill-athletics">Athletics</label>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>Expert Skills</legend>
-        <div class="expert-skills-container">
-            <input type="checkbox" id="skill-administration">
-            <label for="skill-administration">Administration</label>
-            <input type="checkbox" id="skill-networking">
-            <label for="skill-networking">Networking</label>
-            <input type="checkbox" id="skill-psychology">
-            <label for="skill-psychology">Psychology</label>
-            <input type="checkbox" id="skill-pathology">
-            <label for="skill-pathology">Pathology</label>
-            <input type="checkbox" id="skill-field-medicine">
-            <label for="skill-field-medicine">Field Medicine</label>
-            <input type="checkbox" id="skill-ecology">
-            <label for="skill-ecology">Ecology</label>
-            <input type="checkbox" id="skill-asteroid-mining">
-            <label for="skill-asteroid-mining">Asteroid Mining</label>
-            <input type="checkbox" id="skill-mechanical-repair">
-            <label for="skill-mechanical-repair">Mechanical Repair</label>
-            <input type="checkbox" id="skill-explosives">
-            <label for="skill-explosives"></label>Explosives</label>
-            <input type="checkbox" id="skill-pharmacology">
-            <label for="skill-pharmacology">Pharmacology</label>
-            <input type="checkbox" id="skill-hacking">
-            <label for="skill-hacking">Hacking</label>
-            <input type="checkbox" id="skill-piloting">
-            <label for="skill-piloting">Piloting</label>
-            <input type="checkbox" id="skill-physics">
-            <label for="skill-physics">Physics</label>
-            <input type="checkbox" id="skill-mysticism">
-            <label for="skill-mysticism">Mysticism</label>
-            <input type="checkbox" id="skill-wilderness-survival">
-            <label for="skill-wilderness-survival">Wilderness Survival</label>
-            <input type="checkbox" id="skill-firearms">
-            <label for="skill-firearms">Firearms</label>
-            <input type="checkbox" id="skill-hand-to-hand-combat">
-            <label for="skill-hand-to-hand-combat">Hand-to-Hand Combat</label>
-            <textarea id="other-skills" class="textbox" name="other-skills"></textarea>
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>Master Skills</legend>
-        <div class="master-skills-container">
-            <input type="checkbox" id="skill-sophontology">
-            <label for="skill-sophontology">Sophontology</label>
-            <input type="checkbox" id="skill-exobiology">
-            <label for="skill-exobiology">Exobiology</label>
-            <input type="checkbox" id="skill-surgery">
-            <label for="skill-surgery">Surgery</label>
-            <input type="checkbox" id="skill-planetology">
-            <label for="skill-planetology">Planetology</label>
-            <input type="checkbox" id="skill-robotics">
-            <label for="skill-robotics">Robotics</label>
-            <input type="checkbox" id="skill-engineering">
-            <label for="skill-engineering">Engineering</label>
-            <input type="checkbox" id="skill-cybernetics">
-            <label for="skill-cybernetics">Cybernetics</label>
-            <input type="checkbox" id="skill-artificial-intelligence">
-            <label for="skill-artificial-intelligence">Artificial Intelligence</label>
-            <input type="checkbox" id="skill-hyperspace">
-            <label for="skill-hyperspace">Hyperspace</label>
-            <input type="checkbox" id="skill-xenoesotericism">
-            <label for="skill-xenoesotericism">Xenoesotericism</label>
-            <input type="checkbox" id="skill-lawfare">
-            <label for="skill-lawfare">Lawfare</label>
-            <input type="checkbox" id="skill-finance">
-            <label for="skill-finance">Finance</label>
-            <input type="checkbox" id="skill-command">
-            <label for="skill-command">Command</label>
-        </div>
-    </fieldset>
-</fieldset>
+<script src="app.js"></script>
