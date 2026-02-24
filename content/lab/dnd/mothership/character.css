@@ -142,6 +142,36 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   min-height: 1.8em;
 }
 
+/* ---- Outer frame: terminal bezel; even width all around (0.5in); ~1in background visible ---- */
+
+.sheet-outer {
+  margin: 1in;
+  padding: 0 0.5in 0.5in 0.5in; /* top 0: bezel provides top; sides/bottom 0.5in for even frame */
+  padding-bottom: 1in;
+  border: 4px solid var(--plastic-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-height: calc(100vh - 2in);
+  background-color: var(--plastic-dark);
+}
+
+/* Logo in top bezel strip: fixed height so frame is even 0.5in all around */
+.sheet-bezel {
+  height: 0.5in;
+  min-height: 0.5in;
+  margin-top: 0.25in;
+  margin-bottom: 0.25in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.sheet-bezel .logo {
+  margin: 0;
+}
+
 /* ---- Layout: scrollable main + fixed journal ---- */
 
 .sheet-layout {
@@ -149,7 +179,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   gap: 0.4rem;
   align-items: flex-start;
   max-width: 90%;
-  margin: 2vh auto;
+  margin: 0 auto;
   background-color: var(--plastic-light);
   background-image: var(--plastic-texture);
   background-repeat: repeat;
@@ -165,15 +195,37 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   flex: 1;
   min-width: 0;
   overflow-y: auto;
+  border: 2px solid var(--plastic-border);
+  border-radius: 6px;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
-.journal-aside {
-  position: sticky;
-  top: 0;
+/* Right column: personal notes on top, journal below */
+.sheet-right-col {
   flex: 0 0 22rem;
   display: flex;
   flex-direction: column;
-  height: 85vh;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.personal-notes-box {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.personal-notes-box textarea {
+  min-height: 3em;
+  resize: vertical;
+}
+
+.journal-aside {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   background-color: var(--plastic);
   background-image: var(--plastic-texture);
@@ -209,20 +261,13 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   flex-shrink: 0;
 }
 
+/* Journal nav arrows: same look as num-btn (number increment/decrement) */
 .journal-nav-btn {
-  font-family: inherit;
-  font-size: var(--text-sm);
-  padding: 0.2rem 0.4rem;
-  cursor: pointer;
-  border: 1px solid var(--plastic-border);
-  border-radius: 3px;
-  background: var(--plastic-light);
-  color: var(--plastic-shadow);
-}
-
-.journal-nav-btn:hover:not(:disabled) {
-  background: var(--plastic);
-  color: var(--plastic-shadow);
+  width: 1.25rem;
+  height: 1rem;
+  padding: 0;
+  font-size: 0.6rem;
+  min-width: 1.25rem;
 }
 
 .journal-nav-btn:disabled {
@@ -230,13 +275,27 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   cursor: default;
 }
 
-.journal-page-info {
-  font-size: var(--text-xs);
-  color: var(--plastic-shadow);
+.journal-page-input {
+  width: 6ch;
+  min-width: 6ch;
+  padding: 0 0.2rem;
+  text-align: center;
+  border: 1px solid var(--crt-border);
+  background: var(--crt-bg);
+  color: var(--crt-text);
+  border-radius: 2px;
+  font-family: inherit;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.journal-page-input[readonly] {
+  cursor: default;
 }
 
 .journal-textbox {
-  flex: 1;
+  height: 30lh; /* This is the height of the journal. */
   min-height: 100px;
   width: 100%;
   margin: 0;
@@ -307,11 +366,6 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   flex-shrink: 0;
 }
 
-.character-box label:last-of-type {
-  flex-direction: column;
-  align-items: stretch;
-}
-
 /* Shorter bounding boxes for name and pronouns */
 #pronouns, #charClass {
   max-width: 5rem;
@@ -343,8 +397,6 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 .logo {
   font-size: 3lh;
   color: var(--plastic-shadow);
-  margin-top: 0.25rem;
-  margin-bottom: 0.15rem;
   font-family: 'Dancing Script', cursive, 'Share Tech Mono', 'IBM Plex Mono', Consolas, 'Courier New', monospace;
 }
 
@@ -391,7 +443,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   min-width: 2.75rem;
   width: auto;
   padding: 0 0.25rem;
-  font-size: 0.8rem;
+  font-size: var(--text-base);
 }
 
 /* Colored key panels: border transparent so panel border doesn’t interrupt */
@@ -523,13 +575,14 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   color: var(--crt-text-dim);
 }
 
-/* ---- Character box (left 50%) + Stats & Saves stacked (right 50%), same height ---- */
+/* ---- Character box  + Stats & Saves stacked + Health / Wounds / Stress, same height ---- */
 
 .character-stats-row {
   display: flex;
   gap: 0.4rem;
   align-items: stretch;
   margin-bottom: 0.4rem;
+  justify-content: space-between;
 }
 
 .stats-saves-column {
@@ -537,9 +590,9 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  flex: 0 0 50%;
-  justify-content: flex-start;
-  align-items: flex-start;
+  /*flex: 0 0 50%;*/
+  justify-content: center;
+  align-items: center;
 }
 
 .stats-saves-column .stats-section,
@@ -644,7 +697,7 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
 
 .stat-circle-inner input,
 .save-circle .stat-circle-inner input {
-  font-size: 1em;
+  font-size: 1.5lh;
   text-align: center;
   padding-left: 0;
   padding-right: 0;
@@ -660,14 +713,35 @@ input[type=number].spinnerless::-webkit-inner-spin-button {
   color: var(--plastic-shadow);
 }
 
+/* ---- Trauma Response (left 50%) + Conditions (right 50%) ---- */
+.trauma-conditions-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  margin-bottom: 0.4rem;
+  flex-direction: column;
+}
+
+.trauma-conditions-row .trauma-response-box {
+  /*flex: 0 0 50%;*/ /* Do not set to 50%. Keep it smaller so that we don't leave empty padding. */
+  min-width: 0;
+  margin-bottom: 0;
+}
+
 textarea {
   outline: none;
 }
 
-.conditions-in-notch textarea {
-  width: 100%;
-  height: 100%;
-  min-height: 3rem;
+textarea#conditions {
+  width: 20ch;
+  max-width: 100%;
+  min-width: 15ch;
+  min-height: 2.2em;
+  max-height: 2.8lh;
+  height: 2.8lh;
+  overflow: auto;
+  resize: none;
   font-size: var(--text-sm);
   text-align: left;
   box-sizing: border-box;
@@ -676,36 +750,39 @@ textarea {
   color: var(--crt-text);
   border: 1px solid var(--crt-border);
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.trauma-conditions-row .trauma-response-box textarea {
+  min-height: 2.2em;
+  max-height: 2.8lh;
+  height: 2.8lh;
+  min-width: 15ch;
+  max-width: 20ch;
+  width: 20ch;
+  font-size: var(--text-sm);
+  text-align: left;
+  box-sizing: border-box;
+  padding: 0.3rem 0.4rem;
+  background: var(--crt-bg);
+  color: var(--crt-text);
+  border: 1px solid var(--crt-border);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
   resize: none;
 }
 
-.conditions-box textarea {
-  width: 100%;
-  min-height: 2.2em;
-  max-height: 3.5lh;
-  height: 3.5lh;
-  font-size: var(--text-sm);
-  text-align: left;
-  box-sizing: border-box;
-  padding: 0.3rem 0.4rem;
-  background: var(--crt-bg);
-  color: var(--crt-text);
-  border: 1px solid var(--crt-border);
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
-}
-
-.health-row {
+.health-col {
   display: flex;
   gap: 0.4rem;
   flex-wrap: nowrap;
-  margin-bottom: 0;
-  width: 100%;
+  margin-bottom: 0.4rem;
   min-width: 0;
   justify-content: center;
   align-items: stretch;
+  flex-direction: row;
 }
 
-.health-row-inner {
+.health-col-inner {
   flex: 1 1 0;
   min-width: 0;
   max-width: none;
@@ -933,62 +1010,27 @@ input#highScore {
   color: var(--key-red-bottom);
 }
 
-/* ---- Loadout: concave top-right with Conditions in the notch ---- */
+/* ---- Loadout: top row = loadout textarea + trinket/patch right; bottom = armor + credits ---- */
 
-.loadout-conditions-wrapper {
-  position: relative;
-  margin-bottom: 0.4rem;
-}
-
-/* Conditions box sits in the loadout notch (top-right) */
-.conditions-in-notch {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 12rem;
-  min-width: 10rem;
-  max-width: 14rem;
-  height: 7.5rem;
-  min-height: 5rem;
-  margin: 0;
-  z-index: 1;
-  box-sizing: border-box;
+.loadout-conditions-row {
   display: flex;
-  flex-direction: column;
-}
-
-.conditions-in-notch .panel-label {
-  flex-shrink: 0;
-}
-
-.conditions-in-notch textarea {
-  flex: 1;
-  min-height: 0;
-}
-
-.loadout-section.loadout-concave {
-  /* Clip top-right so border and content form a notch; Conditions sits in the gap */
-  clip-path: polygon(
-    0 0,
-    0 100%,
-    100% 100%,
-    100% 7.5rem,
-    calc(100% - 13rem) 7.5rem,
-    calc(100% - 13rem) 0
-  );
+  flex-direction: row;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .loadout-section {
   border: 1px solid var(--plastic-border);
   border-radius: 4px;
   padding: 0.5rem 0.5rem 0.35rem 0.5rem;
-  margin-bottom: 0;
+  margin-bottom: 0.4rem;
   background-color: var(--plastic-light);
   background-image: var(--plastic-texture);
   background-repeat: repeat;
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: multiply;
   box-shadow: 1px 1px 0 var(--plastic-shadow), inset 1px 1px 0 rgba(255,255,255,0.5);
+  max-width: 25rem;
 }
 
 .loadout-section .panel-label {
@@ -1013,46 +1055,75 @@ input#highScore {
   box-shadow: 1px 1px 0 var(--key-blue-bottom), inset 1px 1px 0 rgba(255,255,255,0.4);
 }
 
-.loadout-top-row {
+/* Loadout: top row = AP + CR */
+.loadout-ap-cr-row {
   display: flex;
-  gap: 0.4rem;
-  align-items: stretch;
+  gap: 0.5rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
   margin-bottom: 0.35rem;
 }
 
-.loadout-top-row .loadout-textarea {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: 5lh;
-  max-height: 15lh;
+.loadout-ap-cr-row .loadout-field-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0.3rem;
   font-size: var(--text-sm);
-  height: 15lh;
-  max-width: 30rem;
-  width: 30rem;
+  color: var(--plastic-shadow);
 }
 
-.loadout-side-fields {
-  flex: 0 0 auto;
+.loadout-ap-cr-row .loadout-field-row.armor-points-row,
+.loadout-ap-cr-row .loadout-field-row.credits-row {
+  align-items: flex-end;
+}
+
+.loadout-ap-cr-row .char-field-label {
+  display: inline-block;
+  min-width: 4rem;
+  flex-shrink: 0;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.loadout-textarea-wrap {
+  margin-bottom: 0.35rem;
+}
+
+.loadout-textarea-wrap .loadout-textarea {
+  width: 100%;
+  max-width: 22rem;
+  width: 22rem;
+  min-width: 0;
+  max-height: 18lh;
+  height: 18lh;
+  font-size: var(--text-sm);
+  height: 10lh;
+  box-sizing: border-box;
+}
+
+/* Trinket and patch below loadout textarea */
+.loadout-bottom-fields {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  min-width: 10rem;
 }
 
-/* All loadout field labels: same color as Loadout panel label, aligned */
-.loadout-section .loadout-side-fields .loadout-label {
-  color: var(--plastic-shadow);
-  font-weight: bold;
-  font-size: var(--text-sm);
-  min-width: 5.5ch;
-  flex-shrink: 0;
-}
-
-.loadout-inline {
+.loadout-bottom-fields .loadout-field-row {
   display: flex;
-  align-items: center;
-  gap: 0.35rem;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0.3rem;
   font-size: var(--text-sm);
+  color: var(--plastic-shadow);
+}
+
+.loadout-bottom-fields .char-field-label {
+  display: inline-block;
+  min-width: 4rem;
+  flex-shrink: 0;
+  vertical-align: middle;
+  text-align: right;
 }
 
 .loadout-oneline {
@@ -1065,10 +1136,19 @@ input#highScore {
 }
 
 /* Armor points row: label + input + buttons */
+.loadout-field-row.armor-points-row, .loadout-field-row.credits-row {
+  height: 40px;
+  align-items: center;
+}
+
 .armor-points-row {
   display: flex;
   align-items: flex-end;
   gap: 0.35rem;
+}
+
+input#armor-points {
+  height: 40px;
 }
 
 .armor-points-row .cell-buttons {
@@ -1097,6 +1177,7 @@ input#highScore {
   align-items: flex-end;
   gap: 0.2rem;
   flex-shrink: 0;
+  height: 40px;
 }
 
 .credit-step-group .cell-buttons-vertical {
@@ -1144,7 +1225,7 @@ input#highScore {
   background-size: var(--plastic-texture-size) var(--plastic-texture-size);
   background-blend-mode: difference;
   color: #e0e0e0;
-  font-size: 0.75rem;
+  font-size: var(--text-base);
   line-height: 1;
   cursor: pointer;
   display: flex;
@@ -1271,17 +1352,21 @@ input#highScore {
   font-size: var(--text-sm);
 }
 
-/* Layout only: prevent journal from overlapping main pane on narrow viewports */
+/* Layout only: prevent right column from overlapping main pane on narrow viewports */
 @media (max-width: 60rem) {
   .sheet-layout {
     flex-direction: column;
   }
 
-  .journal-aside {
-    position: relative;
+  .sheet-right-col {
     flex: none;
     width: 100%;
-    height: 16rem;
+  }
+
+  .journal-aside {
+    position: relative;
+    flex: 1 1 0;
+    min-height: 16rem;
     max-height: 40vh;
   }
 }

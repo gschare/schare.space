@@ -89,6 +89,7 @@ function applyStateToForm(state) {
   if (state.journalPageIndex !== undefined)
     journalPageIndex = Math.min(Math.max(0, parseInt(state.journalPageIndex, 10) || 0), Math.max(0, journalPages.length - 1));
   updateJournalUI();
+  updateTraumaResponse();
 }
 
 // Key we save to: only when locked.
@@ -123,6 +124,7 @@ function updateLockUI() {
   const input = document.getElementById('charId');
   const btn = document.getElementById('lock-character-btn');
   if (input) input.disabled = !!lockedCharacterKey;
+  if (btn) btn.disabled = !!lockedCharacterKey;
   setSaveStatus(lockedCharacterKey ? 'saved' : 'unsaved');
 }
 
@@ -134,6 +136,40 @@ function setSaveStatus(status) {
   /* Do not update text content, because it's meant to look like a physical
    * label, so it shouldn't change. That's why we have the indicator light. */
 }
+
+// Trauma response: automatically fills textarea based on class
+function updateTraumaResponse() {
+  const classInput = document.getElementById('charClass');
+  const traumaTextarea = document.getElementById('traumaResponse');
+  if (!classInput || !traumaTextarea) return;
+
+  // Mapping of character class to trauma response
+  const traumaResponses = {
+    teamster: '[+] on panic, 1 per session.',
+    android: 'Close friendlies have [-] on fear.',
+    marine: 'Panic -> close friendlies roll fear.',
+    scientist: 'Sanity fail -> close friendlies +1 stress.',
+    suit: 'Rest of party has +1 minimum stress.'
+  };
+
+  const characterClass = (classInput.value || '').trim().toLowerCase();
+
+  if (traumaResponses.hasOwnProperty(characterClass)) {
+    traumaTextarea.value = traumaResponses[characterClass];
+  } else {
+    traumaTextarea.value = '';
+  }
+}
+
+// Ensure trauma response updates when the class changes
+(function setupTraumaAutoFill() {
+  const classInput = document.getElementById('charClass');
+  if (!classInput) return;
+  classInput.addEventListener('input', updateTraumaResponse);
+  // Also update immediately in case a value is pre-filled
+  updateTraumaResponse();
+})();
+
 
 function loadFromStorage(key) {
   if (!key) return null;
@@ -202,7 +238,7 @@ function updateJournalUI() {
   const prevBtn = document.getElementById('journal-prev');
   const nextBtn = document.getElementById('journal-next');
   if (ta) ta.value = journalPages[journalPageIndex] ?? '';
-  if (info) info.textContent = `Page ${journalPageIndex + 1} of ${journalPages.length}`;
+  if (info) info.value = `${journalPageIndex + 1}/${journalPages.length}`;
   if (prevBtn) prevBtn.disabled = journalPageIndex <= 0;
   if (nextBtn) nextBtn.disabled = false;
 }
@@ -284,7 +320,8 @@ async function setup() {
   if (state) applyStateToForm(state);
   const el = document.getElementById('charId');
   if (el) el.value = charKey;
-  setSaveStatus('unsaved');
+  lockedCharacterKey = charKey;
+  updateLockUI();
 }
 
 // ---- Number increment/decrement buttons (wedge buttons next to Cur/Max cells) ----

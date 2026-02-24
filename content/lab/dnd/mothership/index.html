@@ -1,41 +1,42 @@
 <title>Mothership Character Sheet</title>
 
-<div class="sheet-layout">
+<div class="sheet-outer">
+  <div class="sheet-bezel">
+    <div class="logo">Ceres <span class="logo-version">128k</span></div>
+  </div>
+  <div class="sheet-layout">
   <div class="sheet-main">
-    <!-- Thin top row: ID + High Score only -->
-    <div class="id-score-row">
-      <div class="logo">Ceres <span class="logo-version">128k</span></div>
-      <div class="box box-key">
-        <span class="panel-label">Character ID</span>
-        <div class="char-id-row">
-          <input type="text" id="charId" class="editable-stat" name="charId">
-          <button type="button" id="lock-character-btn" class="num-btn lock-btn" aria-label="Lock character to save">Lock</button>
-        </div>
-        <div id="save-status" class="save-status-row">
-          <span class="save-indicator" aria-hidden="true"></span>
-          <span class="save-status-text">Saved</span>
-        </div>
-      </div>
-      <div class="box box-key">
-        <span class="panel-label">High Score</span>
-        <div class="high-score-with-buttons">
-          <input type="number" id="highScore" class="editable-stat spinnerless" name="highScore" value="0">
-          <div class="cell-buttons cell-buttons-right">
-            <button type="button" class="num-btn num-btn-inc" aria-label="Increase high score" data-target="highScore">▲</button>
-            <button type="button" class="num-btn num-btn-dec" aria-label="Decrease high score" data-target="highScore">▼</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Character box (left half) + Stats & Saves stacked (right half), same combined height -->
     <div class="character-stats-row">
-      <div class="box character-box">
-        <span class="panel-label">Character</span>
-        <label><span class="char-field-label">Name</span> <input type="text" id="charName" class="editable-stat" name="charName"></label>
-        <label><span class="char-field-label">Pronouns</span> <input type="text" id="pronouns" class="editable-stat" name="pronouns"></label>
-        <label><span class="char-field-label">Class</span> <input type="text" id="charClass" class="editable-stat" name="charClass"></label>
-        <label>Personal Notes <textarea id="personalNotes" class="editable-stat" name="personalNotes"></textarea></label>
+      <div class="character-col">
+        <div class="id-score-row">
+          <div class="box box-key">
+            <span class="panel-label">Character ID</span>
+            <div class="char-id-row">
+              <input type="text" id="charId" class="editable-stat" name="charId">
+              <button type="button" id="lock-character-btn" class="num-btn lock-btn" aria-label="Lock character to save">Lock</button>
+            </div>
+            <div id="save-status" class="save-status-row">
+              <span class="save-indicator" aria-hidden="true"></span>
+              <span class="save-status-text">Saved</span>
+            </div>
+          </div>
+          <div class="box box-key">
+            <span class="panel-label">High Score</span>
+            <div class="high-score-with-buttons">
+              <input type="number" id="highScore" class="editable-stat spinnerless" name="highScore" value="0">
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase high score" data-target="highScore">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease high score" data-target="highScore">▼</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box character-box">
+          <label><span class="char-field-label">Name</span> <input type="text" id="charName" class="editable-stat" name="charName"></label>
+          <label><span class="char-field-label">Pronouns</span> <input type="text" id="pronouns" class="editable-stat" name="pronouns"></label>
+          <label><span class="char-field-label">Class</span> <input type="text" id="charClass" class="editable-stat" name="charClass"></label>
+        </div>
       </div>
       <div class="stats-saves-column">
         <div class="stats-section box-key box-key-amber">
@@ -118,142 +119,153 @@
             </div>
           </div>
         </div>
-        <div class="health-row">
-        <div class="health-row-inner">
-          <div class="rounded-box rounded-box-red">
-            <span class="panel-label">Health</span>
-            <div class="current-max-pair">
-              <div class="cell-buttons cell-buttons-left">
-                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="health">▲</button>
-                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="health">▼</button>
-              </div>
-              <div class="current-max-cell current-max-cell-left">
-                <input type="number" id="health" class="editable-stat spinnerless stat-size-input" name="health">
-                <span class="current-max-label">Cur</span>
-              </div>
-              <div class="current-max-cell current-max-cell-right">
-                <input type="number" id="health-max" class="editable-stat spinnerless stat-size-input" name="health-max">
-                <span class="current-max-label">Max</span>
-              </div>
-              <div class="cell-buttons cell-buttons-right">
-                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="health-max">▲</button>
-                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="health-max">▼</button>
-              </div>
+      </div>
+    </div>
+
+    <div class="health-col">
+      <div class="health-col-inner">
+        <div class="rounded-box rounded-box-red">
+          <span class="panel-label">Health</span>
+          <div class="current-max-pair">
+            <div class="cell-buttons cell-buttons-left">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="health">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="health">▼</button>
+            </div>
+            <div class="current-max-cell current-max-cell-left">
+              <input type="number" id="health" class="editable-stat spinnerless stat-size-input" name="health">
+              <span class="current-max-label">Cur</span>
+            </div>
+            <div class="current-max-cell current-max-cell-right">
+              <input type="number" id="health-max" class="editable-stat spinnerless stat-size-input" name="health-max">
+              <span class="current-max-label">Max</span>
+            </div>
+            <div class="cell-buttons cell-buttons-right">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="health-max">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="health-max">▼</button>
             </div>
           </div>
         </div>
-        <div class="health-row-inner">
-          <div class="rounded-box rounded-box-red">
-            <span class="panel-label">Wounds</span>
-            <div class="current-max-pair">
-              <div class="cell-buttons cell-buttons-left">
-                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="wounds">▲</button>
-                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="wounds">▼</button>
-              </div>
-              <div class="current-max-cell current-max-cell-left">
-                <input type="number" id="wounds" class="editable-stat spinnerless stat-size-input" name="wounds">
-                <span class="current-max-label">Cur</span>
-              </div>
-              <div class="current-max-cell current-max-cell-right">
-                <input type="number" id="wounds-max" class="editable-stat spinnerless stat-size-input" name="wounds-max">
-                <span class="current-max-label">Max</span>
-              </div>
-              <div class="cell-buttons cell-buttons-right">
-                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="wounds-max">▲</button>
-                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="wounds-max">▼</button>
-              </div>
+      </div>
+      <div class="health-col-inner">
+        <div class="rounded-box rounded-box-red">
+          <span class="panel-label">Wounds</span>
+          <div class="current-max-pair">
+            <div class="cell-buttons cell-buttons-left">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="wounds">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="wounds">▼</button>
+            </div>
+            <div class="current-max-cell current-max-cell-left">
+              <input type="number" id="wounds" class="editable-stat spinnerless stat-size-input" name="wounds">
+              <span class="current-max-label">Cur</span>
+            </div>
+            <div class="current-max-cell current-max-cell-right">
+              <input type="number" id="wounds-max" class="editable-stat spinnerless stat-size-input" name="wounds-max">
+              <span class="current-max-label">Max</span>
+            </div>
+            <div class="cell-buttons cell-buttons-right">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="wounds-max">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="wounds-max">▼</button>
             </div>
           </div>
         </div>
-        <div class="health-row-inner">
-          <div class="rounded-box rounded-box-red">
-            <span class="panel-label">Stress</span>
-            <div class="current-max-pair">
-              <div class="cell-buttons cell-buttons-left">
-                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="stress">▲</button>
-                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="stress">▼</button>
-              </div>
-              <div class="current-max-cell current-max-cell-left">
-                <input type="number" id="stress" class="editable-stat spinnerless stat-size-input" name="stress">
-                <span class="current-max-label">Cur</span>
-              </div>
-              <div class="current-max-cell current-max-cell-right">
-                <input type="number" id="stress-max" class="editable-stat spinnerless stat-size-input" name="stress-max">
-                <span class="current-max-label">Max</span>
-              </div>
-              <div class="cell-buttons cell-buttons-right">
-                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="stress-max">▲</button>
-                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="stress-max">▼</button>
-              </div>
+      </div>
+      <div class="health-col-inner">
+        <div class="rounded-box rounded-box-red">
+          <span class="panel-label">Stress</span>
+          <div class="current-max-pair">
+            <div class="cell-buttons cell-buttons-left">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="stress">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="stress">▼</button>
             </div>
+            <div class="current-max-cell current-max-cell-left">
+              <input type="number" id="stress" class="editable-stat spinnerless stat-size-input" name="stress">
+              <span class="current-max-label">Cur</span>
+            </div>
+            <div class="current-max-cell current-max-cell-right">
+              <input type="number" id="stress-max" class="editable-stat spinnerless stat-size-input" name="stress-max">
+              <span class="current-max-label">Max</span>
+            </div>
+            <div class="cell-buttons cell-buttons-right">
+              <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="stress-max">▲</button>
+              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="stress-max">▼</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Loadout with concave top-right; Conditions sits in the notch -->
-    <div class="loadout-conditions-wrapper">
-      <div class="box conditions-box box-key box-key-blue conditions-in-notch">
-        <span class="panel-label">Conditions</span>
-        <textarea id="conditions" class="editable-stat" name="conditions"></textarea>
-      </div>
-      <div class="loadout-section loadout-concave">
-      <span class="panel-label">Loadout</span>
-      <div class="loadout-top-row">
-        <textarea id="loadout" class="textbox loadout-textarea" name="loadout"></textarea>
-        <div class="loadout-side-fields">
-          <label class="loadout-inline loadout-field-row">
-            <span class="loadout-label">Trinket</span>
+    <div class="loadout-conditions-row">
+      <!-- Loadout: top = AP + CR; middle = textarea; bottom = trinket, patch -->
+      <div class="loadout-section ">
+        <span class="panel-label">Loadout</span>
+        <div class="loadout-textarea-wrap">
+          <textarea id="loadout" class="textbox loadout-textarea" name="loadout"></textarea>
+        </div>
+        <div class="loadout-bottom-fields">
+          <label class="loadout-field-row">
+            <span class="char-field-label">Trinket</span>
             <input type="text" id="trinket" class="editable-stat loadout-oneline" name="trinket">
           </label>
-          <label class="loadout-inline loadout-field-row">
-            <span class="loadout-label">Patch</span>
+          <label class="loadout-field-row">
+            <span class="char-field-label">Patch</span>
             <input type="text" id="patch" class="editable-stat loadout-oneline" name="patch">
           </label>
-          <div class="loadout-inline loadout-field-row armor-points-row">
-            <span class="loadout-label">AP</span>
-            <input type="number" id="armor-points" class="editable-stat spinnerless" name="armor-points">
-            <div class="cell-buttons cell-buttons-right">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase armor" data-target="armor-points">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease armor" data-target="armor-points">▼</button>
-            </div>
+        </div>
+      </div>
+
+      <!-- Trauma Response + Conditions -->
+      <div class="trauma-conditions-row">
+        <div class="box box-key loadout-field-row armor-points-row">
+          <span class="char-field-label">AP</span>
+          <input type="number" id="armor-points" class="editable-stat spinnerless" name="armor-points">
+          <div class="cell-buttons cell-buttons-right">
+            <button type="button" class="num-btn num-btn-inc" aria-label="Increase armor" data-target="armor-points">▲</button>
+            <button type="button" class="num-btn num-btn-dec" aria-label="Decrease armor" data-target="armor-points">▼</button>
           </div>
-          <div class="loadout-inline loadout-field-row credits-row">
-            <span class="loadout-label">CR</span>
-            <input type="number" id="credits" class="editable-stat spinnerless credits-input" name="credits">
-            <div class="credits-buttons">
-              <div class="credit-step-group">
-                <span class="credit-step-label">1</span>
-                <div class="cell-buttons cell-buttons-vertical">
-                  <button type="button" class="num-btn num-btn-plus" aria-label="+1" data-target="credits" data-delta="1">+</button>
-                  <button type="button" class="num-btn num-btn-minus" aria-label="-1" data-target="credits" data-delta="-1">−</button>
-                </div>
+        </div>
+        <div class="box box-key loadout-field-row credits-row">
+          <span class="char-field-label">CR</span>
+          <input type="number" id="credits" class="editable-stat spinnerless credits-input" name="credits">
+          <div class="credits-buttons">
+            <div class="credit-step-group">
+              <span class="credit-step-label">1</span>
+              <div class="cell-buttons cell-buttons-vertical">
+                <button type="button" class="num-btn num-btn-plus" aria-label="+1" data-target="credits" data-delta="1">+</button>
+                <button type="button" class="num-btn num-btn-minus" aria-label="-1" data-target="credits" data-delta="-1">−</button>
               </div>
-              <div class="credit-step-group">
-                <span class="credit-step-label">10</span>
-                <div class="cell-buttons cell-buttons-vertical">
-                  <button type="button" class="num-btn num-btn-plus" aria-label="+10" data-target="credits" data-delta="10">+</button>
-                  <button type="button" class="num-btn num-btn-minus" aria-label="-10" data-target="credits" data-delta="-10">−</button>
-                </div>
+            </div>
+            <div class="credit-step-group">
+              <span class="credit-step-label">10</span>
+              <div class="cell-buttons cell-buttons-vertical">
+                <button type="button" class="num-btn num-btn-plus" aria-label="+10" data-target="credits" data-delta="10">+</button>
+                <button type="button" class="num-btn num-btn-minus" aria-label="-10" data-target="credits" data-delta="-10">−</button>
               </div>
-              <div class="credit-step-group">
-                <span class="credit-step-label">100</span>
-                <div class="cell-buttons cell-buttons-vertical">
-                  <button type="button" class="num-btn num-btn-plus" aria-label="+100" data-target="credits" data-delta="100">+</button>
-                  <button type="button" class="num-btn num-btn-minus" aria-label="-100" data-target="credits" data-delta="-100">−</button>
-                </div>
+            </div>
+            <div class="credit-step-group">
+              <span class="credit-step-label">100</span>
+              <div class="cell-buttons cell-buttons-vertical">
+                <button type="button" class="num-btn num-btn-plus" aria-label="+100" data-target="credits" data-delta="100">+</button>
+                <button type="button" class="num-btn num-btn-minus" aria-label="-100" data-target="credits" data-delta="-100">−</button>
               </div>
-              <div class="credit-step-group">
-                <span class="credit-step-label">1000</span>
-                <div class="cell-buttons cell-buttons-vertical">
-                  <button type="button" class="num-btn num-btn-plus" aria-label="+1000" data-target="credits" data-delta="1000">+</button>
-                  <button type="button" class="num-btn num-btn-minus" aria-label="-1000" data-target="credits" data-delta="-1000">−</button>
-                </div>
+            </div>
+            <div class="credit-step-group">
+              <span class="credit-step-label">1k</span>
+              <div class="cell-buttons cell-buttons-vertical">
+                <button type="button" class="num-btn num-btn-plus" aria-label="+1000" data-target="credits" data-delta="1000">+</button>
+                <button type="button" class="num-btn num-btn-minus" aria-label="-1000" data-target="credits" data-delta="-1000">−</button>
               </div>
             </div>
           </div>
         </div>
+        <div class="box conditions-box box-key box-key-blue">
+          <span class="panel-label">Conditions</span>
+          <textarea id="conditions" class="editable-stat" name="conditions"></textarea>
+        </div>
+        <div class="box trauma-response-box">
+          <span class="panel-label">Trauma Response</span>
+          <textarea id="traumaResponse" class="editable-stat" name="traumaResponse" readonly></textarea>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- Skills: three columns -->
@@ -329,17 +341,24 @@
     </div>
 </div>
 
-  <aside class="journal-aside">
+  <div class="sheet-right-col">
+    <div class="personal-notes-box box">
+      <span class="panel-label">Personal Notes</span>
+      <textarea id="personalNotes" class="editable-stat" name="personalNotes"></textarea>
+    </div>
+    <aside class="journal-aside">
     <label class="journal-label">Journal</label>
     <div class="journal-pages">
       <div class="journal-nav">
-        <button type="button" id="journal-prev" class="journal-nav-btn" aria-label="Previous page">←</button>
-        <span id="journal-page-info" class="journal-page-info">Page 1</span>
-        <button type="button" id="journal-next" class="journal-nav-btn" aria-label="Next page">→</button>
+        <button type="button" id="journal-prev" class="num-btn journal-nav-btn" aria-label="Previous page">◀</button>
+        <input type="text" id="journal-page-info" class="journal-page-input" readonly value="1/1" aria-label="Page">
+        <button type="button" id="journal-next" class="num-btn journal-nav-btn" aria-label="Next page">▶</button>
       </div>
       <textarea id="journal" class="journal-textbox" name="journal" data-current-page></textarea>
     </div>
   </aside>
+  </div>
+</div>
 </div>
 
 <script src="app.js"></script>
