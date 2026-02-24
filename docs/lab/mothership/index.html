@@ -133,6 +133,7 @@
     <div class="health-col">
       <div class="die-roll-row">
         <div class="die-roll-cell die-roll-cell-d10">
+          <label class="die-roll-label">D10</label>
           <input type="number" id="die-roll-d10-1" class="editable-stat spinnerless die-roll-input" readonly="readonly" min="0" max="9" aria-label="d10 result">
           <div class="die-roll-buttons">
             <button type="button" class="num-btn num-btn-roll" aria-label="Roll d10">ROLL</button>
@@ -140,6 +141,7 @@
           </div>
         </div>
         <div class="die-roll-cell die-roll-cell-d10">
+          <label class="die-roll-label">D10</label>
           <input type="number" id="die-roll-d10-2" class="editable-stat spinnerless die-roll-input" readonly="readonly" min="0" max="9" aria-label="d10 result">
           <div class="die-roll-buttons">
             <button type="button" class="num-btn num-btn-roll" aria-label="Roll d10">ROLL</button>
@@ -147,6 +149,7 @@
           </div>
         </div>
         <div class="die-roll-cell die-roll-cell-panic">
+          <label class="die-roll-label">Panic</label>
           <input type="number" id="die-roll-panic" class="editable-stat spinnerless die-roll-input die-roll-input-panic" readonly="readonly" min="1" max="20" aria-label="Panic die result">
           <div class="die-roll-buttons">
             <button type="button" class="num-btn num-btn-roll" aria-label="Roll panic">ROLL</button>
@@ -154,71 +157,73 @@
           </div>
         </div>
       </div>
-      <div class="health-col-inner">
-        <div class="rounded-box rounded-box-red">
-          <span class="panel-label">Health</span>
-          <div class="current-max-pair">
-            <div class="cell-buttons cell-buttons-left">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="health">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="health">▼</button>
-            </div>
-            <div class="current-max-cell current-max-cell-left">
-              <input type="number" id="health" class="editable-stat spinnerless stat-size-input" name="health">
-              <span class="current-max-label">Cur</span>
-            </div>
-            <div class="current-max-cell current-max-cell-right">
-              <input type="number" id="health-max" class="editable-stat spinnerless stat-size-input" name="health-max">
-              <span class="current-max-label">Max</span>
-            </div>
-            <div class="cell-buttons cell-buttons-right">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="health-max">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="health-max">▼</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="health-col-inner">
-        <div class="rounded-box rounded-box-red">
-          <span class="panel-label">Wounds</span>
-          <div class="current-max-pair">
-            <div class="cell-buttons cell-buttons-left">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="wounds">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="wounds">▼</button>
-            </div>
-            <div class="current-max-cell current-max-cell-left">
-              <input type="number" id="wounds" class="editable-stat spinnerless stat-size-input" name="wounds">
-              <span class="current-max-label">Cur</span>
-            </div>
-            <div class="current-max-cell current-max-cell-right">
-              <input type="number" id="wounds-max" class="editable-stat spinnerless stat-size-input" name="wounds-max">
-              <span class="current-max-label">Max</span>
-            </div>
-            <div class="cell-buttons cell-buttons-right">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="wounds-max">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="wounds-max">▼</button>
+      <div class="health-col-right">
+        <div class="health-col-inner">
+          <div class="rounded-box rounded-box-red">
+            <span class="panel-label">Health</span>
+            <div class="current-max-pair">
+              <div class="cell-buttons cell-buttons-left">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="health">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="health">▼</button>
+              </div>
+              <div class="current-max-cell current-max-cell-left">
+                <input type="number" id="health" class="editable-stat spinnerless stat-size-input" name="health">
+                <span class="current-max-label">Cur</span>
+              </div>
+              <div class="current-max-cell current-max-cell-right">
+                <input type="number" id="health-max" class="editable-stat spinnerless stat-size-input" name="health-max">
+                <span class="current-max-label">Max</span>
+              </div>
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="health-max">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="health-max">▼</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="health-col-inner">
-        <div class="rounded-box rounded-box-red">
-          <span class="panel-label">Stress</span>
-          <div class="current-max-pair">
-            <div class="cell-buttons cell-buttons-left">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="stress">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="stress">▼</button>
+        <div class="health-col-inner">
+          <div class="rounded-box rounded-box-red">
+            <span class="panel-label">Wounds</span>
+            <div class="current-max-pair">
+              <div class="cell-buttons cell-buttons-left">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="wounds">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="wounds">▼</button>
+              </div>
+              <div class="current-max-cell current-max-cell-left">
+                <input type="number" id="wounds" class="editable-stat spinnerless stat-size-input" name="wounds">
+                <span class="current-max-label">Cur</span>
+              </div>
+              <div class="current-max-cell current-max-cell-right">
+                <input type="number" id="wounds-max" class="editable-stat spinnerless stat-size-input" name="wounds-max">
+                <span class="current-max-label">Max</span>
+              </div>
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase max" data-target="wounds-max">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease max" data-target="wounds-max">▼</button>
+              </div>
             </div>
-            <div class="current-max-cell current-max-cell-left">
-              <input type="number" id="stress" class="editable-stat spinnerless stat-size-input" name="stress">
-              <span class="current-max-label">Cur</span>
-            </div>
-            <div class="current-max-cell current-max-cell-right">
-              <input type="number" id="stress-min" class="editable-stat spinnerless stat-size-input" name="stress-min">
-              <span class="current-max-label">Min</span>
-            </div>
-            <div class="cell-buttons cell-buttons-right">
-              <button type="button" class="num-btn num-btn-inc" aria-label="Increase min" data-target="stress-min">▲</button>
-              <button type="button" class="num-btn num-btn-dec" aria-label="Decrease min" data-target="stress-min">▼</button>
+          </div>
+        </div>
+        <div class="health-col-inner">
+          <div class="rounded-box rounded-box-red">
+            <span class="panel-label">Stress</span>
+            <div class="current-max-pair">
+              <div class="cell-buttons cell-buttons-left">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase current" data-target="stress">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease current" data-target="stress">▼</button>
+              </div>
+              <div class="current-max-cell current-max-cell-left">
+                <input type="number" id="stress" class="editable-stat spinnerless stat-size-input" name="stress">
+                <span class="current-max-label">Cur</span>
+              </div>
+              <div class="current-max-cell current-max-cell-right">
+                <input type="number" id="stress-min" class="editable-stat spinnerless stat-size-input" name="stress-min">
+                <span class="current-max-label">Min</span>
+              </div>
+              <div class="cell-buttons cell-buttons-right">
+                <button type="button" class="num-btn num-btn-inc" aria-label="Increase min" data-target="stress-min">▲</button>
+                <button type="button" class="num-btn num-btn-dec" aria-label="Decrease min" data-target="stress-min">▼</button>
+              </div>
             </div>
           </div>
         </div>

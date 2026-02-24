@@ -861,9 +861,21 @@ textarea#conditions {
   flex-wrap: nowrap;
   margin-bottom: 0.4rem;
   min-width: 0;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
   flex-direction: row;
+}
+
+.health-col-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: nowrap;
+  margin-bottom: 0.4rem;
+  min-width: 0;
+  flex: 0 0 auto;
+  margin-left: auto;
 }
 
 .health-col-inner {
@@ -872,14 +884,16 @@ textarea#conditions {
   width: fit-content;
 }
 
-/* ---- Dice roll row: two d10 (0–9), one panic (1–20) ---- */
+/* ---- Dice roll row: two d10 (0–9), one panic (1–20), centered in remainder ---- */
 .die-roll-row {
   display: flex;
+  flex: 1;
+  min-width: 0;
   gap: 0.35rem;
   align-items: flex-start;
+  justify-content: center;
   margin-bottom: 0.35rem;
   flex-wrap: nowrap;
-  margin: 0.5rem;
 }
 
 .die-roll-cell {
@@ -888,6 +902,14 @@ textarea#conditions {
   align-items: center;
   gap: 0.2rem;
   flex-shrink: 0;
+}
+
+.die-roll-cell .die-roll-label {
+  font-size: var(--text-sm);
+  color: var(--plastic-shadow);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.2rem;
 }
 
 .die-roll-cell .die-roll-input {
@@ -910,11 +932,11 @@ textarea#conditions {
 
 .die-roll-cell .num-btn-roll,
 .die-roll-cell .num-btn-reset {
-  width: 5.5ch;
+  width: 100%;
   min-width: 1.5rem;
   height: 1.5lh;
-  padding: 0;
-  font-size: var(--text-sm);
+  padding: 0 5px;
+  font-size: 0.8rem;
   line-height: 1;
 }
 
