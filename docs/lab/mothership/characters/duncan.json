@@ -19,7 +19,7 @@
     "wounds":0,
     "wounds-max":2,
     "stress":2,
-    "stress-min":0,
+    "stress-min":2,
     "loadout":"Scrubs (AP 1)\nVial of Acid\nMylar Blanket\nFirst Aid Kit",
     "trinket":"Patched Overalls, Personalized",
     "patch":"\"Fix Me First\" (Caduceus)",
