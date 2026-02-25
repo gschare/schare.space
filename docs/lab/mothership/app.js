@@ -394,6 +394,7 @@ function setPrintLoadMessage(text) {
 function setupPrintLoadButtons() {
   const printBtn = document.getElementById('print-json-btn');
   const loadBtn = document.getElementById('load-json-btn');
+  const resetBtn = document.getElementById('reset-json-btn');
   const clearBtn = document.getElementById('clear-json-btn');
   const modal = document.getElementById('load-modal');
   const loadInput = document.getElementById('load-json-input');
@@ -422,8 +423,8 @@ function setupPrintLoadButtons() {
     });
   }
 
-  if (clearBtn) {
-    clearBtn.addEventListener('click', async () => {
+  if (resetBtn) {
+    resetBtn.addEventListener('click', async () => {
       const charKey = getCharacterKeyForDisplay();
       if (charKey) localStorage.removeItem(STORAGE_PREFIX + charKey);
 
@@ -453,7 +454,20 @@ function setupPrintLoadButtons() {
       lockedCharacterKey = charKey;
       updateLockUI();
 
-      setPrintLoadMessage(reloadedFromFetch ? 'Reset character.' : 'Cleared character.');
+      setPrintLoadMessage('Reset character.');
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      applyStateToForm(emptyState(null));
+      const queryParams = new URLSearchParams(window.location.search);
+      queryParams.delete('c');
+      history.replaceState(null, '', `${window.location.pathname}?${queryParams.toString()}`);
+      setPrintLoadMessage('Cleared character.');
+      lockedCharacterKey = null;
+      setSaveStatus('unsaved');
+      updateLockUI();
     });
   }
 
