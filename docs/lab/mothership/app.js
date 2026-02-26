@@ -336,7 +336,13 @@ function updateJournalUI() {
   if (ta) ta.value = journalPages[journalPageIndex] ?? '';
   if (info) info.value = `${journalPageIndex + 1}/${journalPages.length}`;
   if (prevBtn) prevBtn.disabled = journalPageIndex <= 0;
-  if (nextBtn) nextBtn.disabled = false;
+  if (nextBtn) nextBtn.disabled = (journalPageIndex === journalPages.length - 1 && ta.value.trim() === "") ? true : false;
+  console.log(journalPageIndex, journalPages.length, ta.value.trim());
+  console.log(journalPages);
+}
+
+function cullJournal() {
+  while (journalPageIndex < journalPages.length - 1 && journalPages.at(-1).trim() === '') journalPages.pop();
 }
 
 function setupJournalPages() {
@@ -345,10 +351,16 @@ function setupJournalPages() {
   const ta = document.getElementById('journal');
   if (!ta) return;
 
+  ta.addEventListener('input', () => {
+    cullJournal();
+      if (nextBtn) nextBtn.disabled = (journalPageIndex === journalPages.length - 1 && ta.value.trim() === "") ? true : false;
+  });
+
   prevBtn?.addEventListener('click', () => {
     if (journalPageIndex <= 0) return;
     journalPages[journalPageIndex] = ta.value;
     journalPageIndex -= 1;
+    cullJournal();
     updateJournalUI();
     saveToStorage();
   });
@@ -361,6 +373,7 @@ function setupJournalPages() {
     } else {
       journalPageIndex += 1;
     }
+    cullJournal();
     updateJournalUI();
     saveToStorage();
   });
