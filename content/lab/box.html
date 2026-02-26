@@ -1,4 +1,5 @@
 <title>Put it in the box</title>
+<script src="/js/diff.min.js"></script>
 <script>
     // always default to dark mode, but do not modify the local storage variable.
     // Reusing code from the script in the header template...
@@ -138,4 +139,26 @@ header {
         })();
         </script>
     </div>
+    <script>
+        var editorL = document.getElementById('editorL');
+        var editorR = document.getElementById('editorR');
+        function showDiff() {
+            const diff = Diff.diffLines(editorL.value, editorR.value);
+            let lines = [];
+            diff.forEach((part) => {
+                // green for additions, red for deletions
+                // grey for common parts
+                if (!part.added && !part.removed) return;
+                prefix = part.added ? '—>' : part.removed ? '<—' : null;
+                lines.push(part.value.trim().split('\n').map((l) => `${prefix} ${l}`).join('\n').trim());
+            });
+            window.alert(lines.join('\n'));
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                showDiff();
+            }
+        });
+    </script>
 </div>
