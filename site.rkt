@@ -89,6 +89,10 @@
              :preprocessed #t
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/wide.css))
+            (:path ,(custom md 'vis-a3/index.md)
+             :preprocessed #t
+             :template article-headerless.sxml
+             :styles (css/default.css css/article.css css/wide.css))
             (:path lab/mothership/index.html
              :template boilerplate.sxml
              :styles (lab/mothership/character.css))
@@ -154,6 +158,7 @@
                     garden/tamas
                     garden/manifold-revealing
                     vis-a2/img
+                    vis-a3/img
                     )
           )
     :disabled (:files ()
