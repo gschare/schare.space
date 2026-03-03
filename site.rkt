@@ -159,7 +159,7 @@
                     garden/manifold-revealing
                     vis-a2/img
                     vis-a3/img
-                    graffiti
+                    .well-known
                     )
           )
     :disabled (:files ()
