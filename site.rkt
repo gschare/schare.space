@@ -150,6 +150,7 @@
                   lab/changes/hexagram.js
                   ;lab/dnd/mothership/app.js
                   ;lab/dnd/mothership/character.css
+                  .nojekyll
                   )
           :folders (writ js css assets/img assets/fonts assets/papers lab
                     assets/docs
