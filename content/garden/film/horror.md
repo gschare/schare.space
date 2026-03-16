@@ -109,6 +109,8 @@ Potential Watchlist. [Suggest a movie!](https://docs.google.com/document/d/1K8z1
 | Nov 25 | [_Tumbbad_](https://letterboxd.com/film/tumbbad/) | Varun |
 | Dec 12 | [_Wake Up Dead Man_](https://letterboxd.com/film/wake-up-dead-man/) | Andre |
 
+See [more film series on Social.Wiki](https://social.wiki/#/v?/film-club)
+
 <style>
 td + td, th + th { border-left: 1px solid var(--fg-light-secondary); }
 tr + tr { border-top: 1px solid var(--fg-light-secondary); }

@@ -7,3 +7,4 @@
 - [Horror Movie Tuesdays](horror.html)
 - [Robert Pattinson Tuesdays](robby.html)
 - [Cinema of Asia](asia.html)
+- [Project Hail Mary](project-hail-mary.html)

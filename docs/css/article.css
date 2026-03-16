@@ -318,6 +318,15 @@ div.widen img {
     max-height: 90vh;
 }
 
+/* better way to widen images */
+article.article img.banner {
+    max-width: 55rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 article.article figure:not(:has(blockquote)) figcaption {
     text-align: center;
     margin: 10px auto;

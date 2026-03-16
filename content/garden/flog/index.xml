@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Project Hail Mary"
+          dir="Phil Lord and Christopher Miller"
+          year="2026"
+          img="https://a.ltrbxd.com/resized/film-poster/6/1/1/2/8/8/611288-project-hail-mary-0-1000-0-1500-crop.jpg?v=1febfbff54"
+          date="2026-03-14"
+          link="/garden/film/project-hail-mary.html"
+          tags="cinema"
+    />
     <film title="Flow"
           dir="Gints Zilbalodis"
           year="2024"

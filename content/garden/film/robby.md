@@ -10,7 +10,9 @@ See [List on Letterboxd](https://boxd.it/FoaoK).
 |--:|:---------|
 | Jan 20 | [_Good Time_](https://letterboxd.com/film/good-time/)
 | Jan 27 | [_The Boy and the Heron_](https://letterboxd.com/film/the-boy-and-the-heron/)
-| Feb  3 |
+| Feb  3 | [_The Lighthouse_](https://letterboxd.com/film/the-lighthouse-2019/)
+
+Then we got bored.
 
 <style>
 td + td, th + th { border-left: 1px solid var(--fg-light-secondary); }

@@ -11,6 +11,9 @@ recommend this path.
 
 :::glog
 
+[Project Hail Mary](/garden/film/project-hail-mary.html)\
+[Mar 15, 2026]{.date}
+
 [On energetic quanta and frustration](/garden/quanta.html)\
 [Feb 24, 2025]{.date}
 
