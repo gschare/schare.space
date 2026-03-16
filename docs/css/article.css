@@ -319,11 +319,13 @@ div.widen img {
 }
 
 /* better way to widen images */
-article.article img.banner {
-    max-width: 55rem;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+@media screen and (min-width: 880px) {
+    article.article img.banner {
+        max-width: 55rem;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 
