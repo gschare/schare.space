@@ -2,6 +2,7 @@
 
 :::list
 
+- [barish](https://barish.me)
 - [kendall](https://kendallnakai.com/)
 - [andre](https://andre-ye.org/)
 - [hemant](https://hgouni.com/)
