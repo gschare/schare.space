@@ -9,6 +9,7 @@
 (require "src/xml.rkt")
 (require "src/phlog.rkt")
 (require "src/redirect.rkt")
+(require "src/io.rkt")
 
 (require racket/cmdline)
 
@@ -26,12 +27,17 @@
  [("-v" "--verbose") "Verbose output" (set! verbose #t)]
  )
 
-(begin
-  (unless silent (displayln "Empty temp...."))
-  (void (system "rm -r temp/"))
-  (void (system "mkdir temp")))
+(define (displayln-unless-silent . args) (unless silent (apply displayln args)))
+(define (display-unless-silent . args) (unless silent (apply display args)))
 
-(define rules
+(begin
+  (display-unless-silent "Empty temp....")
+  (void (time-build-step (system "rm -r temp/")))
+  (void (time-build-step (system "mkdir temp")))
+  (displayln-unless-silent (format-runtime-seconds (total-runtime-seconds))))
+
+(displayln-unless-silent "Defining rules....")
+(define rules (time-build-step
   `(:defaults (:template article.sxml
                :styles (css/default.css css/article.css))
     :files ((:path new.html
@@ -59,11 +65,11 @@
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path ,(custom xml 'garden/books/index.xml)
-             :preprocessed #t
+             :preprocessed garden/books/index.xml
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path ,(custom xml 'garden/flog/index.xml)
-             :preprocessed #t
+             :preprocessed garden/flog/index.xml
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             ;(:path ,(index-tidings)
@@ -71,6 +77,7 @@
             ; :styles (css/default.css css/tidings.css))
             (:path ,(custom md 'lab/index.md)
              :template garden.sxml
+             :preprocessed lab/index.md
              :styles (css/default.css css/article.css css/garden.css))
             (:path lab/box.html
              :template default.sxml
@@ -79,22 +86,22 @@
              :template default.sxml
              :styles (css/default.css css/article.css))
             (:path ,(custom md 'lab/changes/about.md)
-             :preprocessed #t
+             :preprocessed lab/changes/about.md ; tells the build system to check the cache for this file instead of the preprocessed HTML file
              :template article.sxml
              :styles (css/default.css css/article.css))
             (:path ,(custom redirect 'garden/shanawdithit.html "https://docs.google.com/presentation/d/1RjYAYZnmckHroYHq-ftTMQjY7AvsoXlN1EJ8WpX-SJU/edit?usp=sharing" #:title "Shanawdithit's maps and more")
              :preprocessed #t
              :template redirect.sxml)
             (:path ,(custom md 'vis-a2/index.md)
-             :preprocessed #t
+             :preprocessed vis-a2/index.md
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/wide.css))
             (:path ,(custom md 'vis-a3/index.md)
-             :preprocessed #t
+             :preprocessed vis-a3/index.md
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/wide.css))
             (:path ,(custom md 'vis-a4/index.md)
-             :preprocessed #t
+             :preprocessed vis-a4/index.md
              :template article-headerless.sxml
              :styles (css/default.css css/article.css css/wide.css))
             (:path lab/mothership/index.html
@@ -103,11 +110,11 @@
             )
     :folders (
               (:path ,(custom phlog 'garden/phlog/index.xml)
-               :preprocessed #t
+               :preprocessed 'garden/phlog/index.xml
                :template garden.sxml
                :styles (css/default.css css/garden.css css/phlog.css))
               (:path ,(custom md* 'garden #:recursive #t)
-               :preprocessed #t
+               :preprocessed #t ; unfortunately no good way to do this yet until I can defer the computation and tell it to locate the source when the rules process this folder rule.
                :template garden.sxml
                :styles (css/default.css css/article.css css/garden.css))
               (:path ,(custom md* 'notes)
@@ -140,6 +147,9 @@
               (:path garden/aphorisms
                :template garden.sxml
                :styles (css/default.css css/garden.css css/wide.css))
+              ;(:path ,(string->symbol "-")
+              ; :template garden.sxml
+              ; :styles (css/default.css css/article.css))
               )
     :phony ()
     :raw (:files (assets/cv.pdf
@@ -172,7 +182,8 @@
                :folders ()
               )
     )
-  )
+  ))
+(displayln-unless-silent (format "Rules defined in ~a seconds." (format-runtime-seconds)))
 
 ;TODO: compile all markdown sources into html sources using pandoc before building?
 (build rules #:dest dest #:dry-run dry-run #:silent silent #:verbose verbose)

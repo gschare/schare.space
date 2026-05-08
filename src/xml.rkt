@@ -22,5 +22,9 @@
          [xslt-path (path-replace-extension src-path ".xslt")]
          [dest-path (path-replace-extension (build-path INTERMEDIATE-DIR (symbol->path pathsym)) ".html")]
          [dest-sym (path->symbol (path-replace-extension (symbol->path pathsym) ".html"))])
+    (if (not (file-changed? src-path))
+      (begin (displayln (format "XML ~a unchanged. Skipping." pathsym)) dest-sym)
+      (begin
+    ; TODO: this can't work because we don't store the temp, and we clear out docs/...
     (system (string-append "xsltproc -o " (path->string dest-path) " " (path->string xslt-path) " " (path->string src-path)))
-    dest-sym))
+    dest-sym))))

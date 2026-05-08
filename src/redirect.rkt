@@ -6,6 +6,10 @@
 (require sxml)
 (require html-parsing)
 
+; NOTE: could be nice to have a folder-oriented version of this that, instead of using specifications in the site.rkt,
+; reads files that just contain a link and optionally a title. Put the rule on the entire folder.
+; Call the folder /ext/ or /r/ or /to/ or /go/ or something.
+
 (define (redirect pathsym url #:title [title #f] #:base [base SRC-DIR] #:announce [announce #t])
   ; Given a path symbol (e.g. 'garden/myfile.html) specifying a desired output file
   ; and a URL to link to, generate standalone html redirecting to that URL and write
@@ -79,7 +83,7 @@
                      (src "/js/count.js")))
 
           (meta (@ (http-equiv "refresh")
-                   (content ,(format "0; URL=~a" url))))
+                   (content ,(format "0; URL=~a" url)))))
       (body
         (a (@ (href ,url))
-           ,url))))))
+           ,url)))))

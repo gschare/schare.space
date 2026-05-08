@@ -138,6 +138,11 @@
          [dest-path (build-path INTERMEDIATE-DIR dest-folder)]
          [dest-sym (path->symbol dest-folder)])
 
+  (if (not (file-changed? src-path))
+    (begin (displayln "Phlog unchanged. Skipping.") dest-sym)
+    (begin
+  ; TODO: this can't work because we don't store the temp, and we clear out docs/...
+
   ; Parse the XML file.
   (let* ([doc (call-with-input-file src-path (λ (in) (read-xml in)))]
          [days (sort (parse-xml doc) string<? #:key (λ (x) (show-date (day-date x))))]) ; : list day
@@ -291,4 +296,4 @@
 
   (write-file (make-index (date-to-href (day-date (last days)))) (build-path dest-path "index.html"))
 
-  dest-sym]))))
+  dest-sym]))))))

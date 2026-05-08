@@ -14,3 +14,5 @@ scripts/blog_index.py
 **/.DS_Store
 tidings.json
 temp/
+
+src/.mtime-cache.rktd
