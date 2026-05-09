@@ -1,5 +1,65 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Columbus"
+          dir="Kogonada"
+          year="2017"
+          img="https://image.tmdb.org/t/p/w500/6tk0xmn9k5HjUeXsnhxIa94sFXP.jpg"
+          date="2026-04-17"
+    />
+    <film title="The Drama"
+          dir="Kristoffer Borgli"
+          year="2026"
+          img="https://image.tmdb.org/t/p/w500/ikcNOWB6Qo1ER1H1BJL6Vf0W22s.jpg"
+          date="2026-04-16"
+    />
+    <film title="Cléo from 5 to 7"
+          dir="Agnès Varda"
+          year="1962"
+          img="https://image.tmdb.org/t/p/w500/oelBStY4xpguaplRv15P3Za7Xsr.jpg"
+          date="2026-04-14"
+    />
+    <film title="Arrival"
+          dir="Denis Villeneuve"
+          year="2016"
+          img="https://image.tmdb.org/t/p/w500/pEzNVQfdzYDzVK0XqxERIw2x2se.jpg"
+          date="2026-04-12"
+    />
+    <film title="The Lord of the Rings: The Return of the King"
+          dir="Peter Jackson"
+          year="2003"
+          img="https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
+          date="2026-04-07"
+    />
+    <film title="The Mastermind"
+          dir="Kelly Reichardt"
+          year="2025"
+          img="https://image.tmdb.org/t/p/w500/oPaEQ3m4zHOzIAstgXCZZtzcHTL.jpg"
+          date="2026-04-07"
+    />
+    <film title="Nowhere"
+          dir="Gregg Araki"
+          year="1997"
+          img="https://image.tmdb.org/t/p/w500/c1TZKfzvATep5x5DthqWjjWtU2l.jpg"
+          date="2026-04-01"
+    />
+    <film title="How to Make a Killing"
+          dir="John Patton Ford"
+          year="2026"
+          img="https://image.tmdb.org/t/p/w500/vxMeKC7o5Gi8IHMi6lUgsdprTqv.jpg"
+          date="2026-03-24"
+    />
+    <film title="The Dictator"
+          dir="Larry Charles"
+          year="2012"
+          img="https://image.tmdb.org/t/p/w500/n0W7kajF4GFMRk2c0wWwMQqTaDM.jpg"
+          date="2026-03-22"
+    />
+    <film title="Spaceballs"
+          dir="Mel Brooks"
+          year="1987"
+          img="https://image.tmdb.org/t/p/w500/kNbaxEsnCyWBTfANVPHayujBsxp.jpg"
+          date="2026-03-17"
+    />
     <film title="Project Hail Mary"
           dir="Phil Lord and Christopher Miller"
           year="2026"
