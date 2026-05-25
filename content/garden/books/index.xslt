@@ -36,8 +36,8 @@ div#tag-list { display: none; }
 <style>
 .cards {
     display: grid;
-    /* fr = fractional unit */
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Fixed track size (max = min): partial rows stay left; no stretched cards. */
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 240px));
     justify-content: start;
     gap: 16px;
 }

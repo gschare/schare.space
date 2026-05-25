@@ -26,11 +26,6 @@
           img="prideandprejudice.jpg"
           date=""
     />
-    <book title="Reading Machines: Toward an Algorithmic Criticism"
-          author="Stephen Ramsay"
-          img="readingmachines.jpg"
-          date=""
-    />
     <book title="Simulacra and Simulation"
           author="Jean Baudrillard"
           img="simulacra.jpg"
@@ -51,11 +46,6 @@
           img="pachinko.webp"
           date=""
     />
-    <book title="Samuel Johnson is Indignant"
-          author="Lydia Davis"
-          img="davis-indignant.jpg"
-          date=""
-    />
     <book title="Computer Power and Human Reason"
           author="Joseph Weizenbaum"
           img="weizenbaum.jpg"
@@ -66,6 +56,17 @@
           img="pattern.jpg"
           date=""
     />
+    <!-- 
+        add:
+          East of Eden
+          One Hundred Years of Solitude
+          Understanding Media
+          Language of the Night
+          Mens et Mania
+          Sexual Citizens
+          Essays One
+          The White Album
+    -->
     <!-- 
         dignify the partiality of:
           Understanding Computers and Cognition
@@ -79,6 +80,23 @@
 
     <!-- Read -->
 
+    <book title="Reading Machines: Toward an Algorithmic Criticism"
+          author="Stephen Ramsay"
+          img="readingmachines.jpg"
+          date="2026-05-24"
+    />
+    <book title="A Moveable Feast"
+          author="Ernest Hemingway"
+          img="moveable-feast.jpg"
+          date="2026-05-07"
+          tags="ebook"
+    />
+    <book title="Samuel Johnson is Indignant"
+          author="Lydia Davis"
+          img="davis-indignant.jpg"
+          date="2026-03-28"
+          tags="ebook"
+    />
     <book title="Designs for the Pluriverse"
           author="Arturo Escobar"
           img="pluriverse.jpg"
