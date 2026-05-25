@@ -13,9 +13,11 @@
          total-runtime-seconds
          format-runtime-seconds
          file-changed?
+         commit-mtime-cache!
          sync-cache!)
 
-(require racket/file)
+(require racket/file
+         racket/set)
 (require html-writing)
 (require hash-lambda)
 
@@ -117,6 +119,10 @@
       (call-with-input-file cache-path read)
       (hash)))
 
+;; Paths whose current on-disk mtimes should be written into `mtime-cache`
+;; when `commit-mtime-cache!` / `sync-cache!` runs (see `file-changed?`).
+(define mtime-commit-pool (mutable-set))
+
 (define (save-cache!)
   (call-with-output-file
    cache-path
@@ -127,29 +133,51 @@
 (define (file-mtime path)
   (file-or-directory-modify-seconds path))
 
-(define (file-changed? path)
-  (define normalized (path->string (simplify-path path)))
+(define (normalize-cache-path path)
+  (path->string (simplify-path path)))
 
+(define (file-mtime-cache-changed? normalized)
+  ;; Pure w.r.t. `mtime-cache`: multiple calls for the same path in one run
+  ;; return the same boolean until `commit-mtime-cache!` updates the cache.
   (cond
     [(not (file-exists? normalized))
-     (set! mtime-cache
-           (hash-set mtime-cache normalized #t))
-     (save-cache!)
-     #t] ; assume it changed if it doesn't exist
+     #t] ; if a file doesn't exist, consider it changed
     [else
-      (define current (file-mtime normalized))
-      (define previous (hash-ref mtime-cache normalized #f))
+     (define current (file-mtime normalized))
+     (define previous (hash-ref mtime-cache normalized #f))
+     (or (not (exact-integer? previous)) ; handle truthy sentinel
+         (> current previous))]))
 
-      (define changed?
-        (or (not previous)
-            (> current previous)))
+;; Register `path` so a later `commit-mtime-cache!` records its current mtime
+;; (or the missing-file sentinel) into `mtime-cache`.
+(define (mtime-commit-register! path)
+  (set-add! mtime-commit-pool (normalize-cache-path path)))
 
-      (set! mtime-cache
-            (hash-set mtime-cache normalized current))
-  
-      (if changed? (displayln (format "File ~a changed" normalized)) (void))
+;; Write pending on-disk mtimes into the in-memory cache. Does not touch disk
+;; cache file; pair with `save-cache!` or call `sync-cache!`.
+(define (commit-mtime-cache!)
+  (for ([p (in-set mtime-commit-pool)])
+    (set! mtime-cache
+          (if (file-exists? p)
+              (hash-set mtime-cache p (file-mtime p))
+              ;; absent files use a truthy sentinel.
+              (hash-set mtime-cache p #t))))
+  (set-clear! mtime-commit-pool))
 
-      changed?]))
+(define (file-changed? path #:announce [announce #f])
+  (define normalized (normalize-cache-path path))
+  (mtime-commit-register! normalized)
+  (cond
+    [(not (file-exists? normalized))
+     (when announce
+       (displayln (format "File ~a doesn't exist; considering it changed" normalized)))
+     #t]
+    [else
+     (define changed? (file-mtime-cache-changed? normalized))
+     (when (and announce changed?)
+       (displayln (format "File ~a changed" normalized)))
+     changed?]))
 
 (define (sync-cache!)
+  (commit-mtime-cache!)
   (save-cache!))

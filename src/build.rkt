@@ -112,12 +112,15 @@
                 (λ (v) (or (let ((pre-src (hash-ref v '#:preprocessed)))
                              (cond
                               [(symbol? pre-src) ; we have a source to check for instead of the generated shit
-                               (file-changed? (build-path SRC-DIR (symbol->path pre-src)))]
+                               (file-changed? #:announce #t (build-path SRC-DIR (symbol->path pre-src)))]
+                              [(list? pre-src) ; might be a list of dependencies
+                               (foldr (λ (dep b) (or (file-changed? #:announce #t (build-path SRC-DIR (symbol->path dep))) b)) #f pre-src)]
                               [pre-src #t] ; all we know is it was preprocessed, so assume it changed
-                              [else (file-changed? (build-path SRC-DIR (symbol->path (hash-ref v '#:path))))]))
-                           (file-changed? (build-path TEMPLATES-DIR (symbol->path (hash-ref v '#:template))))
-                           (file-changed? "site.rkt")
-                           (foldr (λ (s b) (or (file-changed? (build-path SRC-DIR (symbol->path s))) b)) #f (hash-ref v '#:styles)))))
+                              [else
+                               (file-changed? #:announce #t (build-path SRC-DIR (symbol->path (hash-ref v '#:path))))]))
+                           (if (hash-ref v '#:raw) #f (file-changed? #:announce #t (build-path TEMPLATES-DIR (symbol->path (hash-ref v '#:template)))))
+                           (file-changed? #:announce #t "site.rkt")
+                           (if (hash-ref v '#:raw) #f (foldr (λ (s b) (or (file-changed? #:announce #t (build-path SRC-DIR (symbol->path s))) b)) #f (hash-ref v '#:styles))))))
                (λ (v) (hash-remove (hash-remove v '#:folder) '#:disabled))))]
          [_ (display-runtime-seconds)]
          [_ (if verbose
@@ -164,7 +167,8 @@
                 styles
                 templates))))))]
          [_t1 (last-runtime-seconds)]
-         [raw-plan (time-build-step (hash-keys (hash-filter plan (λ (v) (displayln-if-verbose (format "Raw plan ~a" (hash-ref v '#:path))) (hash-ref v '#:raw)))))]
+         [raw-plan (time-build-step (hash-keys (hash-filter plan (λ (v) (hash-ref v '#:raw)))))]
+         [_ (begin (displayln-if-verbose "Raw plan:") (for-each (λ (x) (displayln-if-verbose (format "Raw plan ~a" x))) raw-plan))]
          [_t2 (last-runtime-seconds)]
          [_ (display-runtime-seconds _t1 _t2)])
     (begin

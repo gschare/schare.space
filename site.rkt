@@ -65,7 +65,10 @@
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path ,(custom xml 'garden/books/index.xml)
-             :preprocessed garden/books/index.xml
+             :preprocessed (garden/books/index.xslt garden/books/index.xml)
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
+            (:path garden/books/index.html
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path ,(custom xml 'garden/flog/index.xml)

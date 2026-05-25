@@ -20,11 +20,11 @@
   (displayln (format "Render XML of ~a...." pathsym))
   (let* ([src-path (build-path base (symbol->path pathsym))]
          [xslt-path (path-replace-extension src-path ".xslt")]
-         [dest-path (path-replace-extension (build-path INTERMEDIATE-DIR (symbol->path pathsym)) ".html")]
+         [dest-path (path-replace-extension (build-path (car (cons SRC-DIR INTERMEDIATE-DIR)) (symbol->path pathsym)) ".html")]
          [dest-sym (path->symbol (path-replace-extension (symbol->path pathsym) ".html"))])
-    (if (not (file-changed? src-path))
-      (begin (displayln (format "XML ~a unchanged. Skipping." pathsym)) dest-sym)
+    (if (not (or (file-changed? src-path) (file-changed? xslt-path)))
+      (begin (displayln (format "XML ~a and XSLT unchanged. Skipping." pathsym)) (car (cons pathsym dest-sym)))
       (begin
     ; TODO: this can't work because we don't store the temp, and we clear out docs/...
     (system (string-append "xsltproc -o " (path->string dest-path) " " (path->string xslt-path) " " (path->string src-path)))
-    dest-sym))))
+    (car (cons pathsym dest-sym))))))
