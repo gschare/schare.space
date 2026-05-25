@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <films>
+    <film title="The Last Days of Disco"
+          dir="Whit Stillman"
+          year="1998"
+          img="https://image.tmdb.org/t/p/w500/lReaAZCsA0GXvJrxzSMsFxwgh6F.jpg"
+          date="2026-05-24"
+    />
+    <film title="Annihilation"
+          dir="Alex Garland"
+          year="2018"
+          img="https://image.tmdb.org/t/p/w500/4YRplSk6BhH6PRuE9gfyw9byUJ6.jpg"
+          date="2026-05-06"
+    />
     <film title="Columbus"
           dir="Kogonada"
           year="2017"

@@ -68,11 +68,14 @@
              :preprocessed (garden/books/index.xslt garden/books/index.xml)
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
-            (:path garden/books/index.html
+            (:path garden/books/index.html ; temporary measure because i haven't figured out how to do temp files properly; see xml.rkt
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             (:path ,(custom xml 'garden/flog/index.xml)
-             :preprocessed garden/flog/index.xml
+             :preprocessed (garden/flog/index.xslt garden/flog/index.xml)
+             :template garden.sxml
+             :styles (css/default.css css/article.css css/garden.css css/wide.css))
+            (:path garden/flog/index.html ; see garden/books/index.html rule
              :template garden.sxml
              :styles (css/default.css css/article.css css/garden.css css/wide.css))
             ;(:path ,(index-tidings)
