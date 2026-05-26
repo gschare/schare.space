@@ -16,7 +16,7 @@
 </nav>
 <h1>Flog <!-- film log --></h1>
 
-<p>See also: my <a href="https://letterboxd.com/gschare/">Letterboxd</a></p>
+<p>See also: my <a href="https://letterboxd.com/schare/">Letterboxd</a></p>
 
 <p><span class="warning"><strong>Note:</strong> this is just a
 placeholder. I later on plan to write my thoughts on certain films I

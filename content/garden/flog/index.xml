@@ -1,10 +1,22 @@
 <?xml version="1.0"?>
 <films>
+    <film title="Your Name."
+          dir="Makoto Shinkai"
+          year="2016"
+          img="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg"
+          date="2026-05-25"
+    />
     <film title="The Last Days of Disco"
           dir="Whit Stillman"
           year="1998"
           img="https://image.tmdb.org/t/p/w500/lReaAZCsA0GXvJrxzSMsFxwgh6F.jpg"
           date="2026-05-24"
+    />
+    <film title="Obsession"
+          dir="Curry Barker"
+          year="2026"
+          img="https://image.tmdb.org/t/p/w500/6X4qFYBsG3bpWDG2XIKqr04kFJa.jpg"
+          date="2026-05-19"
     />
     <film title="Annihilation"
           dir="Alex Garland"
