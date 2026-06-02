@@ -50,16 +50,18 @@
     · <a href="/garden/film/"><u>film</u></a></nav><h1>Flog </h1><p>See also: my <a href="https://letterboxd.com/schare/">Letterboxd</a></p><p><span class="warning"><strong>Note:</strong> this is just a
 placeholder. I later on plan to write my thoughts on certain films I
 watch…</span></p><div id="tags">
-<nav id="tag-select" class="secondary"><a href="#reset">✕</a><a href="#cinema" class="cinema" title="watched in theaters!">#cinema</a><a href="#horror-tuesdays" class="horror-tuesdays">#horror-tuesdays</a></nav><div id="tag-list">
+<nav id="tag-select" class="secondary"><a href="#reset">✕</a><a href="#cinema" class="cinema" title="watched in theaters!">#cinema</a><a href="#film-club" class="film-club">#film-club</a></nav><div id="tag-list">
 <div id="reset"></div>
 <div id="cinema"></div>
-<div id="horror-tuesdays"></div>
+<div id="film-club"></div>
 </div>
 <style>
 article:has(#cinema:target) .cards .card:not(.cinema) { display: none; }
 article:has(#cinema:target) nav#tag-select a.cinema { font-weight: bold; }
-article:has(#horror-tuesdays:target) .cards .card:not(.horror-tuesdays) { display: none; }
-article:has(#horror-tuesdays:target) nav#tag-select a.horror-tuesdays { font-weight: bold; }
+article:has(#cinema:target) section:not(:has(.card.cinema)) { display: none; }
+article:has(#film-club:target) .cards .card:not(.film-club) { display: none; }
+article:has(#film-club:target) nav#tag-select a.film-club { font-weight: bold; }
+article:has(#film-club:target) section:not(:has(.card.film-club)) { display: none; }
 nav#tag-select a:after { content: " "; }
 div#tag-list { display: none; }
 </style>
@@ -117,13 +119,16 @@ h2 {
 }
 </style><section class="level2"><h2 id="2026">2026</h2>
 <div class="cards">
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/hhSRt1KKfRT0yEhEtRW3qp31JFU.jpg" alt="The Apartment (1960) dir. Billy Wilder" title="The Apartment (1960) dir. Billy Wilder">
+        </div>
 <div class="card ">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg" alt="Your Name. (2016) dir. Makoto Shinkai" title="Your Name. (2016) dir. Makoto Shinkai">
         </div>
 <div class="card ">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/lReaAZCsA0GXvJrxzSMsFxwgh6F.jpg" alt="The Last Days of Disco (1998) dir. Whit Stillman" title="The Last Days of Disco (1998) dir. Whit Stillman">
         </div>
-<div class="card ">
+<div class="card cinema">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/6X4qFYBsG3bpWDG2XIKqr04kFJa.jpg" alt="Obsession (2026) dir. Curry Barker" title="Obsession (2026) dir. Curry Barker">
         </div>
 <div class="card ">
@@ -132,10 +137,10 @@ h2 {
 <div class="card ">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/6tk0xmn9k5HjUeXsnhxIa94sFXP.jpg" alt="Columbus (2017) dir. Kogonada" title="Columbus (2017) dir. Kogonada">
         </div>
-<div class="card ">
+<div class="card film-club">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/ikcNOWB6Qo1ER1H1BJL6Vf0W22s.jpg" alt="The Drama (2026) dir. Kristoffer Borgli" title="The Drama (2026) dir. Kristoffer Borgli">
         </div>
-<div class="card ">
+<div class="card film-club">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/oelBStY4xpguaplRv15P3Za7Xsr.jpg" alt="Cléo from 5 to 7 (1962) dir. Agnès Varda" title="Cléo from 5 to 7 (1962) dir. Agnès Varda">
         </div>
 <div class="card ">
@@ -144,35 +149,134 @@ h2 {
 <div class="card ">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="The Lord of the Rings: The Return of the King (2003) dir. Peter Jackson" title="The Lord of the Rings: The Return of the King (2003) dir. Peter Jackson">
         </div>
-<div class="card ">
+<div class="card film-club">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/oPaEQ3m4zHOzIAstgXCZZtzcHTL.jpg" alt="The Mastermind (2025) dir. Kelly Reichardt" title="The Mastermind (2025) dir. Kelly Reichardt">
         </div>
 <div class="card ">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/c1TZKfzvATep5x5DthqWjjWtU2l.jpg" alt="Nowhere (1997) dir. Gregg Araki" title="Nowhere (1997) dir. Gregg Araki">
         </div>
-<div class="card ">
+<div class="card film-club">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/vxMeKC7o5Gi8IHMi6lUgsdprTqv.jpg" alt="How to Make a Killing (2026) dir. John Patton Ford" title="How to Make a Killing (2026) dir. John Patton Ford">
         </div>
 <div class="card ">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/n0W7kajF4GFMRk2c0wWwMQqTaDM.jpg" alt="The Dictator (2012) dir. Larry Charles" title="The Dictator (2012) dir. Larry Charles">
         </div>
-<div class="card ">
+<div class="card film-club">
 <img loading="lazy" src="https://image.tmdb.org/t/p/w500/kNbaxEsnCyWBTfANVPHayujBsxp.jpg" alt="Spaceballs (1987) dir. Mel Brooks" title="Spaceballs (1987) dir. Mel Brooks">
         </div>
 <div class="card cinema"><a href="/garden/film/project-hail-mary.html"><img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/6/1/1/2/8/8/611288-project-hail-mary-0-1000-0-1500-crop.jpg?v=1febfbff54" alt="Project Hail Mary (2026) dir. Phil Lord and Christopher Miller" title="Project Hail Mary (2026) dir. Phil Lord and Christopher Miller">
         </a></div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/oKGGeJ8qvm0UmClz43VJ31fzPP7.jpg" alt="Sunshine (2007) dir. Danny Boyle" title="Sunshine (2007) dir. Danny Boyle">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/jcgUjx1QcupGzjntTVlnQ15lHqy.jpg" alt="Memories of Murder (2003) dir. Bong Joon Ho" title="Memories of Murder (2003) dir. Bong Joon Ho">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/x4BTjxdrOKC27FcSkBh8KPEgnum.jpg" alt="Cube (1998) dir. Vincenzo Natali" title="Cube (1998) dir. Vincenzo Natali">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/qXAuQ9hF30sQRsXf40OfRVl0MJZ.jpg" alt="(500) Days of Summer (2009) dir. Marc Webb" title="(500) Days of Summer (2009) dir. Marc Webb">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/rFOiFUhTMtDetqCGClC9PIgnC1P.jpg" alt="When Harry Met Sally... (1989) dir. Rob Reiner" title="When Harry Met Sally... (1989) dir. Rob Reiner">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/eamOBurHBu0MIxohTIVcfxmZ6Z7.jpg" alt="After Hours (1985) dir. Martin Scorsese" title="After Hours (1985) dir. Martin Scorsese">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/f1tIYarTbkBdIT1aW0gzelDwknv.jpg" alt="The Lighthouse (2019) dir. Robert Eggers" title="The Lighthouse (2019) dir. Robert Eggers">
+        </div>
+<div class="card cinema">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/sBpxTGLzKnvPSVtL5yQYpSxvKEb.jpg" alt="No Other Choice (2025) dir. Park Chan-wook" title="No Other Choice (2025) dir. Park Chan-wook">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/f4oZTcfGrVTXKTWg157AwikXqmP.jpg" alt="The Boy and the Heron (2023) dir. Hayao Miyazaki" title="The Boy and the Heron (2023) dir. Hayao Miyazaki">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/Ag2B2KHKQPukjH7WutmgnnSNurZ.jpg" alt="The Prestige (2006) dir. Christopher Nolan" title="The Prestige (2006) dir. Christopher Nolan">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/n5FygjEppOvac6yEaowi26nTyw3.jpg" alt="28 Years Later (2025) dir. Danny Boyle" title="28 Years Later (2025) dir. Danny Boyle">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/yE1c9hj5Hf8a9KplAdRdhADqUro.jpg" alt="Good Time (2017) dir. Josh Safdie and Benny Safdie" title="Good Time (2017) dir. Josh Safdie and Benny Safdie">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/peG6482ALJQ9Tbvv2P38BquVk0f.jpg" alt="People We Meet on Vacation (2026) dir. Brett Haley" title="People We Meet on Vacation (2026) dir. Brett Haley">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/gnAfqiV7yO3Jq9IntTmwkcaICqc.jpg" alt="Palm Springs (2020) dir. Max Barbakow" title="Palm Springs (2020) dir. Max Barbakow">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/4GIqZUgPZ146BhibsPHMHef2nXX.jpg" alt="Eddington (2025) dir. Ari Aster" title="Eddington (2025) dir. Ari Aster">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg" alt="Indiana Jones and the Dial of Destiny (2023) dir. James Mangold" title="Indiana Jones and the Dial of Destiny (2023) dir. James Mangold">
+        </div>
 </div></section><section class="level2"><h2 id="2025">2025</h2>
 <div class="cards">
+<div class="card cinema">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/lYWEXbQgRTR4ZQleSXAgRbxAjvq.jpg" alt="Marty Supreme (2025) dir. Josh Safdie" title="Marty Supreme (2025) dir. Josh Safdie">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/sPC66btzQlzuRdPKiSDYZ5Hvxgc.jpg" alt="Tokyo Godfathers (2003) dir. Satoshi Kon" title="Tokyo Godfathers (2003) dir. Satoshi Kon">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/bSqt9rhDZx1Q7UZ86dBPKdNomp2.jpg" alt="It's a Wonderful Life (1946) dir. Frank Capra" title="It's a Wonderful Life (1946) dir. Frank Capra">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/qCOGGi8JBVEZMc3DVby8rUivyXz.jpg" alt="Wake Up Dead Man: A Knives Out Mystery (2025) dir. Rian Johnson" title="Wake Up Dead Man: A Knives Out Mystery (2025) dir. Rian Johnson">
+        </div>
+<div class="card cinema">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/yiwGcjfDKXD5PqQnyKUU9kspWQQ.jpg" alt="Eternity (2025) dir. David Freyne" title="Eternity (2025) dir. David Freyne">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/rEIg5yJdNOt9fmX4P8gU9LeNoTQ.jpg" alt="A Beautiful Mind (2001) dir. Ron Howard" title="A Beautiful Mind (2001) dir. Ron Howard">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/sP27Qm4THyRZyHjHYMfIDtJP6YE.jpg" alt="Paris, Texas (1984) dir. Wim Wenders" title="Paris, Texas (1984) dir. Wim Wenders">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/tk1h0lXd0WkrVo4BC36sOO3gi9P.jpg" alt="Tumbbad (2018) dir. Rahi Anil Barve" title="Tumbbad (2018) dir. Rahi Anil Barve">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg" alt="The Martian (2015) dir. Ridley Scott" title="The Martian (2015) dir. Ridley Scott">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/g4JtvGlQO7DByTI6frUobqvSL3R.jpg" alt="Frankenstein (2025) dir. Guillermo del Toro" title="Frankenstein (2025) dir. Guillermo del Toro">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/tzGY49kseSE9QAKk47uuDGwnSCu.jpg" alt="The Thing (1982) dir. John Carpenter" title="The Thing (1982) dir. John Carpenter">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/yYlx0msjh4E74syleTXueWIOxC9.jpg" alt="Stranger Than Paradise (1984) dir. Jim Jarmusch" title="Stranger Than Paradise (1984) dir. Jim Jarmusch">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/qMk93yMo82svW27FEjudgueBMUL.jpg" alt="Aguirre, the Wrath of God (1972) dir. Werner Herzog" title="Aguirre, the Wrath of God (1972) dir. Werner Herzog">
+        </div>
+<div class="card cinema">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/oxgsAQDAAxA92mFGYCZllgWkH9J.jpg" alt="Bugonia (2025) dir. Yorgos Lanthimos" title="Bugonia (2025) dir. Yorgos Lanthimos">
+        </div>
+<div class="card film-club">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/uAR0AWqhQL1hQa69UDEbb2rE5Wx.jpg" alt="The Shining (1980) dir. Stanley Kubrick" title="The Shining (1980) dir. Stanley Kubrick">
+        </div>
+<div class="card ">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/fXm3YKXAEjx7d2tIWDg9TfRZtsU.jpg" alt="Mean Girls (2004) dir. Mark Waters" title="Mean Girls (2004) dir. Mark Waters">
+        </div>
+<div class="card cinema">
+<img loading="lazy" src="https://image.tmdb.org/t/p/w500/3UCTNaZgxW6BbeHMMTe6uL07MpV.jpg" alt="Dìdi (弟弟) (2024) dir. Sean Wang" title="Dìdi (弟弟) (2024) dir. Sean Wang">
+        </div>
 <div class="card ">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/7/3/9/4/5/1/739451-flow-2024-0-1000-0-1500-crop.jpg?v=32f49339d9" alt="Flow (2024) dir. Gints Zilbalodis" title="Flow (2024) dir. Gints Zilbalodis">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/kp/ay/8h/oo/sDhWq6zSWW95Po5HJCeH0NVyblY-0-600-0-900-crop.jpg?v=a286174883" alt="Coherence (2013) dir. James Ward Byrkit" title="Coherence (2013) dir. James Ward Byrkit">
         </div>
 <div class="card ">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/6/0/8/3/96083-frances-ha-0-600-0-900-crop.jpg?v=0bb538988b" alt="Frances Ha (2012) dir. Noah Baumbach" title="Frances Ha (2012) dir. Noah Baumbach">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/8/3/8/1/4/0/838140-the-substance-0-600-0-900-crop.jpg?v=ab9e1072f8" alt="The Substance (2024) dir. Coralie Fargeat" title="The Substance (2024) dir. Coralie Fargeat">
         </div>
 <div class="card ">
@@ -184,28 +288,28 @@ h2 {
 <div class="card cinema">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/9/5/1/2/7/7/951277-one-battle-after-another-0-600-0-900-crop.jpg?v=d27c4cc662" alt="One Battle After Another (2025) dir. Paul Thomas Anderson" title="One Battle After Another (2025) dir. Paul Thomas Anderson">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/y2/i8/9s/h1/tNr2KYytArZNSh0K8PUcHU3JnX4-0-600-0-900-crop.jpg?v=45f739a242" alt="The Witch (2015) dir. Robert Eggers" title="The Witch (2015) dir. Robert Eggers">
         </div>
 <div class="card ">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/1/0/7/1/1/9/6/1071196-the-wild-robot-0-600-0-900-crop.jpg?v=a70bdbaea0" alt="The Wild Robot (2024) dir. Chris Sanders" title="The Wild Robot (2024) dir. Chris Sanders">
         </div>
-<div class="card cinema horror-tuesdays">
+<div class="card cinema film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/3/1/3/1/6/531316-the-long-walk-2025-0-600-0-900-crop.jpg?v=9cf0c245aa" alt="The Long Walk (2025) dir. Francis Lawrence" title="The Long Walk (2025) dir. Francis Lawrence">
         </div>
 <div class="card ">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/5/1/4/0/0/51400-v-for-vendetta-0-600-0-900-crop.jpg?v=c962ca4bec" alt="V for Vendetta (2005) dir. James McTeigue" title="V for Vendetta (2005) dir. James McTeigue">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/3/6/3/4/7/2/363472-the-endless-0-600-0-900-crop.jpg?v=5eff632518" alt="The Endless (2017) dir. Aaron Moorhead, Justin Benson" title="The Endless (2017) dir. Aaron Moorhead, Justin Benson">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/sm/upload/8i/fl/ux/x4/uQjxpEYktu36ZiWKfn0t0FySmXl-0-600-0-900-crop.jpg?v=adf9e62e9b" alt="Saint Maud (2019) dir. Rose Glass" title="Saint Maud (2019) dir. Rose Glass">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/4/9/0/0/44900-suspiria-0-600-0-900-crop.jpg?v=d1fbb1d377" alt="Suspiria (1977) dir. Dario Argento" title="Suspiria (1977) dir. Dario Argento">
         </div>
-<div class="card horror-tuesdays">
+<div class="card film-club">
 <img loading="lazy" src="https://a.ltrbxd.com/resized/film-poster/4/2/7/7/9/42779-coraline-0-600-0-900-crop.jpg?v=b792483e2a" alt="Coraline (2009) dir. Henry Selick" title="Coraline (2009) dir. Henry Selick">
         </div>
 <div class="card cinema">

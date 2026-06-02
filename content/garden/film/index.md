@@ -4,7 +4,6 @@
 </nav>
 
 # Film
-- [Horror Movie Tuesdays](horror.html)
-- [Robert Pattinson Tuesdays](robby.html)
+- [Movie Tuesdays](club.html)
 - [Cinema of Asia](asia.html)
 - [Project Hail Mary](project-hail-mary.html)

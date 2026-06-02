@@ -29,18 +29,20 @@ watch…</span></p>
     it filters to the ones with that tag. -->
     <a href="#reset">✕</a>
     <a href="#cinema" class="cinema" title="watched in theaters!">#cinema</a>
-    <a href="#horror-tuesdays" class="horror-tuesdays">#horror-tuesdays</a>
+    <a href="#film-club" class="film-club">#film-club</a>
 </nav>
 <div id="tag-list">
     <div id="reset"></div>
     <div id="cinema"></div>
-    <div id="horror-tuesdays"></div>
+    <div id="film-club"></div>
 </div>
 <style>
 article:has(#cinema:target) .cards .card:not(.cinema) { display: none; }
 article:has(#cinema:target) nav#tag-select a.cinema { font-weight: bold; }
-article:has(#horror-tuesdays:target) .cards .card:not(.horror-tuesdays) { display: none; }
-article:has(#horror-tuesdays:target) nav#tag-select a.horror-tuesdays { font-weight: bold; }
+article:has(#cinema:target) section:not(:has(.card.cinema)) { display: none; }
+article:has(#film-club:target) .cards .card:not(.film-club) { display: none; }
+article:has(#film-club:target) nav#tag-select a.film-club { font-weight: bold; }
+article:has(#film-club:target) section:not(:has(.card.film-club)) { display: none; }
 nav#tag-select a:after { content: " "; }
 div#tag-list { display: none; }
 </style>

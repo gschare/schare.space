@@ -1,5 +1,6 @@
 <nav class="secondary">
 [<u>film</u>](/garden/film/)
+&centerdot; [<u>club</u>](/garden/film/club.html)
 &centerdot; [flog](/garden/flog/)
 </nav>
 
