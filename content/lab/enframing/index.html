@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Previewer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      font-family: monospace;
+      height: 100vh;
+      background: #f5f5f5;
+    }
+
+    textarea {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      resize: none;
+    }
+
+    iframe {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: white;
+    }
+  </style>
+  <title>enframing</title>
+</head>
+<body>
+  <textarea id="code" placeholder="Paste HTML here..."></textarea>
+  <iframe id="preview"></iframe>
+
+  <script>
+    const code = document.getElementById('code');
+    const preview = document.getElementById('preview');
+
+    code.addEventListener('input', () => {
+      preview.srcdoc = code.value;
+    });
+  </script>
+</body>
+</html>

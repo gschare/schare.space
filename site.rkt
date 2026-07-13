@@ -168,6 +168,7 @@
                   garden/process-tree/style.css
                   lab/changes/app.js
                   lab/changes/hexagram.js
+                  lab/enframing/index.html
                   ;lab/dnd/mothership/app.js
                   ;lab/dnd/mothership/character.css
                   .nojekyll
