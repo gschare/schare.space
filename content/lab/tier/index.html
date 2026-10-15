@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tier List</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --page: #f3f4f6; --panel: #fff; --text: #20242a;
+    --muted: #69717d; --line: #d8dce2; --entry: #f8f9fb; --accent: #315ee8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #17191d; --panel: #22252b; --text: #eef0f4;
+      --muted: #a5acb8; --line: #3c414b; --entry: #2b2f37; --accent: #8aa4ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; background: var(--page); color: var(--text);
+    font: 14px/1.35 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; }
+  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  h1 { font-size: 1.45rem; margin: 0; }
+  .intro { margin: 0; color: var(--muted); font-size: .9rem; }
+  .panel { padding: 10px; margin-bottom: 12px; border: 1px solid var(--line);
+    border-radius: 9px; background: var(--panel); }
+  form { display: flex; gap: 6px; }
+  input[type="text"] { flex: 1; min-width: 0; padding: 7px 9px; color: var(--text);
+    background: var(--entry); border: 1px solid var(--line); border-radius: 6px; font: inherit; }
+  button, .file-label { border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px;
+    color: var(--text); background: var(--panel); font: inherit; cursor: pointer; }
+  button:hover, .file-label:hover { border-color: var(--accent); }
+  button:disabled { opacity: .3; cursor: default; }
+  button.primary { background: var(--accent); color: white; border-color: transparent; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+  .file-label input { display: none; }
+  .hint { color: var(--muted); font-size: .8rem; margin: 7px 0 0; }
+  .workspace { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(240px, 1fr); gap: 12px; align-items: start; }
+  #tiers { display: grid; gap: 5px; }
+  .tier { display: grid; grid-template-columns: 48px minmax(0, 1fr); min-height: 76px;
+    border: 1px solid var(--line); border-radius: 7px; overflow: hidden; background: var(--panel); }
+  .tier-label { display: grid; place-items: center; font-size: 1.3rem; font-weight: 800; color: #17191d; }
+  .tier-items { display: flex; align-content: flex-start; align-items: flex-start; flex-wrap: wrap;
+    gap: 5px; padding: 6px; min-width: 0; min-height: 74px; }
+  .tier-items.drag-over, #pool.drag-over { outline: 2px dashed var(--accent); outline-offset: -3px; }
+  .entry { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    width: 76px; height: 76px; flex: 0 0 76px; padding: 5px; gap: 3px;
+    border: 1px solid var(--line); border-radius: 5px; background: var(--entry);
+    cursor: grab; user-select: none; text-align: center; overflow: hidden; }
+  .entry:active { cursor: grabbing; }
+  .entry.dragging { opacity: .35; }
+  .entry-text { width: 100%; max-height: 48px; overflow: hidden; overflow-wrap: anywhere; white-space: pre-wrap; }
+  .entry-actions { display: flex; gap: 1px; flex-shrink: 0; }
+  .entry-actions button { padding: 0 4px; border: 0; background: transparent; color: var(--muted); font-size: 12px; line-height: 1.3; }
+  .entry-actions button:hover { color: var(--text); }
+  .drop-hint { color: var(--muted); font-size: .8rem; align-self: center; padding: 7px; pointer-events: none; }
+  .pool-panel { border: 1px solid var(--line); border-radius: 9px; background: var(--panel); overflow: hidden; }
+  .pool-heading { padding: 9px 10px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .pool-heading h2 { font-size: 1rem; margin: 0; }
+  .pool-heading span { color: var(--muted); font-size: .8rem; }
+  #pool { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 5px; min-height: 230px; padding: 7px; }
+  @media (max-width: 760px) {
+    body { padding: 10px; }
+    .workspace { grid-template-columns: 1fr; }
+    #pool { min-height: 110px; }
+  }
+  @media (max-width: 430px) {
+    .tier { grid-template-columns: 38px minmax(0, 1fr); }
+    .entry { width: 68px; height: 68px; flex-basis: 68px; }
+    .entry-text { max-height: 41px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Tier List</h1>
+    <p class="intro">There is no persistent storage! If you close this page you will lose your rankings!</p>
+  </header>
+
+  <div class="workspace">
+    <section id="tiers" aria-label="Tier list"></section>
+    <section>
+      <div class="panel" aria-label="Add and export entries">
+        <form id="add-form">
+          <input id="entry-input" type="text" placeholder="New text entry…" maxlength="500" autocomplete="off" aria-label="Entry text" required>
+          <button class="primary" type="submit">Add</button>
+        </form>
+        <div class="toolbar">
+          <button id="export-json" type="button">Export JSON</button>
+          <button id="export-text" type="button">Export text</button>
+          <label class="file-label">Import JSON<input id="import-json" type="file" accept=".json,application/json"></label>
+          <!--<button id="clear" type="button">Clear</button>-->
+        </div>
+        <!--<p class="hint">Drag tiles between tiers and the entry pile. ✎ edits; × deletes; arrows move one tier.</p>-->
+      </div>
+      <div class="pool-panel" aria-label="Unranked entries">
+        <div class="pool-heading"><h2>Entries</h2><span id="pool-count">0 unranked</span></div>
+        <div id="pool" data-tier="POOL"></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+(() => {
+  "use strict";
+  const tierNames = ["S", "A", "B", "C", "D", "F"];
+  const tierColors = { S: "#ff8585", A: "#ffbd80", B: "#ffdf80", C: "#ffff8a", D: "#b9ed91", F: "#b8bbc2" };
+  let nextId = 1;
+  let tiers = Object.fromEntries([...tierNames, "POOL"].map(name => [name, []]));
+  let draggedId = null;
+  const tierRoot = document.querySelector("#tiers");
+  const pool = document.querySelector("#pool");
+  const form = document.querySelector("#add-form");
+  const input = document.querySelector("#entry-input");
+  function announce(message) { console.log(message); }
+  function addEntry(text) {
+    const cleanText = text.trim();
+    if (!cleanText) return;
+    tiers.POOL.push({ id: nextId++, text: cleanText, tier: "POOL" });
+    render();
+    announce(`Added “${cleanText}” to Entries.`);
+  }
+  function findEntry(id) {
+    for (const tier of [...tierNames, "POOL"]) {
+      const index = tiers[tier].findIndex(entry => entry.id === id);
+      if (index !== -1) return { entry: tiers[tier][index], tier, index };
+    }
+    return null;
+  }
+  function moveEntry(id, destination, beforeId = null) {
+    const found = findEntry(id);
+    if (!found || !tiers[destination]) return;
+    const [entry] = tiers[found.tier].splice(found.index, 1);
+    entry.tier = destination === "POOL" ? "POOL" : destination;
+    const target = beforeId == null ? -1 : tiers[destination].findIndex(item => item.id === beforeId);
+    if (target >= 0) tiers[destination].splice(target, 0, entry);
+    else tiers[destination].push(entry);
+    render();
+  }
+  function setupDropZone(zone, name) {
+    zone.addEventListener("dragover", event => {
+      event.preventDefault();
+      zone.classList.add("drag-over");
+    });
+    zone.addEventListener("dragleave", event => {
+      if (!zone.contains(event.relatedTarget)) zone.classList.remove("drag-over");
+    });
+    zone.addEventListener("drop", event => {
+      event.preventDefault();
+      zone.classList.remove("drag-over");
+      if (draggedId == null) return;
+      const card = event.target.closest(".entry");
+      moveEntry(draggedId, name, card ? Number(card.dataset.id) : null);
+      draggedId = null;
+      announce(name === "POOL" ? "Moved entry to Entries." : `Moved entry to ${name}.`);
+    });
+  }
+  function render() {
+    tierRoot.replaceChildren();
+    for (const name of tierNames) {
+      const row = document.createElement("section");
+      row.className = "tier";
+      row.setAttribute("aria-label", `${name} tier`);
+      const label = document.createElement("div");
+      label.className = "tier-label";
+      label.textContent = name;
+      label.style.backgroundColor = tierColors[name];
+      const items = document.createElement("div");
+      items.className = "tier-items";
+      setupDropZone(items, name);
+      if (!tiers[name].length) {
+        const empty = document.createElement("span");
+        empty.className = "drop-hint";
+        empty.textContent = "";
+        items.append(empty);
+      }
+      tiers[name].forEach(entry => items.append(createEntryCard(entry)));
+      row.append(label, items);
+      tierRoot.append(row);
+    }
+    pool.replaceChildren();
+    setupDropZone(pool, "POOL");
+    if (!tiers.POOL.length) {
+      const empty = document.createElement("span");
+      empty.className = "drop-hint";
+      empty.textContent = "";
+      pool.append(empty);
+    }
+    tiers.POOL.forEach(entry => pool.append(createEntryCard(entry)));
+    document.querySelector("#pool-count").textContent = '';//`${tiers.POOL.length} unranked`;
+  }
+  function createEntryCard(entry) {
+    const card = document.createElement("div");
+    card.className = "entry";
+    card.draggable = true;
+    card.dataset.id = String(entry.id);
+    card.tabIndex = 0;
+    card.setAttribute("aria-label", `${entry.text}, ${entry.tier === "POOL" ? "unranked" : entry.tier + " tier"}. Drag to move.`);
+    card.addEventListener("dragstart", event => {
+      draggedId = entry.id;
+      card.classList.add("dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", String(entry.id));
+    });
+    card.addEventListener("dragend", () => {
+      draggedId = null;
+      card.classList.remove("dragging");
+      document.querySelectorAll(".drag-over").forEach(el => el.classList.remove("drag-over"));
+    });
+    const text = document.createElement("span");
+    text.className = "entry-text";
+    text.textContent = entry.text;
+    const actions = document.createElement("span");
+    actions.className = "entry-actions";
+    const button = (label, title, aria, callback, disabled = false) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = label; b.title = title; b.setAttribute("aria-label", aria); b.disabled = disabled;
+      b.addEventListener("click", callback);
+      return b;
+    };
+    actions.append(
+      button("✎", "Edit", `Edit ${entry.text}`, () => {
+        const updated = window.prompt("Edit entry text:", entry.text);
+        if (updated === null) return;
+        if (!updated.trim()) { announce("Entry text cannot be empty."); return; }
+        entry.text = updated.trim(); render(); announce("Entry updated.");
+      }),
+      button("↑", "Move up one tier", `Move ${entry.text} up one tier`, () => {
+        const i = tierNames.indexOf(entry.tier);
+        if (entry.tier === "POOL") moveEntry(entry.id, "S");
+        else if (i > 0) moveEntry(entry.id, tierNames[i - 1]);
+        announce("Entry moved.");
+      }, entry.tier === "S"),
+      button("↓", "Move down one tier", `Move ${entry.text} down one tier`, () => {
+        const i = tierNames.indexOf(entry.tier);
+        if (entry.tier !== "POOL" && i < tierNames.length - 1) moveEntry(entry.id, tierNames[i + 1]);
+        else if (entry.tier !== "POOL") moveEntry(entry.id, "POOL");
+        announce("Entry moved.");
+      }, entry.tier === "POOL"),
+      button("×", "Delete", `Delete ${entry.text}`, () => {
+        const found = findEntry(entry.id);
+        if (found) tiers[found.tier].splice(found.index, 1);
+        render(); announce("Entry deleted.");
+      })
+    );
+    card.append(text, actions);
+    return card;
+  }
+  function download(filename, content, type) {
+    const url = URL.createObjectURL(new Blob([content], { type }));
+    const link = document.createElement("a");
+    link.href = url; link.download = filename; document.body.append(link); link.click(); link.remove();
+    URL.revokeObjectURL(url);
+  }
+  function exportObject() {
+    return { format: "tier-list", version: 1,
+      tiers: Object.fromEntries([...tierNames, "POOL"].map(name => [name, tiers[name].map(entry => entry.text)])) };
+  }
+  form.addEventListener("submit", event => {
+    event.preventDefault(); addEntry(input.value); input.value = ""; input.focus();
+  });
+  document.querySelector("#export-json").addEventListener("click", () => {
+    download("tier-list.json", JSON.stringify(exportObject(), null, 2), "application/json");
+    announce("Exported JSON.");
+  });
+  document.querySelector("#export-text").addEventListener("click", () => {
+    const content = [...tierNames, "POOL"].map(name =>
+      `${name === "POOL" ? "Entries (unranked)" : name}\n${tiers[name].length ? tiers[name].map(entry => `  - ${entry.text}`).join("\n") : "  (empty)"}`
+    ).join("\n\n");
+    download("tier-list.txt", content + "\n", "text/plain;charset=utf-8");
+    announce("Exported text.");
+  });
+  document.querySelector("#import-json").addEventListener("change", async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    try {
+      const parsed = JSON.parse(await file.text());
+      const source = parsed.tiers;
+      if (!source || typeof source !== "object") throw new Error("Missing tiers object.");
+      const replacement = Object.fromEntries([...tierNames, "POOL"].map(name => [name, []]));
+      let id = 1;
+      for (const name of [...tierNames, "POOL"]) {
+        if (source[name] === undefined) continue;
+        if (!Array.isArray(source[name])) throw new Error(`Tier ${name} must be an array.`);
+        for (const value of source[name]) {
+          if (typeof value !== "string") throw new Error(`Entries in ${name} must be text.`);
+          if (value.trim()) replacement[name].push({ id: id++, text: value.trim(), tier: name });
+        }
+      }
+      tiers = replacement; nextId = id; render(); announce(`Imported ${id - 1} entries.`);
+    } catch (error) { announce(`Could not import file: ${error.message}`); }
+    finally { event.target.value = ""; }
+  });
+  /*document.querySelector("#clear").addEventListener("click", () => {
+    if (![...tierNames, "POOL"].some(name => tiers[name].length)) { announce("The list is already empty."); return; }
+    if (!window.confirm("Clear every entry? Export first if you want to keep a copy.")) return;
+    tiers = Object.fromEntries([...tierNames, "POOL"].map(name => [name, []]));
+    render(); announce("Cleared the tier list.");
+  });*/
+  render();
+})();
+</script>
+</body>
+</html>
