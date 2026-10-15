@@ -185,7 +185,7 @@
                     .well-known
                     )
           )
-    :disabled (:files ()
+    :disabled (:files (lab/index.md)
                :folders ()
               )
     )
