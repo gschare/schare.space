@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tier List</title>
+<title>Like tiers in rain</title>
 <style>
   :root {
     color-scheme: light dark;
-    --page: #f3f4f6; --panel: #fff; --text: #20242a;
+    --page: #f3f4f6; --panel: rgba(1,1,1,0.9); --text: #20242a;
     --muted: #69717d; --line: #d8dce2; --entry: #f8f9fb; --accent: #315ee8;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --page: #17191d; --panel: #22252b; --text: #eef0f4;
+      --page: #17191d; --panel: rgba(34,37,43,0.9); --text: #eef0f4;
       --muted: #a5acb8; --line: #3c414b; --entry: #2b2f37; --accent: #8aa4ff;
     }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; padding: 16px; background: var(--page); color: var(--text);
+  body { margin: 0; padding: 16px; background: url(/assets/img/lab/tears.gif); color: var(--text);
     font: 14px/1.35 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
   main { max-width: 1180px; margin: 0 auto; }
-  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
   h1 { font-size: 1.45rem; margin: 0; }
   .intro { margin: 0; color: var(--muted); font-size: .9rem; }
   .panel { padding: 10px; margin-bottom: 12px; border: 1px solid var(--line);
@@ -70,13 +70,18 @@
     .entry { width: 68px; height: 68px; flex-basis: 68px; }
     .entry-text { max-height: 41px; }
   }
+  header { border: 1px solid var(--line); border-radius: 9px; background: var(--panel); overflow: hidden; padding: 9px 10px; }
+  .header-text { flex: 1; }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <h1>Tier List</h1>
-    <p class="intro">There is no persistent storage! If you close this page you will lose your rankings!</p>
+    <div class="header-text">
+      <h1>Like tiers in rain</h1>
+      <p class="intro">This page is not persistent. If you close the tab without exporting, your work will be gone. All those rankings will be lost in time, like tiers in rain.</p>
+    </div>
+    <button id="soundButton">🔊</button>
   </header>
 
   <div class="workspace">
@@ -100,6 +105,9 @@
         <div id="pool" data-tier="POOL"></div>
       </div>
     </section>
+
+    <audio id="bladerunner" src="/assets/img/lab/bladerunner.mp3" loop preload="auto" muted></audio>
+
   </div>
 </main>
 <script>
@@ -301,6 +309,121 @@
   });*/
   render();
 })();
+</script>
+<script>
+const audio = document.getElementById("bladerunner");
+const button = document.getElementById("soundButton");
+
+const maxVolume = 0.5;
+const fadeDuration = 1000; // milliseconds
+const UNMUTE_TEXT = "🔊";
+const MUTE_TEXT = "🔇";
+
+let started = false;
+let muted = true;
+let generation = 0;
+
+audio.volume = 0;
+
+function fadeTo(target, duration, token) {
+    return new Promise(resolve => {
+        const startVolume = audio.volume;
+        const startTime = performance.now();
+
+        function step(now) {
+            if (token !== generation) {
+                resolve(false);
+                return;
+            }
+
+            const progress = Math.min(
+                (now - startTime) / duration, 1
+            );
+
+            audio.volume =
+                Math.max(0, startVolume + (target - startVolume) * progress);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                resolve(true);
+            }
+        }
+
+        requestAnimationFrame(step);
+    });
+}
+
+async function startAudio() {
+    if (started) return;
+
+    started = true;
+    muted = false;
+    audio.muted = false;
+    audio.volume = 0;
+
+    try {
+        await audio.play();
+        button.textContent = MUTE_TEXT;
+        const token = ++generation;
+        await fadeTo(maxVolume, fadeDuration, token);
+    } catch (err) {
+        started = false;
+        muted = true;
+        audio.muted = true;
+        button.textContent = UNMUTE_TEXT;
+        console.error("Could not play audio:", err);
+    }
+}
+
+// Start on the first click anywhere.
+document.addEventListener("click", startAudio, { once: true });
+
+// Mute/unmute without stopping playback.
+button.addEventListener("click", event => {
+    event.stopPropagation();
+
+    if (!started) {
+        startAudio();
+        return;
+    }
+
+    muted = !muted;
+    audio.muted = muted;
+    button.textContent = muted ? UNMUTE_TEXT : MUTE_TEXT;
+});
+
+// Fade out near the end, restart, and fade back in.
+audio.addEventListener("timeupdate", async () => {
+    if (!started || !audio.duration || audio.paused) return;
+
+    const remaining = audio.duration - audio.currentTime;
+
+    if (remaining <= fadeDuration / 1000 &&
+        remaining > 0 &&
+        !audio.dataset.fading) {
+
+        audio.dataset.fading = "true";
+        const token = ++generation;
+
+        await fadeTo(0, remaining * 1000, token);
+
+        if (token !== generation) return;
+
+        audio.currentTime = 0;
+        audio.dataset.fading = "";
+        audio.volume = 0;
+
+        try {
+            await audio.play();
+            const nextToken = ++generation;
+            await fadeTo(maxVolume, fadeDuration, nextToken);
+        } catch (err) {
+            console.error("Could not restart audio:", err);
+        }
+    }
+});
+
 </script>
 </body>
 </html>
