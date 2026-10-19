@@ -29,6 +29,37 @@
       resize: none;
     }
 
+    .editor {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .share {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: white;
+      font-family: monospace;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #link {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
     iframe {
       flex: 1;
       border: 1px solid #ccc;
@@ -39,15 +70,43 @@
   <title>enframing</title>
 </head>
 <body>
-  <textarea id="code" placeholder="Paste HTML here..."></textarea>
+  <div class="editor">
+    <textarea id="code" placeholder="Write HTML here..."></textarea>
+    <div class="share">
+      <button id="protocol" title="copy a data: URL of this HTML to share">pro(social|tocol)</button>
+      <input id="link" readonly placeholder="data:text/html;base64,...">
+    </div>
+  </div>
   <iframe id="preview"></iframe>
 
   <script>
     const code = document.getElementById('code');
     const preview = document.getElementById('preview');
 
+    const button = document.getElementById('protocol');
+    const link = document.getElementById('link');
+
+    // btoa only handles latin-1, so encode to UTF-8 bytes first
+    const encode = text => {
+      const bytes = new TextEncoder().encode(text);
+      const binary = Array.from(bytes, b => String.fromCharCode(b)).join('');
+      return 'data:text/html;base64,' + btoa(binary);
+    };
+
     code.addEventListener('input', () => {
       preview.srcdoc = code.value;
+      link.value = encode(code.value);
+    });
+
+    button.addEventListener('click', async () => {
+      link.select();
+      try {
+        await navigator.clipboard.writeText(link.value);
+        button.textContent = 'copied!';
+      } catch {
+        button.textContent = 'select & copy';
+      }
+      setTimeout(() => button.textContent = 'pro(social|tocol)', 1500);
     });
   </script>
 </body>
